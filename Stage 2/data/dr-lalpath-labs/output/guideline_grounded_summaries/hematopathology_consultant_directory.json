@@ -1,17 +1,17 @@
 {
   "master_label": "Hematopathology Consultant Directory",
-  "original_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists qualified hematopathology consultants with specific credentials (MD, DM, DNB, MNAMS) and roles (Technical Director, Senior Consultant, Lead-Hematopathology).\n- Consultants are affiliated with NRL (National Reference Laboratory) and DMC (Diagnostic Medical Center) under Dr Lal PathLabs Ltd.\n- The directory is a revised report, superseding all previously issued reports.",
+  "original_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists certified hematopathology consultants with their credentials and affiliations.\n- Consultants are affiliated with Dr Lal PathLabs Ltd and include technical directors, senior consultants, and lead hematopathologists.\n- The directory is a revised report superseding all previously issued versions.",
   "grounding": {
     "status": "NO_MATCH",
     "matched_guideline_topics": []
   },
-  "grounded_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists qualified hematopathology consultants with specific credentials (MD, DM, DNB, MNAMS) and roles (Technical Director, Senior Consultant, Lead-Hematopathology).\n- Consultants are affiliated with NRL (National Reference Laboratory) and DMC (Diagnostic Medical Center) under Dr Lal PathLabs Ltd.\n- The directory is a revised report, superseding all previously issued reports.",
+  "grounded_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists certified hematopathology consultants with their credentials and affiliations.\n- Consultants are affiliated with Dr Lal PathLabs Ltd and include technical directors, senior consultants, and lead hematopathologists.\n- The directory is a revised report superseding all previously issued versions.",
   "provenance": {
     "patient_sources": [
       "WM17S.pdf"
     ],
     "guideline_sources": []
   },
-  "fused_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists qualified hematopathology consultants with specific credentials (MD, DM, DNB, MNAMS) and roles (Technical Director, Senior Consultant, Lead-Hematopathology).\n- Consultants are affiliated with NRL (National Reference Laboratory) and DMC (Diagnostic Medical Center) under Dr Lal PathLabs Ltd.\n- The directory is a revised report, superseding all previously issued reports.",
+  "fused_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Hematopathology Consultant Directory\n\n**Key Clinical Actions:**\n- Directory lists certified hematopathology consultants with their credentials and affiliations.\n- Consultants are affiliated with Dr Lal PathLabs Ltd and include technical directors, senior consultants, and lead hematopathologists.\n- The directory is a revised report superseding all previously issued versions.",
   "fuse_source_labels": []
 }

@@ -1,32 +1,37 @@
 # Complete Blood Count Report
 *Source: WM17S.pdf*
 
-**Patient Result:** 15.00 g/dL (Hemoglobin), 45.00% (PCV) (ref: 13.00 - 17.00 g/dL (Hemoglobin), 40.00 - 50.00% (PCV))
+**Patient Result:** 45.00 (ref: 40.00 - 50.00)
 
-**Clinical Interpretation:** Hemoglobin is within normal range (13.00-17.00 g/dL), PCV is within normal range (40.00-50.00%)
-- Guideline context: Hemoglobin concentration measures oxygen-carrying capacity and can vary by gender and age.
-- Guideline context: Hematocrit (PCV) indicates red cell volume percentage, reflecting blood viscosity and hydration.
-- Guideline context: Clinical guidelines suggest that interpretation should ideally integrate automated analyzer results with morphological findings and the patient's clinical presentation.
-- Guideline context: Guidelines suggest that interpretation should consider age-stratified and gender-specific reference ranges to improve diagnostic accuracy.
-- Guideline context: Clinical guidelines suggest correlating CBC parameters with clinical conditions such as hematologic malignancies, infections, and systemic diseases.
+- Clinical guidelines note that hematocrit (packed cell volume) reference ranges are typically age‑, sex‑, and ethnicity‑specific, and a value of 45 % falls within the normal adult range for most populations (CBC diagnostic review framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).  
+- Guideline context: Hematocrit values are influenced by hydration status; normal values should be interpreted in conjunction with clinical assessment of volume status (red blood cell parameter assessment, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).
 
-**Significance Level:** MODERATE
+**Clinical Interpretation:** Patient's Packed Cell Volume (PCV) of 45.00% falls within the normal reference range (40.00 - 50.00%).
 
-**Clinical Recommendation:** Complete Blood Count Report
+- Clinical guidelines suggest that a normal PCV, when correlated with normal hemoglobin and red blood cell indices, generally indicates adequate erythropoiesis and absence of anemia (red blood cell parameter assessment, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).  
 
-**Key Clinical Actions:**
-- Leucocyte counts are reported as absolute numbers per unit volume of blood
-- Hemoglobin and PCV values are provided with reference intervals for clinical comparison
-- leucocyte counts are additionally being reported as absolute numbers of each cell per unit volume of blood
-- Guideline context: Monitoring hemoglobin, MCV, and RDW changes over time can be used to assess treatment response.
-- Guideline context: For assessing treatment response in anemia, a "complete response" is defined as hemoglobin within the normal range and MCV >80 fL, often requiring reticulocyte count normalization (reticulocyte index >2%).
-- Guideline context: A "partial response" is defined as a hemoglobin increase >20 g/L from baseline.
+**Significance Level:** MODERATE  
 
-**Patient Preparation:**
-- Guideline context: Accurate patient preparation (such as fasting if required and proper rest) is recommended.
-- Guideline context: Proper sample collection (venous or capillary, anticoagulated with EDTA) is required.
-- Guideline context: To prevent hemoconcentration and falsely elevated hemoglobin/hematocrit values, sample collection should avoid prolonged venous stasis (tourniquet time <1 minute).
+- Guideline context: Many CBC interpretation frameworks classify findings that are within reference limits but may have clinical relevance (e.g., borderline values, trends over time) as moderate significance, prompting routine monitoring rather than immediate intervention (CBC interpretation and analysis framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).
 
-**Diagnostic Criteria:**
-- Guideline context: Reliable results depend on adherence to standardized quality control procedures and CLSI guidelines for hematology testing.
-- Guideline context: Precision for major CBC parameters is typically measured by a coefficient of variation (CV) <3% or <2.5% depending on the specific analytical system.
+**Clinical Recommendation:** Complete Blood Count Report  
+
+- Guideline context: Laboratories should adhere to quality assurance procedures, including regular calibration and use of age‑ and gender‑specific reference ranges, to ensure accurate CBC reporting (CBC interpretation and analysis framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).
+
+**Key Clinical Actions:**  
+- Leucocyte counts are reported as absolute numbers per unit volume of blood  
+- Hemoglobin and PCV values are measured and compared to reference ranges for clinical assessment  
+- leucocyte counts are additionally being reported as absolute numbers of each cell in per unit volume of blood  
+
+- Guideline context: Quality control measures, such as running control materials with each batch and maintaining coefficient of variation <3 % for major CBC parameters, are essential for reliable leukocyte and red cell measurements (CBC interpretation and analysis framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).
+
+**Patient Preparation:**  
+
+- Guideline context: Proper patient preparation includes ensuring the patient is at rest, avoiding vigorous exercise before sampling, and using the correct anticoagulant (EDTA) to prevent clotting (red blood cell parameter assessment, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).  
+- Clinical guidelines advise that fasting is not routinely required for CBC, but consistent timing of sample collection can reduce pre‑analytical variability (CBC diagnostic review framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).  
+- Guideline context: Samples should be collected using standardized venipuncture techniques and processed promptly to minimize degradation of cells (CBC diagnostic review framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).
+
+**Diagnostic Criteria:**  
+
+- Guideline context: Diagnostic evaluation of anemia or polycythemia incorporates PCV (hematocrit) together with hemoglobin, RBC count, mean corpuscular volume (MCV), and red cell distribution width (RDW) to classify the type and cause of any abnormality (red blood cell parameter assessment, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).  
+- Clinical guidelines state that a normal PCV alone does not exclude underlying pathology; correlation with clinical findings and, when indicated, further investigations (e.g., iron studies, reticulocyte count) is recommended (CBC diagnostic review framework, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).

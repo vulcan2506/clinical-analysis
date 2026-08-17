@@ -1,22 +1,24 @@
 {
   "master_label": "Lipid Panel Measurement Protocol",
-  "original_summary": "**Patient Result:**\n100.00 mg/dL (Total Cholesterol), 100.00 mg/dL (Triglycerides), >200 mg/dL (HDL Cholesterol)\n(ref: Total Cholesterol <200.00 mg/dL, Triglycerides <150.00 mg/dL, HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:**\nPatient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal range, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n- Guideline context: For adults, the use of Martin/Hopkins or Sampson/NIH equations is preferred over the Friedewald equation for LDL-C estimation.\n- Guideline context: Use of the Martin/Hopkins method to estimate LDL-C is preferred over the Friedewald equation to reduce discordance with apoB levels.\n- Clinical guidelines suggest that nonfasting lipid profiles are preferred for most adults due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol to account for physiological and analytical variations.\n- Additional testing for Apolipoprotein B, hsCRP, Lp(a), and LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.\n  - Guideline context: ApoB may be reasonable in untreated adults to enhance ASCVD risk assessment, guide LLT initiation, and characterize inherited lipid disorders.\n  - Guideline context: Lp(a) should be measured at least once in all adults for ASCVD risk assessment.\n- Consider performing lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy (LLT) and repeat every 6 to 12 months thereafter to assess efficacy and adherence.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Physiological and analytical variations necessitate serial sampling for accurate lipid measurement.\n- Fasting for at least 9-12 hours prior to lipid panel measurement to minimize dietary influences on triglycerides and other lipid fractions.\n  - Guideline context: For most adults, nonfasting lipid profiles are preferred due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.\n  - Guideline context: A fasting lipid profile is required for individuals with TG ≥200 mg/dL if further evaluation of hypertriglyceridemia is warranted or if there is a suspected disorder in triglyceride metabolism.",
+  "original_summary": "**Patient Result:** 100.00 mg/dL (ref: Total Cholesterol <200.00 mg/dL; Triglycerides <150.00 mg/dL; HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:** Patient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal ranges, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol due to physiological & analytical variations.\n- Additional testing for Apolipoprotein B, hsCRP, Lp(a) & LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Fasting for at least 9-12 hours prior to lipid panel measurement is required to minimize postprandial effects on triglycerides and other lipid parameters.",
   "grounding": {
     "status": "DIRECT_MATCH",
     "matched_guideline_topics": [
       {
         "master_label": "ApoB Measurement Recommendation",
         "match_type": "DIRECT_MATCH",
-        "confidence": 0.98,
+        "confidence": 1.0,
         "score": 0.9999802112579346,
-        "match_reason": "Guideline directly addresses ApoB measurement, which is explicitly recommended in the patient's clinical actions for risk refinement.",
+        "match_reason": "Guideline targets ApoB measurement in patients with ASCVD, diabetes, or elevated triglycerides, all of which are present in the patient's context. The patient's lipid panel protocol includes consideration of additional testing for Apolipoprotein B, aligning directly with this guideline.",
         "context_requirements": [
           "ascvd",
-          "diabetes"
+          "diabetes",
+          "hypertriglyceridemia"
         ],
         "validated_context": [
           "ascvd",
-          "diabetes"
+          "diabetes",
+          "hypertriglyceridemia"
         ],
         "rejected_context": [],
         "source_docs": [
@@ -25,25 +27,11 @@
         "summary": "# ApoB Measurement Recommendation\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** ApoB Measurement for ASCVD Risk Stratification and Therapeutic Guidance\n\n**Key Clinical Actions:**\n- ApoB is reasonable to measure in adults on lipid-lowering therapy (LLT) with ASCVD, CKM syndrome, type 2 diabetes, or elevated triglycerides (TG) to guide therapeutic intensification when LDL-C and/or non-HDL-C goals are achieved.\n- ApoB may be reasonable in untreated adults to enhance ASCVD risk assessment, guide LLT initiation, and characterize inherited lipid disorders.\n- ApoB directly quantifies atherogenic lipoprotein particle number (including LDL, VLDL, and Lp(a)), providing a more accurate measure of residual risk than LDL-C.\n- ApoB is particularly useful in populations with discordance between LDL-C and apoB (e.g., CKM syndrome, diabetes, or elevated TG), where LDL-C may appear at goal while apoB remains elevated.\n- ApoB measurement is standardized, unaffected by fasting status, and supports decisions on nonstatin therapies (e.g., ezetimibe, PCSK9 inhibitors, bempedoic acid, or inclisiran).\n\n**Patient Preparation / Diagnostic Criteria:**\n- Adults on LLT with ASCVD, CKM syndrome, type 2 diabetes, or elevated TG (TG ≥150 mg/dL) for therapeutic intensification guidance.\n- Untreated adults for enhanced ASCVD risk assessment or inherited lipid disorder characterization.\n- Use of standardized apoB measurement methods (not affected by fasting status).\n- Use of the Martin/Hopkins method to estimate LDL-C is preferred over the Friedewald equation to reduce discordance with apoB levels."
       },
       {
-        "master_label": "Lipid Screening Recommendation",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.95,
-        "score": 0.9999785423278809,
-        "match_reason": "Guideline discusses lipid screening frequency, which is tangentially relevant to the patient's lipid panel protocol but not directly actionable.",
-        "context_requirements": [],
-        "validated_context": [],
-        "rejected_context": [],
-        "source_docs": [
-          "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
-        ],
-        "summary": "# Lipid Screening Recommendation\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Lipid Screening Recommendation\n\n**Key Clinical Actions:**\n- Screening with a lipid profile is recommended beginning at age 19 years and at least every 5 years thereafter in adults.\n- Frequent screening is recommended for individuals with additional ASCVD risk factors.\n- Universal lipid screening is recommended in children aged 9 to 11 years to identify familial hypercholesterolemia (FH) and other lipid disorders.\n- Screening in children should be performed with a non-fasting TC and HDL-C to calculate non-HDL-C or a fasting lipid profile.\n- Cascade lipid screening is recommended for first- or second-degree relatives of individuals with FH.\n- Screening in children should be performed with a non-fasting TC and HDL-C to calculate non-HDL-C or a fasting lipid profile; apoB measurement is not part of routine pediatric lipid screening.\n- Cascade lipid screening is feasible and can be beneficial as early as 2 years of age to encourage early adoption of heart-healthy lifestyle behaviors, support timely identification and management of inherited lipid disorders, and bolster family cascade screening.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Screening should start at age 19 years in adults.\n- Screening in children should occur at ages 9 to 11 years.\n- Screening frequency increases with age and presence of additional ASCVD risk factors.\n- Non-fasting TC and HDL-C or fasting lipid profile is required for pediatric screening.\n- Family history alone is insufficient to identify childhood lipid disorders.\n- Family history alone is not sufficient to identify childhood lipid disorders, as up to half of those with high LDL-C do not report a family history of hypercholesterolemia or premature ASCVD.\n- Panel-based genetic testing for pathogenic/likely pathogenic rare variants for FH should be considered if there is a family history of premature ASCVD or significant primary hypercholesterolemia in those with high lipid levels."
-      },
-      {
         "master_label": "Lipid Measurement Guideline Update",
         "match_type": "DIRECT_MATCH",
-        "confidence": 0.99,
+        "confidence": 1.0,
         "score": 0.9999778270721436,
-        "match_reason": "Guideline directly addresses lipid measurement updates, including LDL-C estimation methods and ApoB/Lp(a) assessment, which are explicitly mentioned in the patient's clinical actions.",
+        "match_reason": "Guideline provides updates on lipid measurement techniques and additional testing (e.g., ApoB, Lp(a)), which aligns with the patient's protocol recommending additional testing for Apolipoprotein B, hsCRP, Lp(a), and LP-PLA2.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -55,9 +43,9 @@
       {
         "master_label": "Diabetes-Specific Lipid Management Guideline",
         "match_type": "CONTEXTUAL_MATCH",
-        "confidence": 0.97,
+        "confidence": 0.9,
         "score": 0.9999699592590332,
-        "match_reason": "Guideline is diabetes-specific but becomes relevant due to the patient's diabetes context.",
+        "match_reason": "Guideline is diabetes-specific lipid management, and diabetes is present in the patient's context. However, the patient's protocol is focused on measurement rather than management, making this a contextual match.",
         "context_requirements": [
           "diabetes"
         ],
@@ -73,10 +61,10 @@
       },
       {
         "master_label": "Lipid Monitoring and Treatment Response Guideline",
-        "match_type": "DIRECT_MATCH",
-        "confidence": 0.99,
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.95,
         "score": 0.74,
-        "match_reason": "Guideline directly addresses lipid monitoring and treatment response, which is explicitly mentioned in the patient's clinical actions.",
+        "match_reason": "Guideline focuses on lipid monitoring and treatment response, which partially aligns with the patient's protocol recommending serial sampling and additional testing. However, the patient's protocol is not explicitly about treatment response monitoring.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -87,10 +75,10 @@
       },
       {
         "master_label": "Lipoprotein(a) and Statin Therapy Analysis",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.9,
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
         "score": 0.708,
-        "match_reason": "Guideline focuses on Lp(a) and statin therapy, which is partially relevant to the patient's lipid panel protocol but not directly actionable.",
+        "match_reason": "Guideline addresses Lp(a) risk stratification, which is explicitly mentioned in the patient's protocol as a consideration for additional testing.",
         "context_requirements": [
           "ascvd"
         ],
@@ -104,49 +92,15 @@
         "summary": "# Lipoprotein(a) and Statin Therapy Analysis\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Lp(a) Risk Stratification and Therapeutic Response Analysis\n\n**Key Clinical Actions:**\n- Elevated Lp(a) levels are recognized as an independent risk factor for ASCVD and aortic stenosis, influencing risk stratification beyond standard lipid panels.\n- Statin therapy does not significantly reduce Lp(a) levels, necessitating alternative strategies for patients with high Lp(a) and residual risk.\n- PCSK9 inhibitors are recommended to lower Lp(a) levels and reduce major adverse cardiovascular events in high-risk patients.\n- Lp(a) testing is increasingly utilized in clinical practice to identify patients who may benefit from intensified lipid-lowering therapies.\n- Lipoprotein apheresis is considered a therapeutic option for patients with extremely high Lp(a) levels who have failed or cannot tolerate other therapies.\n- Elevated Lp(a) levels are associated with increased risk of myocardial infarction and aortic stenosis, independent of other cardiovascular risk factors.\n- Genetic polymorphisms in the apolipoprotein(a) gene (e.g., LPA rs10455872) may modify the cardiovascular risk conferred by elevated Lp(a) levels.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Measurement of Lp(a) levels is required to assess cardiovascular risk in patients with elevated LDL-C or high ASCVD risk.\n- Baseline Lp(a) levels should be assessed before initiating statin therapy to determine the need for additional lipid-lowering interventions.\n- Genetic polymorphism in the apolipoprotein(a) gene may be considered in conjunction with plasma Lp(a) levels for comprehensive risk assessment.\n- Baseline Lp(a) levels should be measured in patients with a family history of premature ASCVD or aortic stenosis, even in the absence of elevated LDL-C.\n- Lp(a) levels should be reassessed periodically in patients with persistently high levels (>125 nmol/L) to monitor progression and guide therapeutic decisions."
       },
       {
-        "master_label": "Nonfasting Lipid Risk Prediction",
-        "match_type": "DIRECT_MATCH",
-        "confidence": 0.98,
-        "score": 0.7033,
-        "match_reason": "Guideline directly addresses nonfasting lipid measurements, which is explicitly mentioned in the patient's clinical interpretation.",
-        "context_requirements": [],
-        "validated_context": [],
-        "rejected_context": [],
-        "source_docs": [
-          "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
-        ],
-        "summary": "# Nonfasting Lipid Risk Prediction\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Nonfasting Lipid Risk Prediction\n\n**Key Clinical Actions:**\n- Nonfasting lipid measurements are acceptable for cardiovascular risk prediction\n- Non-HDL cholesterol and apolipoprotein B are preferred over LDL-C for risk stratification\n- Triglyceride-rich lipoproteins are emphasized in nonfasting states\n- Lipid measurements can be performed without fasting in most patients\n- Advanced lipoprotein testing (e.g., NMR) is not routinely recommended\n- Nonfasting lipid testing should be performed in the morning to standardize postprandial conditions\n- Non-HDL cholesterol should be prioritized over LDL-C for risk stratification in patients with diabetes or metabolic syndrome\n\n**Patient Preparation / Diagnostic Criteria:**\n- Nonfasting lipid testing should be standardized to morning samples\n- Triglyceride levels should be <400 mg/dL for accurate LDL-C estimation\n- Non-HDL cholesterol should be calculated as total cholesterol minus HDL-C\n- Apolipoprotein B should be measured when available for high-risk patients\n- Risk stratification should incorporate nonfasting lipid profiles\n- Apolipoprotein B measurement is recommended for patients with triglycerides >150 mg/dL to refine risk assessment\n- Triglyceride levels should be <500 mg/dL for accurate non-HDL cholesterol calculation"
-      },
-      {
-        "master_label": "Lipid Goal Attainment Strategy",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.9,
-        "score": 0.6945,
-        "match_reason": "Guideline discusses lipid goal attainment strategies, which is tangentially relevant to the patient's lipid panel protocol but not directly actionable.",
-        "context_requirements": [
-          "ascvd"
-        ],
-        "validated_context": [
-          "ascvd"
-        ],
-        "rejected_context": [],
-        "source_docs": [
-          "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
-        ],
-        "summary": "# Lipid Goal Attainment Strategy\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Lipid Goal Attainment Strategy\n\n**Key Clinical Actions:**\n- Patients not achieving lipid/lipoprotein goals on recommended therapies should be prioritized for intensification of lipid-lowering therapy (LLT).\n- Therapeutic adjustments should be made based on individual risk profiles, including ASCVD status and presence of familial hypercholesterolemia (FH).\n- Monitoring of LDL-C, HDL-C, triglycerides (TG), and Lp(a) is essential to evaluate goal attainment and guide therapy.\n- Consideration of ezetimibe as an add-on therapy for patients not achieving LDL-C goals on maximally tolerated statin therapy.\n- For patients with diabetes or metabolic syndrome, prioritize non-HDL-C and apoB targets in addition to LDL-C goals.\n- Shared decision-making with patients should include discussion of potential side effects, adherence challenges, and cost considerations when intensifying LLT.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Baseline lipid/lipoprotein assessment must be performed before initiating or intensifying LLT.\n- Risk stratification (e.g., ASCVD risk score) is required to determine appropriate lipid targets.\n- Documentation of patient adherence to LLT and lifestyle modifications before intensification of therapy.\n- Reassessment of lipid/lipoprotein levels 4–12 weeks after initiating or intensifying LLT to evaluate response and guide further adjustments."
-      },
-      {
         "master_label": "Lipoprotein Target Guideline",
         "match_type": "CONTEXTUAL_MATCH",
-        "confidence": 0.97,
+        "confidence": 0.9,
         "score": 0.6671,
-        "match_reason": "Guideline discusses lipoprotein targets and CAC scoring, which becomes relevant due to the patient's diabetes and ASCVD context.",
+        "match_reason": "Guideline provides lipoprotein targets stratified by ASCVD risk, and ASCVD is present in the patient's context. However, the patient's protocol is focused on measurement rather than management.",
         "context_requirements": [
-          "diabetes",
           "ascvd"
         ],
         "validated_context": [
-          "diabetes",
           "ascvd"
         ],
         "rejected_context": [],
@@ -157,10 +111,10 @@
       },
       {
         "master_label": "inflammatory and genetic cardiovascular risk markers",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.9,
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
         "score": 0.6392,
-        "match_reason": "Guideline discusses inflammatory and genetic cardiovascular risk markers, which is tangentially relevant to the patient's lipid panel protocol.",
+        "match_reason": "Guideline discusses hs-CRP and Lp(a) as risk modifiers, both of which are mentioned in the patient's protocol as additional testing considerations.",
         "context_requirements": [
           "ascvd"
         ],
@@ -175,7 +129,7 @@
       }
     ]
   },
-  "grounded_summary": "**PATIENT GROUNDED SUMMARY:**\n\n**Patient Result:**\n100.00 mg/dL (Total Cholesterol), 100.00 mg/dL (Triglycerides), >200 mg/dL (HDL Cholesterol)\n(ref: Total Cholesterol <200.00 mg/dL, Triglycerides <150.00 mg/dL, HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:**\nPatient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal range, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n- Clinical guidelines suggest that nonfasting lipid profiles are preferred for most adults due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.\n- Guideline context: For adults, the use of Martin/Hopkins or Sampson/NIH equations is preferred over the Friedewald equation for LDL-C estimation.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol to account for physiological and analytical variations.\n- Additional testing for Apolipoprotein B, hsCRP, Lp(a), and LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.\n  - Guideline context: ApoB may be reasonable in untreated adults to enhance ASCVD risk assessment, guide LLT initiation, and characterize inherited lipid disorders.\n  - Guideline context: Lp(a) should be measured at least once in all adults for ASCVD risk assessment.\n- Consider performing lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy (LLT) and repeat every 6 to 12 months thereafter to assess efficacy and adherence.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Physiological and analytical variations necessitate serial sampling for accurate lipid measurement.\n- Fasting for at least 9-12 hours prior to lipid panel measurement to minimize dietary influences on triglycerides and other lipid fractions.\n  - Guideline context: For most adults, nonfasting lipid profiles are preferred due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.",
+  "grounded_summary": "**Patient Result:** 100.00 mg/dL (ref: Total Cholesterol <200.00 mg/dL; Triglycerides <150.00 mg/dL; HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:** Patient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal ranges, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol due to physiological & analytical variations.  \n- Additional testing for Apolipoprotein B, hsCRP, Lp(a) & LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.  \n- **Clinical guidelines suggest that ApoB measurement is standardized, not affected by fasting status, and can aid decisions on non‑statin therapies such as ezetimibe, PCSK9 inhibitors, bempedoic acid, or inclisiran (2026 ACC‑AHA‑AACVPR‑ABC‑ACPM‑ADA‑AGS‑APhA‑ASPC‑NLA‑PCNA Dyslipidemia Guideline).**  \n- **Guideline context: Non‑fasting lipid profiles are preferred for most adults because prognostic differences are minimal; fasting is required only when triglycerides are ≥400 mg/dL or when evaluating suspected genetic dyslipidemia (2026 ACC‑AHA‑... Dyslipidemia Guideline).**  \n- **Guideline recommendation: LDL‑C should be estimated using the Martin/Hopkins or Sampson/NIH equations rather than the Friedewald formula to improve accuracy, especially when ApoB is measured (2026 ACC‑AHA‑... Dyslipidemia Guideline).**  \n- **Guidelines advise performing repeat lipid measurements 4–12 weeks after initiating or adjusting lipid‑lowering therapy and thereafter every 6–12 months, with frequency individualized based on ASCVD risk and treatment goals (2026 ACC‑AHA‑... Lipid Monitoring and Treatment Response Guideline).**  \n- **Guideline guidance: Lp(a) should be measured at least once in all adults for ASCVD risk assessment; if Lp(a) is elevated and residual risk persists, PCSK9 inhibitors may be considered to lower Lp(a) and reduce events (2026 ACC‑AHA‑... Lipoprotein(a) and Statin Therapy Analysis Guideline).**  \n\n**Patient Preparation / Diagnostic Criteria:**\n- Fasting for at least 9‑12 hours prior to lipid panel measurement is required to minimize postprandial effects on triglycerides and other lipid parameters.  \n- **Guideline note: ApoB measurement does not require fasting and can be performed using standardized assays (2026 ACC‑AHA‑... ApoB Measurement Recommendation Guideline).**  \n- **Guideline recommendation: When triglycerides are ≥200 mg/dL in individuals with known or suspected disorders of triglyceride metabolism, a fasting sample is advised for accurate assessment (2026 ACC‑AHA‑... Dyslipidemia Guideline).**",
   "provenance": {
     "patient_sources": [
       "WM17S.pdf"
@@ -186,11 +140,11 @@
       "Lipid Disorders.pdf"
     ]
   },
-  "fused_summary": "**PATIENT GROUNDED SUMMARY:**\n\n**Patient Result:**\n100.00 mg/dL (Total Cholesterol), 100.00 mg/dL (Triglycerides), >200 mg/dL (HDL Cholesterol)\n(ref: Total Cholesterol <200.00 mg/dL, Triglycerides <150.00 mg/dL, HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:**\nPatient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal range, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n- Clinical guidelines suggest that nonfasting lipid profiles are preferred for most adults due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.\n- Guideline context: For adults, the use of Martin/Hopkins or Sampson/NIH equations is preferred over the Friedewald equation for LDL-C estimation.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol to account for physiological and analytical variations.\n- Additional testing for Apolipoprotein B, hsCRP, Lp(a), and LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.\n  - Guideline context: ApoB may be reasonable in untreated adults to enhance ASCVD risk assessment, guide LLT initiation, and characterize inherited lipid disorders.\n  - Guideline context: Lp(a) should be measured at least once in all adults for ASCVD risk assessment.\n- Consider performing lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy (LLT) and repeat every 6 to 12 months thereafter to assess efficacy and adherence.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Physiological and analytical variations necessitate serial sampling for accurate lipid measurement.\n- Fasting for at least 9-12 hours prior to lipid panel measurement to minimize dietary influences on triglycerides and other lipid fractions.\n  - Guideline context: For most adults, nonfasting lipid profiles are preferred due to minimal prognostic differences compared to fasting, except in cases of TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.",
+  "fused_summary": "**Patient Result:** 100.00 mg/dL (ref: Total Cholesterol <200.00 mg/dL; Triglycerides <150.00 mg/dL; HDL Cholesterol >40.00 mg/dL)\n\n**Clinical Interpretation:** Patient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal ranges, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing\n\n**Key Clinical Actions:**\n- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol due to physiological & analytical variations.  \n- Additional testing for Apolipoprotein B, hsCRP, Lp(a) & LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.  \n- **Clinical guidelines suggest that ApoB measurement is standardized, not affected by fasting status, and can aid decisions on non‑statin therapies such as ezetimibe, PCSK9 inhibitors, bempedoic acid, or inclisiran (2026 ACC‑AHA‑AACVPR‑ABC‑ACPM‑ADA‑AGS‑APhA‑ASPC‑NLA‑PCNA Dyslipidemia Guideline).**  \n- **Guideline context: Non‑fasting lipid profiles are preferred for most adults because prognostic differences are minimal; fasting is required only when triglycerides are ≥400 mg/dL or when evaluating suspected genetic dyslipidemia (2026 ACC‑AHA‑... Dyslipidemia Guideline).**  \n- **Guideline recommendation: LDL‑C should be estimated using the Martin/Hopkins or Sampson/NIH equations rather than the Friedewald formula to improve accuracy, especially when ApoB is measured (2026 ACC‑AHA‑... Dyslipidemia Guideline).**  \n- **Guidelines advise performing repeat lipid measurements 4–12 weeks after initiating or adjusting lipid‑lowering therapy and thereafter every 6–12 months, with frequency individualized based on ASCVD risk and treatment goals (2026 ACC‑AHA‑... Lipid Monitoring and Treatment Response Guideline).**  \n- **Guideline guidance: Lp(a) should be measured at least once in all adults for ASCVD risk assessment; if Lp(a) is elevated and residual risk persists, PCSK9 inhibitors may be considered to lower Lp(a) and reduce events (2026 ACC‑AHA‑... Lipoprotein(a) and Statin Therapy Analysis Guideline).**  \n\n**Patient Preparation / Diagnostic Criteria:**\n- Fasting for at least 9‑12 hours prior to lipid panel measurement is required to minimize postprandial effects on triglycerides and other lipid parameters.  \n- **Guideline note: ApoB measurement does not require fasting and can be performed using standardized assays (2026 ACC‑AHA‑... ApoB Measurement Recommendation Guideline).**  \n- **Guideline recommendation: When triglycerides are ≥200 mg/dL in individuals with known or suspected disorders of triglyceride metabolism, a fasting sample is advised for accurate assessment (2026 ACC‑AHA‑... Dyslipidemia Guideline).**",
   "fuse_source_labels": [
     "ApoB Measurement Recommendation",
-    "Lipid Screening Recommendation",
     "Lipid Measurement Guideline Update",
-    "Lipid Monitoring and Treatment Response Guideline"
+    "Lipid Monitoring and Treatment Response Guideline",
+    "Lipoprotein(a) and Statin Therapy Analysis"
   ]
 }

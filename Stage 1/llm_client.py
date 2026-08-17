@@ -102,7 +102,19 @@ def _get_mistral_client():
                 "MISTRAL_API_KEY is not set — add it to Stage 1/.env — MISTRAL_API_KEY=... "
                 "(never paste it into chat/logs)."
             )
-        from mistralai.client import Mistral
+        try:
+            from mistralai.client import Mistral
+        except ModuleNotFoundError as e:
+            # A missing mistralai package is a broken environment, not a
+            # transient API failure — swallowing it (as the generic except in
+            # _chat does) silently downgrades every call to the free OpenRouter
+            # tier, which hard-caps output and produces degraded/truncated
+            # summaries. Fail loudly so the venv/wrong-interpreter bug surfaces.
+            raise ModuleNotFoundError(
+                "mistralai is not installed — running outside the project venv? "
+                f"Use ./venv/bin/python (original error: {e}). "
+                "Fallback tiers cannot replace the primary extraction model."
+            ) from e
         _mistral_client = Mistral(api_key=config.MISTRAL_API_KEY)
         # Shared client — used for both OCR (ingest.py, model=MISTRAL_OCR_MODEL)
         # and chat (_chat_mistral, model=MISTRAL_CHAT_MODEL), so no single
@@ -195,6 +207,12 @@ def _chat(
     if config.LLM_BACKEND == "api":
         try:
             return _chat_mistral(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
+        except ModuleNotFoundError:
+            # Missing mistralai = broken environment (wrong interpreter / venv
+            # not activated), NOT a transient API failure. Do NOT fall through
+            # to the free OpenRouter tier — it hard-caps output well below
+            # max_tokens and silently degrades extraction. Fail loudly instead.
+            raise
         except Exception as e_mistral:
             log.warning(f"Mistral call failed after retries ({type(e_mistral).__name__}: {e_mistral}) — trying OpenRouter fallback")
 

@@ -1,6 +1,6 @@
 {
   "master_label": "Lipid Treatment Thresholds",
-  "original_summary": "**Label:** Lipid Treatment Thresholds\n**Significance Level:** HIGH\n\n---\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest progressively lower LDL-C goals for higher absolute ASCVD risk, with optional intensification to ≤30 mg/dL in extreme risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in both Extreme and Very High Risk groups.\n  *Guideline context: Initiate or intensify lipid-lowering therapy promptly in patients with very high cardiovascular risk to achieve LDL-C goals within 3–6 months (Lipid Disorders.pdf).*\n- Use pharmacological therapies with proven cardiovascular benefits to reduce LDL-C levels (Lipid Disorders.pdf).\n- Consider non-statin therapies (e.g., ezetimibe, PCSK9 inhibitors) in high-risk patients with persistently elevated LDL-C despite maximally tolerated statin therapy (Lipid Disorders.pdf).\n- Monitor LDL-C levels at 4–12 week intervals after therapy initiation or dose adjustment to assess response and adherence (Lipid Disorders.pdf).\n- Employ progressively lower LDL-C treatment goals for higher absolute ASCVD risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).\n- Assess Lp(a) levels to refine lifetime risk of major cardiovascular events (Lipid Disorders.pdf).\n- Ensure adherence to lifestyle modifications (diet, exercise) as adjunct to pharmacological therapy (Lipid Disorders.pdf).\n- Use validated risk calculators (e.g., SCORE2, ASCVD) for total cardiovascular risk stratification (Lipid Disorders.pdf).\n\n**Additional Key Clinical Actions (guideline-derived):**\n- Consider bempedoic acid as an adjunct in statin-intolerant patients or those requiring additional LDL-C lowering (American Diabetes Association Care Guidence.pdf).\n- For patients with familial hypercholesterolemia, consider genetic testing to confirm diagnosis and guide treatment intensity (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).\n- Exclude secondary causes of dyslipidemia (e.g., hypothyroidism, nephrotic syndrome) before initiating therapy in patients with severe hypercholesterolemia (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).",
+  "original_summary": "**Significance Level:** HIGH\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in these risk groups.",
   "grounding": {
     "status": "DIRECT_MATCH",
     "matched_guideline_topics": [
@@ -9,7 +9,7 @@
         "match_type": "DIRECT_MATCH",
         "confidence": 1.0,
         "score": 0.999980092048645,
-        "match_reason": "Essentially the same clinical subject (LDL-C treatment goals) with directly useful information for the patient's lipid treatment thresholds.",
+        "match_reason": "Guideline directly addresses LDL-C treatment goals and risk reduction strategies, aligning with the patient's lipid treatment thresholds.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -23,7 +23,7 @@
         "match_type": "PARTIAL_MATCH",
         "confidence": 0.9,
         "score": 0.9999591112136841,
-        "match_reason": "Partially relevant due to severe hypercholesterolemia management, but the patient's LDL-C levels are not specified to be ≥190 mg/dL.",
+        "match_reason": "Guideline includes management of severe hypercholesterolemia, which is relevant to the patient's lipid treatment thresholds but not fully applicable.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -34,35 +34,13 @@
         "summary": "# Severe Hypercholesterolemia Management\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Severe Hypercholesterolemia Management (LDL-C ≥190 mg/dL)\n\n**Key Clinical Actions:**\n- Exclude and address secondary causes of dyslipidemia in adults with LDL-C ≥190 mg/dL\n- Prescribe maximally tolerated statin therapy to lower LDL-C and reduce ASCVD risk\n- Use add-on LDL-C-lowering therapies (e.g., ezetimibe, PCSK9 inhibitors) in high-risk patients based on ASCVD risk, severity, and patient preference\n- Employ progressively lower LDL-C treatment goals for higher absolute ASCVD risk\n- Consider lipoprotein apheresis for select individuals unable to tolerate or access optimal drug therapy\n- Consider simple carbohydrate-restricted eating patterns, such as the ketogenic diet, as adjunct lifestyle therapy for LDL-C reduction in adults with severe hypercholesterolemia\n\n**Patient Preparation / Diagnostic Criteria:**\n- Exclusion of secondary causes of dyslipidemia before initiating therapy\n- Confirmation of LDL-C ≥190 mg/dL (or non-HDL-C >220 mg/dL or apoB >140 mg/dL) for diagnosis\n- Cascade screening and panel-based genetic testing for pathogenic FH variants if FH is suspected\n- Lifestyle modifications (e.g., carbohydrate-restricted eating patterns) as adjunct therapy\n- Monitoring of apoB with a goal of <55 mg/dL to minimize residual risk\n- Evaluate for secondary causes of dyslipidemia (e.g., hypothyroidism, nephrotic syndrome, obstructive liver disease, medication-induced dyslipidemia) before initiating lipid-lowering therapy in adults with severe hypercholesterolemia\n\n---\n\n# Severe Hypercholesterolemia Management\n*Source: American Diabetes Association Care Guidence.pdf*\n\n**Clinical Recommendation:** Bempedoic Acid for Severe Hypercholesterolemia\n\n**Core Recommendations:**\n- Bempedoic acid lowers LDL cholesterol by 15% in statin users and 24% in non-statin users\n- Combined use with ezetimibe yields an additional 19% LDL cholesterol reduction\n- CLEAR Outcomes trial showed a 13% reduction in four-point major adverse cardiovascular events in statin-intolerant patients\n- Prespecified subanalyses demonstrated a 17% reduction in four-point major adverse cardiovascular events for individuals with diabetes\n- Primary prevention subgroup showed a 30% reduction in primary composite outcome\n- Bempedoic acid reduces LDL cholesterol by 24% in non-statin users and 15% in statin users, with no additional benefit observed in patients already on high-intensity statin therapy\n\n**Patient Eligibility Criteria:**\n- Patients must be intolerant to statin therapy or require additional LDL cholesterol lowering despite statin use\n- Patients must be intolerant to statin therapy or have a contraindication to statins, or require additional LDL cholesterol lowering despite maximally tolerated statin therapy\n\n**Updated Recommendations:**\n- Bempedoic acid as a therapeutic option for severe hypercholesterolemia management\n- Use of bempedoic acid in statin-intolerant patients with established ASCVD or high ASCVD risk\n- Consideration of bempedoic acid for primary prevention in high-risk patients intolerant to statins\n- Consideration of bempedoic acid for patients with familial hypercholesterolemia who are statin-intolerant or require additional LDL lowering"
       },
       {
-        "master_label": "Patient Group Criteria",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.95,
-        "score": 0.9999037981033325,
-        "match_reason": "Relevant due to familial hypercholesterolemia criteria, but the patient's LDL-C levels are not specified to meet the criteria for Groups A, B, or C.",
-        "context_requirements": [
-          "familial_hypercholesterolemia"
-        ],
-        "validated_context": [
-          "familial_hypercholesterolemia"
-        ],
-        "rejected_context": [],
-        "source_docs": [
-          "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
-        ],
-        "summary": "# Patient Group Criteria\n*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*\n\n**Clinical Recommendation:** Familial Hypercholesterolemia Patient Group Criteria\n\n**Key Clinical Actions:**\n- Group A: Treat homozygous FH with LDL-C >500 mg/dL\n- Group B: Treat heterozygous FH with LDL-C ≥300 mg/dL\n- Group C: Treat heterozygous FH with LDL-C ≥70 mg/dL and documented CAD or PAD\n- Aggressive LDL-C lowering goals based on ASCVD status and FH confirmation\n- Use of maximally tolerated statins plus ezetimibe, PCSK9 mAbs, or bempedoic acid\n- Exclude high saturated fat diet as an etiology for severe hypercholesterolemia before confirming primary hypercholesterolemia diagnosis\n- Perform dietary history to identify ketogenic diet-induced severe hypercholesterolemia\n\n**Patient Preparation / Diagnostic Criteria:**\n- Clinically diagnosed familial hypercholesterolemia (homozygous or heterozygous)\n- Specific LDL-C thresholds (>500, ≥300, or ≥70 mg/dL) depending on genotype\n- Documentation of coronary artery disease or peripheral artery disease for Group C\n- Exclusion of high saturated fat diet as etiology in severe hypercholesterolemia\n- Clinical or genetic confirmation of FH for aggressive LDL-C goals\n- Documentation of coronary artery calcification for risk stratification in severe hypercholesterolemia without ASCVD\n- Consider additional ASCVD risk factors (e.g., hypertension, diabetes, smoking) for treatment intensification in HeFH"
-      },
-      {
         "master_label": "2026 LDL-C Target Guideline",
         "match_type": "PARTIAL_MATCH",
-        "confidence": 0.85,
+        "confidence": 0.8,
         "score": 0.9998916387557983,
-        "match_reason": "Relevant for LDL-C target goals and genetic testing for FH, but the patient's LDL-C levels are not specified to meet the criteria for target goals.",
-        "context_requirements": [
-          "familial_hypercholesterolemia"
-        ],
-        "validated_context": [
-          "familial_hypercholesterolemia"
-        ],
+        "match_reason": "Guideline includes LDL-C target recommendations, which are relevant to the patient's lipid treatment thresholds but not fully applicable.",
+        "context_requirements": [],
+        "validated_context": [],
         "rejected_context": [],
         "source_docs": [
           "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
@@ -74,7 +52,7 @@
         "match_type": "DIRECT_MATCH",
         "confidence": 1.0,
         "score": 0.762,
-        "match_reason": "Directly relevant to lipid goal attainment strategy for the patient's lipid treatment thresholds.",
+        "match_reason": "Guideline directly addresses lipid goal attainment strategies, aligning with the patient's lipid treatment thresholds.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -85,10 +63,10 @@
       },
       {
         "master_label": "Lipid-Lowering Therapy Framework",
-        "match_type": "PARTIAL_MATCH",
-        "confidence": 0.9,
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
         "score": 0.6831,
-        "match_reason": "Relevant for lipid-lowering therapy framework and nonstatin medications, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+        "match_reason": "Guideline directly addresses lipid-lowering therapy framework, aligning with the patient's lipid treatment thresholds.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -101,9 +79,9 @@
       {
         "master_label": "LDL Reduction Therapy",
         "match_type": "PARTIAL_MATCH",
-        "confidence": 0.85,
+        "confidence": 0.9,
         "score": 0.6767,
-        "match_reason": "Relevant for LDL reduction therapy and risk stratification, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+        "match_reason": "Guideline includes LDL reduction therapy and risk stratification, which is relevant to the patient's lipid treatment thresholds but not fully applicable.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -115,9 +93,9 @@
       {
         "master_label": "2026 Dyslipidemia Guideline Update",
         "match_type": "PARTIAL_MATCH",
-        "confidence": 0.9,
+        "confidence": 0.8,
         "score": 0.6682,
-        "match_reason": "Relevant for severe hypercholesterolemia and subclinical coronary atherosclerosis management, but the patient's LDL-C levels are not specified to be ≥190 mg/dL.",
+        "match_reason": "Guideline includes severe hypercholesterolemia and subclinical coronary atherosclerosis management, which is partially relevant to the patient's lipid treatment thresholds.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -131,7 +109,7 @@
         "match_type": "PARTIAL_MATCH",
         "confidence": 0.8,
         "score": 0.6652,
-        "match_reason": "Relevant for cholesterol lowering evidence base, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+        "match_reason": "Guideline includes cholesterol lowering evidence base, which is partially relevant to the patient's lipid treatment thresholds.",
         "context_requirements": [],
         "validated_context": [],
         "rejected_context": [],
@@ -143,9 +121,9 @@
       {
         "master_label": "LDL-C Lowering Evidence Synthesis",
         "match_type": "CONTEXTUAL_MATCH",
-        "confidence": 0.95,
+        "confidence": 0.9,
         "score": 0.6648,
-        "match_reason": "Relevant due to the presence of diabetes in the patient's context, but the guideline is focused on LDL-C lowering evidence synthesis rather than treatment thresholds.",
+        "match_reason": "Guideline includes intensive LDL-C lowering and nonstatin therapies, which becomes relevant due to the patient's diabetes context.",
         "context_requirements": [
           "diabetes"
         ],
@@ -160,7 +138,7 @@
       }
     ]
   },
-  "grounded_summary": "**Label:** Lipid Treatment Thresholds\n**Significance Level:** HIGH\n\n---\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest progressively lower LDL-C goals for higher absolute ASCVD risk, with optional intensification to ≤30 mg/dL in extreme risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in both Extreme and Very High Risk groups.\n  *Guideline context: Initiate or intensify lipid-lowering therapy promptly in patients with very high cardiovascular risk to achieve LDL-C goals within 3–6 months (Lipid Disorders.pdf).*\n- Use pharmacological therapies with proven cardiovascular benefits to reduce LDL-C levels (Lipid Disorders.pdf).\n- Monitor LDL-C levels at 4–12 week intervals after therapy initiation or dose adjustment to assess response and adherence (Lipid Disorders.pdf).\n- Employ progressively lower LDL-C treatment goals for higher absolute ASCVD risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).\n- Assess Lp(a) levels to refine lifetime risk of major cardiovascular events (Lipid Disorders.pdf).\n- Ensure adherence to lifestyle modifications (diet, exercise) as adjunct to pharmacological therapy (Lipid Disorders.pdf).\n- Use validated risk calculators (e.g., SCORE2, ASCVD) for total cardiovascular risk stratification (Lipid Disorders.pdf).\n\n**Additional Key Clinical Actions (guideline-derived):**\n- Consider bempedoic acid as an adjunct in statin-intolerant patients or those requiring additional LDL-C lowering (American Diabetes Association Care Guidence.pdf).\n- For patients with familial hypercholesterolemia, consider genetic testing to confirm diagnosis and guide treatment intensity (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).",
+  "grounded_summary": "**PATIENT GROUNDED SUMMARY**\n\n**Label:** Lipid Treatment Thresholds\n**Significance Level:** HIGH\n\n---\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest setting LDL-C treatment goals based on total cardiovascular risk categories and employing progressively lower LDL-C targets for higher absolute ASCVD risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n  *Guideline context / considerations: Use pharmacological therapies with proven cardiovascular benefits to reduce LDL-C levels and consider non-statin therapies (e.g., ezetimibe, PCSK9 inhibitors) in high-risk patients with persistently elevated LDL-C despite maximally tolerated statin therapy (Lipid Disorders.pdf).*\n\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n  *Clinical guidelines suggest initiating or intensifying lipid-lowering therapy promptly in patients with very high cardiovascular risk to achieve LDL-C goals within 3–6 months (Lipid Disorders.pdf).*\n\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in these risk groups.\n  *Guideline context / considerations: Monitor LDL-C levels at 4–12 week intervals after therapy initiation or dose adjustment to assess response and adherence (Lipid Disorders.pdf).*\n\n---\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest assessing Lp(a) levels to refine lifetime risk of major cardiovascular events and using validated risk calculators (e.g., SCORE2, ASCVD) for total cardiovascular risk stratification (Lipid Disorders.pdf).*\n\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n  *Clinical guidelines suggest prioritizing non-HDL-C and apoB targets in addition to LDL-C goals for patients with diabetes or metabolic syndrome (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in these risk groups.\n  *Clinical guidelines suggest considering ezetimibe as an add-on therapy for patients not achieving LDL-C goals on maximally tolerated statin therapy (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n---\n**Patient Preparation / Diagnostic Criteria:**\n- Exclusion of secondary causes of dyslipidemia before initiating therapy.\n  *Guideline context / considerations: Evaluate for secondary causes of dyslipidemia (e.g., hypothyroidism, nephrotic syndrome, obstructive liver disease, medication-induced dyslipidemia) before initiating lipid-lowering therapy in adults with severe hypercholesterolemia (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n- Confirmation of LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL for therapy consideration in these risk groups.\n  *Guideline context / considerations: Baseline lipid/lipoprotein assessment must be performed before initiating or intensifying lipid-lowering therapy (LLT) (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*",
   "provenance": {
     "patient_sources": [
       "WM17S.pdf"
@@ -171,11 +149,11 @@
       "Lipid Disorders.pdf"
     ]
   },
-  "fused_summary": "**Label:** Lipid Treatment Thresholds\n**Significance Level:** HIGH\n\n---\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest progressively lower LDL-C goals for higher absolute ASCVD risk, with optional intensification to ≤30 mg/dL in extreme risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in both Extreme and Very High Risk groups.\n  *Guideline context: Initiate or intensify lipid-lowering therapy promptly in patients with very high cardiovascular risk to achieve LDL-C goals within 3–6 months (Lipid Disorders.pdf).*\n- Use pharmacological therapies with proven cardiovascular benefits to reduce LDL-C levels (Lipid Disorders.pdf).\n- Monitor LDL-C levels at 4–12 week intervals after therapy initiation or dose adjustment to assess response and adherence (Lipid Disorders.pdf).\n- Employ progressively lower LDL-C treatment goals for higher absolute ASCVD risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).\n- Assess Lp(a) levels to refine lifetime risk of major cardiovascular events (Lipid Disorders.pdf).\n- Ensure adherence to lifestyle modifications (diet, exercise) as adjunct to pharmacological therapy (Lipid Disorders.pdf).\n- Use validated risk calculators (e.g., SCORE2, ASCVD) for total cardiovascular risk stratification (Lipid Disorders.pdf).\n\n**Additional Key Clinical Actions (guideline-derived):**\n- Consider bempedoic acid as an adjunct in statin-intolerant patients or those requiring additional LDL-C lowering (American Diabetes Association Care Guidence.pdf).\n- For patients with familial hypercholesterolemia, consider genetic testing to confirm diagnosis and guide treatment intensity (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).",
+  "fused_summary": "**PATIENT GROUNDED SUMMARY**\n\n**Label:** Lipid Treatment Thresholds\n**Significance Level:** HIGH\n\n---\n\n**Clinical Recommendation:** Lipid Treatment Thresholds for Extreme/Very High Risk Groups\n\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest setting LDL-C treatment goals based on total cardiovascular risk categories and employing progressively lower LDL-C targets for higher absolute ASCVD risk (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n  *Guideline context / considerations: Use pharmacological therapies with proven cardiovascular benefits to reduce LDL-C levels and consider non-statin therapies (e.g., ezetimibe, PCSK9 inhibitors) in high-risk patients with persistently elevated LDL-C despite maximally tolerated statin therapy (Lipid Disorders.pdf).*\n\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n  *Clinical guidelines suggest initiating or intensifying lipid-lowering therapy promptly in patients with very high cardiovascular risk to achieve LDL-C goals within 3–6 months (Lipid Disorders.pdf).*\n\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in these risk groups.\n  *Guideline context / considerations: Monitor LDL-C levels at 4–12 week intervals after therapy initiation or dose adjustment to assess response and adherence (Lipid Disorders.pdf).*\n\n---\n\n**Key Clinical Actions:**\n- For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).\n  *Clinical guidelines suggest assessing Lp(a) levels to refine lifetime risk of major cardiovascular events and using validated risk calculators (e.g., SCORE2, ASCVD) for total cardiovascular risk stratification (Lipid Disorders.pdf).*\n\n- For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.\n  *Clinical guidelines suggest prioritizing non-HDL-C and apoB targets in addition to LDL-C goals for patients with diabetes or metabolic syndrome (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n- Therapy is considered when LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL in these risk groups.\n  *Clinical guidelines suggest considering ezetimibe as an add-on therapy for patients not achieving LDL-C goals on maximally tolerated statin therapy (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n---\n**Patient Preparation / Diagnostic Criteria:**\n- Exclusion of secondary causes of dyslipidemia before initiating therapy.\n  *Guideline context / considerations: Evaluate for secondary causes of dyslipidemia (e.g., hypothyroidism, nephrotic syndrome, obstructive liver disease, medication-induced dyslipidemia) before initiating lipid-lowering therapy in adults with severe hypercholesterolemia (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*\n\n- Confirmation of LDL-C ≥50 mg/dL or non-HDL-C ≥80 mg/dL for therapy consideration in these risk groups.\n  *Guideline context / considerations: Baseline lipid/lipoprotein assessment must be performed before initiating or intensifying lipid-lowering therapy (LLT) (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf).*",
   "fuse_source_labels": [
     "LDL-C treatment goals and risk reduction strategies",
     "Severe Hypercholesterolemia Management",
-    "Patient Group Criteria",
-    "2026 LDL-C Target Guideline"
+    "2026 LDL-C Target Guideline",
+    "Lipid Goal Attainment Strategy"
   ]
 }

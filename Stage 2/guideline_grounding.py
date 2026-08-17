@@ -830,6 +830,16 @@ CRITICAL DISTINCTION — "same domain" is NOT "same subject":
   - "Kidney function assessment" vs "kidney management in diabetes"    → same subject, but needs diabetes context (CONTEXTUAL if present).
 Do not treat a shared keyword (lipid / kidney / diabetes / cholesterol) as a match by itself.
 
+PATIENT CONTEXT DECIDES DOMAIN MATCHES:
+  When the PATIENT KNOWLEDGE UNIVERSE marks a clinical concept the guideline
+  targets as PRESENT (e.g. ascvd, statin_use, hypertriglyceridemia), and the
+  patient topic is a decision framework / management / treatment topic in that
+  same domain, then the guideline DOES enrich the topic — classify DIRECT_MATCH
+  (or CONTEXTUAL_MATCH if it additionally requires a specific patient state that
+  is UNKNOWN). A brief patient topic body is NOT a reason for NO_MATCH when the
+  patient's confirmed context establishes the domain. Do not invent conditions;
+  UNKNOWN/ABSENT context never creates a match.
+
 Match types:
   - DIRECT_MATCH:      essentially the same underlying clinical subject AND the guideline adds directly useful information.
   - PARTIAL_MATCH:     related, but only a subset of the guideline is relevant to this patient topic (do NOT attach the whole guideline).
@@ -965,8 +975,15 @@ Rules:
    patient topic, phrased as attributed context
    ("Clinical guidelines suggest ...", "guideline context / considerations /
    applicable guidance: ..."), never as a prescription for this patient.
-5. CONCISE: add only the FEW (2-4) most valuable guideline points per section,
-   each a single bullet. Do NOT dump every recommendation from the guideline.
+5. GUIDED COMPLETENESS: weave in the guideline knowledge that genuinely
+   applies to THIS patient topic — include the applicable recommendations,
+   thresholds, and decision criteria from the matched guideline summaries
+   (typically 3-8 guideline bullets per section where applicable, more when the
+   guideline provides detailed actionable guidance). Each is a single bullet,
+   phrased as attributed context ("Clinical guidelines suggest ...",
+   "guideline context / considerations / applicable guidance: ..."), never as
+   a prescription for this patient. Attribute the guideline source (its name
+   and year) when the MATCHED GUIDELINE SUMMARIES provide it.
 6. DEDUPLICATE: if two or more guideline points state the same idea (for
    example, several guidelines all say "individualize glycemic targets based
    on patient factors"), combine them into ONE bullet that captures the
@@ -975,9 +992,10 @@ Rules:
    appears in the patient's own bullets should NOT be repeated as guideline
    context.
 7. If a guideline point only applies conditionally, say so explicitly.
-8. The enriched summary must stay CLOSE IN LENGTH to the original patient
-   topic — it is the same report with a few woven-in guideline notes, not a
-   longer guideline digest.
+8. PATIENT-FIRST LENGTH: the enriched summary must retain the patient's own
+   sections verbatim and may exceed the original patient topic in length —
+   it is the patient's report enriched with the applicable guideline
+   knowledge, not a stripped-down or condensed rewrite.
 
 PATIENT TOPIC (preserve verbatim):
 Label: {label}

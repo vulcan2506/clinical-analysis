@@ -160,6 +160,52 @@ def _profile_to_embed_text(label: str, p: BehavioralProfile, char_budget: int = 
     return ". ".join(parts)
 
 
+def _profile_is_degraded(p: Optional[BehavioralProfile], text: str) -> bool:
+    """
+    Detect extraction output that the LLM silently degraded — the signature
+    of free-tier models (e.g. google/gemma-4-26b-a4b-it:free) hard-capping
+    output well below max_tokens: a clinical lab topic that returns ALL four
+    list fields empty (no key_behaviors/requirements/deprecated/new_items)
+    while the input text actually has content, or the "Could not extract"
+    fallback. Such a profile would render as empty sections and lose the
+    patient's units, so it's worth one stronger-model retry before accepting.
+    """
+    if p is None:
+        return True
+    if p.feature_name == "Could not extract":
+        return True
+    has_clinical = bool(p.patient_value or p.reference_range or p.interpretation)
+    if not has_clinical:
+        return False
+    has_list_content = bool(
+        p.key_behaviors or p.requirements or p.deprecated_items or p.new_items
+    )
+    if has_list_content:
+        return False
+    # Clinical fields present but every list empty AND the input has real
+    # substance — extraction was cut short, not genuinely empty.
+    return len(re.sub(r"\s+", "", text or "")) > 40
+
+
+def _retry_extraction_groq(prompt: str) -> str:
+    """Re-run a degraded extraction through Groq (llama-3.3-70b, 32k output
+    cap) — same pattern as guideline_grounding._retry_fusion_groq. Returns
+    '' when Groq is unavailable or the retry also fails."""
+    groq_client = llm_client._get_groq_client()
+    if groq_client is None:
+        log.warning("GROQ_API_KEY not set — keeping degraded extraction")
+        return ""
+    try:
+        out = llm_client._chat_openai_compatible(
+            groq_client, llm_client.config.GROQ_MODEL, prompt, 2500, 0.0,
+            None, ["```\n"], False, label="Groq",
+        )
+        return (out or "").strip()
+    except Exception as e:  # noqa: BLE001
+        log.warning(f"Groq extraction retry failed ({type(e).__name__}: {e}) — keeping first pass")
+        return ""
+
+
 def _truncate_at_boundary(text: str, limit: int) -> str:
     if len(text) <= limit:
         return text
@@ -318,7 +364,15 @@ def run_topic_summarization(cached_only: bool = False):
             desc="Topic summary — holistic", stop=["```\n"], enable_thinking=False,
         )
         for job, raw in zip(fresh_jobs, raw_holistic):
-            job["rough_profile_A"] = _parse_profile(raw)
+            rough = _parse_profile(raw)
+            if _profile_is_degraded(rough, job.get("text_A", "")):
+                log.info(f"Holistic extraction degraded for '{job['topic']}' — retrying via Groq")
+                retry = _retry_extraction_groq(_build_holistic_prompts([job], "A")[0])
+                if retry:
+                    retried = _parse_profile(retry)
+                    if not _profile_is_degraded(retried, job.get("text_A", "")):
+                        rough = retried
+            job["rough_profile_A"] = rough
 
         log.info("Sub-pass 1b: gap fill...")
         raw_gaps = llm_client.generate_batch(
@@ -326,7 +380,15 @@ def run_topic_summarization(cached_only: bool = False):
             desc="Topic summary — gap fill", stop=["```\n"], enable_thinking=False,
         )
         for job, raw in zip(fresh_jobs, raw_gaps):
-            job["_entry"]["profile"] = _merge_profiles(job["rough_profile_A"], _parse_additions(raw))
+            merged = _merge_profiles(job["rough_profile_A"], _parse_additions(raw))
+            if _profile_is_degraded(merged, job.get("text_A", "")):
+                log.info(f"Gap-fill profile still degraded for '{job['topic']}' — retrying via Groq")
+                retry = _retry_extraction_groq(_build_gap_fill_prompts([job], "A")[0])
+                if retry:
+                    retried = _merge_profiles(job["rough_profile_A"], _parse_additions(retry))
+                    if not _profile_is_degraded(retried, job.get("text_A", "")):
+                        merged = retried
+            job["_entry"]["profile"] = merged
 
         # ── Sub-pass 1c: keyword validation of significance_level ──
         for job in fresh_jobs:

@@ -1,68 +1,148 @@
 # Clinical Data Integration
 
-Clinical Data Integration ensures the accurate translation of laboratory and therapeutic data into actionable clinical decisions through standardized validation, risk stratification, and evidence-based frameworks.
+Clinical Data Integration under 'Laboratory Data Management' and 'Edge Cases & Standalone Topics' emphasizes structured, guideline-driven approaches to lipid testing, risk stratification, and therapeutic decision-making, ensuring accuracy, clinical correlation, and evidence-based interventions.
 
 **Key Features:**
-- Laboratory Data Management: Integrates standardized validation protocols with clinical laboratory data to ensure specimen-specific, high-quality diagnostic results requiring physician correlation.
-- Therapeutic Decision Framework: Prioritizes non-pharmacological interventions for low-risk patients over 3 months before considering therapy, based on predefined risk criteria.
+- Fasting lipid profile testing (TC, LDL-C, HDL-C, TG) requires 9–12 hours fasting for triglyceride accuracy
+- Non-HDL-C and apoB prioritized as secondary targets for triglycerides ≥500 mg/dL or metabolic syndrome
+- hs-CRP considered a risk-enhancing factor in borderline-risk patients per ACC/AHA guidelines
+- Lp(a) testing recommended at least once in a lifetime with ≥50 mg/dL deemed elevated
+- ApoB measurement advised for patients with diabetes, metabolic syndrome, or chronic kidney disease
+- Therapeutic Decision Framework mandates non-pharmacological interventions for at least 3 months in low-risk patients before therapy
+- Laboratory results are specimen-specific, validated by authorized medical practitioners, and clinically correlated by referring physicians
+- Alarm or unexpected results trigger immediate client contact for remedial action
 
 **Notable Details:**
-- Fasting duration of 9–12 hours required for accurate triglyceride measurement in lipid profile testing.
-- Non-HDL-C and apoB recommended as secondary lipid targets for triglycerides ≥500 mg/dL or metabolic syndrome.
-- All laboratory results are specimen-specific and dependent on sample quality, necessitating clinical correlation.
-- Interlaboratory variations may occur, requiring additional testing for exact values, which may incur extra costs.
-- Non-pharmacological interventions must be attempted for at least 3 months prior to therapy in low-risk patients per guideline criteria.
-- Patient risk classification must adhere to predefined guideline criteria to qualify for the low-risk therapeutic pathway.
-- Laboratory investigations are tools to facilitate diagnosis, not standalone diagnostic conclusions.
-- The framework aims to reduce unnecessary pharmacological interventions in low-risk populations through evidence-based criteria.
+- Triglyceride measurement requires 9–12 hours fasting for accuracy
+- Non-HDL-C and apoB are preferred secondary targets in specific patient groups
+- hs-CRP is a risk-enhancing factor in borderline-risk patients per ACC/AHA
+- Lp(a) ≥50 mg/dL is considered elevated for lifetime risk stratification
+- ApoB is recommended for patients with diabetes, metabolic syndrome, or CKD
+- Test results are computer-generated and validated by an authorized medical practitioner
+- Sample must be submitted within 72 hours post-reporting for certain tests
+- Exclusive jurisdiction for disputes/claims concerning tests or results is at Delhi courts
 
 ## Sub-Categories
 
 | Sub-Category | # Topics | Overview |
 |---|---|---|
-| Laboratory Data Management | 2 | Laboratory Data Management integrates clinical laboratory information with standardized validation protocols to ensure accurate, reliable, and clinica |
-| Edge Cases & Standalone Topics | 1 | These guidelines outline a structured approach to therapeutic decision-making, emphasizing non-pharmacological interventions as a first-line strategy  |
+| Laboratory Data Management | 2 | Laboratory Data Management integrates clinical guidelines for lipid testing and protocols for result validation, ensuring accurate risk stratification |
+| Edge Cases & Standalone Topics | 1 | These summaries focus on clinical decision-making frameworks for therapeutic interventions, emphasizing non-pharmacological approaches as a first-line |
 
 ## Detailed Breakdown
 
-### Laboratory Data Management
+## Laboratory Data Management
 
-Laboratory Data Management integrates clinical laboratory information with standardized validation protocols to ensure accurate, reliable, and clinically actionable diagnostic data. It emphasizes the importance of fasting conditions, secondary lipid targets, and rigorous validation processes to support evidence-based decision-making.
+Laboratory Data Management integrates clinical guidelines for lipid testing and protocols for result validation, ensuring accurate risk stratification and standardized reporting across diagnostic workflows.
 
 **Key Features:**
-- Fasting requirements for lipid profile testing to ensure accurate triglyceride measurement
-- Use of non-HDL-C and apoB as preferred secondary targets for triglycerides ≥500 mg/dL or metabolic syndrome
-- Validation protocols ensuring results pertain to the submitted specimen and depend on sample quality
-- Requirement for clinical correlation of laboratory investigations by referring physicians
-
-**Notable Details:**
-- Fasting duration of 9–12 hours for accurate triglyceride measurement
-- Non-HDL-C and apoB recommended as secondary lipid targets in specific clinical scenarios
+- Fasting lipid profile testing (TC, LDL-C, HDL-C, TG) required for 9–12 hours to ensure triglyceride accuracy
+- Non-HDL-C and apoB prioritized as secondary targets for triglycerides ≥500 mg/dL or metabolic syndrome
+- hs-CRP considered a risk-enhancing factor in borderline-risk patients per ACC/AHA guidelines
+- Lp(a) testing recommended at least once in a lifetime with ≥50 mg/dL deemed elevated
+- ApoB measurement advised for patients with diabetes, metabolic syndrome, or chronic kidney disease
 - All results are specimen-specific and dependent on sample quality
-- Laboratory investigations are tools requiring clinical correlation for accurate diagnosis
-- Interlaboratory variations may occur, necessitating further testing for exact values
-- Additional testing for exact values may incur additional costs
-- Test results are tools to facilitate diagnosis, not standalone diagnostic conclusions
-
-**Topics in this group:**
-
-- **Clinical Laboratory Information**: Clinical Laboratory Information. Clinical Laboratory Information for Dyslipidemia Management. Lipid profile testing (TC, LDL-C, HDL-C, TG) should be performed after 9–12 hours of fasting for accurate triglyceride measurement.. Non-HDL-C and apoB are preferred secondary targets when triglycerides are ≥500 mg/dL or in patients with metabolic syndrome.
-- **Laboratory Result Validation Protocol**: Laboratory Result Validation Protocol. Laboratory Result Validation Protocol. All results pertain to the submitted specimen and depend on sample quality.. Laboratory investigations are tools to facilitate diagnosis and require clinical correlation by the referring physician.. Test results may show interlaboratory variations and require further testing for exact values at additional cost.
-
-### Edge Cases & Standalone Topics
-
-These guidelines outline a structured approach to therapeutic decision-making, emphasizing non-pharmacological interventions as a first-line strategy for low-risk patients before considering therapy. The framework prioritizes evidence-based, risk-stratified care to optimize patient outcomes while minimizing unnecessary treatment.
-
-**Key Features:**
-- Therapeutic Decision Framework: A structured approach to clinical decision-making that integrates patient risk stratification and evidence-based interventions.
-- Therapeutic Decision Framework for Low-Risk Patients: Requires a 3-month trial of non-pharmacological interventions before initiating therapy, contingent on low-risk classification per guideline criteria.
+- Laboratory investigations must be clinically correlated by the referring physician
+- Alarm or unexpected results trigger immediate client contact for remedial action
 
 **Notable Details:**
-- Non-pharmacological interventions must be attempted for at least 3 months prior to considering therapy in low-risk patients.
-- Patient risk classification must adhere to predefined guideline criteria to qualify for the low-risk therapeutic pathway.
-- The framework is designed to reduce unnecessary pharmacological interventions in low-risk populations.
-- Evidence-based criteria are used to determine patient eligibility for the low-risk therapeutic pathway.
+- Triglyceride measurement requires 9–12 hours fasting for accuracy
+- Non-HDL-C and apoB are preferred secondary targets in specific patient groups
+- hs-CRP is a risk-enhancing factor in borderline-risk patients per ACC/AHA
+- Lp(a) ≥50 mg/dL is considered elevated for lifetime risk stratification
+- ApoB is recommended for patients with diabetes, metabolic syndrome, or CKD
+- Test results are computer-generated and validated by an authorized medical practitioner
+- Sample must be submitted within 72 hours post-reporting for certain tests
+- Exclusive jurisdiction for disputes/claims concerning tests or results is at Delhi courts
 
 **Topics in this group:**
 
-- **Therapeutic Decision Framework**: Therapeutic Decision Framework. Therapeutic Decision Framework for Low-Risk Patients. In low-risk patients, consider therapy only after an initial non-pharmacological intervention for at least 3 months. Patient must be classified as low risk per guideline criteria
+### Clinical Laboratory Information
+
+Clinical Laboratory Information for Dyslipidemia Management. Lipid profile testing (TC, LDL-C, HDL-C, TG) should be performed after 9–12 hours of fasting for accurate triglyceride measurement.. Non-HDL-C and apoB are preferred secondary targets when triglycerides are ≥500 mg/dL or in patients with metabolic syndrome.. hs-CRP may be considered as a risk-enhancing factor in borderline-risk patients per ACC/AHA guidelines.. Lp(a) testing is recommended at least once in a lifetime for risk stratification, with ≥50 mg/dL considered elevated.. ApoB should be measured in patients with diabetes, metabolic syndrome, or chronic kidney disease for risk assessment.
+
+### Source 1: WM17S.pdf
+
+**Clinical Recommendation:** Clinical Laboratory Information for Dyslipidemia Management
+
+**Key Clinical Actions:**
+- Lipid profile testing (TC, LDL-C, HDL-C, TG) should be performed after 9–12 hours of fasting for accurate triglyceride measurement.
+- Non-HDL-C and apoB are preferred secondary targets when triglycerides are ≥500 mg/dL or in patients with metabolic syndrome.
+- hs-CRP may be considered as a risk-enhancing factor in borderline-risk patients per ACC/AHA guidelines.
+- Lp(a) testing is recommended at least once in a lifetime for risk stratification, with ≥50 mg/dL considered elevated.
+- ApoB should be measured in patients with diabetes, metabolic syndrome, or chronic kidney disease for risk assessment.
+- Lipid profile testing should include non-fasting lipid measurements when fasting is not feasible, with fasting preferred for triglycerides ≥500 mg/dL or when non-HDL-C or apoB are primary targets.
+
+**Patient Preparation / Diagnostic Criteria:**
+- Fasting for 9–12 hours prior to lipid profile testing.
+- Repeat testing for confirmation if initial results are abnormal.
+- Use of standardized laboratory methods for lipid measurements (e.g., CDC-certified assays).
+- Consideration of patient-specific factors (e.g., age, sex, comorbidities) in interpreting results.
+- Documentation of lipid-lowering therapy adherence and timing of last dose.
+- Use of the Martin-Hopkins equation for LDL-C calculation in patients with triglycerides >400 mg/dL when direct LDL-C assays are unavailable.
+
+
+### Laboratory Result Validation Protocol
+
+All results released pertain to the specimen submitted and are dependent on sample quality.. Laboratory investigations are tools to facilitate diagnosis and must be clinically correlated by the Referring Physician.. If test results are alarming or unexpected, the client is advised to contact Customer Care immediately for remedial action.. Test results may show interlaboratory variations and are not valid for medico-legal purposes.. The report is computer-generated and validated by an Authorized Medical Practitioner/Doctor.. Exclusive jurisdiction of Courts/Forum at Delhi for disputes/claims concerning tests or results.. Sample must be submitted within 72 hours post-reporting for certain tests.
+
+### Source 1: WM17S.pdf
+
+**Significance Level:** INFORMATIONAL  
+
+**Clinical Recommendation:** Laboratory Result Validation Protocol  
+
+**Key Clinical Actions:**
+- All results released pertain to the specimen submitted and are dependent on sample quality.  
+- Laboratory investigations are tools to facilitate diagnosis and must be clinically correlated by the Referring Physician.  
+- If test results are alarming or unexpected, the client is advised to contact Customer Care immediately for remedial action.  
+- Test results may show interlaboratory variations and are not valid for medico-legal purposes.  
+- The report is computer‑generated and validated by an Authorized Medical Practitioner/Doctor.  
+- *Clinical guidelines suggest evaluating automated results for plausibility and requiring clinical correlation before final release (post‑analytical result validation, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).*  
+- *Guideline context: immediate notification is required for critical values that indicate life‑threatening conditions (e.g., WBC < 2.0 × 10⁹/L, Hb < 70 g/L, platelets < 50 × 10⁹/L) (post‑analytical result validation, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).*  
+- *Guideline context: morphological correlation via blood‑smear examination may be performed to confirm automated results and identify abnormal cell morphology not detected by analyzers (post‑analytical result validation, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).*  
+- *Guideline context: all post‑analytical findings, corrections, and actions taken should be documented in the laboratory information system for audit trails and future reference (post‑analytical result validation, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).*  
+
+**Patient Preparation / Diagnostic Criteria:**
+- Sample must be submitted within 72 hours post‑reporting for certain tests.  
+- Further testing at additional cost may be required for derivation of exact values.  
+- *Guideline context: samples should be assessed for integrity issues such as hemolysis, clotting, or insufficient volume prior to analysis (post‑analytical result validation, Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf).*
+
+
+
+## Edge Cases & Standalone Topics
+
+These summaries focus on clinical decision-making frameworks for therapeutic interventions, emphasizing non-pharmacological approaches as a first-line strategy in low-risk patient populations, with clear criteria and timelines for escalation.
+
+**Key Features:**
+- Therapeutic Decision Framework: A structured approach guiding clinical decisions for therapeutic interventions based on patient risk stratification.
+- Therapeutic Decision Framework for Low-Risk Patients: Requires non-pharmacological intervention for at least 3 months before considering therapy, contingent on low-risk classification per guideline criteria.
+
+**Notable Details:**
+- Non-pharmacological interventions must precede therapy for at least 3 months in low-risk patients.
+- Patient risk classification must adhere to predefined guideline criteria to qualify for the therapeutic decision framework.
+- The framework prioritizes conservative, non-drug interventions as the initial treatment strategy.
+
+**Topics in this group:**
+
+### Therapeutic Decision Framework
+
+Therapeutic Decision Framework for Low-Risk Patients. In low-risk patients, consider therapy only after an initial non-pharmacological intervention for at least 3 months. Patient must be classified as low risk per guideline criteria
+
+### Source 1: WM17S.pdf
+
+**Therapeutic Decision Framework**
+**Significance Level:** LOW
+
+**Clinical Recommendation:** Therapeutic Decision Framework for Low-Risk Patients
+
+**Key Clinical Actions:**
+- In low-risk patients, consider therapy only after an initial non-pharmacological intervention for at least 3 months
+  - *Clinical guidelines suggest that in primary prevention with intermediate risk (5% to <10% by PREVENT-ASCVD), initiate at least moderate-intensity statin for ≥30% LDL-C lowering; high-intensity statins (≥50% LDL-C reduction) are reasonable (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*
+  - *Guideline context / considerations: Individualized clinician-patient discussions must precede dyslipidemia medication initiation, addressing benefits, risks, side effects, and patient preferences (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*
+
+**Patient Preparation / Diagnostic Criteria:**
+- Patient must be classified as low risk per guideline criteria
+  - *Guideline context / considerations: Baseline 10-year ASCVD risk estimation using PREVENT-ASCVD equations is required for treatment decisions (2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia).*
+
+

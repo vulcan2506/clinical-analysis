@@ -1,6 +1,6 @@
 {
   "master_label": "Thyroid Function Testing Guidelines",
-  "original_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "original_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Thyroid Function Testing: TSH Circadian Variation + Free vs Total Hormones + Rare TSH Variants\n\n**Key Clinical Actions:**\n- TSH levels vary by ~50% due to circadian rhythm, peaking 2-4 a.m. and lowest 6-10 p.m.\n- Total T3/T4 are affected by thyroid hormone binding protein changes (e.g., pregnancy, steroid therapy).\n- Free T3/T4 (unbound fraction) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of blood draw should account for TSH circadian variation (prefer 8-10 a.m. for consistency).\n- Free T3/Free T4 should be prioritized over total T3/T4 for clinical correlation.",
   "grounding": {
     "status": "CONTEXTUAL_MATCH",
     "matched_guideline_topics": [
@@ -9,14 +9,14 @@
         "match_type": "CONTEXTUAL_MATCH",
         "confidence": 0.95,
         "score": 0.9988036155700684,
-        "match_reason": "Guideline focuses on preconception thyroid screening in T1DM, which is relevant due to patient's pregnancy context.",
+        "match_reason": "Guideline targets preconception thyroid screening in T1DM, and patient context includes diabetes and pregnancy.",
         "context_requirements": [
-          "pregnancy",
-          "diabetes"
+          "diabetes",
+          "pregnancy"
         ],
         "validated_context": [
-          "pregnancy",
-          "diabetes"
+          "diabetes",
+          "pregnancy"
         ],
         "rejected_context": [],
         "source_docs": [
@@ -26,7 +26,7 @@
       }
     ]
   },
-  "grounded_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "grounded_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Thyroid Function Testing: TSH Circadian Variation + Free vs Total Hormones + Rare TSH Variants\n\n**Key Clinical Actions:**\n- TSH levels vary by ~50% due to circadian rhythm, peaking 2-4 a.m. and lowest 6-10 p.m.\n- Total T3/T4 are affected by thyroid hormone binding protein changes (e.g., pregnancy, steroid therapy).\n- Free T3/T4 (unbound fraction) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of blood draw should account for TSH circadian variation (prefer 8-10 a.m. for consistency).\n- Free T3/Free T4 should be prioritized over total T3/T4 for clinical correlation.",
   "provenance": {
     "patient_sources": [
       "WM17S.pdf"
@@ -35,6 +35,6 @@
       "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
     ]
   },
-  "fused_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "fused_summary": "**Significance Level:** INFORMATIONAL\n\n**Clinical Recommendation:** Thyroid Function Testing: TSH Circadian Variation + Free vs Total Hormones + Rare TSH Variants\n\n**Key Clinical Actions:**\n- TSH levels vary by ~50% due to circadian rhythm, peaking 2-4 a.m. and lowest 6-10 p.m.\n- Total T3/T4 are affected by thyroid hormone binding protein changes (e.g., pregnancy, steroid therapy).\n- Free T3/T4 (unbound fraction) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of blood draw should account for TSH circadian variation (prefer 8-10 a.m. for consistency).\n- Free T3/Free T4 should be prioritized over total T3/T4 for clinical correlation.",
   "fuse_source_labels": []
 }

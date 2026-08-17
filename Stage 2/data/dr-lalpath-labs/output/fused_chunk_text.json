@@ -2,7 +2,7 @@
   {
     "chunk_id": 0,
     "section_header": "Introduction / Front Matter",
-    "text": "Dr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388",
+    "text": "Dr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388\n\n--- MATCHED CLINICAL GUIDELINES ---\n[Guideline: Lipid Measurement Guideline Update]\nLipid Measurement Guideline Update. Lipid Measurement Guideline Update: LDL-C Estimation + ApoB/Lp(a) Assessment + CAC Imaging. Use Martin/Hopkins or Sampson/NIH equations over Friedewald for LDL-C estimation in adults and children with standard lipid profiles.\n\n[Guideline: Lipid Monitoring and Treatment Response Guideline]\nLipid Monitoring and Treatment Response Guideline. Lipid Monitoring and Treatment Response. Perform lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy (LLT). Repeat lipid profiles every 6 to 12 months thereafter to assess efficacy and adherence. Individualize frequency based on ASCVD risk, LDL-C reduction needs, and medication stability\n\n[Guideline: Diabetes-Specific Lipid Management Guideline]\nDiabetes-Specific Lipid Management Guideline. Diabetes-Specific Lipid Management. In adults with diabetes and without ASCVD, lipid-lowering therapy (LLT) is recommended to lower LDL-C and reduce ASCVD risk. Diabetes-Specific Lipid Management Guideline. Diabetes-Specific Lipid Management: Lifestyle + Pharmacotherapy. Recommend Mediterranean or DASH eating patterns, reduce saturated/trans fats, increase n-3 fatty acids, soluble fiber, plant stanols/sterols, and physical activity for lipid and",
     "md_file_path": null,
     "keywords": [
       "lal pathlabs",
@@ -234,7 +234,7 @@
   {
     "chunk_id": 11,
     "section_header": "Test Report (Table)",
-    "text": "{\"Test Name\": \"High\", \"Results\": \"<70\", \"Units\": \"<100\", \"Res. Interval\": \"≥70 ≥100\"}\n{\"Test Name\": \"Moderate\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥100 ≥130\"}\n{\"Test Name\": \"Low\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥130*\"}",
+    "text": "{\"Test Name\": \"High\", \"Results\": \"<70\", \"Units\": \"<100\", \"Res. Interval\": \"≥70 ≥100\"}\n{\"Test Name\": \"Moderate\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥100 ≥130\"}\n{\"Test Name\": \"Low\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥130*\"}\n\n--- MATCHED CLINICAL GUIDELINES ---\n[Guideline: 2026 LDL-C Target Guideline]\n2026 LDL-C Target Guideline. LDL-C Targets + Genetic Testing for FH. LDL-C reduction of ≥50% from baseline and a goal LDL-C of ≤130 mg/dL is generally advised. LDL-C can be lowered to ≤100 mg/dL in patients with additional risk factors. Genetic testing for FH is recommended to confirm diagnosis, guide treatment, and inform cascade screening\n\n[Guideline: Primary Prevention Guideline]\nPrimary Prevention Guideline. Primary Prevention Health Behavior Counseling. Provide health behavior recommendations to all adults assessed for primary prevention of ASCVD. Counsel adults aged 30 to 59 with low risk (<3%) and LDL-C <160 mg/dL to reduce LDL-C and ASCVD risk. Integrate benefit-risk discussions for consideration of lipid-lowering therapy alongside behavioral counseling\n\n[Guideline: Severe Hypercholesterolemia Management]\nSevere Hypercholesterolemia Management. Severe Hypercholesterolemia Management (LDL-C ≥190 mg/dL). Exclude and address secondary causes of dyslipidemia in adults with LDL-C ≥190 mg/dL. Prescribe maximally tolerated statin therapy to lower LDL-C and reduce ASCVD risk Severe Hypercholesterolemia Management. Bempedoic Acid for Severe Hypercholesterolemia. Bempedoic acid lowers LDL cholesterol by 15% in statin users and 24% in non-statin users. Combined use with ezetimibe yields an additional 19%",
     "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_11.md",
     "keywords": [
       "test low",
@@ -255,7 +255,7 @@
   {
     "chunk_id": 12,
     "section_header": "Test Report",
-    "text": "*In low risk patient, consider therapy after an initial non-pharmacological intervention for at least 3 months",
+    "text": "*In low risk patient, consider therapy after an initial non-pharmacological intervention for at least 3 months\n\n--- MATCHED CLINICAL GUIDELINES ---\n[Guideline: Post-Treatment Surveillance Strategy]\nPost-Treatment Surveillance Strategy. Post-Treatment Surveillance Strategy for Differentiated Thyroid Cancer. Ultrasound is the preferred imaging method for evaluating the thyroid bed and cervical lymph node compartments.. Cervical ultrasound should be performed 6–12 months after initial therapy, with timing and frequency adjusted based on patient risk and response to therapy.",
     "md_file_path": null,
     "keywords": [
       "pharmacological intervention",
@@ -276,7 +276,7 @@
   {
     "chunk_id": 13,
     "section_header": "GLUCOSE, FASTING (F) (Table)",
-    "text": "|  Glucose Fasting (Hexokinase) | 80.00 | mg/dL | 70 - 100  |\n| --- | --- | --- | --- |",
+    "text": "|  Glucose Fasting (Hexokinase) | 80.00 | mg/dL | 70 - 100  |\n| --- | --- | --- | --- |\n\n--- MATCHED CLINICAL GUIDELINES ---\n[Guideline: diagnostic criteria for diabetes]\ndiagnostic criteria for diabetes. Diagnostic criteria for diabetes. Diagnosis requires confirmation via repeat testing in asymptomatic individuals using FPG, 2-h PG (OGTT), or A1C.. Random plasma glucose ≥200 mg/dL (11.1 mmol/L) with classic hyperglycemia symptoms or hyperglycemic crisis is sufficient for diagnosis without repeat testing. diagnostic criteria for diabetes. Diagnostic criteria for diabetes and prediabetes. Diabetes diagnosis requires confirmation with a second test if using FPG ≥\n\n[Guideline: gestational diabetes screening]\ngestational diabetes screening. Gestational diabetes screening and early pregnancy hyperglycemia management. Screen individuals planning pregnancy with risk factors for undiagnosed prediabetes or diabetes.. Test all individuals of childbearing potential for undiagnosed prediabetes or diabetes before 15 weeks of gestation if not screened preconception.",
     "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_13.md",
     "keywords": [
       "glucose fasting",
@@ -297,7 +297,7 @@
   {
     "chunk_id": 14,
     "section_header": "VITAMIN B12; CYANOCOBALAMIN (CLIA) (Table)",
-    "text": "|  Vitamin B12; Cyanocobalamin | 200.00 | pg/mL | 211.00 - 911.00  |\n| --- | --- | --- | --- |",
+    "text": "|  Vitamin B12; Cyanocobalamin | 200.00 | pg/mL | 211.00 - 911.00  |\n| --- | --- | --- | --- |\n\n--- MATCHED CLINICAL GUIDELINES ---\n[Guideline: vitamin B12 essential functions and deficiency]\nvitamin B12 essential functions and deficiency. vitamin B12 essential functions and deficiency. Vitamin B12 is necessary for making red blood cells, DNA, maintaining nerve cell health, and releasing energy from food.. Deficiency symptoms include anaemia, fatigue, sore/red tongue, muscle weakness, nerve damage, depression, and memory loss.\n\n[Guideline: B12 dietary sources and vegan management]\nB12 dietary sources and vegan management. B12 dietary sources and vegan management. Consume vitamin B12 rich foods including red meat, fish, shellfish, eggs, poultry, dairy, yeast extract, fortified cereals, tofu, and plant-based milks.. Eat a varied and balanced diet to maintain adequate B12 levels.. Vegans should aim to eat foods fortified with vitamin B12 at least 3 times a day.\n\n[Guideline: peripheral neuropathy management]\nperipheral neuropathy management. Peripheral neuropathy management in exercise and foot care. Assess kinesthetic and proprioceptive sensation during physical activity to prevent skin breakdown and Charcot joint destruction. Use proper footwear during moderate-intensity walking to reduce risk of foot ulcers or reulceration peripheral neuropathy management. peripheral neuropathy management. Refer atypical cases to a neurologist for further investigations like nerve conduction studies. Tight",
     "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_14.md",
     "keywords": [
       "b12 cyanocobalamin",

@@ -54,7 +54,7 @@ OPENROUTER_MODEL     = _os.environ.get("OPENROUTER_MODEL", "google/gemma-4-26b-a
 OPENROUTER_BASE_URL  = "https://openrouter.ai/api/v1"
 
 GROQ_API_KEY         = _os.environ.get("GROQ_API_KEY")
-GROQ_MODEL           = _os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL           = _os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 GROQ_VISION_MODEL    = _os.environ.get("GROQ_VISION_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
 GROQ_BASE_URL        = "https://api.groq.com/openai/v1"
 # Groq's on-demand tier caps llama-4-scout at 30,000 tokens/minute; a single

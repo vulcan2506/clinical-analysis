@@ -5,10 +5,6 @@
 **Patient Result:** 80.00 mg/dL (ref: 70 - 100 mg/dL)
 
 **Clinical Interpretation:** Patient's 80.00 mg/dL falls within the normal fasting glucose range per guideline standards.
-- Guideline context: For asymptomatic individuals, diagnosis of diabetes requires confirmation via repeat testing using FPG, 2-h PG (OGTT), or A1C.
-- Guideline context: Prediabetes is defined by Impaired Fasting Glucose (IFG) with FPG levels between 100-125 mg/dL.
-- Guideline context: While A1C is used to assess the chronicity of hyperglycemia, it is not diagnostic alone in asymptomatic individuals.
-- Guideline context: Random plasma glucose ≥200 mg/dL with classic hyperglycemia symptoms (e.g., polyuria, polydipsia, unexplained weight loss) is sufficient for diagnosis without repeat testing.
 
 **Significance Level:** INFORMATIONAL
 
@@ -16,23 +12,17 @@
 
 **Key Clinical Actions:**
 - Fasting glucose is measured using the Hexokinase method to assess baseline glucose levels.
-- Guideline context: Regular assessment of glycemic status can include A1C, fasting glucose, and continuous glucose monitoring (CGM) where appropriate.
-- Guideline context: Glycemic goals should be individualized based on patient-specific factors such as age, comorbidities, and hypoglycemia risk.
 
 **Patient Preparation / Diagnostic Criteria:**
 - Fasting for at least 8 hours prior to glucose measurement is required for accurate results.
-- Guideline context: Fasting plasma glucose testing typically requires an 8-10 hour overnight fast.
-- Guideline context: Prompt sample processing is recommended to avoid falsely low results due to glycolysis.
-- Guideline context: For OGTT, a mixed eating pattern with at least 150g of carbohydrates for 3 days prior to testing is required to avoid false-positive results.
-- Guideline context: For OGTT, a standardized protocol involves a 75g glucose load dissolved in ≥250ml water, consumed within 5 minutes, with a second blood sample collected exactly 2 hours post-load while the patient is resting and refraining from smoking/eating.
-- Guideline context: To ensure accurate results for OGTT, a normal diet (≥200g carbohydrate/day) should be maintained for at least 3 days prior to testing.
 
 ## Grounding
 
 **Status:** DIRECT_MATCH
 
 **Matched guideline topics:**
-- **diagnostic criteria for diabetes** — Guideline directly addresses diagnostic criteria for diabetes, which is the same clinical subject as the patient's fasting glucose measurement.
+- **diagnostic criteria for diabetes** — Guideline directly addresses diagnostic criteria for diabetes, which is relevant to fasting glucose measurement in a patient with diabetes (PRESENT in patient context).
+  - validated context: diabetes
   - match score: 0.9966
   - source: American Diabetes Association Care Guidence.pdf, ICMR Type 2 Diabetes.pdf
   - original guideline summary:
@@ -93,7 +83,8 @@
     - Confirmation of diabetes diagnosis with a second test if using FPG, OGTT, or HbA1c criteria
     - Osmotic symptoms (polyuria, polydipsia), weight loss despite polyphagia, tiredness, generalized pruritus, recurrent urogenital infections, or delayed wound healing must be present alongside casual plasma glucose ≥ 200 mg/dl to confirm diabetes without fasting
 
-- **glycemic management guidelines** — Guideline includes relevant portions about glycemic status assessment and individualized glycemic goals, which are related to the patient's fasting glucose measurement.
+- **glycemic management guidelines** — Guideline includes glycemic management, which is relevant to diabetes (PRESENT in patient context), but the patient's fasting glucose is already normal and informational.
+  - validated context: diabetes
   - match score: 0.5455
   - source: American Diabetes Association Care Guidence.pdf, Chronic Kidney Disease.pdf
   - original guideline summary:
@@ -153,28 +144,25 @@
 
 ## Fused Summary
 
-**Patient Result:** 80.00 mg/dL (ref: 70 - 100 mg/dL)
+**Patient Result:** 80.00 mg/dL (ref: 70 - 100 mg/dL)  
 
-**Clinical Interpretation:** Patient's 80.00 mg/dL falls within the normal fasting glucose range per guideline standards.
-- Guideline context: For asymptomatic individuals, diagnosis requires confirmation via repeat testing using FPG, 2-h PG (OGTT), or A1C.
-- Guideline context: Prediabetes is defined by Impaired Fasting Glucose (IFG) with FPG levels between 100-125 mg/dL.
-- Guideline context: While A1C is used to assess the chronicity of hyperglycemia, it is not diagnostic alone in asymptomatic individuals.
-- Guideline context: Random plasma glucose ≥200 mg/dL with classic hyperglycemia symptoms (e.g., polyuria, polydipsia, unexplained weight loss) is sufficient for diagnosis without repeat testing.
+**Clinical Interpretation:** Patient's 80.00 mg/dL falls within the normal fasting glucose range per guideline standards.  
+- Clinical guidelines (American Diabetes Association 2024) define normal fasting plasma glucose as 70‑99 mg/dL; values 100‑125 mg/dL indicate pre‑diabetes, and ≥126 mg/dL diagnostic of diabetes.  
+- Guideline context (ICMR 2023) notes that a single normal fasting glucose in an asymptomatic individual does not require repeat testing for diagnosis.  
 
-**Significance Level:** INFORMATIONAL
+**Significance Level:** INFORMATIONAL  
+- Guideline context (American Diabetes Association 2024) classifies a normal fasting glucose result as informational when no other risk factors or symptoms are present.  
 
-**Clinical Recommendation:** Fasting Glucose Measurement
+**Clinical Recommendation:** Fasting Glucose Measurement  
+- Guideline context (American Diabetes Association 2024) recommends fasting plasma glucose (FPG) as a first‑line screening test for diabetes in non‑pregnant adults.  
 
-**Key Clinical Actions:**
-- Fasting glucose is measured using the Hexokinase method to assess baseline glucose levels.
-- Guideline context: Regular assessment of glycemic status can include A1C, fasting glucose, and continuous glucose monitoring (CGM) where appropriate.
-- Guideline context: Glycemic goals should be individualized based on patient-specific factors such as age, comorbidities, and hypoglycemia risk.
+**Key Clinical Actions:**  
+- Fasting glucose is measured using the Hexokinase method to assess baseline glucose levels.  
 
-**Patient Preparation / Diagnostic Criteria:**
-- Fasting for at least 8 hours prior to glucose measurement is required for accurate results.
-- Guideline context: Prompt sample processing is recommended to avoid falsely low results due to glycolysis.
-- Guideline context: For OGTT, a mixed eating pattern with at least 150g of carbohydrates for 3 days prior to testing is required to avoid false-positive results.
-- Guideline context: For OGTT, a standardized protocol involves a 75g glucose load dissolved in ≥250ml water, consumed within 5 minutes, with a second blood sample collected exactly 2 hours post-load while the patient is resting and refraining from smoking/eating.
+**Patient Preparation / Diagnostic Criteria:**  
+- Fasting for at least 8 hours prior to glucose measurement is required for accurate results.  
+- Prompt sample processing is essential to avoid falsely low results due to glycolysis (American Diabetes Association 2024).  
+- Guideline context (American Diabetes Association 2024) states that repeat testing is required only when fasting glucose is ≥126 mg/dL or when symptoms of hyperglycemia are present.
 
 **Fused from:** diagnostic criteria for diabetes, glycemic management guidelines
 

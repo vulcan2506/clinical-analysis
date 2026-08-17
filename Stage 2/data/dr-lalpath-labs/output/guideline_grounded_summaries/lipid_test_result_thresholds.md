@@ -2,49 +2,21 @@
 
 ## Original Patient Summary
 
-**PATIENT GROUNDED SUMMARY**
-
-**Label:** Lipid Test Result Thresholds
-
-**Clinical Interpretation:**
-LDL-C ≥130 mg/dL is classified as 'Low' risk with an asterisk (*) indicating the need for further risk stratification (e.g., ASCVD risk score) to determine treatment necessity, emphasizing individualized decision-making.
-*Clinical guidelines suggest that LDL-C ≥130 mg/dL may warrant further evaluation, as it does not meet the general treatment thresholds for high-risk categories, but individualized risk assessment remains essential.*
-*Guideline context / considerations:*
-- *Risk stratification (e.g., ASCVD risk score) is required to determine appropriate lipid targets.*
-- *Non-HDL cholesterol and apolipoprotein B are preferred over LDL-C for risk stratification.*
-- *LDL-C reduction of ≥50% from baseline and a goal LDL-C of ≤130 mg/dL is generally advised.*
+**Reference Range:** 70 - 130 mg/dL
 
 **Significance Level:** MODERATE
 
 **Clinical Recommendation:** Lipid Test Result Thresholds
 
 **Key Clinical Actions:**
-- Per guideline thresholds, LDL-C <70 mg/dL is classified as 'High' risk category
-- Per guideline thresholds, LDL-C <100 mg/dL is classified as 'Moderate' risk category
-- Per guideline thresholds, LDL-C <130 mg/dL is classified as 'Low' risk category
-*Guideline context / considerations:*
-- *Patients not achieving lipid/lipoprotein goals on recommended therapies should be prioritized for intensification of lipid-lowering therapy (LLT).*
-- *Use Martin/Hopkins or Sampson/NIH equations over Friedewald for LDL-C estimation in adults and children with standard lipid profiles.*
-- *Measure apoB in adults on lipid-lowering therapy (LLT) with ASCVD, CKM syndrome, type 2 diabetes, or elevated TG to guide intensification after LDL-C/non-HDL-C goals are met.*
-- *Measure Lp(a) at least once in all adults for ASCVD risk assessment.*
-- *Perform lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy.*
-- *Repeat lipid profiles every 6 to 12 months thereafter to assess efficacy and adherence.*
-- *For patients with diabetes or metabolic syndrome, prioritize non-HDL-C and apoB targets in addition to LDL-C goals.*
-
-**Patient Preparation / Diagnostic Criteria:**
-*Guideline-derived considerations:*
-- *Fasting lipid profile required for TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.*
-- *Standard lipid profile includes TC, HDL-C, TG (direct measurement), with LDL-C and non-HDL-C calculated.*
-- *Fasting lipid profile required for TG ≥200 mg/dL in individuals with known or suspected disorders in triglyceride metabolism or if further evaluation of hypertriglyceridemia is warranted.*
-- *Nonfasting lipid profiles are acceptable for cardiovascular risk prediction and are preferred for most adults due to minimal prognostic differences, except in cases of known hypertriglyceridemia.*
-- *Baseline LDL-C measurement is required to calculate percentage reduction in response.*
+- Per guideline thresholds, LDL-C <70 mg/dL is classified as 'High' risk, <100 mg/dL as 'Moderate' risk, and <130 mg/dL as 'Low' risk.
 
 ## Grounding
 
 **Status:** DIRECT_MATCH
 
 **Matched guideline topics:**
-- **Lipid Monitoring and Treatment Response Guideline** — Directly addresses lipid monitoring timing and frequency, which is explicitly mentioned in the patient topic's clinical actions.
+- **Lipid Monitoring and Treatment Response Guideline** — Guideline provides monitoring intervals and treatment response assessment, directly relevant to interpreting lipid test results and managing lipid-lowering therapy.
   - match score: 0.9993
   - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
   - original guideline summary:
@@ -70,7 +42,7 @@ LDL-C ≥130 mg/dL is classified as 'Low' risk with an asterisk (*) indicating t
     - Stable response and no clinical changes required to extend interval to 12 months
     - Consider treatment intensification when LDL-C or non-HDL-C levels exceed specified thresholds (Figure 1)
 
-- **Diabetes-Specific Lipid Management Guideline** — Directly relevant to diabetes-specific lipid management, which is present in the patient's knowledge universe (diabetes = PRESENT).
+- **Diabetes-Specific Lipid Management Guideline** — Guideline is diabetes-specific lipid management, and diabetes is present in patient context. Relevant for lipid thresholds in diabetes but not directly about test result thresholds.
   - validated context: diabetes
   - match score: 0.9988
   - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
@@ -130,36 +102,7 @@ the Management of Dyslipidemia.pdf | American Diabetes Association Care Guidence
     - LDL goal <55 mg/dL for diabetes with ASCVD on high-intensity statin therapy.
     - Consideration of inclisiran siRNA as an alternative cholesterol-lowering therapy for people with diabetes and ASCVD intolerant to statin therapy.
 
-- **Lipid Screening Recommendation** — Lipid screening is relevant due to the presence of diabetes and ASCVD in the patient's context, but the guideline itself is about screening rather than thresholds.
-  - validated context: diabetes, ascvd
-  - match score: 0.9955
-  - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
-  - original guideline summary:
-
-    # Lipid Screening Recommendation
-    *Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*
-    
-    **Clinical Recommendation:** Lipid Screening Recommendation
-    
-    **Key Clinical Actions:**
-    - Screening with a lipid profile is recommended beginning at age 19 years and at least every 5 years thereafter in adults.
-    - Frequent screening is recommended for individuals with additional ASCVD risk factors.
-    - Universal lipid screening is recommended in children aged 9 to 11 years to identify familial hypercholesterolemia (FH) and other lipid disorders.
-    - Screening in children should be performed with a non-fasting TC and HDL-C to calculate non-HDL-C or a fasting lipid profile.
-    - Cascade lipid screening is recommended for first- or second-degree relatives of individuals with FH.
-    - Screening in children should be performed with a non-fasting TC and HDL-C to calculate non-HDL-C or a fasting lipid profile; apoB measurement is not part of routine pediatric lipid screening.
-    - Cascade lipid screening is feasible and can be beneficial as early as 2 years of age to encourage early adoption of heart-healthy lifestyle behaviors, support timely identification and management of inherited lipid disorders, and bolster family cascade screening.
-    
-    **Patient Preparation / Diagnostic Criteria:**
-    - Screening should start at age 19 years in adults.
-    - Screening in children should occur at ages 9 to 11 years.
-    - Screening frequency increases with age and presence of additional ASCVD risk factors.
-    - Non-fasting TC and HDL-C or fasting lipid profile is required for pediatric screening.
-    - Family history alone is insufficient to identify childhood lipid disorders.
-    - Family history alone is not sufficient to identify childhood lipid disorders, as up to half of those with high LDL-C do not report a family history of hypercholesterolemia or premature ASCVD.
-    - Panel-based genetic testing for pathogenic/likely pathogenic rare variants for FH should be considered if there is a family history of premature ASCVD or significant primary hypercholesterolemia in those with high lipid levels.
-
-- **2026 LDL-C Target Guideline** — Directly addresses LDL-C targets, which are explicitly mentioned in the patient topic's clinical actions and interpretations.
+- **2026 LDL-C Target Guideline** — Guideline provides LDL-C target thresholds (<130, ≤100 mg/dL), directly aligning with the patient's lipid test result thresholds.
   - match score: 0.9950
   - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
   - original guideline summary:
@@ -184,30 +127,7 @@ the Management of Dyslipidemia.pdf | American Diabetes Association Care Guidence
     - Diagnostic criteria relying solely on phenotype may miss up to half of children with pathogenic FH variants
     - Consider genetic testing in adults with borderline LDL-C, unclear family history, or poor response to standard LLT if clinical suspicion of FH is high
 
-- **Lipid Measurement Guideline Update** — Directly relevant to lipid measurement methods and additional assessments (e.g., apoB, Lp(a)), which are mentioned in the patient topic's clinical actions.
-  - match score: 0.6253
-  - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
-  - original guideline summary:
-
-    # Lipid Measurement Guideline Update
-    *Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*
-    
-    **Clinical Recommendation:** Lipid Measurement Guideline Update: LDL-C Estimation + ApoB/Lp(a) Assessment + CAC Imaging
-    
-    **Key Clinical Actions:**
-    - Use Martin/Hopkins or Sampson/NIH equations over Friedewald for LDL-C estimation in adults and children with standard lipid profiles.
-    - Prefer nonfasting lipid profiles for most adults due to minimal prognostic differences vs fasting, except in TG ≥400 mg/dL or genetic dyslipidemia.
-    - Measure apoB in adults on lipid-lowering therapy (LLT) with ASCVD, CKM syndrome, type 2 diabetes, or elevated TG to guide intensification after LDL-C/non-HDL-C goals are met.
-    - Measure Lp(a) at least once in all adults for ASCVD risk assessment.
-    - Use CAC score >0 AU to initiate LLT in intermediate-risk adults; ≥100 AU or ≥75th percentile to intensify LLT.
-    
-    **Patient Preparation / Diagnostic Criteria:**
-    - Fasting lipid profile required for TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.
-    - Standard lipid profile includes TC, HDL-C, TG (direct measurement), with LDL-C and non-HDL-C calculated.
-    - CAC scoring recommended for adults at intermediate or borderline risk to refine LLT intensity decisions.
-    - Fasting lipid profile required for TG ≥200 mg/dL in individuals with known or suspected disorders in triglyceride metabolism or if further evaluation of hypertriglyceridemia is warranted.
-
-- **Lipid Goal Attainment Strategy** — Directly addresses lipid goal attainment and intensification of therapy, which is explicitly mentioned in the patient topic's clinical actions.
+- **Lipid Goal Attainment Strategy** — Guideline addresses lipid goal attainment and therapeutic adjustments, directly relevant to interpreting test results and next steps.
   - match score: 0.6210
   - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
   - original guideline summary:
@@ -231,36 +151,7 @@ the Management of Dyslipidemia.pdf | American Diabetes Association Care Guidence
     - Documentation of patient adherence to LLT and lifestyle modifications before intensification of therapy.
     - Reassessment of lipid/lipoprotein levels 4–12 weeks after initiating or intensifying LLT to evaluate response and guide further adjustments.
 
-- **Nonfasting Lipid Risk Prediction** — Relevant to risk prediction using non-HDL cholesterol and apoB, but the patient topic focuses on thresholds rather than measurement timing or fasting status.
-  - match score: 0.5912
-  - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
-  - original guideline summary:
-
-    # Nonfasting Lipid Risk Prediction
-    *Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf*
-    
-    **Clinical Recommendation:** Nonfasting Lipid Risk Prediction
-    
-    **Key Clinical Actions:**
-    - Nonfasting lipid measurements are acceptable for cardiovascular risk prediction
-    - Non-HDL cholesterol and apolipoprotein B are preferred over LDL-C for risk stratification
-    - Triglyceride-rich lipoproteins are emphasized in nonfasting states
-    - Lipid measurements can be performed without fasting in most patients
-    - Advanced lipoprotein testing (e.g., NMR) is not routinely recommended
-    - Nonfasting lipid testing should be performed in the morning to standardize postprandial conditions
-    - Non-HDL cholesterol should be prioritized over LDL-C for risk stratification in patients with diabetes or metabolic syndrome
-    
-    **Patient Preparation / Diagnostic Criteria:**
-    - Nonfasting lipid testing should be standardized to morning samples
-    - Triglyceride levels should be <400 mg/dL for accurate LDL-C estimation
-    - Non-HDL cholesterol should be calculated as total cholesterol minus HDL-C
-    - Apolipoprotein B should be measured when available for high-risk patients
-    - Risk stratification should incorporate nonfasting lipid profiles
-    - Apolipoprotein B measurement is recommended for patients with triglycerides >150 mg/dL to refine risk assessment
-    - Triglyceride levels should be <500 mg/dL for accurate non-HDL cholesterol calculation
-
-- **ApoB Measurement Recommendation** — Directly relevant to apoB measurement recommendations, which are mentioned in the patient topic's clinical actions and are applicable due to the presence of diabetes and ASCVD.
-  - validated context: diabetes, ascvd
+- **ApoB Measurement Recommendation** — Guideline recommends ApoB measurement for risk stratification in specific contexts (e.g., diabetes, ASCVD), which may inform lipid management but is not directly about test result thresholds.
   - match score: 0.5395
   - source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf
   - original guideline summary:
@@ -286,40 +177,19 @@ the Management of Dyslipidemia.pdf | American Diabetes Association Care Guidence
 
 ## Fused Summary
 
-**Label:** Lipid Test Result Thresholds
+**Reference Range:** 70 - 130 mg/dL  
 
-**Clinical Interpretation:**
-LDL-C ≥130 mg/dL is classified as 'Low' risk with an asterisk (*) indicating the need for further risk stratification (e.g., ASCVD risk score) to determine treatment necessity, emphasizing individualized decision-making.
-*Clinical guidelines suggest that LDL-C ≥130 mg/dL may warrant further evaluation, as it does not meet the general treatment thresholds for high-risk categories, but individualized risk assessment remains essential.*
-*Guideline context / considerations:*
-- *Risk stratification (e.g., ASCVD risk score) is required to determine appropriate lipid targets.*
-- *Non-HDL cholesterol and apolipoprotein B are preferred over LDL-C for risk stratification.*
-- *LDL-C reduction of ≥50% from baseline and a goal LDL-C of ≤130 mg/dL is generally advised.*
+**Significance Level:** MODERATE  
 
-**Significance Level:** MODERATE
+**Clinical Recommendation:** Lipid Test Result Thresholds  
 
-**Clinical Recommendation:** Lipid Test Result Thresholds
+**Key Clinical Actions:**  
+- Per guideline thresholds, LDL-C <70 mg/dL is classified as 'High' risk, <100 mg/dL as 'Moderate' risk, and <130 mg/dL as 'Low' risk.  
+- Clinical guidelines suggest that LDL‑C reduction of ≥50 % from baseline and an absolute LDL‑C ≤130 mg/dL is generally advised for most patients (2026 LDL‑C Target Guideline).  
+- Guideline context: Perform a lipid profile 4–12 weeks after initiation or dose adjustment of lipid‑lowering therapy and repeat every 6–12 months, individualizing frequency based on ASCVD risk and LDL‑C reduction needs (2026 Lipid Monitoring and Treatment Response Guideline).  
+- Guideline context: ApoB measurement is reasonable to assess residual atherogenic risk and guide therapeutic intensification, especially in patients with diabetes, CKD, or elevated triglycerides where LDL‑C and non‑HDL‑C may appear at goal (2026 ApoB Measurement Recommendation).
 
-**Key Clinical Actions:**
-- Per guideline thresholds, LDL-C <70 mg/dL is classified as 'High' risk category
-*Guideline context / considerations:*
-- *Patients not achieving lipid/lipoprotein goals on recommended therapies should be prioritized for intensification of lipid-lowering therapy (LLT).*
-- *Use Martin/Hopkins or Sampson/NIH equations over Friedewald for LDL-C estimation in adults and children with standard lipid profiles.*
-- *Measure apoB in adults on lipid-lowering therapy (LLT) with ASCVD, CKM syndrome, type 2 diabetes, or elevated TG to guide intensification after LDL-C/non-HDL-C goals are met.*
-- *Measure Lp(a) at least once in all adults for ASCVD risk assessment.*
-- *Perform lipid profile 4 to 12 weeks after initiation or dose adjustment of lipid-lowering therapy.*
-- *Repeat lipid profiles every 6 to 12 months thereafter to assess efficacy and adherence.*
-- *For patients with diabetes or metabolic syndrome, prioritize non-HDL-C and apoB targets in addition to LDL-C goals.*
-
-**Patient Preparation / Diagnostic Criteria:**
-*Guideline-derived considerations:*
-- *Fasting lipid profile required for TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.*
-- *Standard lipid profile includes TC, HDL-C, TG (direct measurement), with LDL-C and non-HDL-C calculated.*
-- *Fasting lipid profile required for TG ≥200 mg/dL in individuals with known or suspected disorders in triglyceride metabolism or if further evaluation of hypertriglyceridemia is warranted.*
-- *Nonfasting lipid profiles are acceptable for cardiovascular risk prediction and are preferred for most adults due to minimal prognostic differences, except in cases of known hypertriglyceridemia.*
-- *Baseline LDL-C measurement is required to calculate percentage reduction in response.*
-
-**Fused from:** Lipid Monitoring and Treatment Response Guideline, Diabetes-Specific Lipid Management Guideline, 2026 LDL-C Target Guideline, Lipid Measurement Guideline Update
+**Fused from:** Lipid Monitoring and Treatment Response Guideline, 2026 LDL-C Target Guideline, Lipid Goal Attainment Strategy, ApoB Measurement Recommendation
 
 ## Provenance
 
