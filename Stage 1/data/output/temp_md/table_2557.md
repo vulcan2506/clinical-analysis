@@ -1,0 +1,4 @@
+|  diabetes insipidus (DI) | DI results from decreased central AVP secretion (hypothalamus) or end organ resistance (nephrogenic) = polyuria (PU), sec. polydipsia (PD), neurogenic DI = necrosis of AVP-secreting neurons, nephrogenic DI = rare, often caused by drugs, tubulointerstitial diseases, obstructive nephropathies, urine Na osmolality is low but higher than in serum  |
+| --- | --- |
+|  ileus, intestinal obstruction | loss of water and Na, with the loss of water being higher than the loss of Na resulting in concentration of Na  |
+|  primary hyperaldosteronism | water and Na retention due to excessive production of aldosterone in the adrenal cortex = increase in volume of the ECS and rise in serum Na concentration  |

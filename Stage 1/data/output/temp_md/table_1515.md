@@ -1,0 +1,2 @@
+|  Symptoms or signs attributable to kidney failure (e.g., neurological signs and symptoms attributable to uremia, pericarditis, anorexia, medically resistant acid-based or electrolyte abnormalities, intractable pruritus, serositis, and acid-base or electrolyte abnormalities)  |
+| --- |

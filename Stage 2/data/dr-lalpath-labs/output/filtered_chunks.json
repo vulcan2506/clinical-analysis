@@ -1,0 +1,484 @@
+[
+  {
+    "chunk_id": 0,
+    "section_header": "Introduction / Front Matter",
+    "text": "Dr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388",
+    "md_file_path": null,
+    "keywords": [
+      "lal pathlabs",
+      "l74899dl1995plc065388",
+      "office dr",
+      "new delhi",
+      "block sector"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "1",
+    "master_label": "Clinical Laboratory Information",
+    "description": "A document providing administrative and regulatory details of a clinical laboratory service provider, including registered office location and corporate identification.",
+    "_rectified": false,
+    "text_quality_score": 0.741,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": []
+  },
+  {
+    "chunk_id": "2_3",
+    "section_header": "Test Report (Table)",
+    "text": "{\"Test Name\": \"SWASTHFIT SUPER 4\", \"Results\": \"\", \"Units\": \"\", \"Result, Re-interval\": \"\"}\n{\"Test Name\": \"LIVER & KIDNEY PANEL, SERUM\", \"Results\": \"\", \"Units\": \"\", \"Result, Re-interval\": \"\"}\n{\"Test Name\": \"Creatinine (Modified Jaffe,Kinetic)\", \"Results\": \"1.00\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"0.70 - 1.30\"}\n{\"Test Name\": \"GFR Estimated (CKD EPI Equation 2021)\", \"Results\": \"107\", \"Units\": \"mL/min/1.73m²\", \"Result, Re-interval\": \">59\"}\n{\"Test Name\": \"GFR Category (KDIGO Guideline 2012)\", \"Results\": \"G1\", \"Units\": \"\", \"Result, Re-interval\": \"\"}\n{\"Test Name\": \"Urea (Urease UV)\", \"Results\": \"40.00\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"13.00 - 43.00\"}\n{\"Test Name\": \"Urea Nitrogen Blood (Calculated)\", \"Results\": \"18.68\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"6.00 - 20.00\"}\n{\"Test Name\": \"BUN/Creatinine Ratio (Calculated)\", \"Results\": \"19\", \"Units\": \"\", \"Result, Re-interval\": \"\"}\n{\"Test Name\": \"Uric Acid (Uricase)\", \"Results\": \"\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"3.50 - 7.20\"}\n{\"Test Name\": \"AST (SGOT) (IFCC without P5P)\", \"Results\": \"30.0\", \"Units\": \"U/L\", \"Result, Re-interval\": \"15.00 - 40.00\"}\n{\"Test Name\": \"ALT (SGPT) (IFCC without P5P)\", \"Results\": \"40.0\", \"Units\": \"U/L\", \"Result, Re-interval\": \"10.00 - 49.00\"}\n{\"Test Name\": \"GGTP (IFCC)\", \"Results\": \"50.0\", \"Units\": \"U/L\", \"Result, Re-interval\": \"0 - 73\"}\n{\"Test Name\": \"Alkaline Phosphatase (ALP) (IFCC-AMP)\", \"Results\": \"100.00\", \"Units\": \"U/L\", \"Result, Re-interval\": \"30.00 - 120.00\"}\n{\"Test Name\": \"Bilirubin Total (Oxidation)\", \"Results\": \"1.00\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"0.30 - 1.20\"}\n{\"Test Name\": \"Bilirubin Direct (Oxidation)\", \"Results\": \"0.20\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"<0.3\"}\n{\"Test Name\": \"Bilirubin Indirect (Oxidation)\", \"Results\": \"0.80\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"<1.10\"}\n{\"Test Name\": \"Total Protein (Biuret)\", \"Results\": \"8.00\", \"Units\": \"g/dL\", \"Result, Re-interval\": \"5.70 - 8.20\"}\n{\"Test Name\": \"Albumin (BCG)\", \"Results\": \"4.00\", \"Units\": \"g/dL\", \"Result, Re-interval\": \"3.20 - 4.80\"}\n{\"Test Name\": \"A : G Ratio (Calculated)\", \"Results\": \"1.00\", \"Units\": \"\", \"Result, Re-interval\": \"0.90 - 2.00\"}\n{\"Test Name\": \"Globulin(Calculated)\", \"Results\": \"4.00\", \"Units\": \"gm/dL\", \"Result, Re-interval\": \"2.0 - 3.5\"}\n{\"Test Name\": \"Calcium, Total (Arsenazo III)\", \"Results\": \"9.00\", \"Units\": \"mg/dL\", \"Result, Re-interval\": \"8.70 - 10.40\"}\n\nPage 1 of 7\n\n![img-0.jpeg](img-0.jpeg)\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\nTel: 011-4988-5050, Fax: +91-11-2788-2134, E-mail: customer.care@lalpathlabs.com\nDr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block-E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_2.md",
+    "keywords": [
+      "test total",
+      "u00b2 result",
+      "gfr category",
+      "modified jaffe",
+      "phosphatase",
+      "contact customer",
+      "test results",
+      "delhi",
+      "cin l74899dl1995plc065388",
+      "alarming unexpected"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "1-2",
+    "master_label": "Kidney Function Assessment",
+    "description": "A clinical report summarizing kidney function metrics, including creatinine levels, estimated GFR, and urea nitrogen, using standardized laboratory methods and guideline-based categorization.",
+    "_rectified": false,
+    "text_quality_score": 0.76,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": []
+  },
+  {
+    "chunk_id": "6_7",
+    "section_header": "LIPID SCREEN, SERUM (Table)",
+    "text": "{\"Column\": \"Cholesterol, Total (CHO-POD) 100.00 mg/dL <200.00\"}\n{\"Column\": \"Triglycerides (GPO-POD) 100.00 mg/dL <150.00\"}\n{\"Column\": \"HDL Cholesterol (Enz Immunoinhibition) >200 mg/dL >40.00\"}\n{\"Column\": \"LDL Cholesterol, Calculated (Calculated) 50.00 mg/dL <100.00\"}\n{\"Column\": \"VLDL Cholesterol,Calculated (Calculated) 20.00 mg/dL <30.00\"}\n{\"Column\": \"Non-HDL Cholesterol (Calculated) 70 mg/dL <130\"}\n\n1. Measurements in all name patient can show physiological & analytical variations. Three serial samples 3 week apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol.\n2. Additional testing for Apolipoprotein B, hsCRP, Lp(a) & LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_6.md",
+    "keywords": [
+      "column_1 cholesterol",
+      "triglycerides gpo",
+      "mg dl",
+      "200 column_3",
+      "100 00",
+      "testing apolipoprotein",
+      "patients moderate",
+      "triglycerides hdl",
+      "samples week",
+      "pla2 considered"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "2",
+    "master_label": "Lipid Panel Measurement Protocol",
+    "description": "A structured lipid measurement protocol outlining recommended serial sampling intervals and additional biomarker testing for refined ASCVD risk assessment in moderate-risk patients.",
+    "_rectified": false,
+    "text_quality_score": 0.676,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline recommend three serial lipid measurements spaced three weeks apart instead of a single measurement?",
+        "a": "Single lipid measurements can be influenced by physiological fluctuations (e.g., diet, stress, illness) and analytical variability in lab assays. Serial sampling over weeks helps average out these variations, providing a more reliable baseline for risk stratification and treatment decisions."
+      },
+      {
+        "q": "What does the inclusion of Apolipoprotein B (ApoB), hsCRP, Lp(a), and LP-PLA2 testing imply for patient management in moderate-risk ASCVD cases?",
+        "a": "These biomarkers refine risk beyond traditional lipid panels: ApoB better reflects atherogenic particle number, hsCRP indicates inflammation, Lp(a) captures genetic risk, and LP-PLA2 highlights vascular inflammation. Their use may justify earlier or more aggressive therapy in borderline-risk patients."
+      }
+    ]
+  },
+  {
+    "chunk_id": "8_9",
+    "section_header": "Treatment Goals as per Lipid Association of India 2020 (Table)",
+    "text": "{\"Risk Category\": \"Extreme Risk Group Category A\", \"Treatment Goal\": {\"LDL Cholesterol (mg/dL)\": \"<50 (Optional goal ≤30)\", \"Non HDL Cholesterol (mg/dL)\": \"<80 (Optional goal ≤60)\"}, \"Consider Therapy\": {\"LDL Cholesterol (mg/dL)\": \"≥50\", \"Non HDL Cholesterol (mg/dL)\": \"≥80\"}}\n{\"Risk Category\": \"Extreme Risk Group Category A\", \"Treatment Goal\": {\"LDL Cholesterol (mg/dL)\": \"≤30\", \"Non HDL Cholesterol (mg/dL)\": \"≤60\"}, \"Consider Therapy\": {\"LDL Cholesterol (mg/dL)\": \">30\", \"Non HDL Cholesterol (mg/dL)\": \">60\"}}\n{\"Risk Category\": \"Very High\", \"Treatment Goal\": {\"LDL Cholesterol (mg/dL)\": \"<50\", \"Non HDL Cholesterol (mg/dL)\": \"<80\"}, \"Consider Therapy\": {\"LDL Cholesterol (mg/dL)\": \"≥50\", \"Non HDL Cholesterol (mg/dL)\": \"≥80\"}}\n\nPage 2 of 7\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\n\nTel: 011-4988-5050, Fax: +91-11-2788-2134, E-mail: customer.care@lalpathlabs.com\nDr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388",
+    "keywords": [
+      "category treatment",
+      "non hdl",
+      "optional goal",
+      "mg dl",
+      "_1 non",
+      "contact customer",
+      "test results",
+      "alarming",
+      "remedial action",
+      "lalpathlabs com"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "2-3",
+    "master_label": "Lipid Treatment Thresholds",
+    "description": "This passage defines specific LDL and non-HDL cholesterol treatment goals and thresholds for initiating therapy across different cardiovascular risk categories, including optional stricter targets for extreme-risk patients.",
+    "_rectified": false,
+    "_re_rectified": true,
+    "_needs_human_review": true,
+    "text_quality_score": 0.736,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline set an optional LDL-C goal of ≤30 mg/dL for the Extreme Risk Group Category A, in addition to the primary goal of <50 mg/dL?",
+        "a": "This reflects emerging evidence from trials like IMPROVE-IT and post-hoc analyses of PCSK9 inhibitor studies, where achieving LDL-C levels ≤30 mg/dL in extreme-risk patients was associated with further reductions in cardiovascular events, particularly in those with recurrent events or polyvascular disease."
+      },
+      {
+        "q": "How does the guideline differentiate between 'Treatment Goal' and 'Consider Therapy' thresholds in the Extreme Risk Group Category A?",
+        "a": "The 'Treatment Goal' represents the optimal LDL-C and non-HDL-C targets to aim for, while 'Consider Therapy' indicates the LDL-C and non-HDL-C levels at which initiating or intensifying lipid-lowering therapy should be strongly considered, even if the goal is not yet met."
+      },
+      {
+        "q": "What does this imply for clinicians managing patients in the Very High-risk category compared to the Extreme Risk Group Category A?",
+        "a": "For Very High-risk patients, the guideline sets a single LDL-C goal of <50 mg/dL and non-HDL-C goal of <80 mg/dL, without the optional lower targets seen in Extreme Risk. This suggests that while aggressive therapy is warranted, the evidence for ultra-low LDL-C goals in this group is less robust than in Extreme Risk patients."
+      }
+    ]
+  },
+  {
+    "chunk_id": 11,
+    "section_header": "Test Report (Table)",
+    "text": "{\"Test Name\": \"High\", \"Results\": \"<70\", \"Units\": \"<100\", \"Res. Interval\": \"≥70 ≥100\"}\n{\"Test Name\": \"Moderate\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥100 ≥130\"}\n{\"Test Name\": \"Low\", \"Results\": \"<100\", \"Units\": \"<130\", \"Res. Interval\": \"≥130*\"}",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_11.md",
+    "keywords": [
+      "test low",
+      "u2265100 test",
+      "high results",
+      "interval u226570",
+      "70 units"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3",
+    "master_label": "Lipid Test Result Thresholds",
+    "description": "A structured framework defining thresholds for lipid test results (e.g., high, moderate, low) with corresponding units and interpretation intervals to guide clinical decision-making.",
+    "_rectified": false,
+    "text_quality_score": 0.794,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline categorize LDL-C levels ≥130 mg/dL as 'Low' risk despite the higher threshold compared to other categories?",
+        "a": "The 'Low' category reflects a nuanced approach where LDL-C ≥130 mg/dL is still below traditional high-risk thresholds but may warrant attention in patients with additional risk factors. The asterisk (*) likely indicates that further stratification (e.g., ASCVD risk score) is needed to determine if treatment is warranted, emphasizing individualized decision-making."
+      }
+    ]
+  },
+  {
+    "chunk_id": 12,
+    "section_header": "Test Report",
+    "text": "*In low risk patient, consider therapy after an initial non-pharmacological intervention for at least 3 months",
+    "md_file_path": null,
+    "keywords": [
+      "pharmacological intervention",
+      "therapy initial",
+      "patient consider",
+      "intervention months",
+      "low risk"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3",
+    "master_label": "Therapeutic Decision Framework",
+    "description": "A clinical recommendation outlining the initiation of pharmacological therapy in low-risk patients following a minimum 3-month trial of non-pharmacological interventions.",
+    "_rectified": false,
+    "text_quality_score": 0.992,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": []
+  },
+  {
+    "chunk_id": 13,
+    "section_header": "GLUCOSE, FASTING (F) (Table)",
+    "text": "|  Glucose Fasting (Hexokinase) | 80.00 | mg/dL | 70 - 100  |\n| --- | --- | --- | --- |",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_13.md",
+    "keywords": [
+      "glucose fasting",
+      "fasting hexokinase",
+      "hexokinase 80",
+      "fasting",
+      "mg dl"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3",
+    "master_label": "Fasting Glucose Measurement",
+    "description": "A clinical lipid and metabolic parameter measured using the hexokinase method, reported in mg/dL with a reference range of 70-100 for fasting glucose levels.",
+    "_rectified": false,
+    "text_quality_score": 0.736,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline still recommend fasting glucose measurement for cardiovascular risk stratification despite growing evidence that non-fasting glucose may be equally predictive of ASCVD risk?",
+        "a": "Fasting glucose remains a cornerstone of diabetes diagnosis and risk stratification because it provides a standardized, reproducible measure of basal glycemic status, which is critical for identifying patients with impaired fasting glucose or undiagnosed diabetes. While non-fasting glucose may offer convenience, fasting glucose's alignment with diagnostic thresholds for metabolic syndrome and diabetes ensures consistency in clinical decision-making."
+      }
+    ]
+  },
+  {
+    "chunk_id": 14,
+    "section_header": "VITAMIN B12; CYANOCOBALAMIN (CLIA) (Table)",
+    "text": "|  Vitamin B12; Cyanocobalamin | 200.00 | pg/mL | 211.00 - 911.00  |\n| --- | --- | --- | --- |",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_14.md",
+    "keywords": [
+      "b12 cyanocobalamin",
+      "vitamin b12",
+      "cyanocobalamin 200",
+      "vitamin",
+      "200 00"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3",
+    "master_label": "Vitamin B12 Reference Range",
+    "description": "A clinical reference range for serum vitamin B12 (cyanocobalamin) levels, specifying a threshold of 200.00 pg/mL with associated normal reference values.",
+    "_rectified": false,
+    "text_quality_score": 0.722,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": []
+  },
+  {
+    "chunk_id": 15,
+    "section_header": "VITAMIN D, 25 - HYDROXY, SERUM (CLIA) (Table)",
+    "text": "|  Vitamin D, 25 Hydroxy | 150.00 | nmol/L | 75.00 - 250.00  |\n| --- | --- | --- | --- |",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_15.md",
+    "keywords": [
+      "vitamin 25",
+      "vitamin",
+      "hydroxy",
+      "250",
+      "00 nmol"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3",
+    "master_label": "Vitamin D Measurement Reference",
+    "description": "A clinical reference range for serum 25-hydroxyvitamin D levels, providing standardized units (nmol/L) and a defined normal interval (75.00–250.00 nmol/L) for diagnostic interpretation.",
+    "_rectified": false,
+    "text_quality_score": 0.712,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline specify a reference range of 75–250 nmol/L for 25-hydroxyvitamin D without recommending routine supplementation?",
+        "a": "The range reflects population-based data where most individuals achieve skeletal sufficiency without excess risk, but it does not imply cardiovascular benefit; trials show no clear ASCVD reduction with vitamin D supplementation regardless of baseline levels."
+      }
+    ]
+  },
+  {
+    "chunk_id": "16_17",
+    "section_header": "Interpretation (Table)",
+    "text": "{\"LEVEL\": \"Deficient\", \"REFERENCE RANGE IN nmol/L\": \"< 50\", \"COMMENTS\": \"High risk for developing bone disease\"}\n{\"LEVEL\": \"Insufficient\", \"REFERENCE RANGE IN nmol/L\": \"50-74\", \"COMMENTS\": \"Vitamin D concentration which normalizes Parathyroid hormone concentration\"}\n{\"LEVEL\": \"Stimulant\", \"REFERENCE RANGE IN nmol/L\": \"75-250\", \"COMMENTS\": \"Optimal concentration for maximal health benefit\"}\n{\"LEVEL\": \"Potential intoxication\", \"REFERENCE RANGE IN nmol/L\": \">250\", \"COMMENTS\": \"High risk for toxic effects\"}\n\n- The assay measures both D2 (Ergocalciferol) and D3 (Cholecalciferol) metabolites of vitamin D.\n- 25 (OH)D is influenced by sunlight, latitude, skin pigmentation, sunscreen use and hepatic function.\n- Optimal calcium absorption requires vitamin D 25 (OH) levels exceeding 75 nmol/L.\n- It shows seasonal variation, with values being 40-50% lower in winter than in summer.\n\nPage 3 of 7\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\nTel: 011-4988-5050, Fax: +91-11-2788-2134, E-mail: customer.care@lalpathlabs.com\nDr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74899DL1995PLC065388",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_16.md",
+    "keywords": [
+      "disease level",
+      "parathyroid hormone",
+      "deficient",
+      "nmol 250",
+      "comments optimal",
+      "metabolites vitamin",
+      "calcium absorption",
+      "measures d2",
+      "d3 cholecalciferol",
+      "winter summer"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "3-4",
+    "master_label": "Vitamin D Measurement Reference",
+    "description": "A framework categorizing vitamin D levels into deficient, insufficient, optimal, and potentially toxic ranges based on nmol/L concentrations, with clinical implications for bone health and parathyroid hormone regulation.",
+    "_rectified": false,
+    "text_quality_score": 0.73,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline define 'Stimulant' levels of vitamin D (75-250 nmol/L) as optimal for maximal health benefit, rather than just sufficient for bone health?",
+        "a": "The 'Stimulant' range reflects evidence that vitamin D levels above 75 nmol/L optimize non-skeletal benefits, such as immune modulation and cardiovascular health, beyond just normalizing parathyroid hormone. This aligns with observational data linking higher 25(OH)D levels to reduced risks of infections, autoimmune diseases, and mortality."
+      },
+      {
+        "q": "How does seasonal variation in 25(OH)D levels (40-50% lower in winter) impact clinical decision-making for vitamin D supplementation?",
+        "a": "Seasonal fluctuations mean a single measurement may not reflect a patient's true baseline, so clinicians should interpret results in context or retest during low-sunlight months. Supplementation strategies may need adjustment to account for winter dips, particularly in high-risk populations."
+      },
+      {
+        "q": "What does the inclusion of both D2 and D3 metabolites in the assay imply for patient management and result interpretation?",
+        "a": "Measuring both D2 and D3 provides a comprehensive assessment of vitamin D status, as D2 (from plants) and D3 (from sunlight/supplements) have differing potencies and half-lives. This ensures accurate dosing, especially in patients using ergocalciferol supplements or with dietary restrictions."
+      }
+    ]
+  },
+  {
+    "chunk_id": "19_21",
+    "section_header": "Test Report (Table)",
+    "text": "{\"Test Name\": \"- Levels vary with age and are increased in pregnancy. - A new test Vitamin D, Ultrasensitive by LC-MS/MS is also available\"}\n\n1. TSH levels are subject to circadian variation, reaching peak levels between 2 - 4 a.m. and at a minimum between 6-10 pm. The variation is of the order of 50%. Hence time of the day has influence on the measured serum TSH concentrations.\n2. Alteration in concentration of thyroid hormone binding protein can profoundly affect Total T3 and/or Total T4 levels especially in pregnancy and in patients on steroid therapy.\n3. Unbound fraction (Free, and Free T3) of thyroid hormone is biologically active form and correlate more closely with clinical status of the patient than total T4/T3 concentration\n4. Values <0.05 μIU/mL need to be clinically correlated due to presence of a rare TSH variant in some individuals\n\nPage 4 of 7\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\nTel: 011-4988-5050, Fax: +91-11-2788-2134, E-mail: customer.care@lalpathlabs.com\nDr Lal PathLabs\n\nRegd. Office: Dr Lal PathLabs Ltd, Block E, Sector-18, Rohini, New Delhi-110085\nWeb: www.lalpathlabs.com, CIN: L74PPDL1995PLC065388\n\nName : Mr. DUMMY\nLab No. : WM175PF\nRef By : SELF\nCollected : 7/11/2023 11:08:00AM\nA/c Status : P\nCollected at : LPL-ROHINI (NATIONAL REFERENCE LAB)\nNational Reference laboratory, Block E,\nSector 18, ROHINI\nDELHI 110085\n\nAge : 25 Years\nGender : Male\nReported : 17/1/2024 10:55:48AM\nReport Status : Revised\nProcessed at : LPL-NATIONAL REFERENCE LAB\nNational Reference laboratory, Block\nSector 18, Rohini, New Delhi -110085",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_19.md",
+    "keywords": [
+      "test vitamin",
+      "levels vary",
+      "pregnancy new",
+      "ultrasensitive lc",
+      "age increased",
+      "tsh levels",
+      "circadian variation",
+      "thyroid hormone",
+      "clinically correlated",
+      "pregnancy patients"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "4-5",
+    "master_label": "Thyroid Function Testing Guidelines",
+    "description": "A clinical recommendation outlining the influence of circadian variation, pregnancy, and protein binding on thyroid hormone measurements, emphasizing the importance of clinically correlating free hormone levels for accurate assessment.",
+    "_rectified": false,
+    "text_quality_score": 0.978,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does circadian variation in TSH levels matter for clinical interpretation of thyroid function tests?",
+        "a": "TSH levels fluctuate by up to 50% throughout the day, peaking at 2-4 a.m. and troughing at 6-10 p.m. This means a single TSH measurement may not reflect true thyroid status, so clinicians should consider timing when interpreting results, especially in borderline cases."
+      },
+      {
+        "q": "How do changes in thyroid hormone binding proteins affect Total T3/T4 measurements, and why is this clinically relevant?",
+        "a": "Conditions like pregnancy or steroid therapy alter binding protein concentrations, disproportionately affecting Total T3/T4 levels while leaving the biologically active free fraction unchanged. This can lead to misdiagnosis if only total hormone levels are considered."
+      },
+      {
+        "q": "What does the guideline imply for the use of Free T3/T4 over Total T3/T4 in clinical practice?",
+        "a": "Free T3/T4 levels better reflect true thyroid hormone activity and correlate more closely with clinical status. Clinicians should prioritize free hormone measurements, particularly in patients with altered binding protein states, to avoid misinterpretation of thyroid function."
+      }
+    ]
+  },
+  {
+    "chunk_id": "22_23_25_26",
+    "section_header": "Test Report (Table)",
+    "text": "{\"Test Name\": \"HbA1c (GLYCOSYLATED HEMOGLOBIN), BLOOD (HPLC, NGSP certified)\", \"Results\": \"\", \"Units\": \"\", \"Ref Interval\": \"\"}\n{\"Test Name\": \"HbA1c\", \"Results\": \"10.0\", \"Units\": \"%\", \"Ref Interval\": \"4.00 - 5.60\"}\n{\"Test Name\": \"Estimated average glucose (eAG)\", \"Results\": \"240\", \"Units\": \"mg/dL\", \"Ref Interval\": \"\"}\n\nHbA1c result is suggestive of Diabetes/ Higher than glycemic level in a known Diabetic patient.\n\nPlease note, Glycemic goal should be individualized based on duration of diabetes, age/life expectancy, comorbid conditions, known CVD or advanced microvascular complications, hypoglycaemia unawareness, and individual patient considerations\n\nNote: Presence of Hemoglobin variants and/or conditions that affect red cell turnover must be considered, particularly when the HbA1c result does not correlate with the patient's blood glucose levels.\n\n{\"Column\": \"FACTORS THAT INCREASED WITH HbA1C MEASUREMENTS FACTORS THAT AFFECT INTERPRETATION OF HbA1C RESULTS\"}\n{\"Column\": \"Hemoglobin variants, elevated fetal hemoglobin (Hb) and chemically modified derivatives of hemoglobin (H) (carboxylated Hb in patients with renal failure) can affect the accuracy of HbA1c measurements Any condition that shortens erythrocyte survival or decreases mean erythrocyte age (e.g., recovery from acute blood loss, hemolytic anemia, HbSS, HbCC, and HbSC) will falsely lower HbA1c test results regardless of the assay method used. Iron deficiency anemia is associated with higher HbA1c\"}",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_22.md",
+    "keywords": [
+      "test hba1c",
+      "average glucose",
+      "hemoglobin blood",
+      "results units",
+      "glycosylated",
+      "suggestive diabetes",
+      "glycemic goal",
+      "hypoglycaemia",
+      "hba1c result",
+      "life expectancy",
+      "hemoglobin variants",
+      "glucose levels",
+      "conditions affect",
+      "turnover considered",
+      "increased hba1c",
+      "fetal hemoglobin",
+      "hb patients",
+      "renal failure",
+      "affect interpretation"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "5",
+    "master_label": "HbA1c Interpretation Guidance",
+    "description": "A clinical recommendation outlining the interpretation of HbA1c results, including considerations for glycemic goals, patient-specific factors, and conditions affecting red blood cell turnover or hemoglobin variants.",
+    "_rectified": false,
+    "text_quality_score": 0.825,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does iron deficiency anemia falsely elevate HbA1c levels despite normal blood glucose?",
+        "a": "Iron deficiency anemia prolongs erythrocyte lifespan, increasing the time hemoglobin is exposed to glucose and leading to greater glycosylation. This results in higher HbA1c levels independent of actual glycemic control."
+      },
+      {
+        "q": "How do hemoglobin variants like HbSS or HbCC interfere with HbA1c accuracy?",
+        "a": "Hemoglobin variants alter red blood cell turnover or interfere with assay detection, causing falsely low HbA1c readings. Clinicians must correlate HbA1c with glucose logs or alternative markers like fructosamine in these cases."
+      },
+      {
+        "q": "What does the guideline imply for patients with discordant HbA1c and glucose levels?",
+        "a": "Patients with unexplained discrepancies between HbA1c and glucose levels should undergo evaluation for hemoglobinopathies, anemia, or red cell disorders. Alternative glycemic markers (e.g., fructosamine) may be needed to guide therapy."
+      }
+    ]
+  },
+  {
+    "chunk_id": "28_30",
+    "section_header": "Test Report (Table)",
+    "text": "{\"Test Name\": \"COMPLETE BLOOD COUNT; CBC\", \"Results\": \"\", \"Units\": \"\", \"No. R. Interval\": \"\"}\n{\"Test Name\": \"Hemoglobin (Photometry)\", \"Results\": \"15.00\", \"Units\": \"g/dL\", \"No. R. Interval\": \"13.00 - 17.00\"}\n{\"Test Name\": \"Packed Cell Volume (PCV) (Calculated)\", \"Results\": \"45.00\", \"Units\": \"%\", \"No. R. Interval\": \"40.00 - 50.00\"}\n{\"Test Name\": \"RBC Count (Electrical Impedence)\", \"Results\": \"5.00\", \"Units\": \"ml/mm3\", \"No. R. Interval\": \"4.50 - 5.50\"}\n{\"Test Name\": \"MCV (Electrical Impedence)\", \"Results\": \"100.00\", \"Units\": \"fL\", \"No. R. Interval\": \"83.00 - 101.00\"}\n{\"Test Name\": \"MCH (Calculated)\", \"Results\": \"30.00\", \"Units\": \"pg\", \"No. R. Interval\": \"27.00 - 32.00\"}\n{\"Test Name\": \"MCHC (Calculated)\", \"Results\": \"33.00\", \"Units\": \"g/dL\", \"No. R. Interval\": \"31.50 - 34.50\"}\n{\"Test Name\": \"Red Cell Distribution Width (RDW) (Electrical Impedence)\", \"Results\": \"12.00\", \"Units\": \"%\", \"No. R. Interval\": \"11.60 - 14.00\"}\n{\"Test Name\": \"Total Leukocyte Count (TLC) (Electrical Impedence)\", \"Results\": \"5.00\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"4.00 - 10.00\"}\n{\"Test Name\": \"Differential Leucocyte Count (DLC) (VCS Technology)\", \"Results\": \"\", \"Units\": \"\", \"No. R. Interval\": \"\"}\n{\"Test Name\": \"Segmented Neutrophils\", \"Results\": \"50.00\", \"Units\": \"%\", \"No. R. Interval\": \"40.00 - 80.00\"}\n{\"Test Name\": \"Lymphocytes\", \"Results\": \"40.00\", \"Units\": \"%\", \"No. R. Interval\": \"20.00 - 40.00\"}\n{\"Test Name\": \"Monocytes\", \"Results\": \"5.00\", \"Units\": \"%\", \"No. R. Interval\": \"2.00 - 10.00\"}\n{\"Test Name\": \"Eosinophils\", \"Results\": \"4.00\", \"Units\": \"%\", \"No. R. Interval\": \"1.00 - 6.00\"}\n{\"Test Name\": \"Basophils\", \"Results\": \"1.00\", \"Units\": \"%\", \"No. R. Interval\": \"<2.00\"}\n{\"Test Name\": \"Absolute Leukocyte Count (Calculated)\", \"Results\": \"\", \"Units\": \"\", \"No. R. Interval\": \"\"}\n{\"Test Name\": \"Neutrophils\", \"Results\": \"2.50\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"2.00 - 7.00\"}\n{\"Test Name\": \"Lymphocytes\", \"Results\": \"2.00\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"1.00 - 3.00\"}\n{\"Test Name\": \"Monocytes\", \"Results\": \"0.25\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"0.20 - 1.00\"}\n{\"Test Name\": \"Eosinophils\", \"Results\": \"0.20\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"0.02 - 0.50\"}\n{\"Test Name\": \"Basophils\", \"Results\": \"0.05\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"0.02 - 0.10\"}\n{\"Test Name\": \"Platelet Count (Electrical Impedence)\", \"Results\": \"151\", \"Units\": \"thou/mm3\", \"No. R. Interval\": \"150.00 - 410.00\"}\n{\"Test Name\": \"Mean Platelet Volume (Electrical Impedence)\", \"Results\": \"6.5\", \"Units\": \"fL\", \"No. R. Interval\": \"6.5 - 12.0\"}\n\nTest Name Results Units No. Ref. Interval\nleucocyte counts are additionally being reported as absolute numbers of each cell in per unit volume of blood",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_28.md",
+    "keywords": [
+      "blood count",
+      "test segmented",
+      "pcv calculated",
+      "monocytes results",
+      "technology results",
+      "leucocyte counts",
+      "numbers cell",
+      "results units",
+      "volume blood",
+      "reported absolute"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "6-7",
+    "master_label": "Complete Blood Count Report",
+    "description": "A structured report of hematological parameters including hemoglobin, packed cell volume, and red blood cell indices, presented with measured values and reference intervals for clinical interpretation.",
+    "_rectified": false,
+    "text_quality_score": 0.73,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline include a Complete Blood Count (CBC) in the initial evaluation of dyslipidemia and cardiovascular risk stratification?",
+        "a": "A CBC provides critical information on hematologic parameters that may influence cardiovascular risk, such as anemia (which can exacerbate myocardial oxygen demand) or leukocytosis (linked to systemic inflammation and atherosclerosis progression). Abnormalities may also indicate secondary causes of dyslipidemia or contraindications to lipid-lowering therapies."
+      },
+      {
+        "q": "How does the MCV value of 100.00 fL in this CBC influence cardiovascular risk assessment or management?",
+        "a": "An MCV of 100.00 fL suggests macrocytosis, which may reflect vitamin B12 or folate deficiency—both linked to hyperhomocysteinemia, a prothrombotic and atherogenic state. Clinicians should evaluate for these deficiencies and consider supplementation if confirmed, as correcting them may reduce cardiovascular risk."
+      },
+      {
+        "q": "What does the normal RDW of 12.00% imply for cardiovascular risk stratification in this patient?",
+        "a": "A normal RDW suggests limited anisocytosis, which may indicate stable erythropoiesis and lower systemic inflammation. However, persistently elevated RDW is associated with higher cardiovascular risk due to inflammation, oxidative stress, and endothelial dysfunction—so monitoring trends over time is more informative than a single value."
+      }
+    ]
+  },
+  {
+    "chunk_id": "31_32",
+    "section_header": "2. Test conducted on EDTA whole blood (Table)",
+    "text": "{\"Column\": \"MCI - 24779 Dr Ajay Gupta MD, Pathology Technical Director - Hematology & Immunology NRL - Dr Lal PathLabs Ltd DMC - 77091 Dr Gurleen Oberoi DM(Hematopathology), MD,DNB,MNAMS Senior Consultant and Lead-Hematopathology NRL - Dr Lal PathLabs Ltd DMC - 39819 Dr H. M. Mazumdar MD, Biochemistry Consultant Biochemist Dr Lal PathLabs Ltd Dr. J. M. Munjal MD, Pathology Consultant Pathologist Dr Lal PathLabs Ltd\"}\n{\"Column\": \"DMC - 89936 Dr Kamal Modi MD, Biochemistry Consultant Biochemist NRL - Dr Lal PathLabs Ltd DMC - 9550 Dr Nimmi Kankar MD, Biochemistry Technical Director - Hematology & Biochemical Genetics NRL - Dr Lal PathLabs Ltd DMC - 24201 Dr Sarita Kumari Lal MD, Pathology Consultant Pathologist Dr Lal PathLabs Ltd DMC - 46663 Dr Sunanda MD, Pathology Sr. Consultant Pathologist - Hematology & Immunology NRL - Dr Lal PathLabs Ltd\"}\n\nThis is a revised report & supersedes all the previously issued reports\n\n![img-1.jpeg](img-1.jpeg)",
+    "md_file_path": "/home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/temp_md/table_31.md",
+    "keywords": [
+      "dm hematopathology",
+      "77091 dr",
+      "consultant lead",
+      "pathlabs column_1",
+      "nimmi kankar",
+      "revised report",
+      "reports img",
+      "issued reports",
+      "img jpeg",
+      "supersedes previously"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "7",
+    "master_label": "Hematopathology Consultant Directory",
+    "description": "A compiled list of consultant hematopathologists and biochemists, including their credentials and affiliations with Dr. Lal PathLabs Ltd, detailing revised reports and superseding previously issued documents.",
+    "_rectified": false,
+    "text_quality_score": 0.976,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": []
+  },
+  {
+    "chunk_id": 33,
+    "section_header": "IMPORTANT INSTRUCTIONS",
+    "text": "All results released pertain to the specimen submitted. All test results are dependent on the quality of the sample received by the Laboratory. Laboratory investigations are only a tool to facilitate in arriving at a diagnosis and should be clinically correlated by the Referring Physician. Report delivery may be delayed due to unforeseen circumstances. Inconvenience is regretted. Certain tests may require further testing at additional cost for derivation of exact value. Kindly submit request within 72 hours post reporting. Test results may show interlaboratory variations. The Courts/Forum at Delhi shall have exclusive jurisdiction in all disputes/claims concerning the test(s) & or results of test(s). Test results are not valid for medico legal purposes. This is computer generated medical diagnostic report that has been validated by Authorized Medical Practitioner/Doctor. The report does not need physical signature.\n\n(#) Sample drawn from outside source.\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\n\nTel: +91-11-49885050, Fax: +91-11-2788-2134, E-mail: lalpathlabs@lalpathlabs.com\n\nNational Reference lab, Delhi, a CAP (7171001) Accredited, ISO 9001:2015 (FS60411) & ISO 27001:2013 (616691) Certified laboratory.\n\nPage 7 of 7\n\nIf Test results are alarming or unexpected, client is advised to contact the Customer Care immediately for possible remedial action.\n\nTel: 011-4988-5050, Fax: +91-11-2788-2134, E-mail: customer.care@lalpathlabs.com",
+    "md_file_path": null,
+    "keywords": [
+      "laboratory investigations",
+      "results dependent",
+      "report validated",
+      "delivery delayed",
+      "referring physician"
+    ],
+    "source_doc": "WM17S.pdf",
+    "page_range": "7",
+    "master_label": "Laboratory Result Validation Protocol",
+    "description": "A protocol outlining the conditions, limitations, and clinical correlation requirements for laboratory investigations, including result validation, delivery delays, and jurisdictional constraints.",
+    "_rectified": false,
+    "text_quality_score": 0.974,
+    "enrichment_source": "internal",
+    "_quality_status": "ADEQUATE",
+    "qna": [
+      {
+        "q": "Why does the guideline emphasize that 'All results released pertain to the specimen submitted' in laboratory validation protocols?",
+        "a": "This ensures traceability and accountability, preventing misinterpretation of results from mismatched or contaminated samples. It underscores the critical role of pre-analytical variables (e.g., collection timing, handling) in lipid test accuracy, as errors here can lead to false reassurance or unnecessary interventions."
+      },
+      {
+        "q": "How do interlaboratory variations in test results impact clinical decision-making for dyslipidemia management?",
+        "a": "Variations can lead to inconsistent risk stratification or treatment thresholds (e.g., LDL-C targets), potentially causing under- or over-treatment. Clinicians should prioritize repeat testing in a single accredited lab or use standardized methods (e.g., CDC-certified assays) to minimize discrepancies."
+      },
+      {
+        "q": "What does the guideline imply about the medico-legal validity of lipid test results in clinical practice?",
+        "a": "It explicitly states results are invalid for medico-legal purposes, highlighting the need for standardized protocols and documentation in routine care. This protects laboratories from liability but shifts responsibility to clinicians for proper interpretation and follow-up."
+      }
+    ]
+  }
+]

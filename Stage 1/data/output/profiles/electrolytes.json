@@ -1,0 +1,139 @@
+{
+  "domain": "clinical laboratory testing and quality control",
+  "document_purpose": "laboratory protocol manual for electrolyte testing procedures, including reagent preparation, calibration, quality control, and reporting standards",
+  "specialist_role": "clinical laboratory scientist specializing in electrolyte testing and quality assurance",
+  "analyst_role": "laboratory information systems analyst or clinical laboratory compliance specialist",
+  "entity_types": [
+    "electrolyte analytes",
+    "specimen types",
+    "reagents",
+    "calibration standards",
+    "quality control materials",
+    "instrumentation",
+    "test procedures",
+    "reportable ranges",
+    "reference ranges",
+    "critical values",
+    "data systems",
+    "specimen handling protocols"
+  ],
+  "key_terminology": {
+    "NHANES": "National Health and Nutrition Examination Survey",
+    "QC": "Quality Control",
+    "QC pools": "Standardized quality control materials used to verify assay performance",
+    "CDC": "Centers for Disease Control and Prevention",
+    "LIMS": "Laboratory Information Management System",
+    "LIS": "Laboratory Information System",
+    "ISE": "Ion Selective Electrode",
+    "AM": "Morning Collection (specimen timing designation)"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "This document details the Lab Protocol for testing the items listed in the following table",
+      "master_label": "laboratory protocol",
+      "description": "A formal document outlining standardized procedures for performing clinical laboratory tests"
+    },
+    {
+      "text_snippet": "Specimens are allowed to reach room temperature during preparation. The unused portion of the patient specimen is returned to the freezer.",
+      "master_label": "specimen handling protocol",
+      "description": "Standardized instructions for proper storage and handling of patient specimens during testing"
+    },
+    {
+      "text_snippet": "The slope ranges for newly installed electrodes should be in the upper half of the recommended electrode slope range (excluding chloride).",
+      "master_label": "electrode calibration criteria",
+      "description": "Quality assurance specifications for acceptable performance of ion selective electrodes during instrument setup"
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Procedure Clarification",
+      "description": "when a protocol is updated to provide additional detail or interpretation without changing the core methodology"
+    },
+    {
+      "name": "Reagent Specification Update",
+      "description": "when a reagent preparation or standard concentration is modified to meet new performance requirements"
+    },
+    {
+      "name": "Calibration Adjustment",
+      "description": "when acceptable performance criteria for calibration or QC systems are revised to reflect updated standards"
+    },
+    {
+      "name": "Method Reversal",
+      "description": "when a previously established procedure is explicitly contradicted or invalidated by a new version"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions describe the same process with only superficial or formatting differences"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the laboratory procedure aligns with established clinical guidelines or regulatory standards"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the laboratory procedure meaningfully conflicts with clinical guidelines in a way that could affect patient care"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the laboratory procedure is outside recommended parameters but the clinical impact is uncertain or minimal"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the clinical guideline does not address this specific testing scenario or analyte"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "prerequisite conditions or mandatory steps that must be met before proceeding with testing or analysis",
+    "deprecated_items": "reagents, procedures, or specifications that are no longer valid or have been superseded by newer versions",
+    "new_items": "reagents, procedures, or specifications that have been introduced in the current version"
+  },
+  "field_labels": {
+    "feature_name": "Test Method",
+    "key_behaviors": "Performance Characteristics",
+    "requirements": "Pre-analytical Requirements",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "electrode slope acceptance criteria",
+      "version_a": "Newly installed electrodes required slope ranges to be in the upper half of the recommended range for all analytes including chloride.",
+      "version_b": "Newly installed electrodes now require slope ranges to be in the upper half of the recommended range excluding chloride, with specific acceptance criteria for chloride electrodes.",
+      "change_type": "Procedure Clarification",
+      "analysis": "The update provides more specific guidance by separating chloride electrode performance from other analytes. This clarification helps laboratories optimize electrode performance for different ion types while maintaining quality standards."
+    },
+    {
+      "topic": "specimen storage temperature requirements",
+      "version_a": "Specimens were required to remain frozen at all times during testing procedures.",
+      "version_b": "Specimens are allowed to reach room temperature during preparation, with unused portions returned to the freezer.",
+      "change_type": "Method Reversal",
+      "analysis": "The new protocol reverses the previous strict frozen storage requirement, allowing temporary room temperature handling during preparation. This change accommodates practical laboratory workflows while maintaining specimen integrity through proper return to frozen storage."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why would the protocol exclude chloride from the electrode slope acceptance criteria?",
+      "a": "Chloride electrodes typically have different performance characteristics compared to other ion selective electrodes. The protocol likely separates chloride to account for its unique measurement challenges and to allow for more appropriate acceptance criteria that reflect its specific behavior in clinical testing."
+    },
+    {
+      "q": "What are the implications of allowing specimens to reach room temperature during preparation?",
+      "a": "This change accommodates standard laboratory workflows where immediate processing isn't always possible. The protocol ensures specimen integrity by requiring the unused portion to be returned to frozen storage, maintaining the cold chain for the remaining sample while allowing necessary preparation steps at room temperature."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "electrode slope acceptance criteria",
+    "foundation": "The older version required all newly installed electrodes to meet slope ranges in the upper half of recommended ranges including chloride.",
+    "value_added": [
+      "Separated chloride electrode performance from other analytes",
+      "Provided specific acceptance criteria tailored to chloride measurement challenges",
+      "Enabled more precise quality control for different ion types"
+    ],
+    "narrative": "The older protocol established general electrode performance standards that didn't account for analyte-specific variations. The newer version builds on this foundation by recognizing that chloride electrodes require different handling, resulting in more targeted quality assurance measures that improve testing reliability for this specific analyte."
+  },
+  "type_key": "electrolytes",
+  "source_files": [
+    "electrolytes.pdf"
+  ]
+}

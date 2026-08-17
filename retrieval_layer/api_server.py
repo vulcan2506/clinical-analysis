@@ -32,6 +32,7 @@ from pydantic import BaseModel
 
 import chroma_store
 import config
+import cross_corpus
 import llm_client
 import redis_cache
 import retriever
@@ -41,7 +42,7 @@ import session as session_module
 logging.basicConfig(level=logging.INFO, format="%(levelname)-8s %(message)s")
 log = logging.getLogger(__name__)
 
-app = FastAPI(title="HealthRules Payer Knowledge API")
+app = FastAPI(title="Clinical Knowledge API")
 
 # ALLOWED_ORIGINS: comma-separated list, e.g. "https://your-app.vercel.app,http://localhost:3000".
 # Defaults to local dev only — set this env var on the deployed backend host
@@ -60,9 +61,81 @@ app.add_middleware(
 )
 
 STAGE1_DIR = config.STAGE1_DIR
+STAGE2_DIR = STAGE1_DIR.parent / "Stage 2"
 PDF_DIR    = STAGE1_DIR / "data" / "pdfs"
 OUTPUT_DIR = config.STAGE1_OUTPUT
-ENV_PATH   = STAGE1_DIR / ".env"
+# "guidelines" is an ALIAS onto Stage 1's existing "default" storage — the 13
+# clinical guideline PDFs were already processed there (data/pdfs, data/
+# output) before this corpus_id split existed. NOT a separate
+# default_clinical/data_guidelines build target — see corpus_registry.py's
+# matching alias for the chroma/index side of this.
+GUIDELINES_PDF_DIR    = PDF_DIR
+GUIDELINES_OUTPUT_DIR = OUTPUT_DIR
+PATIENTS_DIR = STAGE2_DIR / "data"
+
+# corpus_id becomes part of filesystem paths below (upload/process/reset/
+# knowledge-explorer) — a client-supplied one must never contain path
+# separators or traversal sequences.
+_CORPUS_ID_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+
+
+def _validate_patient_corpus_id(corpus_id: str) -> None:
+    if corpus_id in ("default", "guidelines"):
+        raise HTTPException(400, f"'{corpus_id}' is not a patient corpus id.")
+    if not _CORPUS_ID_RE.match(corpus_id):
+        raise HTTPException(400, "Invalid corpus_id.")
+
+
+def _patient_dir(corpus_id: str) -> Path:
+    return PATIENTS_DIR / corpus_id
+
+
+def _patient_chroma_index_dirs(corpus_id: str) -> "tuple[Path, Path]":
+    # Mirrors Stage 2/stage2_config.py:setup_patient_env()'s own formula —
+    # must stay in lockstep with it since that's what the patient subprocess
+    # actually builds against.
+    patient_dir = _patient_dir(corpus_id)
+    return patient_dir / "chroma_db", patient_dir / "index"
+
+
+def _register_existing_patient_corpora() -> None:
+    """
+    corpus_registry is in-process-only memory, normally populated as the
+    final step of /api/process's patient branch (_run_process_job). A live
+    server restart — or a patient corpus rebuilt via a direct script that
+    bypasses /api/process entirely, which happens during development —
+    loses that registration even though the corpus's chroma_db/index are
+    fully valid and already built on disk. Without this, router.get_router()/
+    chroma_store.get_store() raise "Unknown corpus_id" for a corpus that's
+    completely usable, and the only fix was a full (expensive) reprocess
+    just to restore in-memory routing state. Scanning once at process start
+    (re-run automatically on every --reload) makes every already-processed
+    patient corpus immediately queryable again for free.
+    """
+    if not PATIENTS_DIR.exists():
+        return
+    import corpus_registry
+    for patient_dir in sorted(PATIENTS_DIR.iterdir()):
+        if not patient_dir.is_dir():
+            continue
+        chroma_dir, index_dir = _patient_chroma_index_dirs(patient_dir.name)
+        if chroma_dir.exists() and index_dir.exists() and any(index_dir.iterdir()):
+            corpus_registry.register(patient_dir.name, chroma_dir, index_dir)
+            log.info(f"Auto-registered existing patient corpus '{patient_dir.name}' on startup")
+
+
+_register_existing_patient_corpora()
+
+
+def _stage2_config():
+    # Stage 2/ isn't on sys.path by default (api_server.py runs with cwd=
+    # retrieval_layer/) — this is a lightweight, side-effect-free module
+    # (just path constants + pure helper functions), safe to import directly
+    # without also needing Stage 1 on sys.path.
+    if str(STAGE2_DIR) not in sys.path:
+        sys.path.insert(0, str(STAGE2_DIR))
+    import stage2_config
+    return stage2_config
 
 # ── Conversation sessions ────────────────────────────────────────────────────
 # One ConversationSession per frontend chat thread (session.py — already used
@@ -87,13 +160,35 @@ def _get_session(session_id: str) -> session_module.ConversationSession:
         return sess
 
 
+# Which Stage 2 (fused) patient corpus_id, if any, is active for a given
+# session_id — consulted by retriever._classify_corpus_target() via
+# ChatRequest.corpus_id resolution below when the request doesn't pass an
+# explicit override. Single-active-patient-corpus-per-session is the
+# deliberate scope boundary for now, not a full multi-tenant patient
+# database. A request with no session_id has no active patient corpus and
+# always resolves to "guidelines" unless it passes corpus_id explicitly.
+_active_patient_corpus: Dict[str, str] = {}
+_active_patient_corpus_lock = threading.Lock()
+
+
+def set_active_patient_corpus(session_id: str, corpus_id: str) -> None:
+    with _active_patient_corpus_lock:
+        _active_patient_corpus[session_id] = corpus_id
+
+
+def _get_active_patient_corpus(session_id: Optional[str]) -> Optional[str]:
+    if not session_id:
+        return None
+    return _active_patient_corpus.get(session_id)
+
+
 @app.get("/")
 def root() -> Dict:
     # HF Spaces' own readiness probe hits "/" before flipping public edge
     # routing live — without a route here it 404s, and the Space can stay
     # stuck showing HF's placeholder page even once the container is
     # genuinely up and /api/health works internally.
-    return {"status": "ok", "service": "HealthRules Payer Knowledge API"}
+    return {"status": "ok", "service": "Clinical Knowledge API"}
 
 
 @app.get("/api/health")
@@ -120,6 +215,13 @@ class ChatRequest(BaseModel):
     version: Optional[str] = None   # only meaningful on the raw/diagnostic path
     raw: bool = False                # explicit opt-in to the raw/diagnostic path with no intent forced
     session_id: Optional[str] = None  # frontend chat-thread id — omit for stateless single-shot calls
+    corpus_id: Optional[str] = None   # explicit override — "guidelines" | a Stage 2 patient corpus_id.
+                                       # None -> resolved via retriever._classify_corpus_target() against
+                                       # this session's active patient corpus (set_active_patient_corpus()),
+                                       # if any.
+    active_patient_corpus_id: Optional[str] = None  # frontend sends the selected patient corpus ID
+                                                     # directly — enables cross-corpus retrieval when
+                                                     # the query contains cross-corpus signals.
 
 
 @app.post("/api/chat")
@@ -133,14 +235,20 @@ def chat(req: ChatRequest) -> Dict:
     else:
         standalone, was_rewritten = req.query, False
 
+    active_patient_corpus_id = req.active_patient_corpus_id or _get_active_patient_corpus(req.session_id)
+
     if req.raw or req.intent:
         t0 = time.time()
         if req.best_of and req.best_of > 1:
             result = retriever.retrieve_best_of_n(
-                standalone, n=req.best_of, intent=req.intent, version=req.version
+                standalone, n=req.best_of, intent=req.intent, version=req.version,
+                corpus_id=req.corpus_id, active_patient_corpus_id=active_patient_corpus_id,
             )
         else:
-            result = retriever.retrieve(standalone, intent=req.intent, version=req.version)
+            result = retriever.retrieve(
+                standalone, intent=req.intent, version=req.version,
+                corpus_id=req.corpus_id, active_patient_corpus_id=active_patient_corpus_id,
+            )
         if sess is not None:
             sess.record_turn(req.query, result)  # no answer generated on the raw path — nothing to add_assistant_turn
         return {
@@ -152,6 +260,7 @@ def chat(req: ChatRequest) -> Dict:
             "answer":      None,
             "confidence":  retriever._top_rerank_score(result),
             "chunks":      result.get("chunks", []),
+            "corpus_id":   result.get("corpus_id"),
             "from_cache":  False,
             "latency_s":   time.time() - t0,
         }
@@ -160,7 +269,11 @@ def chat(req: ChatRequest) -> Dict:
         raise HTTPException(400, f"mode must be 'concise' or 'detailed', got {req.mode!r}")
 
     try:
-        result = redis_cache.answer_query(standalone, mode=req.mode, best_of=req.best_of)
+        result = redis_cache.answer_query(
+            standalone, mode=req.mode, best_of=req.best_of,
+            corpus_id=req.corpus_id, active_patient_corpus_id=active_patient_corpus_id,
+            original_query=req.query,
+        )
     except Exception as e:
         log.exception("chat request failed")
         raise HTTPException(500, str(e))
@@ -174,83 +287,140 @@ def chat(req: ChatRequest) -> Dict:
 
 
 # ── /api/settings ────────────────────────────────────────────────────────────
+# BYOK (per-user key entry) was removed (2026-07-14) — the deployed server now
+# always uses the operator's own MISTRAL_API_KEY from Stage 1/.env for every
+# visitor, so there's nothing for a client to configure here beyond status.
 
 @app.get("/api/settings/status")
 def settings_status() -> Dict:
     return {
         "backend":  config.LLM_BACKEND,
-        "model":    config.ANTHROPIC_MODEL,
-        "has_key":  bool(config.ANTHROPIC_API_KEY),
+        "model":    config.MISTRAL_CHAT_MODEL,
+        "has_key":  bool(config.MISTRAL_API_KEY),
     }
 
 
-class ApiKeyRequest(BaseModel):
-    api_key: str
+# ── /api/corpora ─────────────────────────────────────────────────────────────
+# Lists the permanent "guidelines" reference KB (an alias onto Stage 1's own
+# already-processed data/pdfs -> data/output — see GUIDELINES_PDF_DIR/
+# GUIDELINES_OUTPUT_DIR above) and every per-customer Stage 2 patient corpus
+# (Stage 2/data/<id>/), so the frontend's left/right Knowledge panels can show
+# real state instead of guessing from job status alone.
+
+def _slugify(label: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", label.strip().lower()).strip("-")
+    return slug or "customer"
 
 
-def _write_env_var(path: Path, key: str, value: str) -> None:
-    """Rewrites one KEY=value line in a .env file in place, preserving every other line."""
-    lines = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
-    out, found = [], False
-    for line in lines:
-        if line.startswith(f"{key}="):
-            out.append(f"{key}={value}")
-            found = True
-        else:
-            out.append(line)
-    if not found:
-        out.append(f"{key}={value}")
-    path.write_text("\n".join(out) + "\n", encoding="utf-8")
-    os.chmod(path, 0o600)
+def _split_source_docs(value) -> List[str]:
+    """Normalize topic_registry.csv's source_docs cell (a possibly multiline
+    doc-name list) into a clean list of filenames."""
+    if isinstance(value, list):
+        return [str(x).strip() for x in value if str(x).strip()]
+    if not value:
+        return []
+    parts = re.split(r"[\n,;|]+", str(value))
+    return [p.strip() for p in parts if p.strip()]
 
 
-@app.post("/api/settings/key")
-def settings_set_key(req: ApiKeyRequest) -> Dict:
-    key = req.api_key.strip()
-    if not key:
-        raise HTTPException(400, "api_key is required")
+@app.get("/api/corpora")
+def list_corpora() -> Dict:
+    guidelines = {
+        "id": "guidelines",
+        "label": "Clinical Guidelines",
+        "pdf_count": len(list(GUIDELINES_PDF_DIR.glob("*.pdf"))) if GUIDELINES_PDF_DIR.exists() else 0,
+        "built": (GUIDELINES_OUTPUT_DIR / "enterprise_nested_topics.json").exists(),
+        # No "embeddings_built" field anymore — cross-corpus lookups are live
+        # (retrieval_layer/cross_corpus.py), nothing to precompute beyond
+        # what "built" already reflects.
+    }
 
-    _write_env_var(ENV_PATH, "ANTHROPIC_API_KEY", key)
-    config.ANTHROPIC_API_KEY = key
-    os.environ["ANTHROPIC_API_KEY"] = key
-    llm_client._anthropic_client = None  # force reconstruction with the new key
+    patients: List[Dict] = []
+    if PATIENTS_DIR.exists():
+        for patient_dir in sorted(PATIENTS_DIR.iterdir()):
+            if not patient_dir.is_dir():
+                continue
+            meta_path = patient_dir / "meta.json"
+            meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
+            pdfs_dir = patient_dir / "pdfs"
+            patients.append({
+                "id": patient_dir.name,
+                "label": meta.get("label", patient_dir.name),
+                "pdf_count": len(list(pdfs_dir.glob("*.pdf"))) if pdfs_dir.exists() else 0,
+                "built": (patient_dir / "output" / "enterprise_nested_topics.json").exists(),
+            })
 
-    try:
-        # Validate against Anthropic directly — bypass config.LLM_BACKEND and the
-        # local-server fallback entirely, since this is specifically "does THIS
-        # key work", not "does chat() succeed by any means".
-        llm_client._chat_anthropic("Reply with exactly: PONG", None, 5, None, False, 10.0)
-        return {"valid": True}
-    except Exception as e:
-        return {"valid": False, "error": _friendly_anthropic_error(e)}
+    return {"guidelines": guidelines, "patients": patients}
 
 
-def _friendly_anthropic_error(e: Exception) -> str:
-    """Anthropic SDK exceptions stringify to a raw dict repr — translate the
-    common cases into something worth showing a non-technical user."""
-    name = type(e).__name__
-    if name == "AuthenticationError":
-        return "That key was rejected by Anthropic (invalid or revoked)."
-    if name == "PermissionDeniedError":
-        return "That key doesn't have permission to use this model."
-    if name == "RateLimitError":
-        return "Rate limited by Anthropic — the key is valid, but try again shortly."
-    if name in ("APIConnectionError", "APITimeoutError"):
-        return "Couldn't reach the Anthropic API — check your network connection."
-    return f"{name}: {e}"
+class PatientCorpusCreateRequest(BaseModel):
+    label: str
+
+
+@app.post("/api/corpora/patients")
+def create_patient_corpus(req: PatientCorpusCreateRequest) -> Dict:
+    label = req.label.strip()
+    if not label:
+        raise HTTPException(400, "label is required")
+
+    corpus_id = _slugify(label)
+    if _patient_dir(corpus_id).exists():
+        corpus_id = f"{corpus_id}-{uuid.uuid4().hex[:6]}"
+
+    patient_dir = _patient_dir(corpus_id)
+    (patient_dir / "pdfs").mkdir(parents=True, exist_ok=True)
+    (patient_dir / "output").mkdir(parents=True, exist_ok=True)
+    (patient_dir / "meta.json").write_text(json.dumps({"label": label}), encoding="utf-8")
+    return {"id": corpus_id, "label": label}
+
+
+@app.post("/api/corpora/patients/{corpus_id}/register")
+def register_patient_corpus(corpus_id: str) -> Dict:
+    """
+    Manual escape hatch alongside _register_existing_patient_corpora()'s
+    startup scan — for when a patient corpus is rebuilt (e.g. via a direct
+    script) WHILE the server is already running and never restarts/reloads,
+    so the startup scan never gets another chance to run. Idempotent, cheap
+    (no LLM/embedding cost) — just points router.get_router()/
+    chroma_store.get_store() at the corpus's already-built directories.
+    """
+    _validate_patient_corpus_id(corpus_id)
+    patient_dir = _patient_dir(corpus_id)
+    if not patient_dir.exists():
+        raise HTTPException(404, f"Unknown customer corpus '{corpus_id}'.")
+    chroma_dir, index_dir = _patient_chroma_index_dirs(corpus_id)
+    if not chroma_dir.exists() or not index_dir.exists() or not any(index_dir.iterdir()):
+        raise HTTPException(400, f"Corpus '{corpus_id}' hasn't been fully processed yet — run Process first.")
+
+    import corpus_registry
+    corpus_registry.register(corpus_id, chroma_dir, index_dir)
+    router.reset_router(corpus_id)
+    chroma_store.reset_store(corpus_id)
+    return {"status": "ok", "corpus_id": corpus_id}
+
+    return {"id": corpus_id, "label": label}
 
 
 # ── /api/upload ──────────────────────────────────────────────────────────────
 
 @app.post("/api/upload")
-async def upload(file: UploadFile = File(...)) -> Dict:
+async def upload(file: UploadFile = File(...), corpus_id: str = "default") -> Dict:
     safe_name = os.path.basename(file.filename or "")
     if not safe_name or safe_name in (".", "..") or not safe_name.lower().endswith(".pdf"):
         raise HTTPException(400, "Only PDF uploads are supported today.")
 
-    PDF_DIR.mkdir(parents=True, exist_ok=True)
+    if corpus_id == "default":
+        target_dir = PDF_DIR
+    else:
+        _validate_patient_corpus_id(corpus_id)
+        patient_dir = _patient_dir(corpus_id)
+        if not patient_dir.exists():
+            raise HTTPException(404, f"Unknown customer corpus '{corpus_id}' — create it first.")
+        target_dir = patient_dir / "pdfs"
+
+    target_dir.mkdir(parents=True, exist_ok=True)
     content = await file.read()
-    (PDF_DIR / safe_name).write_bytes(content)
+    (target_dir / safe_name).write_bytes(content)
     return {"filename": safe_name, "size_bytes": len(content)}
 
 
@@ -263,6 +433,8 @@ async def upload(file: UploadFile = File(...)) -> Dict:
 
 class ResetRequest(BaseModel):
     confirm: bool = False
+    corpus_id: str = "default"   # "default" (today's single live corpus) or a Stage 2 patient corpus_id.
+                                  # "guidelines" is refused below — that KB is permanent, never reset via this endpoint.
 
 
 def _clear_dir_contents(path: Path) -> None:
@@ -281,17 +453,39 @@ def reset_corpus(req: ResetRequest) -> Dict:
         raise HTTPException(400, "Set confirm=true to clear the corpus — this deletes all "
                                   "processed PDFs, generated output, and the vector store.")
 
-    _clear_dir_contents(PDF_DIR)
-    _clear_dir_contents(OUTPUT_DIR)
-    _clear_dir_contents(config.CHROMA_DIR)
-    _clear_dir_contents(config.INDEX_DIR)
+    if req.corpus_id == "guidelines":
+        raise HTTPException(400, "The 'guidelines' corpus is permanent and cannot be reset via this endpoint.")
 
-    router.reset_router()
-    chroma_store.reset_store()
+    if req.corpus_id == "default":
+        _clear_dir_contents(PDF_DIR)
+        _clear_dir_contents(OUTPUT_DIR)
+        _clear_dir_contents(config.CHROMA_DIR)
+        _clear_dir_contents(config.INDEX_DIR)
+    else:
+        _validate_patient_corpus_id(req.corpus_id)
+        patient_dir = _patient_dir(req.corpus_id)
+        if not patient_dir.exists():
+            raise HTTPException(404, f"Unknown customer corpus '{req.corpus_id}'.")
+        _clear_dir_contents(patient_dir / "pdfs")
+        _clear_dir_contents(patient_dir / "output")
+        # Formula-derived, not corpus_registry.resolve() — a corpus that was
+        # uploaded-to but never successfully processed was never register()'d
+        # in-memory, and reset must still work for that case.
+        chroma_dir, index_dir = _patient_chroma_index_dirs(req.corpus_id)
+        _clear_dir_contents(chroma_dir)
+        _clear_dir_contents(index_dir)
+
+    router.reset_router(req.corpus_id)
+    chroma_store.reset_store(req.corpus_id)
     with _sessions_lock:
         _sessions.clear()
+    if req.corpus_id != "default":
+        with _active_patient_corpus_lock:
+            stale = [sid for sid, cid in _active_patient_corpus.items() if cid == req.corpus_id]
+            for sid in stale:
+                del _active_patient_corpus[sid]
 
-    return {"status": "ok", "message": "Corpus cleared. Upload new PDFs and run Process to build a fresh one."}
+    return {"status": "ok", "message": f"Corpus '{req.corpus_id}' cleared. Upload new PDFs and run Process to build a fresh one."}
 
 
 # ── /api/process ─────────────────────────────────────────────────────────────
@@ -324,40 +518,81 @@ def _update_job_from_log(log_path: Path, job_id: str) -> None:
         _jobs[job_id]["log_tail"] = text[-4000:]
 
 
-def _run_process_job(job_id: str) -> None:
+def _run_process_job(
+    job_id: str,
+    corpus_id: str = "default",
+    env_overrides: Optional[Dict[str, str]] = None,
+    work_dir: Optional[Path] = None,
+    steps: Optional[List["tuple[List[str], str]"]] = None,
+) -> None:
+    """
+    corpus_id/env_overrides/work_dir/steps default to today's exact behavior
+    (corpus_id="default", env_overrides=None -> subprocess inherits this
+    process's own environment unchanged, work_dir=STAGE1_DIR, steps=main.py
+    then run_tail.py --skip-eval) — the "default" branch of /api/process below
+    still calls this with no overrides at all.
+
+    env_overrides, when given, is merged into the subprocess environment —
+    this is the fix for the confirmed gap where STAGE1_PDF_DIR/
+    STAGE1_OUTPUT_DIR/CHROMA_DIR_OVERRIDE/INDEX_DIR_OVERRIDE existed in
+    config.py but were never actually set for a subprocess run, so per-
+    corpus isolation never took effect end-to-end. Used by the "guidelines"
+    and patient-id branches of /api/process below.
+
+    steps is a list of (argv_tail, stage_label) run sequentially with
+    sys.executable prepended and cwd=work_dir — lets a patient corpus run
+    Stage 2's main.py/run_tail.py (different args, different cwd) instead of
+    Stage 1's.
+    """
+    cwd = work_dir or STAGE1_DIR
+    job_env = {**os.environ, **env_overrides} if env_overrides else None
+    steps = steps or [
+        (["main.py"], "Starting main.py (ingestion)…"),
+        (["run_tail.py", "--skip-eval"], "Starting run_tail.py (taxonomy, delta, indexing)…"),
+    ]
+
     log_path = OUTPUT_DIR / f"process_{job_id}.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with _jobs_lock:
-        _jobs[job_id] = {"status": "running", "stage": "Starting main.py (ingestion)…", "log_tail": ""}
+        _jobs[job_id] = {"status": "running", "stage": steps[0][1], "log_tail": ""}
 
     try:
-        with open(log_path, "w", encoding="utf-8") as logf:
-            proc = subprocess.Popen(
-                [sys.executable, "main.py"], cwd=str(STAGE1_DIR),
-                stdout=logf, stderr=subprocess.STDOUT,
-            )
-            _tail_log_into_job(proc, log_path, job_id)
-            if proc.returncode != 0:
-                raise RuntimeError(f"main.py exited with code {proc.returncode}")
-
-        with _jobs_lock:
-            _jobs[job_id]["stage"] = "Starting run_tail.py (taxonomy, delta, indexing)…"
-
-        with open(log_path, "a", encoding="utf-8") as logf:
-            proc = subprocess.Popen(
-                [sys.executable, "run_tail.py", "--skip-eval"], cwd=str(STAGE1_DIR),
-                stdout=logf, stderr=subprocess.STDOUT,
-            )
-            _tail_log_into_job(proc, log_path, job_id)
-            if proc.returncode != 0:
-                raise RuntimeError(f"run_tail.py exited with code {proc.returncode}")
+        for i, (argv, stage_label) in enumerate(steps):
+            with _jobs_lock:
+                _jobs[job_id]["stage"] = stage_label
+            mode = "w" if i == 0 else "a"
+            with open(log_path, mode, encoding="utf-8") as logf:
+                proc = subprocess.Popen(
+                    [sys.executable, *argv], cwd=str(cwd),
+                    stdout=logf, stderr=subprocess.STDOUT, env=job_env,
+                )
+                _tail_log_into_job(proc, log_path, job_id)
+                if proc.returncode != 0:
+                    raise RuntimeError(f"{argv[0]} exited with code {proc.returncode}")
 
         # router/chroma_store cache their index/store in memory for the life
         # of this process (see their double-checked-locking singletons) —
         # without dropping them here, a long-lived api_server keeps serving
         # the OLD corpus after a successful reprocess.
-        router.reset_router()
-        chroma_store.reset_store()
+        router.reset_router(corpus_id)
+        chroma_store.reset_store(corpus_id)
+        if corpus_id == "guidelines":
+            # cross_corpus.py's reverse-map/registry-rows/kb-version
+            # singletons are keyed off the guideline topic_registry.csv —
+            # drop them so a reprocessed guideline KB isn't served under a
+            # stale version hash (which would also keep old xcorp Redis
+            # cache entries alive under a key that no longer matches
+            # reality — reset_cache() forces a fresh guideline_kb_version()
+            # on the next lookup, which naturally changes the cache key).
+            cross_corpus.reset_cache()
+
+        if corpus_id not in ("default", "guidelines"):
+            # Patient corpora aren't pre-seeded in corpus_registry.py the way
+            # "guidelines" is — register so router.get_router()/chroma_store.
+            # get_store() can find this corpus_id's chroma/index dirs at all.
+            import corpus_registry
+            chroma_dir, index_dir = _patient_chroma_index_dirs(corpus_id)
+            corpus_registry.register(corpus_id, chroma_dir, index_dir)
 
         with _jobs_lock:
             _jobs[job_id]["status"] = "done"
@@ -369,10 +604,52 @@ def _run_process_job(job_id: str) -> None:
             _jobs[job_id]["stage"] = str(e)
 
 
+class ProcessRequest(BaseModel):
+    corpus_id: str = "default"   # "default" | "guidelines" | a Stage 2 patient corpus_id
+
+
 @app.post("/api/process")
-def process() -> Dict:
+def process(req: ProcessRequest = ProcessRequest()) -> Dict:
     job_id = uuid.uuid4().hex[:12]
-    threading.Thread(target=_run_process_job, args=(job_id,), daemon=True).start()
+
+    if req.corpus_id == "default":
+        kwargs = {}
+
+    elif req.corpus_id == "guidelines":
+        # "guidelines" is an alias onto Stage 1's own "default" PDF/output/
+        # chroma/index storage (already built, pre-dating this corpus_id
+        # split — see GUIDELINES_PDF_DIR/GUIDELINES_OUTPUT_DIR and
+        # corpus_registry.py's matching alias) — so no env overrides are
+        # needed here, same as the "default" branch above. No extra
+        # embeddings-index step anymore — cross-corpus lookups
+        # (cross_corpus.py) are live against router+reranker, nothing to
+        # precompute here beyond what run_tail.py already builds.
+        kwargs = {}
+
+    else:
+        _validate_patient_corpus_id(req.corpus_id)
+        patient_dir = _patient_dir(req.corpus_id)
+        if not patient_dir.exists():
+            raise HTTPException(404, f"Unknown customer corpus '{req.corpus_id}' — create it first.")
+
+        s2cfg = _stage2_config()
+        if not s2cfg.resolve_guideline_profile_path():
+            raise HTTPException(
+                400,
+                "The Clinical Guidelines KB hasn't been built yet — process the "
+                "guidelines corpus first, then reprocess this customer KB.",
+            )
+
+        kwargs = {
+            "env_overrides": {"STAGE2_PATIENT_ID": req.corpus_id},
+            "work_dir": STAGE2_DIR,
+            "steps": [
+                (["main.py"], "Starting Stage 2 main.py (ingestion)…"),
+                (["run_tail.py"], "Starting Stage 2 run_tail.py (taxonomy, delta, indexing)…"),
+            ],
+        }
+
+    threading.Thread(target=_run_process_job, args=(job_id, req.corpus_id), kwargs=kwargs, daemon=True).start()
     return {"job_id": job_id}
 
 
@@ -383,6 +660,232 @@ def process_status(job_id: str) -> Dict:
     if not job:
         raise HTTPException(404, "Unknown job_id")
     return {"job_id": job_id, **job}
+
+
+# ── /api/corpora/patients/{corpus_id}/topics/{topic_slug} ──────────────────────
+# Replaces the deleted Stage 2/guideline_fusion.py splice mechanism. Neither
+# the patient KB nor the guideline KB is ever written to by either endpoint
+# below — both are request-time, live cross-corpus lookups (cross_corpus.py's
+# router+reranker, same mechanism the chat two-hop uses), cached only as a
+# transient derived Redis entry keyed on guideline_kb_version, never as a
+# file under data/output/. See the design plan for the full rationale.
+
+def _find_patient_topic_row(corpus_id: str, topic_slug: str) -> dict:
+    """
+    topic_registry.csv has no slug column (only master_label) — resolve by
+    slugifying every row's master_label with the SAME _slugify() already
+    used for corpus labels, so the URL-facing id is stable and human-typeable
+    without requiring the caller to exactly reproduce a label's casing/
+    punctuation.
+    """
+    _validate_patient_corpus_id(corpus_id)
+    patient_dir = _patient_dir(corpus_id)
+    registry_path = patient_dir / "output" / "topic_registry.csv"
+    if not registry_path.exists():
+        raise HTTPException(404, f"Unknown or unprocessed customer corpus '{corpus_id}'.")
+
+    import pandas as pd
+    df = pd.read_csv(registry_path)
+    for _, row in df.iterrows():
+        label = row.get("master_label", "")
+        if isinstance(label, str) and _slugify(label) == topic_slug:
+            return row.to_dict()
+    raise HTTPException(404, f"Unknown topic '{topic_slug}' in corpus '{corpus_id}'.")
+
+
+# Original guideline summaries, verbatim — the knowledge artifact returned by
+# /enhanced-summary. Matching is routing; the curated per-source summary files
+# (Stage 1/data/output/topic_summaries/<source_dir>/<slug>.md) are consumed
+# as-is, never regenerated/paraphrased. Same loader strategy as
+# Stage 2/guideline_grounding.py::_load_guideline_summary_store().
+
+_GUIDELINE_SUMMARY_STORE: Optional[Dict[str, List[dict]]] = None
+
+
+def _load_guideline_summary_store() -> Dict[str, List[dict]]:
+    global _GUIDELINE_SUMMARY_STORE
+    if _GUIDELINE_SUMMARY_STORE is not None:
+        return _GUIDELINE_SUMMARY_STORE
+    store: Dict[str, List[dict]] = {}
+    base = GUIDELINES_OUTPUT_DIR / "topic_summaries"
+    if base.exists():
+        for path in sorted(base.glob("*/*.md")):
+            label, source, body = _parse_topic_summary_file(path)
+            if not label:
+                continue
+            markdown = f"# {label}\n*Source: {source}*\n\n{body}"
+            store.setdefault(label, []).append({"source_doc": source, "markdown": markdown})
+    _GUIDELINE_SUMMARY_STORE = store
+    return store
+
+
+def _parse_topic_summary_file(path: Path):
+    """Parse a dense per-topic summary file. Returns (label, source_doc, body).
+    Format: '# <label>' then '*Source: <doc>*' (may span lines) then body.
+    Mirrors Stage 2/guideline_grounding.py::_parse_patient_topic_file()."""
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    label = ""
+    for ln in lines:
+        if ln.startswith("# "):
+            label = ln[2:].strip()
+            break
+    i = 0
+    while i < len(lines) and not lines[i].strip().startswith("*Source:"):
+        i += 1
+    if i >= len(lines):
+        return label, "", "\n".join(lines).strip()
+    doc_lines: List[str] = []
+    while i < len(lines):
+        ln = lines[i].strip()
+        if ln.startswith("*Source:"):
+            ln = ln[len("*Source:"):].strip()
+        doc_lines.append(ln)
+        i += 1
+        if ln.rstrip().endswith("*"):
+            break
+    source = " ".join(d.rstrip("*").strip() for d in doc_lines if d).strip()
+    body = "\n".join(lines[i:]).strip()
+    return label, source, body
+
+
+def _original_summary_for(label: str) -> str:
+    """Full original guideline topic summary (all source-specific sections),
+    verbatim. Empty string when the label is unknown."""
+    store = _load_guideline_summary_store()
+    entries = store.get(label, [])
+    if not entries:
+        return ""
+    return "\n\n---\n\n".join(e["markdown"] for e in entries)
+
+
+def _offline_grounding_record(corpus_id: str, topic_slug: str) -> Optional[dict]:
+    """Per-topic grounding record from the last offline Stage 2 run, if any.
+    This is the authoritative source when present — it already carries the
+    original summaries, match types and scores. None otherwise. Stage 2's
+    pipeline slugs topic labels with underscores (see guideline_grounding.py::
+    _slugify) while the URL-facing slug here uses hyphens — resolve the record
+    through the registry label so the two conventions can't drift."""
+    record = None
+    try:
+        row = _find_patient_topic_row(corpus_id, topic_slug)
+        label = row.get("master_label", "")
+        if label:
+            pipeline_slug = re.sub(r"[^a-z0-9]+", "_", label.lower()).strip("_")[:80] or "untitled"
+            record_path = _patient_dir(corpus_id) / "output" / "guideline_grounded_summaries" / f"{pipeline_slug}.json"
+            if record_path.exists():
+                record = json.loads(record_path.read_text(encoding="utf-8"))
+    except HTTPException:
+        return None
+    except (json.JSONDecodeError, OSError):
+        return None
+    return record
+
+
+@app.get("/api/corpora/patients/{corpus_id}/topics/{topic_slug}/enhanced-summary")
+def enhanced_summary(corpus_id: str, topic_slug: str) -> Dict:
+    """
+    Returns this patient topic's own summary PLUS the matched guideline
+    topics' ORIGINAL curated summaries — matching is routing, never rewriting
+    (no LLM merge; original guideline summary text is returned verbatim with
+    match provenance). Prefers the authoritative offline Stage 2 grounding
+    record for the topic when one exists; otherwise falls back to a live
+    cross-corpus lookup (cross_corpus.py) with original summaries resolved
+    from the guideline summary store. Fully in-process — no subprocess needed.
+    """
+    row = _find_patient_topic_row(corpus_id, topic_slug)
+    topic_label = row.get("master_label", topic_slug)
+    patient_summary = row.get("grounded_summary") or row.get("summarized_description") or ""
+    if not patient_summary or not isinstance(patient_summary, str):
+        raise HTTPException(422, f"Topic '{topic_slug}' has no summary yet.")
+
+    kb_version = cross_corpus.guideline_kb_version()
+    cache_key = f"{corpus_id}:{topic_slug}:{kb_version}"
+    cached = redis_cache.get_xcorp_cached("enhanced", cache_key, kb_version)
+    if cached:
+        return {**cached, "from_cache": True}
+
+    offline = _offline_grounding_record(corpus_id, topic_slug)
+    if offline is not None and offline.get("grounding"):
+        matched = []
+        for m in offline["grounding"].get("matched_guideline_topics", []):
+            summary = m.get("summary") or _original_summary_for(m.get("master_label", ""))
+            matched.append({
+                "label": m.get("master_label", ""),
+                "match_type": m.get("match_type", ""),
+                "score": m.get("score"),
+                "match_reason": m.get("match_reason", ""),
+                "source_docs": m.get("source_docs", []),
+                "summary": summary,
+            })
+        result = {
+            "topic": topic_label,
+            "patient_summary": patient_summary,
+            "matched_guideline_topics": matched,
+            "grounding_status": offline["grounding"].get("status", "NO_MATCH"),
+            "from_offline": True,
+        }
+        redis_cache.set_xcorp_cached("enhanced", cache_key, kb_version, result)
+        return {**result, "from_cache": False}
+
+    matches = cross_corpus.lookup_guideline_topics(patient_summary, k=_stage2_config().GUIDELINE_MATCH_TOP_K)
+    matched = [
+        {
+            "label": m["master_label"],
+            "match_type": "",
+            "score": m.get("score"),
+            "match_reason": "",
+            "source_docs": _split_source_docs(m.get("source_docs", "")),
+            "summary": _original_summary_for(m["master_label"]),
+        }
+        for m in matches
+    ]
+    result = {
+        "topic": topic_label,
+        "patient_summary": patient_summary,
+        "matched_guideline_topics": matched,
+        "grounding_status": "DIRECT_MATCH" if matched else "NO_MATCH",
+        "from_offline": False,
+    }
+    redis_cache.set_xcorp_cached("enhanced", cache_key, kb_version, result)
+    return {**result, "from_cache": False}
+
+
+@app.get("/api/corpora/patients/{corpus_id}/topics/{topic_slug}/guideline-conformance")
+def guideline_conformance(corpus_id: str, topic_slug: str) -> Dict:
+    """
+    Delta conformance (Concordant/Deviates/Guideline Silent) + evolution
+    cards for this patient topic against its matched guideline topics.
+    Needs Stage 1's delta_analyzer/evolution_analyzer machinery, which
+    cannot run in THIS process (see cross_corpus_cli.py's docstring for the
+    config-collision reason) — shells out to Stage 2/fusion_worker.py on
+    cache miss; that subprocess itself shells out again to
+    cross_corpus_cli.py for the live guideline lookup.
+    """
+    row = _find_patient_topic_row(corpus_id, topic_slug)
+    topic_label = row.get("master_label", topic_slug)
+
+    kb_version = cross_corpus.guideline_kb_version()
+    cached = redis_cache.get_xcorp_cached("conformance", f"{corpus_id}:{topic_slug}", kb_version)
+    if cached:
+        return {**cached, "from_cache": True}
+
+    s2cfg = _stage2_config()
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        out_path = Path(tmp) / "result.json"
+        proc = subprocess.run(
+            [sys.executable, str(s2cfg.FUSION_WORKER_PATH),
+             "--patient-corpus-id", corpus_id, "--topic", topic_label, "--out", str(out_path)],
+            cwd=str(STAGE2_DIR), capture_output=True, text=True,
+        )
+        if proc.returncode != 0:
+            log.error(f"fusion_worker.py failed for {corpus_id}/{topic_label}: {proc.stderr[-2000:]}")
+            raise HTTPException(500, "Guideline conformance analysis failed — see server logs.")
+        result = json.loads(out_path.read_text(encoding="utf-8"))
+
+    redis_cache.set_xcorp_cached("conformance", f"{corpus_id}:{topic_slug}", kb_version, result)
+    return {**result, "from_cache": False}
 
 
 # ── /api/knowledge ───────────────────────────────────────────────────────────
@@ -407,7 +910,7 @@ def _display_name(name: str) -> str:
     return _DISPLAY_NAMES.get(name, name)
 
 
-def _build_tree(path: Path, top_level: bool = True) -> List[Dict]:
+def _build_tree(path: Path, output_root: Path, top_level: bool = True) -> List[Dict]:
     entries = []
     if not path.exists():
         return entries
@@ -416,12 +919,12 @@ def _build_tree(path: Path, top_level: bool = True) -> List[Dict]:
             continue
         if child.name.startswith(".") or ".bak" in child.name:
             continue
-        rel = child.relative_to(OUTPUT_DIR)
+        rel = child.relative_to(output_root)
         if child.is_dir():
             entries.append({
                 "type": "directory", "name": child.name,
                 "display_name": _display_name(child.name), "path": str(rel),
-                "children": _build_tree(child, top_level=False),
+                "children": _build_tree(child, output_root, top_level=False),
             })
         elif child.suffix in _ALLOWED_EXTENSIONS:
             entries.append({
@@ -435,18 +938,18 @@ def _build_tree(path: Path, top_level: bool = True) -> List[Dict]:
 _MAX_MARKDOWN_CHARS = 200_000  # some source docs are 2MB+ — cap so the browser doesn't choke
 
 
-def _source_documents() -> List[Dict]:
+def _source_documents(pdf_dir: Path) -> List[Dict]:
     """
     Pre-converted markdown alternatives to Docling extraction — see
     ingest.py:_load_preconverted_md, which uses these instead of re-running
     OCR when present. Surfaced here read-only, under a "pdfs/" path prefix
-    so /api/knowledge/file knows to resolve against PDF_DIR instead of
-    OUTPUT_DIR.
+    so /api/knowledge/file knows to resolve against pdf_dir instead of
+    output_dir.
     """
     entries = []
-    if not PDF_DIR.exists():
+    if not pdf_dir.exists():
         return entries
-    for md_file in sorted(PDF_DIR.glob("*_Converted.md")):
+    for md_file in sorted(pdf_dir.glob("*_Converted.md")):
         entries.append({
             "type": "file", "name": md_file.name,
             "display_name": md_file.stem.replace("_Converted", "").replace("_", " "),
@@ -456,10 +959,25 @@ def _source_documents() -> List[Dict]:
     return entries
 
 
+def _resolve_corpus_dirs(corpus_id: str) -> "tuple[Path, Path]":
+    """Returns (pdf_dir, output_dir) for corpus_id — "default"/omitted keeps
+    today's exact single-corpus behavior."""
+    if corpus_id == "default":
+        return PDF_DIR, OUTPUT_DIR
+    if corpus_id == "guidelines":
+        return GUIDELINES_PDF_DIR, GUIDELINES_OUTPUT_DIR
+    _validate_patient_corpus_id(corpus_id)
+    patient_dir = _patient_dir(corpus_id)
+    if not patient_dir.exists():
+        raise HTTPException(404, f"Unknown corpus '{corpus_id}'.")
+    return patient_dir / "pdfs", patient_dir / "output"
+
+
 @app.get("/api/knowledge/files")
-def knowledge_files() -> Dict:
-    tree = _build_tree(OUTPUT_DIR)
-    source_docs = _source_documents()
+def knowledge_files(corpus_id: str = "default") -> Dict:
+    pdf_dir, output_dir = _resolve_corpus_dirs(corpus_id)
+    tree = _build_tree(output_dir, output_dir)
+    source_docs = _source_documents(pdf_dir)
     if source_docs:
         tree.insert(0, {
             "type": "directory", "name": "source_documents",
@@ -470,13 +988,14 @@ def knowledge_files() -> Dict:
 
 
 @app.get("/api/knowledge/file")
-def knowledge_file(path: str) -> Dict:
+def knowledge_file(path: str, corpus_id: str = "default") -> Dict:
+    pdf_dir, output_dir = _resolve_corpus_dirs(corpus_id)
     if path.startswith("pdfs/"):
-        target = (PDF_DIR / path[len("pdfs/"):]).resolve()
-        root = PDF_DIR.resolve()
+        target = (pdf_dir / path[len("pdfs/"):]).resolve()
+        root = pdf_dir.resolve()
     else:
-        target = (OUTPUT_DIR / path).resolve()
-        root = OUTPUT_DIR.resolve()
+        target = (output_dir / path).resolve()
+        root = output_dir.resolve()
 
     if not target.is_relative_to(root):
         raise HTTPException(400, "Invalid path")
@@ -497,9 +1016,10 @@ def knowledge_file(path: str) -> Dict:
 # its citations into a Mermaid.js diagram spec. Deliberately generated from
 # the FINAL ANSWER + EVIDENCE, never the raw user query — this is what keeps
 # it grounded instead of a second, independent (and potentially hallucinated)
-# generation. Anthropic has no image-generation API, so this produces
-# diagram-as-code (rendered client-side), not a raster image — Infographic
-# and Comic Strip are intentionally NOT implemented here (see frontend).
+# generation. None of the text-gen providers in the fallback chain have an
+# image-generation API, so this produces diagram-as-code (rendered
+# client-side), not a raster image — Infographic and Comic Strip are
+# intentionally NOT implemented here (see frontend).
 
 _VIZ_TYPES = {
     "flowchart":    "a process flowchart — use Mermaid `flowchart TD` syntax showing sequential steps",

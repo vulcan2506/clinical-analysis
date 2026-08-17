@@ -1,0 +1,194 @@
+{
+  "master_label": "Complete Blood Count Report",
+  "original_summary": "**Patient Result:** 15.00 g/dL (Hemoglobin), 45.00% (PCV) (ref: 13.00 - 17.00 g/dL (Hemoglobin), 40.00 - 50.00% (PCV))\n\n**Clinical Interpretation:** Hemoglobin is within normal range (13.00-17.00 g/dL), PCV is within normal range (40.00-50.00%)\n- Guideline context: Hemoglobin concentration measures oxygen-carrying capacity and can vary by gender and age.\n- Guideline context: Hematocrit (PCV) indicates red cell volume percentage, reflecting blood viscosity and hydration.\n- Guideline context: Clinical guidelines suggest that interpretation should ideally integrate automated analyzer results with morphological findings and the patient's clinical presentation.\n- Guideline context: Guidelines suggest that interpretation should consider age-stratified and gender-specific reference ranges to improve diagnostic accuracy.\n- Guideline context: Clinical guidelines suggest correlating CBC parameters with clinical conditions such as hematologic malignancies, infections, and systemic diseases.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Complete Blood Count Report\n\n**Key Clinical Actions:**\n- Leucocyte counts are reported as absolute numbers per unit volume of blood\n- Hemoglobin and PCV values are provided with reference intervals for clinical comparison\n- leucocyte counts are additionally being reported as absolute numbers of each cell per unit volume of blood\n- Guideline context: Monitoring hemoglobin, MCV, and RDW changes over time can be used to assess treatment response.\n- Guideline context: For assessing treatment response in anemia, a \"complete response\" is defined as hemoglobin within the normal range and MCV >80 fL, often requiring reticulocyte count normalization (reticulocyte index >2%).\n- Guideline context: A \"partial response\" is defined as a hemoglobin increase >20 g/L from baseline.\n\n**Patient Preparation:**\n- Guideline context: Accurate patient preparation (such as fasting if required and proper rest) is recommended.\n- Guideline context: Proper sample collection (venous or capillary, anticoagulated with EDTA) is required.\n- Guideline context: To prevent hemoconcentration and falsely elevated hemoglobin/hematocrit values, sample collection should avoid prolonged venous stasis (tourniquet time <1 minute).\n\n**Diagnostic Criteria:**\n- Guideline context: Reliable results depend on adherence to standardized quality control procedures and CLSI guidelines for hematology testing.\n- Guideline context: Precision for major CBC parameters is typically measured by a coefficient of variation (CV) <3% or <2.5% depending on the specific analytical system.",
+  "grounding": {
+    "status": "DIRECT_MATCH",
+    "matched_guideline_topics": [
+      {
+        "master_label": "CBC diagnostic review framework",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9999772310256958,
+        "match_reason": "Guideline directly addresses CBC interpretation framework, integrating automated analyzers with morphological findings and clinical presentation, which aligns with the patient's CBC report and its clinical interpretation context.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# CBC diagnostic review framework\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** CBC diagnostic review framework\n\n**Clinical Findings or Diagnostic Patterns:**\n- Integrates automated analyzers with morphological findings and clinical presentation for accurate CBC interpretation\n- Emphasizes quality control measures, pre-analytical variables, and post-analytical considerations to ensure reliable results\n- Correlates CBC parameters with clinical conditions such as hematologic malignancies, infections, and systemic diseases\n- Utilizes advanced detection principles (impedance, optical methods, flow cytometry) for precise cell analysis\n- Follows evidence-based practices including reference range establishment and quality assurance procedures\n- Incorporates systematic literature review and evidence-based practices from peer-reviewed journals, professional organization standards, and authoritative textbooks for CBC interpretation\n\n**Pre-analytical Conditions:**\n- Patient preparation and proper sample handling to minimize pre-analytical errors\n- Adherence to standardized quality control procedures for accurate CBC testing\n- Integration of automated results with morphological examination for validation\n- Use of age, sex, and ethnicity-specific reference ranges where applicable\n- Correlation of CBC findings with clinical presentation and additional laboratory tests\n- Adherence to Clinical and Laboratory Standards Institute (CLSI) guidelines for hematology testing and quality assurance procedures"
+      },
+      {
+        "master_label": "CBC interpretation and analysis framework",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9988956451416016,
+        "match_reason": "Guideline focuses on systematic interpretation and quality assurance in CBC analysis, which is directly relevant to the patient's CBC report and its clinical interpretation context.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# CBC interpretation and analysis framework\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** CBC interpretation and analysis framework\n\n**Clinical Findings or Diagnostic Patterns:**\n- Systematic interpretation and quality assurance in clinical laboratory practice\n- Integration of advanced analytical methods with traditional morphological assessment\n- Evidence-based algorithms achieving diagnostic accuracies exceeding 90%\n- Age-stratified and gender-specific reference ranges improving diagnostic accuracy\n- AI-assisted automated analysis reducing per-test costs by 23%\n- Statistical evidence supporting implementation of standardized protocols achieving diagnostic accuracies exceeding 90%\n\n**Pre-analytical Conditions:**\n- Standardized protocols for CBC interpretation\n- Coefficient of variation values <3% for major CBC parameters\n- Age-stratified and gender-specific reference ranges\n- Quality assurance measures exceeding international standards\n- Staff education and technology investment for optimal performance\n- Coefficient of variation values <3% for all major CBC parameters to exceed international quality standards"
+      },
+      {
+        "master_label": "red blood cell parameter assessment",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9982795715332031,
+        "match_reason": "Guideline covers RBC parameters (hemoglobin, hematocrit) and their clinical significance, which are directly relevant to the patient's CBC report.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# red blood cell parameter assessment\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** red blood cell parameter assessment\n\n**Clinical Findings or Diagnostic Patterns:**\n- RBC count quantifies erythrocytes per unit volume (4.0-5.5 × 10¹²/L in healthy adults)\n- Hemoglobin concentration measures oxygen-carrying capacity, varying by gender and age\n- Hematocrit indicates red cell volume percentage, reflecting blood viscosity and hydration\n- MCV classifies anemia by average red cell size\n- RDW assesses anisocytosis and potential mixed cell populations or hemolytic processes\n- Mean corpuscular hemoglobin (MCH) quantifies hemoglobin content per red cell\n\n**Pre-analytical Conditions:**\n- Accurate patient preparation (fasting if required, proper rest)\n- Proper sample collection (venous or capillary, anticoagulated with EDTA)\n- Standardized analytical conditions (calibrated instruments, validated methods)\n- Quality control checks for RBC, Hb, Hct, MCV, MCH, MCHC, and RDW\n- Age- and gender-specific reference range adjustments for interpretation"
+      },
+      {
+        "master_label": "CBC analysis enhancement system",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.9,
+        "score": 0.9975646734237671,
+        "match_reason": "Guideline discusses advanced CBC analysis techniques (e.g., flow cytometry, AI algorithms), which are not directly relevant to the patient's current CBC report but may be useful in specialized contexts.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# CBC analysis enhancement system\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** CBC analysis enhancement system\n\n**Clinical Findings or Diagnostic Patterns:**\n- Multi-parameter flow cytometry enables more precise cell classification and detection of abnormal populations\n- Artificial intelligence algorithms improve flag recognition and reduce false positive rates\n- Digital morphology systems integrate automated microscopy with expert system analysis for standardized cell identification\n- Future developments include point-of-care CBC testing with laboratory-quality results\n- Integrated artificial intelligence for automated result interpretation and clinical correlation\n- Post-analytical integration of patient demographics (age, sex) for clinical correlation in AI-driven result interpretation\n\n**Pre-analytical Conditions:**\n- Sysmex XN-3000 automated hematology analyzers with throughput of 300 samples/hour\n- Precision CV <2.5% for major parameters\n- Analytical measurement range verified monthly\n- Retrospective analysis of 15,847 consecutive samples from Prince Sultan Military Medical City (2023–2024)\n- Sample population includes adult (≥18 years) and pediatric (<18 years) patients\n- Monthly verification of analytical measurement range for all 34 parameters\n- Compliance with Clinical and Laboratory Standards Institute (CLSI) guidelines for hematology analyzers"
+      },
+      {
+        "master_label": "anemia diagnostic scoring system",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.598,
+        "match_reason": "Guideline provides anemia classification based on RBC morphology (MCV thresholds), which is directly relevant to interpreting hemoglobin and hematocrit results in the patient's CBC report.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# anemia diagnostic scoring system\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** anemia diagnostic scoring system\n\n**Clinical Findings or Diagnostic Patterns:**\n- Classifies anemia based on red blood cell morphology (microcytic, normocytic, macrocytic) to guide diagnostic direction and additional testing.\n- Uses MCV thresholds (microcytic <80 fL, normocytic 80–100 fL, macrocytic >100 fL) to categorize anemia types.\n- Incorporates scoring metrics (e.g., MCV <76 fL = +3, RDW >15% = +2) with sensitivity, specificity, and likelihood ratios for diagnostic accuracy.\n- Relies on additional tests (e.g., reticulocyte count, bilirubin, peripheral smear) to differentiate between conditions like iron deficiency, hemolysis, or bone marrow disorders.\n- Leverages characteristic red cell morphology (e.g., microcytosis/hypochromia for iron deficiency, hypersegmented neutrophils for megaloblastic anemia) for confirmation.\n- Uses reticulocyte count to classify normocytic anemia into hypoproliferative (low reticulocyte count) vs. hyperproliferative (high reticulocyte count) causes, guiding further testing (e.g., hemolysis workup vs. bone marrow evaluation).\n- Incorporates MCHC (mean corpuscular hemoglobin concentration) thresholds (e.g., hypochromia <320 g/L) to refine microcytic anemia classification, particularly for iron deficiency vs. thalassemia trait.\n\n**Pre-analytical Conditions:**\n- Accurate CBC measurements (MCV, RDW, hemoglobin, hematocrit) must be obtained from properly collected and handled venous blood samples.\n- Patient preparation must include fasting (if required for iron studies) and avoidance of recent transfusions or hemolysis-inducing conditions.\n- Peripheral blood smear examination is required to confirm morphological abnormalities (e.g., hypochromia, macrocytes, hypersegmented neutrophils).\n- Additional diagnostic tests (e.g., serum ferritin, iron-binding capacity, vitamin B12/folate levels) must be performed based on anemia classification.\n- Reference ranges must be age-, sex-, and ethnicity-specific to avoid misclassification, especially in pediatric or geriatric populations.\n- Patient history must include assessment for recent blood loss, dietary deficiencies, chronic diseases, or medication use (e.g., anticonvulsants, methotrexate) that may impact anemia etiology.\n- Sample collection must avoid prolonged venous stasis (tourniquet time <1 minute) to prevent hemoconcentration and falsely elevated hemoglobin/hematocrit values."
+      },
+      {
+        "master_label": "hematological parameter trends",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.5895,
+        "match_reason": "Guideline focuses on tracking hematological parameter trends (e.g., hemoglobin, MCV), which aligns with the patient's CBC report and its emphasis on monitoring changes over time.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# hematological parameter trends\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** hematological parameter trends monitoring\n\n**Clinical Findings or Diagnostic Patterns:**\n- Tracks monthly trends in WBC, hemoglobin, and platelet counts with sample size and infection rate correlation\n- Uses mean ± standard deviation for parameter representation\n- Identifies infection rate fluctuations alongside hematological changes\n- Supports longitudinal analysis for clinical decision-making\n- Enables detection of seasonal or procedural impacts on blood parameters\n- Tracks inter-parameter relationships (e.g., WBC vs. infection rate, hemoglobin vs. platelet trends) to identify potential hematological syndromes or secondary effects\n\n**Pre-analytical Conditions:**\n- Consistent sample collection timing and patient preparation\n- Standardized laboratory processing and measurement techniques\n- Sufficient sample size (n) for statistical significance\n- Accurate infection rate documentation for correlation analysis\n- Regular data validation and trend review cycles\n- Ensures consistent units of measurement (e.g., ×10⁹/L for WBC/platelets, g/L for hemoglobin) across all datasets and reporting periods\n- Validates sample representativeness by stratifying data by age, sex, or clinical department to avoid demographic bias in trend analysis"
+      },
+      {
+        "master_label": "hematologic response monitoring",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.5759,
+        "match_reason": "Guideline addresses monitoring hemoglobin, MCV, and RDW changes over time to assess treatment response, which is directly relevant to the patient's CBC report and its clinical interpretation context.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# hematologic response monitoring\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** hematologic response monitoring\n\n**Clinical Findings or Diagnostic Patterns:**\n- Monitors hemoglobin, MCV, and RDW changes over time to assess treatment response\n- Uses response rate (%) and P-value to quantify statistical significance of changes\n- Tracks progressive improvement in hematologic parameters at defined intervals (e.g., 2 weeks, 4 weeks)\n- Compares baseline values to subsequent time points to evaluate therapeutic efficacy\n- Documents baseline variability (e.g., ±12 g/L for hemoglobin) to contextualize subsequent changes and account for biological variation\n\n**Pre-analytical Conditions:**\n- Standardized time intervals for sample collection (e.g., baseline, 2 weeks, 4 weeks)\n- Consistent measurement units and reference ranges for hemoglobin, MCV, and RDW\n- Statistical validation (e.g., P-value <0.05) to confirm significant response\n- Patient-specific baseline data for accurate comparison\n- Ensures consistent sample collection timing (e.g., fasting state for baseline to avoid lipemia interference)"
+      },
+      {
+        "master_label": "anemia treatment response criteria",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.5206,
+        "match_reason": "Guideline defines criteria for anemia treatment response (e.g., complete/partial response), which aligns with the patient's CBC report and its emphasis on treatment response assessment.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# anemia treatment response criteria\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** anemia treatment response criteria\n\n**Clinical Findings or Diagnostic Patterns:**\n- Complete response: Hemoglobin within normal range + MCV >80 fL\n- Partial response: Hemoglobin increase >20 g/L from baseline\n- Non-response: Hemoglobin increase <10 g/L at 8 weeks\n- Complete response requires reticulocyte count normalization (reticulocyte index >2%) in addition to hemoglobin and MCV criteria\n\n**Pre-analytical Conditions:**\n- Baseline hemoglobin must be measured before any transfusion or iron therapy in the prior 4 weeks\n- Response assessment must exclude confounding factors like acute blood loss, hemolysis, or recent erythropoietin administration\n- MCV normalization must be sustained for at least 2 consecutive measurements 2 weeks apart"
+      },
+      {
+        "master_label": "platelet parameter analysis",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.8,
+        "score": 0.5188,
+        "match_reason": "Guideline focuses on platelet parameters, which are not the primary focus of the patient's CBC report (hemoglobin/hematocrit). Only relevant if platelet abnormalities are suspected.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# platelet parameter analysis\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** platelet parameter analysis\n\n**Clinical Findings or Diagnostic Patterns:**\n- Platelet analysis includes platelet count, mean platelet volume (MPV), and platelet distribution width (PDW).\n- Normal platelet counts range from 150-450 × 10⁹/L.\n- Values below 150 × 10⁹/L indicate thrombocytopenia.\n- Counts above 450 × 10⁹/L suggest thrombocytosis.\n- MPV reflects average platelet size, with larger platelets typically being younger and more functionally active.\n- PDW quantifies the heterogeneity in platelet size, with higher values indicating greater anisocytosis (e.g., in conditions like immune thrombocytopenia or myeloproliferative disorders)\n- MPV and PDW should be interpreted alongside platelet count to distinguish between hypoproliferative thrombocytopenia (low MPV) and consumptive thrombocytopenia (high MPV)\n\n**Pre-analytical Conditions:**\n- Adherence to Clinical and Laboratory Standards Institute (CLSI) guidelines (2019) for platelet analysis.\n- Accurate sample collection and handling to prevent platelet clumping or activation.\n- Calibration of hematology analyzers using certified reference materials for platelet parameters.\n- Regular quality control checks to ensure precision and accuracy of platelet counts and indices.\n- Consideration of patient-specific factors (e.g., age, sex, comorbidities) when interpreting platelet parameters.\n- Verification of platelet clumping via microscopic review of blood smears when automated counts are flagged or inconsistent with clinical findings\n- Use of impedance or optical methods for platelet counting to minimize interference from microcytic red blood cells or fragmented cells"
+      },
+      {
+        "master_label": "hematology analyzer quality assurance",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.4859,
+        "match_reason": "Guideline addresses quality assurance in hematology analyzers, which is relevant to ensuring the reliability of the patient's CBC report results.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# hematology analyzer quality assurance\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** hematology analyzer quality assurance\n\n**Clinical Findings or Diagnostic Patterns:**\n- Requires regular calibration and quality control monitoring for accurate results\n- Daily quality control includes analysis of control materials with known target values\n- Uses statistical quality control methods like Levey-Jennings charts and Westgard rules\n- Involves regular maintenance procedures (background counting, aperture cleaning, hydraulic system verification)\n- Participation in external quality assessment programs for analytical accuracy verification\n- Verification of instrument precision and systematic bias monitoring must be performed alongside daily quality control\n\n**Pre-analytical Conditions:**\n- Control materials must span the analytical measurement range (normal, abnormal low, abnormal high levels for each CBC parameter)\n- Instrument precision verification and systematic bias monitoring\n- Adherence to Clinical and Laboratory Standards Institute (CLSI) guidelines (2019)\n- Proper sample handling and patient preparation for CBC testing\n- Documentation of all quality control and maintenance activities\n- Control materials must be traceable to reference methods or materials (e.g., WHO or NIST standards) for each CBC parameter\n- Adherence to manufacturer-specific maintenance schedules and procedures for analyzer-specific components"
+      },
+      {
+        "master_label": "data management workflow",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.7,
+        "score": 0.4764,
+        "match_reason": "Guideline focuses on data management workflow, which is tangentially relevant to CBC reporting but not directly enriching the patient's CBC report interpretation.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "electrolytes.pdf"
+        ],
+        "summary": "# data management workflow\n*Source: electrolytes.pdf*\n\n**Test Method:** data management workflow\n\n**Performance Characteristics:**\n- Samples are identified by a unique number linking laboratory information to demographic data.\n- Calculation of Sodium, Potassium, and Chloride concentrations is accomplished with software on the Roche Mod P.\n- Generated data are transferred to the DLS network for saving, review, statistical evaluation, and approval.\n- NHANES data is transmitted electronically on a regular basis with analyst confirmation of abnormal values.\n- Data files and results files are backed up daily to a Roche/Hitachi USB Memory Stick and nightly to the DLS network.\n- Codes for missing data are entered by the analyst and transmitted as part of the data file.\n- NCHS makes arrangements for abnormal report notifications to the NCHS Survey Physician.\n\n**Pre-analytical Requirements:**\n- Sample ID must be unique to each sample.\n- Data transfer, review, and approval steps must follow the SOP Computerization and Data System Management.\n- Abnormal values must be confirmed by the analyst before transmission.\n- Missing data codes must be entered by the analyst.\n- Backup procedures must be performed under the guidance of the project lead person."
+      },
+      {
+        "master_label": "diagnostic test performance metrics",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.8,
+        "score": 0.4754,
+        "match_reason": "Guideline discusses diagnostic test performance metrics for CBC interpretation, which is relevant to the quality and reliability of the patient's CBC report but not directly enriching the clinical interpretation.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+        ],
+        "summary": "# diagnostic test performance metrics\n*Source: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf*\n\n**Analytical Parameter or Test Component:** diagnostic test performance metrics for CBC interpretation\n\n**Clinical Findings or Diagnostic Patterns:**\n- Evaluates diagnostic accuracy using sensitivity, specificity, PPV, NPV, and accuracy metrics for conditions like Iron Deficiency Anemia and infections\n- Monitors proficiency testing performance across CBC parameters (e.g., WBC, RBC, Hemoglobin) with mean scores, ranges, and Z-scores\n- Ensures high diagnostic reliability with sensitivity >89% and specificity >82% for key conditions\n- Uses proficiency testing to validate inter-laboratory consistency and analytical precision\n- Tracks PPV and NPV to assess clinical utility and false-positive/false-negative rates\n- Tracks diagnostic metrics (e.g., sensitivity, specificity) for Bacterial Infection and Viral Infection alongside Iron Deficiency Anemia\n- Uses case counts (n) to contextualize diagnostic performance metrics for each condition\n\n**Pre-analytical Conditions:**\n- Standardized patient preparation and sample collection protocols for accurate CBC results\n- Regular calibration and maintenance of hematology analyzers to ensure measurement precision\n- Participation in external proficiency testing programs (e.g., 24 surveys over 24 months)\n- Adherence to reference intervals validated for age, sex, and ethnicity where applicable\n- Implementation of quality control measures to minimize pre-analytical and analytical errors\n- Validation of diagnostic metrics against minimum case thresholds (e.g., ≥600 cases for meaningful PPV/NPV assessment)\n- Ensures proficiency testing participation includes ≥24 surveys over 24 months for robust inter-laboratory consistency assessment"
+      }
+    ]
+  },
+  "grounded_summary": "**Patient Result:** 15.00 g/dL (Hemoglobin), 45.00% (PCV) (ref: 13.00 - 17.00 g/dL (Hemoglobin), 40.00 - 50.00% (PCV))\n\n**Clinical Interpretation:** Hemoglobin is within normal range (13.00-17.00 g/dL), PCV is within normal range (40.00-50.00%)\n- Guideline context: Hemoglobin concentration measures oxygen-carrying capacity and can vary by gender and age.\n- Guideline context: Hematocrit (PCV) indicates red cell volume percentage, reflecting blood viscosity and hydration.\n- Guideline context: Clinical guidelines suggest that interpretation should ideally integrate automated analyzer results with morphological findings and the patient's clinical presentation.\n- Guideline context: Guidelines suggest that interpretation should consider age-stratified and gender-specific reference ranges to improve diagnostic accuracy.\n- Guideline context: Clinical guidelines suggest correlating CBC parameters with clinical conditions such as hematologic malignancies, infections, and systemic diseases.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Complete Blood Count Report\n\n**Key Clinical Actions:**\n- Leucocyte counts are reported as absolute numbers per unit volume of blood\n- Hemoglobin and PCV values are provided with reference intervals for clinical comparison\n- leucocyte counts are additionally being reported as absolute numbers of each cell per unit volume of blood\n- Guideline context: Monitoring hemoglobin, MCV, and RDW changes over time can be used to assess treatment response.\n- Guideline context: For assessing treatment response in anemia, a \"complete response\" is defined as hemoglobin within the normal range and MCV >80 fL, often requiring reticulocyte count normalization (reticulocyte index >2%).\n- Guideline context: A \"partial response\" is defined as a hemoglobin increase >20 g/L from baseline.\n\n**Patient Preparation:**\n- Guideline context: Accurate patient preparation (such as fasting if required and proper rest) is recommended.\n- Guideline context: Proper sample collection (venous or capillary, anticoagulated with EDTA) is required.\n- Guideline context: To prevent hemoconcentration and falsely elevated hemoglobin/hematocrit values, sample collection should avoid prolonged venous stasis (tourniquet time <1 minute).\n\n**Diagnostic Criteria:**\n- Guideline context: Reliable results depend on adherence to standardized quality control procedures and CLSI guidelines for hematology testing.\n- Guideline context: Precision for major CBC parameters is typically measured by a coefficient of variation (CV) <3% or <2.5% depending on the specific analytical system.",
+  "provenance": {
+    "patient_sources": [
+      "WM17S.pdf"
+    ],
+    "guideline_sources": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf",
+      "electrolytes.pdf"
+    ]
+  },
+  "fused_summary": "**Patient Result:** 15.00 g/dL (Hemoglobin), 45.00% (PCV) (ref: 13.00 - 17.00 g/dL (Hemoglobin), 40.00 - 50.00% (PCV))\n\n**Clinical Interpretation:** Hemoglobin is within normal range (13.00-17.00 g/dL), PCV is within normal range (40.00-50.00%)\n- Guideline context: Hemoglobin concentration measures oxygen-carrying capacity and can vary by gender and age.\n- Guideline context: Hematocrit (PCV) indicates red cell volume percentage, reflecting blood viscosity and hydration.\n- Guideline context: Clinical guidelines suggest that interpretation should ideally integrate automated analyzer results with morphological findings and the patient's clinical presentation.\n- Guideline context: Guidelines suggest that interpretation should consider age-stratified and gender-specific reference ranges to improve diagnostic accuracy.\n- Guideline context: Clinical guidelines suggest correlating CBC parameters with clinical conditions such as hematologic malignancies, infections, and systemic diseases.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Complete Blood Count Report\n\n**Key Clinical Actions:**\n- Leucocyte counts are reported as absolute numbers per unit volume of blood\n- Hemoglobin and PCV values are provided with reference intervals for clinical comparison\n- leucocyte counts are additionally being reported as absolute numbers of each cell per unit volume of blood\n- Guideline context: Monitoring hemoglobin, MCV, and RDW changes over time can be used to assess treatment response.\n- Guideline context: For assessing treatment response in anemia, a \"complete response\" is defined as hemoglobin within the normal range and MCV >80 fL, often requiring reticulocyte count normalization (reticulocyte index >2%).\n- Guideline context: A \"partial response\" is defined as a hemoglobin increase >20 g/L from baseline.\n\n**Patient Preparation:**\n- Guideline context: Accurate patient preparation (such as fasting if required and proper rest) is recommended.\n- Guideline context: Proper sample collection (venous or capillary, anticoagulated with EDTA) is required.\n- Guideline context: To prevent hemoconcentration and falsely elevated hemoglobin/hematocrit values, sample collection should avoid prolonged venous stasis (tourniquet time <1 minute).\n\n**Diagnostic Criteria:**\n- Guideline context: Reliable results depend on adherence to standardized quality control procedures and CLSI guidelines for hematology testing.\n- Guideline context: Precision for major CBC parameters is typically measured by a coefficient of variation (CV) <3% or <2.5% depending on the specific analytical system.",
+  "fuse_source_labels": [
+    "CBC diagnostic review framework",
+    "CBC interpretation and analysis framework",
+    "red blood cell parameter assessment",
+    "CBC analysis enhancement system"
+  ]
+}

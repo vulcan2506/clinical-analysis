@@ -1,0 +1,12 @@
+|  Member | Employment | Research grant | Other research support | Speakers bureau and honoraria | Ownership interest | Consultant and advisory board | Other  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  Rajesh Garg | David Geffen School of Medicine at University of California, Los Angeles; Harbor-UCLA Medical Center | None | None | None | None | None | None  |
+|  Lori M. Laffel | Joslin Diabetes Center, Harvard Medical School | None | None | Boehringer Ingelheim,* Dexcom, Insulet, Sinocare* (all travel support) | None | Arbor Biotech, Dexcom, Janssen, Mannkind, Medtronic,* Sanofi, Sequel, Sinocare, Tandem Diabetes, Vertex Pharmaceuticals | Member, New England Leadership Board  |
+|  Rayhan Lal | Stanford University | Insulet,# Medtronic,# Tandem Diabetes Care,# Sinocare# | None | None | None | Abbott Diabetes Care, Adaptive Biosciences, Biolink, Capillary Biomedical, Deep Valley Laboratories, Eli Lilly, Gluroo, Portal Diabetes, ProventionBio, Sanofi, Tidepool | None  |
+|  Glenn Matfin | Queen Mary University of London | None | None | None | None | None | Deputy Editor, Diabetes, Obesity, and Cardiometabolic CARE  |
+|  Naushira Pandya | Kiran C. Patel College of Osteopathic Medicine, Nova Southeastern University | None | None | None | None | None | Board Member, National Association of Geriatric Education; Board Member, PALTMed Foundation; Member, Advisory Body for the Area Agency on Aging of Broward City  |
+|  Anne L. Peters | Keck School of Medicine of USC, USC Leonard D. Schaeffer Institute for Public Policy & Government Service | Abbott,*# Insulet,*# Zucara Therapeutics*# | None | None | Omaha Health* (stock options) | MedScape,* Vertex Pharmaceuticals* | None  |
+|  Scott J. Pilla | Johns Hopkins University School of Medicine | None | None | None | None | None | None  |
+|  Giulio R. Romeo | Joslin Diabetes Center, Beth Israel Deaconess Medical Center, Harvard Medical School | None | None | None | None | None | None  |
+|  Sylvia E. Rosas | Joslin Diabetes Center, Beth Israel Deaconess Medical Center, Harvard Medical School | Bayer*# | None | None | None | Novo Nordisk, Travere Therapeutics | Past President, National Kidney Foundation; Steering Committee Member, Bayer  |
+|  Alissa R. Segal | Massachusetts College of Pharmacy & Health Sciences, Brigham and Women's Hospital | None | None | American Diabetes Association* (honoraria) | None | None | Editor-in-Chief, Diabetes, Obesity, and Cardiometabolic CARE; Board Member, Diabetes Education for All  |

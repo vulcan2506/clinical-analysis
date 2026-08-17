@@ -1,0 +1,136 @@
+{
+  "domain": "endocrine clinical practice guideline methodology",
+  "document_purpose": "formal methodology document outlining the development process, governance, and standards for Endocrine Society clinical practice guidelines",
+  "specialist_role": "endocrinologist or clinical guideline methodologist specializing in guideline development and evidence-based medicine",
+  "analyst_role": "healthcare policy analyst or clinical guideline methodology specialist responsible for interpreting and implementing guideline development standards",
+  "entity_types": [
+    "Endocrine Society",
+    "Clinical Practice Guideline",
+    "Guideline Development Panel",
+    "Clinical Guideline Committee (CGC)",
+    "Board of Directors (BOD)",
+    "Evidence Review",
+    "Recommendation Strength",
+    "Certainty of Evidence",
+    "Conflict of Interest",
+    "Patient Representative",
+    "Funding Source",
+    "Methodology Standards",
+    "Topic Selection Criteria"
+  ],
+  "key_terminology": {
+    "CGC": "Clinical Guideline Committee — responsible for selecting topics and overseeing guideline development",
+    "BOD": "Board of Directors — governing body that approves guideline topics and recommendations",
+    "GRADE": "Grading of Recommendations Assessment, Development and Evaluation — methodology for assessing evidence quality and recommendation strength",
+    "ESGM": "Endocrine Society Guideline Methodologist — trained staff supporting guideline development"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Funding for the development of Endocrine Society clinical practice guidelines is provided by the Endocrine Society. No other entities provide financial support.",
+      "master_label": "Funding Source",
+      "description": "Identifies the sole financial sponsor of guideline development, excluding external funding to maintain independence"
+    },
+    {
+      "text_snippet": "THE ENDOCRINE SOCIETY IS DEDICATED TO PROVIDING THE FIELD OF ENDOCRINOLOGY WITH TIMELY, EVIDENCE-BASED RECOMMENDATIONS FOR CLINICAL CARE AND PRACTICE.",
+      "master_label": "Guideline Purpose",
+      "description": "Describes the core mission of the Endocrine Society in developing clinical practice guidelines"
+    },
+    {
+      "text_snippet": "During each topic selection cycle, the CGC analyzes specific criteria and makes a recommendation for guideline topics to the Board of Directors (BOD).",
+      "master_label": "Topic Selection Process",
+      "description": "Outlines the structured approach for identifying and prioritizing new guideline topics based on predefined criteria"
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Methodology Enhancement",
+      "description": "when the guideline development process is improved or clarified without altering core principles"
+    },
+    {
+      "name": "Evidence Standard Update",
+      "description": "when new evidence appraisal criteria or grading thresholds are introduced"
+    },
+    {
+      "name": "Panel Composition Change",
+      "description": "when the required expertise or representation on the development panel is modified"
+    },
+    {
+      "name": "Recommendation Reversal",
+      "description": "when a prior recommendation is explicitly contradicted due to new evidence or methodology"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions describe the same process with only minor editorial differences"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "prerequisites or mandatory conditions that must be met for guideline development, such as panel composition or evidence appraisal standards",
+    "deprecated_items": "previously used methodology elements that are no longer applicable or have been superseded",
+    "new_items": "recently introduced components or enhancements to the guideline development process"
+  },
+  "field_labels": {
+    "feature_name": "Guideline Development Component",
+    "key_behaviors": "Process Requirements",
+    "requirements": "Mandatory Standards",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "Evidence Certainty Grading",
+      "version_a": "Guidelines used a binary high/low certainty classification for evidence without explicit downgrading criteria.",
+      "version_b": "Guidelines now apply the GRADE methodology with four levels of certainty (high, moderate, low, very low) and explicit criteria for downgrading based on risk of bias, inconsistency, indirectness, imprecision, and publication bias.",
+      "change_type": "Methodology Enhancement",
+      "analysis": "The newer version introduces a more nuanced evidence appraisal system that better reflects the quality and reliability of underlying studies. This change improves transparency and helps clinicians assess the strength of recommendations more accurately."
+    },
+    {
+      "topic": "Patient Representative Inclusion",
+      "version_a": "Guideline panels were not required to include patient representatives, though they could be invited at the discretion of the panel chair.",
+      "version_b": "Guideline panels must now include at least one patient representative to ensure patient perspectives are incorporated into recommendations.",
+      "change_type": "Panel Composition Change",
+      "analysis": "This change reverses the prior optional approach by mandating patient representation. It addresses a recognized gap in patient-centered care and aligns with modern guideline development best practices."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the Endocrine Society switch to the GRADE methodology for evidence appraisal?",
+      "a": "The GRADE approach provides a standardized, transparent framework for assessing evidence quality and recommendation strength. It improves consistency across guidelines and helps clinicians better understand the reliability of recommendations."
+    },
+    {
+      "q": "How does the inclusion of patient representatives change the guideline development process?",
+      "a": "Patient representatives provide critical input on outcomes that matter to patients, ensure recommendations are patient-centered, and help identify potential barriers to implementation. Their inclusion improves the relevance and applicability of guidelines to real-world care."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "Evidence Certainty Grading",
+    "foundation": "Older guidelines used a simple high/low certainty classification without detailed criteria.",
+    "value_added": [
+      "Four-tier certainty system (high, moderate, low, very low)",
+      "Explicit criteria for downgrading evidence quality",
+      "Improved transparency in evidence appraisal"
+    ],
+    "narrative": "The older version established a basic framework for evidence classification but lacked granularity. The newer version builds on this foundation by implementing the GRADE methodology, which provides a more nuanced and transparent approach to assessing evidence quality. This enables clinicians to better evaluate the strength of recommendations and make more informed clinical decisions."
+  },
+  "type_key": "Endocrine_Society_Guideline_Methodology_links",
+  "source_files": [
+    "Endocrine_Society_Guideline_Methodology_links.pdf"
+  ]
+}

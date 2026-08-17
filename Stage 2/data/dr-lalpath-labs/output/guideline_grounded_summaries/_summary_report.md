@@ -1,0 +1,18 @@
+# Guideline Grounding Report
+
+| Patient Topic | Status | Matched guideline topics |
+|---|---|---|
+| Clinical Laboratory Information | DIRECT_MATCH | post-analytical result validation, A1C test standardization guidelines |
+| Complete Blood Count Report | DIRECT_MATCH | CBC diagnostic review framework, CBC interpretation and analysis framework, red blood cell parameter assessment, CBC analysis enhancement system, anemia diagnostic scoring system, hematological parameter trends, hematologic response monitoring, anemia treatment response criteria, platelet parameter analysis, hematology analyzer quality assurance, data management workflow, diagnostic test performance metrics |
+| Fasting Glucose Measurement | DIRECT_MATCH | diagnostic criteria for diabetes, glycemic management guidelines |
+| HbA1c Interpretation Guidance | DIRECT_MATCH | glycemic control targets, individualized glycemic management, hospitalized hyperglycemia management, glycemic status assessment methods, glycemic management guidelines, hypoglycemia risk assessment protocol |
+| Hematopathology Consultant Directory | NO_MATCH | — |
+| Kidney Function Assessment | DIRECT_MATCH | creatinine and cystatin C assay standardization, GFR evaluation methodology, CKD diagnostic method comparison tables, renal dosing and GFR assessment, GFR assessment standardization, point-of-care kidney function testing, eGFR variation analysis framework, GFR estimation methodology, diabetic nephropathy monitoring |
+| Laboratory Result Validation Protocol | DIRECT_MATCH | post-analytical result validation, CBC interpretation and analysis framework, hematology analyzer quality assurance |
+| Lipid Panel Measurement Protocol | DIRECT_MATCH | ApoB Measurement Recommendation, Lipid Screening Recommendation, Lipid Measurement Guideline Update, Diabetes-Specific Lipid Management Guideline, Lipid Monitoring and Treatment Response Guideline, Lipoprotein(a) and Statin Therapy Analysis, Nonfasting Lipid Risk Prediction, Lipid Goal Attainment Strategy, Lipoprotein Target Guideline, inflammatory and genetic cardiovascular risk markers |
+| Lipid Test Result Thresholds | DIRECT_MATCH | Lipid Monitoring and Treatment Response Guideline, Diabetes-Specific Lipid Management Guideline, Lipid Screening Recommendation, 2026 LDL-C Target Guideline, Lipid Measurement Guideline Update, Lipid Goal Attainment Strategy, Nonfasting Lipid Risk Prediction, ApoB Measurement Recommendation |
+| Lipid Treatment Thresholds | DIRECT_MATCH | LDL-C treatment goals and risk reduction strategies, Severe Hypercholesterolemia Management, Patient Group Criteria, 2026 LDL-C Target Guideline, Lipid Goal Attainment Strategy, Lipid-Lowering Therapy Framework, LDL Reduction Therapy, 2026 Dyslipidemia Guideline Update, Cholesterol Lowering Evidence Base, LDL-C Lowering Evidence Synthesis |
+| Therapeutic Decision Framework | DIRECT_MATCH | Statin Therapy Guidance, Risk Enhancer Consideration, clinical practice guideline framework, Dyslipidemia Treatment Guideline, graded clinical recommendation framework, Evidence-Based Recommendation Framework |
+| Thyroid Function Testing Guidelines | CONTEXTUAL_MATCH | preconception thyroid screening |
+| Vitamin B12 Reference Range | DIRECT_MATCH | vitamin B12 essential functions and deficiency, B12 dietary sources and vegan management, microcytic hypochromic anemia profile, anemia treatment response criteria, red blood cell parameter assessment, premenopausal microcytic anemia diagnosis |
+| Vitamin D Measurement Reference | CONTEXTUAL_MATCH | glycemic management for bone health |

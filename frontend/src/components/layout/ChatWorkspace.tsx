@@ -19,6 +19,8 @@ export function ChatWorkspace() {
     intent,
     bestOf,
     sessionId,
+    corpusId,
+    activePatientCorpusId,
   } = useChatStore();
 
   const mutation = useMutation({
@@ -27,7 +29,7 @@ export function ChatWorkspace() {
 
   const runQuery = (assistantId: string, query: string) => {
     mutation.mutate(
-      { ...buildChatParams(mode, intent, bestOf), query, session_id: sessionId },
+      { ...buildChatParams(mode, intent, bestOf, corpusId, activePatientCorpusId), query, session_id: sessionId },
       {
         onSuccess: (response) => resolveAssistant(assistantId, response),
         onError: (err) => {

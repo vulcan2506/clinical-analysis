@@ -1,0 +1,135 @@
+{
+  "domain": "clinical diabetes management guidelines",
+  "document_purpose": "evidence-based clinical practice guidelines for the management of type 2 diabetes in India",
+  "specialist_role": "endocrinologist or diabetologist specializing in Indian clinical practice",
+  "analyst_role": "medical guideline analyst or healthcare policy evaluator",
+  "entity_types": [
+    "patient population",
+    "glycemic targets",
+    "pharmacological agents",
+    "non-pharmacological interventions",
+    "complications",
+    "comorbid conditions",
+    "monitoring schedule",
+    "diagnostic criteria",
+    "screening protocols",
+    "dosage regimens"
+  ],
+  "key_terminology": {
+    "ICMR": "Indian Council of Medical Research",
+    "OGTT": "Oral Glucose Tolerance Test",
+    "GDM": "Gestational Diabetes Mellitus",
+    "FPG": "Fasting Plasma Glucose",
+    "PPG": "Postprandial Plasma Glucose",
+    "HbA1c": "Glycated Hemoglobin"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "All patients with diabetes should be screened for dyslipidaemia and if present should be treated aggressively",
+      "master_label": "dyslipidaemia screening",
+      "description": "Mandatory screening requirement for lipid abnormalities in diabetic patients with aggressive treatment if detected"
+    },
+    {
+      "text_snippet": "When glycemic control is not achieved with the maximum tolerable dose of a single oral agent or combination of oral drugs, combination of oral drugs and insulin can help to achieve good control of diabetes.",
+      "master_label": "insulin combination therapy",
+      "description": "Therapeutic escalation strategy when oral agents fail to achieve glycemic targets"
+    },
+    {
+      "text_snippet": "Tight glycemic control is essential in the early stages of diabetes, especially in the young to prevent complications.",
+      "master_label": "glycemic control targets",
+      "description": "Early intervention principle emphasizing intensive glucose management in younger patients"
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Therapeutic Option Addition",
+      "description": "when a new treatment modality or drug class is introduced as an option"
+    },
+    {
+      "name": "Target Revision",
+      "description": "when glycemic or clinical targets are updated to be more or less stringent"
+    },
+    {
+      "name": "Screening Protocol Expansion",
+      "description": "when additional screening tests or populations are recommended"
+    },
+    {
+      "name": "Contradictory Recommendation",
+      "description": "when a previous recommendation is explicitly reversed or contradicted"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions are substantively equivalent with no material differences"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or mandatory conditions specified in the guideline for implementing a recommendation",
+    "deprecated_items": "previously recommended interventions, tests, or targets that are no longer advised",
+    "new_items": "newly introduced recommendations, screening protocols, or therapeutic options"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Therapeutic Actions",
+    "requirements": "Prerequisites",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "insulin initiation timing",
+      "version_a": "Insulin should be initiated only after failure of maximum oral therapy in type 2 diabetes patients",
+      "version_b": "Consider early insulin initiation in patients with marked hyperglycemia at diagnosis to achieve rapid glycemic control",
+      "change_type": "Therapeutic Option Addition",
+      "analysis": "Version A reflects a stepwise approach requiring oral therapy failure before insulin. Version B introduces early insulin use in select patients, expanding therapeutic options beyond the previous stepwise paradigm. This represents a significant shift toward more aggressive early management in appropriate cases."
+    },
+    {
+      "topic": "glycemic targets in elderly",
+      "version_a": "Tight glycemic control is recommended for all patients regardless of age",
+      "version_b": "Relaxed glycemic targets are advised for elderly patients with comorbidities to prevent hypoglycemia",
+      "change_type": "Contradictory Recommendation",
+      "analysis": "Version A mandates tight control universally. Version B explicitly reverses this by recommending individualized, less stringent targets for elderly patients. This represents a fundamental contradiction in approach that requires careful patient stratification."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why would a clinician choose early insulin initiation over oral agents in newly diagnosed type 2 diabetes?",
+      "a": "Early insulin initiation may be preferred in patients with severe hyperglycemia or symptoms to rapidly achieve glycemic control and reduce complications. The guideline now recognizes this as a viable first-line option in select cases, particularly when oral agents are unlikely to achieve targets quickly."
+    },
+    {
+      "q": "How should glycemic targets be adjusted for elderly patients with multiple comorbidities?",
+      "a": "The guideline recommends individualized targets for elderly patients, prioritizing avoidance of hypoglycemia over strict glycemic control. Targets should be relaxed based on patient frailty, comorbidities, and risk of adverse events rather than applying uniform standards."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "insulin initiation timing",
+    "foundation": "Version A required failure of maximum oral therapy before insulin initiation in type 2 diabetes",
+    "value_added": [
+      "Added early insulin initiation as an option for patients with marked hyperglycemia at diagnosis",
+      "Recognized rapid glycemic control as beneficial in select cases",
+      "Expanded therapeutic flexibility beyond stepwise approach"
+    ],
+    "narrative": "The original guideline established a stepwise therapeutic approach requiring oral therapy failure before insulin. The updated version builds on this foundation by introducing early insulin initiation for patients with severe hyperglycemia, enabling more rapid achievement of glycemic targets while maintaining individualized care principles."
+  },
+  "type_key": "ICMR Type 2 Diabetes",
+  "source_files": [
+    "ICMR Type 2 Diabetes.pdf"
+  ]
+}

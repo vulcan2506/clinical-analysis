@@ -1,0 +1,5 @@
+|  renal tubular acidosis (RTA) | RTA is associated with renal loss of K and hypokalaemia, kaliuresis because of increased bicarbonate excretion = cations such as Na, K are excreted more often due to osmotic effect, loss of Na leads to activation of the renin-angiotensin system, since reduction of volume = reduction of K in plasma  |
+| --- | --- |
+|  ACTH-producing tumours/ primary hyperaldosteronism | tumours produce paraneoplastic ACTH (ectopic production of ACTH) = cortisol and aldosterone production↑ = renal loss of K  |
+|  feline hypokalaemia | autosomal recessive inheritance, cats show muscle weakness, especially in neck muscles, but leg muscles also affected, serum hypokalaemia, elevated creatinine kinase (CK), Labogen offers genetic testing for example for Burmese, Cornish Rex, Devon Rex, Sphynx and Tonkinese!  |
+|  primary hyperaldosteronism | increased autonomous aldosterone production due to hyperplasia, adenoma or carcinoma of the adrenal cortex, resulting in Na retention and increased K excretion  |

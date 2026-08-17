@@ -134,7 +134,7 @@ def _get_llm() -> OpenAI:
 
 _SUMMARY_SYSTEM = (
     "You are summarizing a technical Q&A conversation between a user and a document "
-    "assistant for HealthRules Payer release documentation. Write ONE short paragraph "
+    "assistant for clinical guidelines and patient reports. Write ONE short paragraph "
     "(3-4 sentences) recapping what topics were discussed and what was established. "
     "Be factual and concise — do not add information that wasn't in the conversation. "
     "Output ONLY the paragraph, no preamble."

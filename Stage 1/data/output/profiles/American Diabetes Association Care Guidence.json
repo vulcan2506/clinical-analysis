@@ -1,0 +1,135 @@
+{
+  "domain": "diabetes clinical care guidelines",
+  "document_purpose": "evidence-based clinical practice guidelines for diabetes care, updated annually, providing standardized recommendations for healthcare professionals",
+  "specialist_role": "endocrinologist or diabetes care specialist",
+  "analyst_role": "clinical guideline analyst or healthcare policy researcher",
+  "entity_types": [
+    "diabetes condition",
+    "patient population",
+    "clinical recommendation",
+    "evidence grading",
+    "treatment strategy",
+    "health outcome",
+    "risk factor",
+    "medical technology"
+  ],
+  "key_terminology": {
+    "ADA": "American Diabetes Association",
+    "SMBG": "Self-Monitoring of Blood Glucose",
+    "A1C": "Glycated hemoglobin test measuring average blood glucose levels over 2-3 months",
+    "SGLT2": "Sodium-glucose cotransporter-2 inhibitors, a class of diabetes medications",
+    "CKD": "Chronic Kidney Disease",
+    "HHS": "Hyperosmolar Hyperglycemic State",
+    "DKA": "Diabetic Ketoacidosis",
+    "ADA Standards of Care": "Annual comprehensive clinical practice guidelines for diabetes management"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Two of the main motivations for screening for diabetic retinopathy are to prevent loss of vision and to intervene with treatment when vision loss can be prevented or reversed.",
+      "master_label": "diabetic retinopathy screening",
+      "description": "A clinical recommendation focused on the purpose and timing of screening for diabetic retinopathy in patients with diabetes."
+    },
+    {
+      "text_snippet": "The Standards of Care includes discussion of evidence and clinical practice recommendations intended to optimize care for people with diabetes by assisting health care professionals and individuals in making shared decisions about diabetes care.",
+      "master_label": "shared decision making",
+      "description": "A core methodology principle emphasizing collaborative decision-making between healthcare providers and patients regarding diabetes management strategies."
+    },
+    {
+      "text_snippet": "A scientific review is a balanced systematic review and analysis of literature on a scientific or medical topic related to diabetes. A scientific review is not an ADA position and does not contain clinical practice recommendations but is produced under the auspices of the ADA by invited experts.",
+      "master_label": "scientific review document",
+      "description": "A type of ADA publication that provides evidence-based analysis without direct clinical recommendations, serving as background for Standards of Care."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when existing recommendations are restated with more precise language or additional context without changing the core recommendation"
+    },
+    {
+      "name": "New Recommendation Addition",
+      "description": "when a new clinical recommendation is introduced based on emerging evidence or clinical need"
+    },
+    {
+      "name": "Recommendation Strengthening",
+      "description": "when existing recommendations are reinforced with stronger evidence or expanded scope"
+    },
+    {
+      "name": "Recommendation Reversal",
+      "description": "when a previous recommendation is explicitly contradicted or reversed due to new evidence or safety concerns"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions address the same topic but the differences are editorial or insignificant to clinical practice"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or conditions that must be met before a recommendation can be applied, including patient characteristics, diagnostic criteria, or prior treatment steps",
+    "deprecated_items": "previously recommended treatments, screening methods, or clinical approaches that are no longer endorsed due to new evidence or safety concerns",
+    "new_items": "newly introduced recommendations, screening protocols, medications, or clinical strategies that represent updated best practices"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Core Recommendations",
+    "requirements": "Patient Eligibility Criteria",
+    "deprecated_items": "Previous Recommendations",
+    "new_items": "Updated Recommendations"
+  },
+  "delta_few_shots": [
+    {
+      "topic": "SGLT2 inhibitor use in heart failure",
+      "version_a": "SGLT2 inhibitors were recommended primarily for glycemic control in patients with type 2 diabetes and established cardiovascular disease.",
+      "version_b": "SGLT2 inhibitors are now recommended for patients with type 2 diabetes and heart failure with reduced ejection fraction regardless of glycemic control status.",
+      "change_type": "New Recommendation Addition",
+      "analysis": "The 2026 update expands the indication for SGLT2 inhibitors beyond glycemic management to include heart failure treatment, reflecting new cardiovascular outcome evidence. This represents a significant expansion of therapeutic use with implications for cardiology and endocrinology practice."
+    },
+    {
+      "topic": "A1C targets in older adults",
+      "version_a": "A1C targets for older adults with diabetes were generally set at <7.5% for healthy individuals and <8.5% for those with multiple comorbidities.",
+      "version_b": "A1C targets for older adults are now individualized based on patient-specific factors including life expectancy, cognitive function, and hypoglycemia risk, with no fixed numeric targets recommended.",
+      "change_type": "Recommendation Reversal",
+      "analysis": "The 2026 update reverses the previous fixed A1C targets for older adults, replacing them with individualized goals based on comprehensive geriatric assessment. This represents a fundamental shift from population-based to patient-centered care in this vulnerable population."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the ADA Standards of Care 2026 expand SGLT2 inhibitor recommendations beyond glycemic control?",
+      "a": "The expansion reflects new cardiovascular outcome trial evidence demonstrating that SGLT2 inhibitors reduce heart failure hospitalization and cardiovascular mortality in patients with type 2 diabetes, independent of their glucose-lowering effects. This led to a broader indication for cardiovascular protection."
+    },
+    {
+      "q": "How should clinicians approach A1C targets in older adults according to the 2026 Standards of Care?",
+      "a": "Clinicians should abandon fixed A1C targets for older adults and instead use individualized goals based on comprehensive geriatric assessment including life expectancy, cognitive status, functional independence, and hypoglycemia risk. The focus shifts from glycemic control to overall health and quality of life outcomes."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "SGLT2 inhibitor use in heart failure",
+    "foundation": "SGLT2 inhibitors were initially recommended for glycemic control in patients with type 2 diabetes and established cardiovascular disease.",
+    "value_added": [
+      "Expanded indication to include heart failure with reduced ejection fraction regardless of diabetes status",
+      "New evidence supporting cardiovascular mortality reduction",
+      "Inclusion in multiple cardiovascular guidelines beyond diabetes care"
+    ],
+    "narrative": "The 2026 Standards of Care builds on the 2025 foundation by extending SGLT2 inhibitor recommendations to broader heart failure populations. This evolution reflects growing evidence that these medications provide cardiovascular benefits independent of their glucose-lowering effects, transforming them from diabetes-specific agents to cardiovascular therapeutics with ancillary glycemic benefits."
+  },
+  "type_key": "American Diabetes Association Care Guidence",
+  "source_files": [
+    "American Diabetes Association Care Guidence.pdf"
+  ]
+}

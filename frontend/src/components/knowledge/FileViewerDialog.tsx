@@ -13,12 +13,13 @@ interface FileViewerDialogProps {
   path: string | null;
   displayName: string;
   onClose: () => void;
+  corpusId?: string;
 }
 
-export function FileViewerDialog({ path, displayName, onClose }: FileViewerDialogProps) {
+export function FileViewerDialog({ path, displayName, onClose, corpusId = "default" }: FileViewerDialogProps) {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["knowledge-file", path],
-    queryFn: () => getKnowledgeFile(path as string),
+    queryKey: ["knowledge-file", corpusId, path],
+    queryFn: () => getKnowledgeFile(path as string, corpusId),
     enabled: !!path,
   });
 

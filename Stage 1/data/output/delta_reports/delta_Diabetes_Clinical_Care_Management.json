@@ -1,0 +1,605 @@
+{
+  "parent": "Diabetes Clinical Care Management",
+  "findings": [
+    {
+      "section": "conflict of interest disclosures",
+      "change_type": "No Meaningful Change",
+      "summary": "Both guidelines mandate comprehensive financial disclosure systems with standardized formats, monetary thresholds, and mandatory reporting of industry relationships. The ACC/AHA guideline provides detailed reviewer-specific disclosures with explicit categorization (e.g., consultant, research funding) and monetary ranges, while the ADA guideline similarly requires disclosure of employment, grants, honoraria, and editorial roles. The core transparency mechanisms are structurally equivalent, differing only in scope (peer reviewers vs. committee members) and minor formatting variations.",
+      "detail": "2026 (Older): Disclosures focus on peer reviewers with standardized monetary thresholds (e.g., *, †, ‡) for financial relationships -> American Diabetes Association Care Guidence (New Version): Disclosures cover committee members with explicit inclusion of editorial roles and employment details alongside financial conflicts\n2026 (Older): Requires at least one reviewer with no industry ties as an independent arbiter -> American Diabetes Association Care Guidence (New Version): No explicit requirement for an independent arbiter without conflicts",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "pediatric diabetes care guidelines",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ADA 2026 update expands pediatric diabetes care to include broader pharmacotherapy options (e.g., GLP-1 RAs, SGLT2 inhibitors) and emphasizes structured transition programs, while the ICMR guidelines (aligned with ISPAD/ADA) strengthen individualized A1C targets, CGM integration, and school-based support. Both versions reinforce multidisciplinary care but differ in scope—ADA includes Type 2 diabetes management and metabolic surgery, whereas ICMR focuses more on psychological screening and telemedicine.",
+      "detail": "American Diabetes Association Care Guidence (Older): Comprehensive nutrition education at diagnosis and annually, tailored to growth and risk factors -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Structured education programs for pediatric patients and families to enhance self-management skills\nAmerican Diabetes Association Care Guidence (Older): Interprofessional team must include a behavioral health specialist or social worker for children with type 2 diabetes -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Access to a multidisciplinary care team (endocrinologist, dietitian, psychologist, nurse educator) for all pediatric diabetes patients\nAmerican Diabetes Association Care Guidence (Older): Expanded pharmacotherapy options (GLP-1 RAs, SGLT2 inhibitors) with pediatric FDA approvals -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Expanded use of GLP-1 receptor agonists in pediatric type 2 diabetes management\nAmerican Diabetes Association Care Guidence (Older): Figure 14.1 provides an approach to initial treatment of new-onset diabetes in children with overweight/obesity -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Diagnosis confirmed via autoantibody testing and clinical criteria with baseline HbA1c, lipid profile, and thyroid function",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "ADA Standards of Care framework",
+      "change_type": "No Meaningful Change",
+      "summary": "The older chunk defines the 'Standards of Care framework' as a comprehensive resource covering risk reduction, education, and evidence grading (A-E), whereas the new chunk isolates a specific operational behavior regarding where screening should occur. There is no direct delta in the framework itself; rather, the new chunk extracts a specific procedural recommendation (screening location) that is implicitly part of the broader framework described in the older text. The core methodology of creating and updating the standards remains consistent between the descriptions.",
+      "detail": "American Diabetes Association Care Guidence (Older): The framework is a comprehensive resource outlining key elements of care, treatment goals, and tools to assess quality with rigorous evidence grading. -> Icmr Type 2 Diabetes (New Version): The framework focuses on standardizing screening logistics, specifying that testing should preferably be conducted in a healthcare setting to ensure follow-up care.\nAmerican Diabetes Association Care Guidence (Older): Updates are driven by annual reviews by the Professional Practice Committee with explicit evidence grading (A, B, C, E). -> Icmr Type 2 Diabetes (New Version): Updates or guidelines emphasize specific diagnostic criteria (HbA1c, FPG, OGTT) and protocols for community screening referrals.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "multimodal diabetes education strategies",
+      "change_type": "Screening Protocol Expansion",
+      "summary": "Version A outlines foundational principles of diabetes education, including empowerment, self-care skills, and culturally tailored content, with a focus on compliance and professional-led delivery. Version B expands this by specifying diverse delivery settings (clinic, camps, social media), group-based education, digital tools, and structured reinforcement at critical points. The new version also introduces peer education integration and validation requirements for digital resources, representing a shift toward scalable, technology-enabled education strategies.",
+      "detail": "Icmr Type 2 Diabetes (Older): Education programmes must be delivered by trained healthcare professionals or certified diabetes educators -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Education should be imparted by trained professionals (endocrinologist, diabetes educator, dietician, psychologist) and peer education (parents, older patients in self-help groups) should be integrated where feasible\nIcmr Type 2 Diabetes (Older): Provide in-depth information about diabetes, its complications, and treatment -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use age- and culture-appropriate educational materials (books, apps, websites, games) for repeated self-review\nIcmr Type 2 Diabetes (Older): Train in self-monitoring skills -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Digital tools should be monitored by the diabetes care team to ensure accuracy and remove myths\nIcmr Type 2 Diabetes (Older): Incorporate culturally tailored educational content to address diverse regional and community contexts in India -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Messages from the diabetes care team and peer groups must be culturally sensitive and contextually relevant to avoid confusion",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "expert author affiliations",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA version emphasizes global academic and research affiliations with diverse subspecialty representation, while the ICMR version highlights national leadership in Indian diabetes care institutions. The ICMR update narrows the focus to senior leadership roles in premier government and specialized centers, contrasting with the ADA's broader international and academic spectrum.",
+      "detail": "American Diabetes Association Care Guidence (Older): Authors are affiliated with academic medical centers, universities, and research institutions globally. -> Icmr Type 2 Diabetes (New Version): Authors are affiliated with leading academic and clinical institutions in diabetes care, including government-funded research centers and specialized diabetes centers in India.\nAmerican Diabetes Association Care Guidence (Older): Authors include both senior and junior investigators, reflecting a broad spectrum of experience. -> Icmr Type 2 Diabetes (New Version): Authors hold senior leadership positions (e.g., Professor & Head, Director) in their respective departments.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 7,
+      "confidence": "high"
+    },
+    {
+      "section": "school-based diabetes management",
+      "change_type": "Guideline Clarification",
+      "summary": "The ICMR 2026 update shifts focus from structural school-based collaboration (ADA's emphasis on communication systems and legal protections) to direct diabetes education and psychosocial integration for children. While ADA details emergency protocols and technology integration, ICMR prioritizes hands-on skills training, CGM use, and family lifestyle modifications. Both guidelines agree on school staff education but ICMR adds explicit independence training for children and peer support strategies.",
+      "detail": "American Diabetes Association Care Guidence (Older): Close communication with school personnel and legal protections for diabetes management in schools are emphasized. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Diabetes education and hands-on skills training for children and school staff are prioritized, with emphasis on independence and psychosocial support.\nAmerican Diabetes Association Care Guidence (Older): Emergency protocols and clinical trial participation guidance are detailed for school settings. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Continuous glucose monitoring and carbohydrate counting are integrated into school-based care plans.\nAmerican Diabetes Association Care Guidence (Older): Legal protections extend to childcare settings for children aged <5 years. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Family lifestyle modifications and peer support groups are explicitly included in school-based diabetes management.\nAmerican Diabetes Association Care Guidence (Older): Optimal use of diabetes technologies should be integrated into school-based care plans. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use of emergency kits with glucagon and glucose tablets in school medical rooms and child’s bag is mandated.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic retinopathy management",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR guideline introduces a mandatory requirement for direct ophthalmoscopy and visual acuity recording by primary physicians as the foundational screening step, whereas the ADA guideline focuses on retinal photography with AI or remote reading. Additionally, the ICMR version emphasizes low vision rehabilitation and patient education on blindness risks as core management behaviors, which are not explicitly detailed as primary clinical actions in the ADA extract.",
+      "detail": "American Diabetes Association Care Guidence (Older): Use retinal photography with remote reading or FDA-approved AI algorithms for screening -> Icmr Type 2 Diabetes (New Version): Record visual acuity and perform retinal examination via direct ophthalmoscopy in all diabetic patients\nAmerican Diabetes Association Care Guidence (Older): Refer individuals with diabetic macular edema or nonproliferative diabetic retinopathy to an ophthalmologist -> Icmr Type 2 Diabetes (New Version): Refer patients to a retina specialist for evaluation, treatment, and follow-up when services are available\nAmerican Diabetes Association Care Guidence (Older): Use macular focal/grid photocoagulation or intravitreal corticosteroid injections for persistent diabetic macular edema -> Icmr Type 2 Diabetes (New Version): Patients with impaired vision (<6/60) should undergo low vision evaluation and rehabilitation",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes screening protocols",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR guideline introduces specific age-based thresholds (>30 years) and a structured annual retesting schedule for prediabetes, which are not explicitly defined in the ADA's general 3-year interval recommendation. Additionally, the ICMR version adds a mandatory component for concurrent cardiovascular risk factor screening, expanding the scope of the protocol beyond glucose metrics alone. The ADA guideline maintains a more flexible approach regarding screening intervals based on risk proximity rather than a fixed annual mandate for prediabetes.",
+      "detail": "American Diabetes Association Care Guidence (Older): Screening intervals are typically 3 years to balance false positives and timely detection of complications -> Icmr Type 2 Diabetes (New Version): Retesting should be done after 3 years for normal glucose tolerance and annually for prediabetes.\nAmerican Diabetes Association Care Guidence (Older): Screening should ideally occur within healthcare settings with no fixed age threshold -> Icmr Type 2 Diabetes (New Version): Screening should be performed in all individuals >30 years of age with earlier initiation for specific risk factors.\nAmerican Diabetes Association Care Guidence (Older): Focuses primarily on diabetes detection without explicit CVD screening mandate -> Icmr Type 2 Diabetes (New Version): Screening should include assessment of cardiovascular disease (CVD) risk factors alongside diabetes screening.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "pediatric diabetes screening",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR guidelines introduce a specific screening criterion for Polycystic Ovary Syndrome (PCOS) as a risk factor, which is absent in the ADA protocol. Additionally, the ICMR defines overweight using a fixed percentage of ideal body weight (>120%), whereas the ADA utilizes BMI percentiles (≥85th to <95th or ≥95th) and sets the age trigger at puberty or 10 years, while ICMR sets it at 18 years.",
+      "detail": "American Diabetes Association Care Guidence (Older): Screen children with BMI ≥85th to <95th percentile or ≥95th percentile and one or more risk factors after puberty or age 10 -> Icmr Type 2 Diabetes (New Version): Screen children aged 18 and below with weight >120% of ideal body weight and risk factors including PCOS.\nAmerican Diabetes Association Care Guidence (Older): Risk factors include family history, physical inactivity, hypertension, dyslipidemia, etc. -> Icmr Type 2 Diabetes (New Version): Risk factors explicitly include family history, acanthosis nigricans, hypertension, dyslipidemia, and Polycystic Ovary Syndrome (PCOS).\nAmerican Diabetes Association Care Guidence (Older): Screening age trigger is onset of puberty or after 10 years of age, whichever occurs earlier -> Icmr Type 2 Diabetes (New Version): Screening applies to all children and adolescents aged 18 years and below meeting criteria.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "diagnostic criteria for diabetes",
+      "change_type": "Guideline Clarification",
+      "summary": "The ICMR guidelines explicitly define prediabetes categories (IFG, IGT, HbA1c 5.7-6.4%) which are not detailed in the ADA excerpt, providing a clearer distinction between stages of hyperglycemia. Both guidelines maintain the core requirement of confirming diagnosis with a second test for asymptomatic individuals, though the ICMR text emphasizes this more heavily regarding the high prevalence of asymptomatic cases. The specific glucose thresholds (FPG ≥126, OGTT ≥200, HbA1c ≥6.5%) are consistent across both sources, indicating a stable standard of care.",
+      "detail": "American Diabetes Association Care Guidence (Older): Focuses on risk-based screening and continuous risk assessment without explicitly defining prediabetes thresholds in the excerpt -> Icmr Type 2 Diabetes (New Version): Explicitly defines prediabetes categories (IFG, IGT, HbA1c 5.7-6.4%) alongside diabetes criteria.\nAmerican Diabetes Association Care Guidence (Older): Mentions carbohydrate intake of at least 150g for 3 days prior to OGTT -> Icmr Type 2 Diabetes (New Version): Specifies a normal diet of ≥200g carbohydrate/day for at least 3 days prior to testing.\nAmerican Diabetes Association Care Guidence (Older): Lists classic symptoms (polyuria, polydipsia, unexplained weight loss) -> Icmr Type 2 Diabetes (New Version): Expands the symptom list to include tiredness, generalized pruritus, recurrent urogenital infections, and delayed wound healing.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "ICMR type 2 diabetes guidelines",
+      "change_type": "No Meaningful Change",
+      "summary": "The 'Older' chunk explicitly details the 2018 ICMR guidelines for Type 2 Diabetes, covering specific protocols like metformin use and lifestyle modifications for that condition. The 'New Version' chunk describes the ICMR guidelines for Type 1 Diabetes, focusing on insulin analogues, automated delivery systems, and pediatric considerations. While both are ICMR documents for Indian diabetes care, they govern separate clinical pathways and do not represent a version update of the same feature.",
+      "detail": "Icmr Type 2 Diabetes (Older): Focuses on metformin as first-line oral therapy and lifestyle modifications for Type 2 Diabetes -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Focuses on insulin analogues, pumps, and automated insulin delivery systems for Type 1 Diabetes\nIcmr Type 2 Diabetes (Older): Emphasizes screening for diabetic retinopathy and nephropathy in adults -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Acknowledges rising prevalence in children and adolescents and emphasizes intensive management of glycemic control",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes epidemiology",
+      "change_type": "Target Revision",
+      "summary": "The older guideline establishes the broad epidemiological context of diabetes affecting lower socio-economic strata and rural areas in India. The new version refines this by specifically targeting the rising burden in children and adolescents, introducing a critical diagnostic nuance regarding the misdiagnosis of MODY and FCPD as Type 1 diabetes. While both acknowledge the pediatric shift, the new version adds specific differential diagnosis requirements that were absent in the older text.",
+      "detail": "Icmr Type 2 Diabetes (Older): Diabetes is no longer confined to older, affluent, or urban populations; affects lower socio-economic strata and rural areas -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Increasing burden in children/adolescents with specific warning that Type 1 is often misdiagnosed as MODY or FCPD\nIcmr Type 2 Diabetes (Older): Focus on general prevalence shift and Asian Indian phenotype -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Focus on diagnostic challenges in young patients and rising detection rates due to awareness",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes distress screening",
+      "change_type": "No Meaningful Change",
+      "summary": "The older guideline provides a comprehensive framework for screening diabetes distress annually and referring to behavioral health, whereas the newer ICMR document lists only physical and organ-specific investigations like hypertension and kidney disease. There is no evidence in the new text that distress screening was added, removed, or modified; the two documents address fundamentally different aspects of diabetes care.",
+      "detail": "American Diabetes Association Care Guidence (Older): Recommends annual screening for diabetes distress in patients and caregivers using validated measures -> Icmr Type 2 Diabetes (New Version): Does not mention diabetes distress screening, focusing instead on physical exams for hypertension, kidney disease, and cardiovascular complications.\nAmerican Diabetes Association Care Guidence (Older): Mandates referral to behavioral health professionals if distress is unaddressed -> Icmr Type 2 Diabetes (New Version): Provides no recommendations for psychological assessment or behavioral health referrals.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 1,
+      "confidence": "high"
+    },
+    {
+      "section": "SGLT2 inhibitor therapy",
+      "change_type": "New Recommendation Addition",
+      "summary": "The older guideline restricts SGLT2 inhibitor use primarily to patients with established ASCVD, heart failure, or CKD in the context of type 2 diabetes management. The new version introduces a critical expansion by recommending these agents for adults with CKD and eGFR ≥20 ml/min/1.73 m² irrespective of diabetes status or albuminuria levels. This shift reflects emerging evidence that renal and cardiovascular protection occurs independently of glycemic control, broadening the therapeutic scope beyond traditional diabetic indications.",
+      "detail": "American Diabetes Association Care Guidence (Older): SGLT2 inhibitors are indicated for patients with established ASCVD, heart failure, or CKD specifically within the context of type 2 diabetes management. -> Chronic Kidney Disease (New Version): SGLT2 inhibitors are recommended for adults with CKD and eGFR ≥20 ml/min/1.73 m² regardless of diabetes status or albuminuria levels.\nAmerican Diabetes Association Care Guidence (Older): Prioritizes glycemic control alongside cardiovascular and renal benefits in diabetic patients. -> Chronic Kidney Disease (New Version): Emphasizes risk reduction for kidney failure, cardiovascular death, and heart failure as primary drivers for use in non-diabetic CKD populations.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "GLP-1 receptor agonist recommendation",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The older guideline broadly recommends GLP-1 RAs for advanced CKD and includes dual GIP/GLP-1 RAs for heart failure, whereas the new version explicitly prioritizes long-acting GLP-1 RAs with cardiovascular benefits over insulin in this specific population. The new guideline clarifies the sequence of therapy, stating that GLP-1 RAs should be used before insulin if glycemic targets are not met with metformin and SGLT2 inhibitors, representing a strengthening of the recommendation hierarchy. While the older text mentions dual agonists for HFpEF, the new version focuses strictly on the CKD context with a specific emphasis on cardiovascular outcome data to guide agent selection.",
+      "detail": "American Diabetes Association Care Guidence (Older): Recommends GLP-1 RA for advanced CKD with demonstrated benefits and includes dual GIP/GLP-1 RA for HFpEF -> Chronic Kidney Disease (New Version): Explicitly prioritizes long-acting GLP-1 RAs with documented cardiovascular benefits over insulin in T2D with CKD who fail metformin and SGLT2 inhibitors.\nAmerican Diabetes Association Care Guidence (Older): Lists GLP-1 RA as an option for advanced CKD without specifying a strict hierarchy over insulin -> Chronic Kidney Disease (New Version): States GLP-1 RAs are preferred ahead of insulin even when glycemic targets are not yet achieved with standard first-line agents.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes complications research",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 ICMR update introduces mandatory retinal specialist referral when in-house exams are unavailable and emphasizes proactive screening for prediabetes, which were not explicitly addressed in the older ADA guidance. The new version also integrates acute complication management (e.g., hypoglycemia protocols) alongside chronic complications, reflecting a more comprehensive approach to diabetes complications research.",
+      "detail": "American Diabetes Association Care Guidence (Older): Focused on chronic microvascular complications (retinopathy, neuropathy, foot care) with no explicit guidance on acute complications or prediabetes screening. -> Icmr Type 2 Diabetes (New Version): Mandates retinal specialist referral if in-house exams are infeasible and emphasizes proactive screening for complications in prediabetes.\nAmerican Diabetes Association Care Guidence (Older): Prioritized intravitreal anti-VEGF therapies and teleophthalmology for retinopathy management. -> Icmr Type 2 Diabetes (New Version): Introduces mandatory comprehensive initial assessments including comorbidities like tuberculosis and non-healing ulcers.\nAmerican Diabetes Association Care Guidence (Older): Deprecated fixed A1C targets without individualized adjustment. -> Icmr Type 2 Diabetes (New Version): Explicitly deprecates fixed A1C targets and routine late-stage symptom presentation for complication diagnosis.\nAmerican Diabetes Association Care Guidence (Older): New items included 3-year screening intervals for type 2 diabetes without retinopathy. -> Icmr Type 2 Diabetes (New Version): New items include tailored hypoglycemia management based on consciousness level and glucose monitoring availability.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "DPP-4 inhibitor use",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR update expands the clinical discussion of DPP-4 inhibitors by providing detailed pharmacokinetic data (dosage ranges, excretion profiles, duration of action) for specific agents, which was absent in the older ADA guidance. While the older version emphasized their weak glucose-lowering effects and safety profile in older adults, the new version standardizes dosing requirements and highlights their weight-neutral and hypoglycemia-free benefits in broader combination regimens. The new version also introduces specific cautions for advanced renal disease with certain agents (e.g., teneligliptin, gemigliptin), which was not addressed in the older guidance.",
+      "detail": "American Diabetes Association Care Guidence (Older): DPP-4 inhibitors are described as relatively weak glucose-lowering agents with minimal hypoglycemia risk, useful in older adults with mild hyperglycemia or high hypoglycemia risk, and as an alternative to metformin in low eGFR -> Icmr Type 2 Diabetes (New Version): DPP-4 inhibitors are detailed with specific daily dosage ranges, excretion profiles, and duration of action for sitagliptin, vildagliptin, saxagliptin, and others, emphasizing their weight-neutral and hypoglycemia-free benefits in combination regimens.\nAmerican Diabetes Association Care Guidence (Older): Linagliptin is noted as not requiring renal dose adjustment -> Icmr Type 2 Diabetes (New Version): Linagliptin, teneligliptin, and gemigliptin are highlighted as not requiring renal dose adjustment, with additional caution for advanced renal disease with teneligliptin and gemigliptin.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "SGLT inhibitor-associated DKA risk",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 ICMR guidelines introduce a stronger emphasis on euglycemic DKA recognition and pediatric-specific risks, including pregnancy and alcohol use as high-risk scenarios. While the older ADA guidance broadly warns against SGLT inhibitor use in type 1 diabetes, the ICMR guidelines add detailed risk stratification for vulnerable populations like children and pregnant individuals. The new version also integrates psycho-social assessment for recurrent DKA, a dimension absent in the older guidance.",
+      "detail": "American Diabetes Association Care Guidence (Older): SGLT inhibitors are not approved for use in people with type 1 diabetes due to increased DKA risk. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): SGLT inhibitor use should be avoided in patients with conditions predisposing to DKA (e.g., pregnancy, alcohol use, low carbohydrate intake).\nAmerican Diabetes Association Care Guidence (Older): Recognition that up to a third of SGLT inhibitor-associated DKA cases present with glucose levels <200 mg/dL. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Euglycemic DKA (blood glucose <250 mg/dl) can occur with SGLT2 inhibitors, particularly in pregnancy, alcohol intake, or reduced carbohydrate intake.\nAmerican Diabetes Association Care Guidence (Older): Patient education on DKA symptoms and management strategies. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Close monitoring for euglycemic DKA symptoms (e.g., nausea, vomiting, abdominal pain) is required in patients on SGLT inhibitors.\nAmerican Diabetes Association Care Guidence (Older): Risk assessment for DKA in individuals with type 1 or insulin-deficient type 2 diabetes before SGLT inhibitor therapy. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Risk mitigation strategies must be implemented when considering SGLT inhibitor use in patients with high DKA risk (e.g., pregnancy, alcohol use, low carbohydrate intake).",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "intensive glycemic control benefits",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ICMR guidelines significantly expand the evidence base for intensive glycemic control in T1DM by quantifying long-term macrovascular benefits (42% reduction in CVD events, 57% reduction in non-fatal MI/stroke/CV death) beyond the original microvascular focus. This represents a major shift from the older ADA guidance, which primarily emphasized microvascular outcomes and individualized A1C targets. The new version also introduces novel risk stratification tools (e.g., CIMT, microalbuminuria) and early intervention timelines (within 6.5 years of diagnosis) to maximize legacy effects.",
+      "detail": "American Diabetes Association Care Guidence (Older): Intensive glycemic control reduces microvascular complications (retinopathy, neuropathy, CKD) by 50–76% in type 1 diabetes (DCCT/EDIC) with emphasis on individualized A1C targets. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Intensive glycemic control in T1DM reduces macrovascular events by 42% and non-fatal MI/stroke/CV death by 57% over 17 years (DCCT/EDIC), with early intervention (≤6.5 years) critical for legacy effects.\nAmerican Diabetes Association Care Guidence (Older): Further A1C reduction from 7% to 6% yields smaller absolute risk reductions but increases hypoglycemia risk. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Intensive control lowers incident hypertension risk by 24% (HR 0.76) and recognizes microalbuminuria/eGFR <60 as independent CVD risk factors in T1DM.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "glycemic management guidelines",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 CKD guideline introduces a specific third-line therapy recommendation (long-acting GLP-1 RA) for patients with T2D and CKD who fail metformin/SGLT2 therapy, which was not addressed in the older version. This represents a targeted expansion of therapeutic options for a high-risk subgroup, emphasizing cardiovascular benefits and renal safety in agent selection.",
+      "detail": "American Diabetes Association Care Guidence (Older): Broad glycemic management recommendations including A1C, CGM, hypoglycemia prevention, and hyperglycemic crises protocols -> Chronic Kidney Disease (New Version): Specific recommendation for long-acting GLP-1 RA use in T2D with CKD after metformin/SGLT2 failure, prioritizing agents with cardiovascular benefits\nAmerican Diabetes Association Care Guidence (Older): No specific guidance on third-line therapy sequencing -> Chronic Kidney Disease (New Version): Explicit third-line therapy recommendation with prioritization criteria for GLP-1 RA selection",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "pioglitazone safety profile",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ICMR update strengthens previous recommendations by explicitly deprecating pioglitazone as a first-line agent in the general population and introducing stricter monitoring protocols, including mandatory review after 3-6 months and dose reduction in hepatic impairment. The older ADA guidance emphasizes cautious use with dose reduction and combination therapy, while the ICMR version adds concrete withdrawal criteria and broader exclusion lists, particularly for high-risk groups like the elderly and those with cardiac failure or bladder cancer risk factors.",
+      "detail": "American Diabetes Association Care Guidence (Older): Adverse effect risks reduced with lower doses and combination therapy -> Icmr Type 2 Diabetes (New Version): Consider dose reduction in patients with hepatic impairment (Child-Pugh Class B or C)\nAmerican Diabetes Association Care Guidence (Older): Use in select individuals only -> Icmr Type 2 Diabetes (New Version): Deprecated: Use as first-line agent in general population\nAmerican Diabetes Association Care Guidence (Older): Baseline assessment of cardiac function in patients with known heart failure risk factors -> Icmr Type 2 Diabetes (New Version): History of cardiac failure exclusion\nAmerican Diabetes Association Care Guidence (Older): May have beneficial effect of stroke reduction -> Icmr Type 2 Diabetes (New Version): Review use after 3 to 6 months and withdraw if clinical benefit not seen",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "continuous glucose monitoring implementation",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR 2026 update introduces specific quantitative thresholds for CGM use (≥70% wear time), calibration requirements (including calibration-free options like Dexcom G6), and patient selection criteria (e.g., hypoglycemia unawareness). The ADA 2025 version provides broader indications for CGM but lacks these granular implementation details. ICMR also explicitly links CGM to quality-of-life outcomes and sensor-augmented pump therapy superiority.",
+      "detail": "American Diabetes Association Care Guidence (Older): CGM is recommended at diabetes onset and anytime thereafter for individuals on insulin therapy, noninsulin therapies that can cause hypoglycemia, or any treatment where CGM aids management, with emphasis on uninterrupted access to supplies. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): CGM is most effective when used ≥70% of the time and in motivated patients, particularly those with hypoglycemia unawareness or frequent asymptomatic hypoglycemia, with calibration requirements (2-4x/day for most devices except Dexcom G6).\nAmerican Diabetes Association Care Guidence (Older): CGM measures interstitial glucose with potential lag during rapid glucose changes but does not specify calibration requirements. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): CGM accuracy is reduced during rapid glucose changes and hypoglycemia, necessitating confirmatory finger-prick glucose for critical decisions, except for calibration-free devices like Dexcom G6.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "hypoglycemia prevention strategy",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR Guidelines (2026) introduce a more granular, survival-skills-based approach to hypoglycemia prevention, including specific instructions for managing hypoglycemia in high-risk scenarios (e.g., nocturnal periods, toddlers) and FDA-approved nasal glucagon. The ADA (2025) focuses on broader, structured education and CGM integration for older adults on insulin, with less emphasis on age-specific or symptom-based interventions. The ICMR's recommendations are more prescriptive for Type 1 diabetes, while the ADA's are applicable to both Type 1 and Type 2 diabetes.",
+      "detail": "American Diabetes Association Care Guidence (Older): Use CGM for older adults with type 1 or type 2 diabetes on insulin to improve glycemic outcomes and reduce hypoglycemia -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Encourage patients to analyze CGM glucose trends proactively to prevent hypoglycemia episodes, especially in high-risk scenarios (e.g., nocturnal periods)\nAmerican Diabetes Association Care Guidence (Older): Provide structured education on hypoglycemia prevention and treatment through diabetes self-management education programs -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Teach patients and families to avoid hypoglycemia triggers (e.g., delaying/missing meals, exercising without adjusting insulin/calories) at diagnosis and reinforce frequently\nAmerican Diabetes Association Care Guidence (Older): Educate individuals at risk for hypoglycemia on definitions, precipitating situations, and glucagon use -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Carry a diabetes I-card with hypoglycemia symptoms and a rapid-acting glucose source, followed by a slowly absorbed snack (e.g., milk, peanuts)\nAmerican Diabetes Association Care Guidence (Older): Offer training to reestablish hypoglycemia awareness for individuals with impaired hypoglycemia awareness -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Ensure family/staff are trained to recognize hypoglycemia symptoms and administer glucagon in emergencies",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes monitoring protocols",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA guideline (older) provides detailed, acute-care-focused monitoring protocols for hospitalized patients, including specific POC timing, CGM integration, and insulin therapy adjustments. The ICMR guideline (new) shifts focus to structured outpatient monitoring with annual check-ups, CGM as an alternative to SMBG, and standardized testing intervals (e.g., HbA1c, UACR). While both emphasize CGM, the ADA version details hospital-specific validation and remote monitoring, whereas the ICMR version broadens to outpatient care and annual screening mandates.",
+      "detail": "American Diabetes Association Care Guidence (Older): Detailed acute-care monitoring protocols for hospitalized patients, including POC timing (before meals/every 4–6h), frequent monitoring for IV insulin (every 30 min–2h), and CGM validation criteria (20/20 criterion) -> Icmr Type 2 Diabetes (New Version): Structured outpatient monitoring with annual check-ups, CGM as an alternative to SMBG, and standardized testing intervals (HbA1c 2x/year for stable, quarterly for unstable, UACR annually)\nAmerican Diabetes Association Care Guidence (Older): Hospital-specific CGM integration with confirmatory POC testing for insulin dosing and hypoglycemia assessment -> Icmr Type 2 Diabetes (New Version): CGM recommended as adjunct to SMBG for intensive insulin therapy or hypoglycemia unawareness, with EHR integration encouraged for remote monitoring",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "blood glucose monitoring protocols",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ICMR 2026 update reinforces the centrality of SMBG/CGM in diabetes management, particularly for type 1 diabetes, with stronger evidence linking monitoring frequency to improved outcomes. It introduces structured protocols for special populations (e.g., pregnancy, children) and emphasizes real-time CGM integration with insulin dosing algorithms, whereas the ADA 2023 version focuses more broadly on device access and timing without such granular population-specific guidance.",
+      "detail": "American Diabetes Association Care Guidence (Older): People using CGM must also have access to BGM at all times for calibration or suspected inaccuracies. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Real-time CGM with hypoglycemia alerts is recommended for patients with type 1 diabetes and impaired awareness, with integration into automated insulin delivery systems.\nAmerican Diabetes Association Care Guidence (Older): Glucose monitoring results should guide therapy adjustments, medical nutrition therapy, physical activity, and medication changes. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Standardized protocols for SMBG in children/adolescents emphasize pre/postprandial and bedtime timing, with HbA1c adjustments for variant hemoglobins in high-prevalence populations.\nAmerican Diabetes Association Care Guidence (Older): Healthcare professionals must use FDA-approved meters with proven accuracy and properly stored, unexpired test strips. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Glucose meters must meet performance standards across hypoglycemic, normoglycemic, and hyperglycemic ranges, with mandatory patient education on proper SMBG technique and interpretation.\nAmerican Diabetes Association Care Guidence (Older): BGM may be helpful in noninsulin therapies when modifying meal plans, physical activity plans, and/or medications. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Structured SMBG programs significantly reduce A1C levels in poorly controlled, noninsulin-treated type 2 diabetes, with ketone testing required during hyperglycemia or illness.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "CGM in pregnancy for type 1 diabetes",
+      "change_type": "Guideline Clarification",
+      "summary": "The older version (ADA) provides comprehensive, pregnancy-specific CGM recommendations including detailed glycemic targets (TIR >70%, TBR <4%/<1%, TAR <25%), accuracy validation thresholds (%20/20 agreement rates), and specific clinical scenarios for finger stick use. The newer version (ICMR) simplifies these recommendations, focusing more on the clinical benefits (reduced NICU admissions, LGA births) and broader CGM functionality (alerts, remote monitoring) without specifying device accuracy requirements or detailed glycemic targets.",
+      "detail": "American Diabetes Association Care Guidence (Older): Provides detailed pregnancy-specific CGM glycemic targets (TIR >70%, TBR <4%/<1%, TAR <25%) and accuracy validation thresholds (%20/20 agreement rates ≥78.6% on day 1, ≥96.3% on days 4–7) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Focuses on clinical benefits (reduced NICU admissions, LGA births) and broader CGM functionality without specifying device accuracy requirements or detailed glycemic targets\nAmerican Diabetes Association Care Guidence (Older): Requires finger stick glucose measurements in specific circumstances (post-hypoglycemia correction, symptom mismatch, first day of use) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Does not specify circumstances requiring finger stick glucose measurements\nAmerican Diabetes Association Care Guidence (Older): Emphasizes CGM-reported mean glucose as superior to estimated A1C for glycemic assessment in pregnancy -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Does not address superiority of CGM-reported mean glucose over estimated A1C\nAmerican Diabetes Association Care Guidence (Older): Includes nonadjunctive CGM use with validated accuracy thresholds -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Mentions sensor-integrated insulin delivery but does not specify nonadjunctive use requirements",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "T1DM epidemiology and diagnosis",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 update expands on autoantibody testing requirements (e.g., confirmatory retesting within 3 months) and introduces teplizumab-mzwv for stage 2 T1DM, while the ICMR 2026 version incorporates WHO 2019 classification changes, including 'hybrid forms of diabetes' and staging systems. Both versions now emphasize genetic risk (HLA haplotypes) and autoantibody titer/affinity for risk stratification, but ICMR provides more detailed diagnostic criteria (FPG, OGTT, HbA1c) and global epidemiology data.",
+      "detail": "American Diabetes Association Care Guidence (Older): Confirmation of first autoantibody-positive test with a second test within 3 months in a laboratory meeting Islet Autoantibody Standardization Program (IASP) standards. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Presence of two or more islet cell autoantibodies for Stage 1 diagnosis with autoantibody titer, affinity, and type (e.g., IA-2, ZnT8) assessment required for risk stratification.\nAmerican Diabetes Association Care Guidence (Older): Screening programs should include counseling on diabetes symptoms, DKA prevention, and referral pathways for autoantibody-positive individuals. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Diagnosis established via FPG, OGTT, HbA1c, or random plasma glucose with characteristic hyperglycemia symptoms, using cut-offs recommended by American Diabetes Association.\nAmerican Diabetes Association Care Guidence (Older): Teplizumab-mzwv infusion for stage 2 T1DM requires discussion with patients ≥8 years in a setting with trained personnel. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): WHO 2019 classification introducing 'hybrid forms of diabetes' (e.g., slowly evolving immune-mediated diabetes of adults) and staging classification system (Stage 1-3) for presymptomatic T1DM with prognostic significance.\nAmerican Diabetes Association Care Guidence (Older): Genetic risk scores may identify high-risk subsets for targeted autoantibody testing, particularly in populations of European ancestry. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Incorporation of genetic risk (HLA haplotypes) and environmental factors (e.g., enteroviral infections) in risk assessment, with non-HLA loci (>50 identified) contributing to T1DM susceptibility.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic foot examination protocol",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ICMR 2026 update reinforces the ADA's annual comprehensive foot evaluation by adding immediate specialist referral (within 24 hours) for high-risk features like absent pedal pulses or ulceration, and mandates urgent antibiotic initiation for infections. It also expands preventive education requirements and incorporates advanced monitoring tools (CGM/iSCGM) for high-risk patients, while deprecating routine specialist visits for low-risk individuals.",
+      "detail": "American Diabetes Association Care Guidence (Older): Neurological assessment included 10-g monofilament or Ipswich touch test with at least one additional assessment (pinprick, temperature, or vibration) -> Icmr Type 2 Diabetes (New Version): Neurological assessment includes monofilament and vibration perception testing (VPT) as standard components\nAmerican Diabetes Association Care Guidence (Older): Increased frequency of foot inspections for sensory loss, prior ulceration, or amputation -> Icmr Type 2 Diabetes (New Version): Immediate specialist referral within 24 hours for foot deformity, absent pedal pulses, or ulceration\nAmerican Diabetes Association Care Guidence (Older): General preventive foot self-care education -> Icmr Type 2 Diabetes (New Version): Emphasis on daily foot inspection, avoiding barefoot walking, and proper foot hygiene as mandatory education components\nAmerican Diabetes Association Care Guidence (Older): Referral for ankle-brachial index with toe pressures for specific PAD symptoms -> Icmr Type 2 Diabetes (New Version): Immediate antibiotic initiation for clinical signs of infection and urgent admission for severe/limb-threatening infections",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "peripheral neuropathy management",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 ICMR update introduces a structured diagnostic protocol for atypical neuropathy cases, including TSH, Vitamin B12, and paraproteinemia screening, alongside a tiered pharmacological treatment algorithm. This contrasts with the older ADA guidance, which primarily focused on foot care and exercise-related precautions. The new version also standardizes vibration perception testing using biothesiometers and ABI measurements, representing a significant expansion of clinical assessment methods.",
+      "detail": "American Diabetes Association Care Guidence (Older): Emphasizes foot care (daily examinations, proper footwear) and exercise precautions (150 min/week moderate exercise, non-weight-bearing for injuries) for peripheral neuropathy management -> Icmr Type 2 Diabetes (New Version): Introduces diagnostic protocols (TSH, Vitamin B12, paraproteinemia screening) and a tiered pharmacological treatment algorithm (gabapentin, TCAs, SNRIs as first-line; opioids as second-line) for painful neuropathy\nAmerican Diabetes Association Care Guidence (Older): Assesses kinesthetic/proprioceptive sensation during physical activity to prevent skin breakdown -> Icmr Type 2 Diabetes (New Version): Standardizes vibration perception threshold (VPT) testing using biothesiometers and manual tuning fork assessment for sensory loss evaluation",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic autonomic neuropathy",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR guidelines expand the scope of diabetic autonomic neuropathy (DAN) management beyond exercise safety to include comprehensive screening, risk stratification, and consideration of autoimmune contributions. While the older ADA guidance primarily addressed exercise-related risks and precautions, the new version integrates DAN into broader diagnostic and management frameworks, including multidisciplinary care and validated assessment tools like COMPASS 31.",
+      "detail": "American Diabetes Association Care Guidence (Older): Focused on exercise safety precautions (e.g., cardiac investigation, hypoglycemia monitoring) for individuals with confirmed diabetic autonomic neuropathy -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Emphasizes early screening, risk factor evaluation (e.g., autoimmune contributions, duration of diabetes), and multidisciplinary management of autonomic symptoms across organ systems\nAmerican Diabetes Association Care Guidence (Older): Required cardiac autonomic neuropathy assessment as part of exercise risk stratification -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Incorporates validated tools (e.g., COMPASS 31) and genetic testing for standardized assessment and atypical presentations",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "diabetic neuropathy classification and presentation",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR update expands the clinical presentation framework by explicitly detailing motor weakness patterns (e.g., foot deformities, diabetic amyotrophy) and cranial nerve involvement, which were not systematically addressed in the older ADA guidance. While the ADA version emphasizes diagnosis of exclusion and asymptomatic screening, the ICMR version provides a more granular classification of neuropathy subtypes and their irreversible/reversible nature. Both retain core principles like monofilament testing and autonomic symptom assessment but diverge in scope—ADA focuses on prevention (ulcer risk) while ICMR integrates deformity and amyotrophy as key clinical features.",
+      "detail": "American Diabetes Association Care Guidence (Older): Symptoms vary by fiber involvement (small-fiber: pain/dysesthesia; large-fiber: numbness, balance issues, LOPS) with emphasis on asymptomatic DPN detection via annual screening -> Icmr Type 2 Diabetes (New Version): Sensory neuropathy presents with paresthesiae or loss of sensation; motor weakness leads to foot deformities and neuropathic ulcers; diabetic amyotrophy indicated by quadriceps wasting and absent knee jerk\nAmerican Diabetes Association Care Guidence (Older): Autonomic neuropathy symptoms include orthostatic dizziness, syncope, erectile dysfunction, sweating changes, resting tachycardia, and orthostatic hypotension -> Icmr Type 2 Diabetes (New Version): Autonomic neuropathy may present with resting tachycardia, fixed heart rate, or exercise intolerance; assess for orthostatic hypotension, gastroparesis, and gustatory sweating",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic neuropathy management",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 ICMR guidelines shift focus to detailed, evidence-based management of painful diabetic neuropathy, introducing specific dosing protocols, efficacy assessment timelines, and first-line agent recommendations (pregabalin, gabapentin) that were not present in the older ADA guidance. The newer version also introduces benfotiamine as an adjunctive therapy and emphasizes individualized drug selection based on tolerability, which represents a more granular approach to neuropathic pain management.",
+      "detail": "American Diabetes Association Care Guidence (Older): Gabapentinoids, SNRIs, tricyclic antidepressants, and sodium channel blockers are recommended as initial pharmacologic treatments for neuropathic pain in diabetes. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use pregabalin or gabapentin as first-line agents due to strong evidence and FDA approval, with gradual titration protocols and efficacy assessment after 2-4 weeks.\nAmerican Diabetes Association Care Guidence (Older): Avoid opioids (including tramadol and tapentadol) for neuropathic pain treatment except in rare circumstances due to adverse events. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use of opioid agents (e.g., tramadol, extended-release tapentadol) as first- or second-line therapy is deprecated entirely.\nAmerican Diabetes Association Care Guidence (Older): Optimize glucose, weight, blood pressure, and lipid management to reduce the risk or slow the progression of diabetic neuropathy. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Consider benfotiamine (300-600 mg/day) as a potential adjunctive therapy in the management of diabetic neuropathy, particularly in patients with poor glycemic control.\nAmerican Diabetes Association Care Guidence (Older): Combine pharmacologic agents for neuropathic pain if monotherapy is ineffective. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Treatment should be continued for at least 2-4 weeks before concluding that the drug is not effective, with a 30-50% reduction in pain considered a marker of effectiveness.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "glucose monitoring strategy in adolescent T1DM",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The older ADA guidance emphasizes early and sustained CGM use with structured education and team-based care models to improve glycemic outcomes in adolescents with T1DM. In contrast, the newer ICMR guidelines prioritize frequent SMBG with individualized targets and systematic data analysis, reflecting a shift toward cost-effective, accessible monitoring strategies. While both aim to optimize glycemic control, the ADA version advocates for advanced technology (CGM) with comprehensive support systems, whereas the ICMR version reinforces traditional SMBG with enhanced pattern recognition and insulin dose adjustments.",
+      "detail": "American Diabetes Association Care Guidence (Older): Initiate continuous glucose monitoring (CGM) within the first year of T1DM diagnosis to improve glycemic outcomes and prioritize real-time CGM over intermittently scanned CGM in adolescents for tighter glycemic control -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Monitor capillary blood glucose prior to meals/snacks, at bedtime, postprandial occasionally, and before exercise, with individualized SMBG targets based on HbA1c thresholds (e.g., prioritize postprandial glucose if HbA1c <8-8.5%)\nAmerican Diabetes Association Care Guidence (Older): Use structured individualized education and team-based care models (e.g., Teamwork, Targets, Technology, and Tight Control) for early CGM initiation and sustained adherence -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Educate patients/caregivers on interpreting SMBG patterns and making minor insulin adjustments, with downloadable software or smartphone apps for SMBG data analysis",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "gastrointestinal neuropathy diagnosis",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR guidelines refine the diagnostic approach by explicitly distinguishing acute reversible gastroparesis from chronic autonomic neuropathy-related gastroparesis, adding validated symptom assessment tools (e.g., GCSI) and motility testing (e.g., wireless capsule). While the older ADA guidance focuses on exclusion criteria and gold-standard testing (scintigraphy), the new version integrates symptom severity tools and regional motility assessment, reflecting a shift toward more nuanced diagnostic stratification.",
+      "detail": "American Diabetes Association Care Guidence (Older): Diagnostic gold standard for gastroparesis is scintigraphy of digestible solids at 15-min intervals for 4 hours post-meal intake. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Consideration of wireless motility capsule testing for evaluating regional gastrointestinal motility disorders in patients with suspected autonomic neuropathy.\nAmerican Diabetes Association Care Guidence (Older): Exclusion of reversible/iatrogenic causes (e.g., medications like metformin, GLP-1-based therapies, opioids) and organic causes (e.g., gastric outlet obstruction, peptic ulcer disease) is required before diagnosis. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Documentation of persistent symptoms for at least 3 months despite glycemic control optimization before attributing gastrointestinal symptoms to autonomic neuropathy.\nAmerican Diabetes Association Care Guidence (Older): The use of ¹³C octanoic acid breath test is an approved alternative to scintigraphy for gastric emptying measurement. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use of validated symptom questionnaires (e.g., GCSI) to assess severity of gastroparesis symptoms.\nAmerican Diabetes Association Care Guidence (Older): Gastroparesis should be suspected in individuals with erratic glycemic management or with upper gastrointestinal symptoms without another identified cause. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Differentiate acute diabetic gastroparesis (reversible with severe hyperglycemia) from chronic gastroparesis (due to autonomic neuropathy).",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin dosing for enteral/parenteral nutrition",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 ICMR guidelines introduce a standardized transition protocol from intravenous to subcutaneous insulin for T1DM patients on enteral/parenteral nutrition, which was not addressed in the older ADA guidance. The new version also deprecates NPH insulin for basal coverage during transitions due to its unpredictable pharmacokinetics, replacing it with long/intermediate-acting insulin allocations. Additionally, the ICMR guidelines emphasize CGM use during titration, a recommendation absent in the older version.",
+      "detail": "American Diabetes Association Care Guidence (Older): Insulin dose for nutritional component calculated as 1 unit per 10–15 g carbohydrate in enteral/parenteral formulations. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Initial doses transitioning from intravenous to subcutaneous insulin should use long/intermediate-acting insulin comprising 50% of total daily dose (TDD) with rapid-acting analogs and 25% of TDD with regular insulin\nAmerican Diabetes Association Care Guidence (Older): Rapid-acting insulin every 4h, regular insulin every 6h, or NPH insulin every 8–12h are options for nutritional coverage during continuous tube feeds. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Intravenous insulin is the preferred approach for patients with T1DM receiving enteral or parenteral feedings\nAmerican Diabetes Association Care Guidence (Older): Correctional insulin should be administered subcutaneously every 6h (regular) or every 4h (rapid-acting). -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Correctional doses should be given based on glucose levels and urgency of correction\nAmerican Diabetes Association Care Guidence (Older): Adding human regular insulin to parenteral nutrition solution (1 unit per 10g dextrose) if >20 units correctional insulin required in 24h. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Implementation of continuous glucose monitoring (CGM) is strongly recommended during insulin titration for enteral/parenteral nutrition to enable real-time glucose trend analysis and reduce hypoglycemia risk",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "physical activity contraindications",
+      "change_type": "Mismatched pair",
+      "summary": "The older ADA guidance (Chunk 663) specifies contraindications for vigorous exercise in diabetic retinopathy, emphasizing ophthalmologist consultation and retinal imaging requirements. The ICMR 2026 update (Chunk 2454_2455_2456) shifts focus entirely to pregnancy-related contraindications in type 1 diabetes, listing absolute/relative medical and obstetric conditions without addressing retinopathy or exercise intensity thresholds.",
+      "detail": "American Diabetes Association Care Guidence (Older): Vigorous-intensity aerobic or resistance exercise may be contraindicated in patients with proliferative or severe nonproliferative diabetic retinopathy due to risk of vitreous hemorrhage or retinal detachment. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Absolute contraindications to physical activity during pregnancy include hemodynamically significant heart disease, pre-eclampsia, and placenta previa after 26 weeks.\nAmerican Diabetes Association Care Guidence (Older): Requires retinal imaging confirmation of absence of neovascularization/macular edema before allowing moderate-intensity exercise. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Requires screening for intrauterine growth restriction as a relative obstetric contraindication.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "nutritional management in diabetes",
+      "change_type": "Mismatched pair",
+      "summary": "The older ADA guideline emphasizes a broad shift toward food-based eating patterns and nutrient-dense foods for general diabetes management, including collaborative meal planning and cultural considerations. In contrast, the ICMR guideline focuses narrowly on dietary modifications during acute illness (e.g., fever), recommending semi-solid foods and fluids to maintain calorie intake. These are distinct clinical scenarios with minimal overlap in scope or recommendations.",
+      "detail": "American Diabetes Association Care Guidence (Older): Focuses on general nutritional management in diabetes, emphasizing food-based eating patterns, nutrient-dense foods, and individualized meal plans for glycemic control and cardiovascular risk reduction. -> Icmr Type 2 Diabetes (New Version): Focuses on nutritional management during acute illness (e.g., fever), mandating semi-solid foods and fluids (e.g., thin soups, milk) to maintain calorie intake.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "obesity treatment guidelines",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ICMR 2026 update reinforces lifestyle modification as the primary obesity treatment in diabetes, aligning with ADA's structured lifestyle interventions but shifting focus away from fixed weight loss targets (5–7%) toward individualized goals. The ICMR also deprecates unmonitored pharmacotherapy, contrasting with ADA's detailed pharmacotherapy dosing guidance, indicating a more conservative approach to drug use. Both guidelines now emphasize multidisciplinary care, but the ICMR explicitly reserves bariatric surgery for higher BMI thresholds (BMI ≥35 with comorbidities or ≥40), whereas ADA includes metabolic surgery for type 1 diabetes without BMI thresholds.",
+      "detail": "American Diabetes Association Care Guidence (Older): Weight loss of 5–7% of baseline body weight is recommended to improve glycemia and cardiovascular risk factors. -> Icmr Type 2 Diabetes (New Version): Weight loss goals should be individualized based on patient characteristics, comorbidities, and risk-benefit assessment\nAmerican Diabetes Association Care Guidence (Older): Individualized dose and dose titration for obesity pharmacotherapy should balance efficacy, benefits, and tolerability. -> Icmr Type 2 Diabetes (New Version): Drugs may be used judiciously as an adjuvant therapy with prior trial of non-pharmacological interventions\nAmerican Diabetes Association Care Guidence (Older): Inclusion of GLP-1 RA-based therapy and/or metabolic surgery as treatment options for obesity in people with type 1 diabetes. -> Icmr Type 2 Diabetes (New Version): Consideration of metabolic and bariatric surgery for patients with BMI ≥35 kg/m² with obesity-related comorbidities or BMI ≥40 kg/m²\nAmerican Diabetes Association Care Guidence (Older): Counseling and regular monitoring for adequate nutrition intake are advised for individuals pursuing intentional weight loss. -> Icmr Type 2 Diabetes (New Version): Routine use of appetite suppressants without lifestyle modification is deprecated",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "weight management in diabetes care",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The updated guideline significantly broadens the scope of weight management strategies in diabetes care, particularly by including type 1 diabetes in obesity management recommendations. It also introduces more granular thresholds for weight loss (5% minimum, 7–10% for high-risk individuals) and emphasizes individualized, intensive lifestyle interventions with frequent follow-up. The new version also incorporates advanced pharmacotherapy options (GLP-1 RAs, dual GIP/GLP-1 RAs) and metabolic surgery for type 1 diabetes, which were not previously addressed.",
+      "detail": "2026 (Older): Counseling and treatment to achieve weight reduction are recommended for individuals with overweight or obesity and dyslipidemia, with consideration of diabetes type (Type 1 or Type 2) -> American Diabetes Association Care Guidence (New Version): Weight management strategies are explicitly extended to adults with type 1 diabetes who have obesity, including GLP-1 receptor agonist therapy and metabolic surgery.\n2026 (Older): Intensive lifestyle interventions (e.g., structured diet, physical activity, and behavioral therapy) should be employed -> American Diabetes Association Care Guidence (New Version): Intensive lifestyle intervention programs with frequent follow-up are required, with minimum 5% weight loss for metabolic improvements and 7–10% for high-risk individuals.\n2026 (Older): Pharmacotherapy (e.g., GLP-1 receptor agonists or SGLT2 inhibitors) may be considered as adjunctive therapy -> American Diabetes Association Care Guidence (New Version): GLP-1 RAs or dual GIP/GLP-1 RAs are recommended for weight loss in type 1 diabetes with obesity, with detailed monitoring protocols.\n2026 (Older): Weight management strategies should be tailored to the individual's diabetes type -> American Diabetes Association Care Guidence (New Version): Shared decision-making, culturally tailored interventions, and modification of AID settings with GLP-1 RA therapy are emphasized.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "exercise-based glycemic management",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 guidance provides broad recommendations on exercise modalities (aerobic, resistance, combined) and their quantified glycemic benefits, including step count targets and pregnancy-related considerations. The ICMR 2026 guidelines shift focus to precise insulin dose adjustments (e.g., 50-80% basal rate reduction) and individualized carbohydrate intake (0.3-0.5 g/kg/h) for exercise, reflecting a more granular approach to glycemic management during physical activity. While both address exercise-based glycemic control, the ICMR version introduces specific, actionable insulin and carbohydrate strategies absent in the ADA guidance.",
+      "detail": "American Diabetes Association Care Guidence (Older): Structured exercise interventions of at least 8 weeks lower A1C by 0.66% in type 2 diabetes, with combined aerobic and resistance exercise providing greater benefits than either mode alone. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Temporary basal rate reduction (50-80%) in CSII users 90+ minutes before exercise based on duration and intensity, with individualized carbohydrate intake (0.3-0.5 g/kg/h for moderate activity).\nAmerican Diabetes Association Care Guidence (Older): Daily step counts of ~7,000–10,000 steps/day may improve time in range and reduce insulin requirements in type 1 diabetes. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Prefer carbohydrate consumption before spontaneous exercise or postprandial hyperglycemia to maintain blood glucose levels.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "pregnancy diabetes management",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR update refines pre-gestational diabetes management recommendations with stricter glycemic targets (HbA1C <6.5% vs. ADA's <7% or <6.5% if safely achievable) and emphasizes pre-pregnancy optimization including nutritional status and weight management. While the ADA document provides a comprehensive pregnancy diabetes pathway, the ICMR version focuses specifically on pre-gestational diabetes with more detailed medication adjustments and surveillance requirements.",
+      "detail": "American Diabetes Association Care Guidence (Older): Preconception glycemic control target set at A1C <7% ideally, <6.5% if safely achievable -> Icmr Type 2 Diabetes (New Version): Tight glycemic control target set at HbA1C <6.5% before planned pregnancy\nAmerican Diabetes Association Care Guidence (Older): Routine postpartum 75g OGTT at 4-12 weeks for all gestational diabetes patients -> Icmr Type 2 Diabetes (New Version): No specific postpartum OGTT timing mentioned for gestational diabetes\nAmerican Diabetes Association Care Guidence (Older): Consider SGLT2 inhibitors in select patients with type 2 diabetes preconception or early pregnancy if benefits outweigh risks -> Icmr Type 2 Diabetes (New Version): No mention of SGLT2 inhibitor use in pregnancy\nAmerican Diabetes Association Care Guidence (Older): Continuous glucose monitoring (CGM) recommended for real-time glycemic trend monitoring in pregnancy -> Icmr Type 2 Diabetes (New Version): No specific recommendation for CGM use in pregnancy",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "glycemic control targets",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR update retains the core principle of individualized glycemic targets but shifts emphasis toward pregnancy-specific targets, which were not explicitly detailed in the older ADA guidance. The older version provides more granular recommendations on TIR (≥70% in 70–180 mg/dL range) and hypoglycemia risk stratification, while the ICMR version broadens the scope to include pregnancy without specifying TIR or CGM integration.",
+      "detail": "American Diabetes Association Care Guidence (Older): Time in Range (TIR) is emphasized as a primary metric with targets of ≥70% in 70–180 mg/dL range for most adults. -> Icmr Type 2 Diabetes (New Version): TIR is not explicitly mentioned; focus shifts to pregnancy-specific glycemic targets.\nAmerican Diabetes Association Care Guidence (Older): Risk stratification tools (e.g., hypoglycemia prediction models) and CGM integration are recommended for high-risk patients. -> Icmr Type 2 Diabetes (New Version): No mention of CGM or risk stratification tools; emphasis on patient-specific factors without technical integration details.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin therapy in pregnancy",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 update provides detailed insulin titration guidance, including specific weekly increases (~5%) and basal/bolus proportion shifts, while the ICMR 2025 version focuses on broader insulin requirement fluctuations and standard-of-care MSII vs. pump therapy. Both guidelines now emphasize rapid-acting analogs (aspart/lispro) and long-acting analogs (detemir/glargine/degludec), but the ADA includes newer options like faster aspart and AID systems with pregnancy-specific targets.",
+      "detail": "American Diabetes Association Care Guidence (Older): Insulin detemir was no longer available (deprecated) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Long-acting insulin analog detemir is preferred over conventional insulins\nAmerican Diabetes Association Care Guidence (Older): Insulin requirements increase by ~5% per week from 16-36 weeks -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Insulin requirements increase in first 9 weeks, decrease 9-16 weeks, then increase until 37th week\nAmerican Diabetes Association Care Guidence (Older): No mention of automated insulin delivery (AID) systems with pregnancy-specific targets -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): AID systems may be offered if glycemic control is difficult with MSII due to hypoglycemia\nAmerican Diabetes Association Care Guidence (Older): Bolus insulin requirements increase proportionally more than basal insulin -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Insulin requirements shift towards more prandial insulin with progression",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "hypoglycemia risk in pregnancy",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ICMR guidelines provide a more granular quantification of severe hypoglycemia risk in pregnancy (3–5x increase, affecting 45% of women with T1DM) and explicitly identify impaired hypoglycemia awareness as a tripling risk factor. The ADA guidance emphasizes education and prevention but lacks the quantitative risk stratification and individualized target adjustments seen in the ICMR update. Both versions agree on the need for hypoglycemia education but the ICMR version expands risk assessment and management strategies.",
+      "detail": "American Diabetes Association Care Guidence (Older): Educate pregnant individuals with diabetes and family members on hypoglycemia prevention, recognition, and treatment before, during, and after pregnancy. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Severe hypoglycemia is 3 to 5 times more frequent in the first half of pregnancy than before conception, with up to 45% of women with T1DM experiencing severe hypoglycemia during pregnancy.\nAmerican Diabetes Association Care Guidence (Older): Assess hypoglycemia risk in pregnant individuals with type 1 or type 2 diabetes, particularly in the first trimester and postpartum. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): A history of severe hypoglycemia in the year preceding pregnancy and impaired hypoglycemia awareness are significant risk factors, tripling the risk of severe hypoglycemia.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "telehealth integration in diabetes care",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR 2026 update introduces a stronger focus on telehealth as a solution for geographic barriers in developing countries, particularly emphasizing mobile phone infrastructure and legal frameworks like India's telemedicine legalization. While the ADA 2025 version frames telehealth as a complementary tool with quantified A1C benefits, the ICMR version expands the scope to address systemic gaps in specialist access and insulin cold chain integrity in remote areas.",
+      "detail": "American Diabetes Association Care Guidence (Older): Telehealth should complement, not replace, in-person visits for optimal glycemic management, with quantified A1C reductions (e.g., –0.37% meta-analytic estimate) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Telehealth enables access to diabetes care experts in remote areas with scarce providers, supported by government-legalized telemedicine frameworks (e.g., India's legalization during COVID-19).\nAmerican Diabetes Association Care Guidence (Older): DSMES delivered via mHealth shows modest A1C benefits (e.g., –0.2% to –0.4%) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Digital tools are used to monitor and manage insulin cold chain integrity in remote storage and transport, addressing a neglected area in glycemic control variability.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "postpartum diabetes screening protocol",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ADA guidance specifies a broader 4–12 week postpartum window for OGTT with detailed rationale (e.g., pregnancy-related A1C interference) and emphasizes ongoing screening every 1–3 years, while the ICMR 2018 version narrows the window to 6–8 weeks and mandates annual retesting if normal. The ADA also integrates lifestyle interventions and metformin for prevention, which is absent in the ICMR version.",
+      "detail": "American Diabetes Association Care Guidence (Older): Test at 4–12 weeks postpartum using fasting 75-g OGTT with nonpregnancy criteria and preference over A1C due to pregnancy-related interference. -> Icmr Type 2 Diabetes (New Version): Mandatory 6–8 week OGTT for reclassification with annual retesting if normal.\nAmerican Diabetes Association Care Guidence (Older): Ongoing screening every 1–3 years after initial postpartum testing. -> Icmr Type 2 Diabetes (New Version): Annual screening if initial OGTT is normal.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "postpartum insulin sensitivity changes",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ICMR guidelines expand the timeline for insulin sensitivity return to pre-pregnancy levels from 1–2 weeks to 2–4 months, reflecting a more nuanced understanding of postpartum physiology. The new version also introduces breastfeeding-specific recommendations, including meal timing and neonatal hypoglycemia prevention, which were absent in the older version. Additionally, the ICMR guidelines quantify insulin-dose requirements during breastfeeding (10% lower than preconception) and emphasize standardized monitoring protocols for thyroid and mental health.",
+      "detail": "American Diabetes Association Care Guidence (Older): Insulin sensitivity returns to prepregnancy levels over 1–2 weeks postpartum -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Insulin requirements gradually increase over the next weeks and usually return to pre-pregnancy levels in 2 to 4 months\nAmerican Diabetes Association Care Guidence (Older): Individuals with GDM usually do not require diabetes medications in the postpartum period -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): The insulin-dose requirement is around 10% lower compared to preconception requirement in those who are breastfeeding",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "pregnancy counseling and risks",
+      "change_type": "Guideline Clarification",
+      "summary": "The CKD guideline (older) provides detailed medication-specific guidance for pregnancy and lactation, including sex-specific dosing adjustments and multidisciplinary care models. The T1DM guideline (new) shifts focus to glycemic targets, contraception timing, and specific risks like congenital malformations, reflecting disease-specific priorities. While both address teratogenic medication substitution, the T1DM guideline adds explicit glycemic targets and testing frequency, which are absent in the CKD version.",
+      "detail": "Chronic Kidney Disease (Older): Emphasizes medication teratogenicity reviews, sex-specific RAAS-blocking medication dosing, and multidisciplinary care for pregnancy/lactation in CKD. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Prioritizes glycemic control targets (HbA1c <7%, fasting/premeal 80-110 mg/dl), contraception until glycemic targets are met, and folic acid supplementation in preconception for T1DM.\nChronic Kidney Disease (Older): Recommends nonoral hormonal contraceptives due to unclear BP impact. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Recommends non-hormonal contraception (barrier/IUD) for women with thromboembolic history, with hormonal options otherwise.",
+      "version_from": "Chronic Kidney Disease",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "hospitalized hyperglycemia management",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 update expands recommendations for hospitalized hyperglycemia management to include CGM integration, structured insulin order sets, and HbA1c-guided discharge algorithms, reflecting advances in technology and discharge planning. The ICMR guidelines, while also addressing hospitalized hyperglycemia, primarily focus on hypoglycemia management protocols with specific thresholds for dextrose administration and monitoring frequency. The ADA version provides broader system-level recommendations, while ICMR offers detailed clinical protocols for hypoglycemia treatment.",
+      "detail": "American Diabetes Association Care Guidence (Older): Emphasizes structured insulin order sets, CGM integration, and HbA1c-guided discharge algorithms for hospitalized hyperglycemia management -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Focuses on hypoglycemia prevention and treatment with specific thresholds for dextrose administration and monitoring protocols\nAmerican Diabetes Association Care Guidence (Older): Includes admission HbA1c testing for glycemic risk stratification -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Does not mention HbA1c testing for hospitalized patients\nAmerican Diabetes Association Care Guidence (Older): Recommends basal-bolus insulin therapy over sliding scale insulin -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Does not specify insulin regimen preferences\nAmerican Diabetes Association Care Guidence (Older): Includes expanded criteria for holding diabetes medications during acute illness -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Does not address medication hold protocols",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "individualized glycemic management",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA guidance (older) emphasizes shared decision-making, deintensification of high-hypoglycemia-risk therapies, and consideration of patient preferences and metabolic memory, while the ICMR (new version) focuses more on age, disease stage, and complication risk for target setting. The ICMR also introduces specific pregnancy targets and LDL cholesterol thresholds, which are not addressed in the ADA excerpt.",
+      "detail": "American Diabetes Association Care Guidence (Older): Emphasizes shared decision-making, deintensification of high-hypoglycemia-risk medications, and patient-specific factors like life expectancy and hypoglycemia risk -> Icmr Type 2 Diabetes (New Version): Focuses on age, disease stage, and complication risk (e.g., CVD) for individualized targets, with specific pregnancy glycemic targets and LDL cholesterol thresholds.\nAmerican Diabetes Association Care Guidence (Older): Recommends avoiding therapeutic inertia and modifying goals based on hypoglycemia risk -> Icmr Type 2 Diabetes (New Version): Recommends tight glycemic control in early stages and revising targets with complications or in elderly populations.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin administration technique",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR guidelines refine site rotation strategies by specifying daily quadrant movement (0.5-1.0 inch) and emphasize strategic site selection based on insulin type and activity level. The ADA guidance introduces broader educational frameworks (e.g., FITTER Forward) and postprandial administration for older adults, while the ICMR guidelines provide more granular technical details on needle use and pain mitigation.",
+      "detail": "American Diabetes Association Care Guidence (Older): Use 4-mm pen needles to reduce risk of intramuscular (IM) insulin delivery across all ages and body types -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use smaller, narrow-gauge needles and allow insulin to reach room temperature to reduce injection pain\nAmerican Diabetes Association Care Guidence (Older): Educate patients/caregivers on proper injection technique, device use, and site rotation -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Implementation of distraction techniques and needle rotation aids to minimize pain\nAmerican Diabetes Association Care Guidence (Older): Administer rapid-acting insulin immediately post-meal (not too early) to match carbohydrate intake and minimize hypoglycemia risk -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Select abdomen for faster-acting insulin and avoid thigh sites prior to vigorous exercise to prevent hypoglycemia\nAmerican Diabetes Association Care Guidence (Older): Routine examination of injection/infusion sites for lipohypertrophy as part of comprehensive diabetes evaluations -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Rotate injection sites daily within a specific quadrant (e.g., moving 0.5-1.0 inch) to prevent lipodystrophy",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "perioperative glycemic management",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 update introduces more precise preoperative glycemic assessment tools (14-day CGM glucose management indicator or time in range) and expands insulin dosing adjustments (e.g., basal insulin reduction) to minimize hypoglycemia. The ICMR guidelines emphasize individualized targets (108–180 mg/dL) and stricter perioperative monitoring (every 30–60 minutes under sedation), with added requirements for ketone checks and structured discharge planning. While both guidelines align on target ranges (100–180 mg/dL vs. 108–180 mg/dL), the ICMR version provides more granular details on insulin transition (IV to subcutaneous) and pediatric considerations.",
+      "detail": "American Diabetes Association Care Guidence (Older): Preoperative A1C goal <8% (<64 mmol/mol) within 3 months of elective surgery or 14-day glucose management indicator <8% or time in range >50% -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): HbA1c preferably <8–8.5% before elective surgery with individualized targets based on patient-specific factors\nAmerican Diabetes Association Care Guidence (Older): Monitor and maintain blood glucose between 100–180 mg/dL (5.6–10.0 mmol/L) before, during, and after surgery -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Target perioperative blood glucose between 108–180 mg/dL (acceptable 72–216 mg/dL) with stricter monitoring every 30–60 minutes under sedation\nAmerican Diabetes Association Care Guidence (Older): Reduce basal insulin dose by 25% the evening before surgery (or 50% for NPH, 75–80% for long-acting analogs) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Switch T1DM patients to basal-bolus regimen or initiate IV insulin infusion at least two hours before surgery\nAmerican Diabetes Association Care Guidence (Older): Use insulin as the only recommended glucose-lowering medication in the perioperative period -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Transition from IV to subcutaneous insulin only after stable BG levels for 4–6 hours and improvement in oral intake",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin therapy indications",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ICMR 2026 update expands insulin initiation criteria to include more specific acute hyperglycemia thresholds (FPG >270 mg/dl, HbA1c >9%) and symptomatic markers (weight loss, polyuria), while the ADA 2025 version emphasizes progressive disease management with basal insulin as preferred initial therapy. Both guidelines now explicitly deprecate fixed A1C targets in favor of individualized care, but ICMR provides more granular acute care scenarios.",
+      "detail": "American Diabetes Association Care Guidence (Older): Insulin therapy is indicated for progressive type 2 diabetes when oral agents are insufficient to achieve glycemic goals, with basal insulin as preferred initial treatment. -> Icmr Type 2 Diabetes (New Version): Insulin is required for patients with fasting plasma glucose > 270 mg/dl, HbA1c > 9%, severe infections, or presence of ketosis, regardless of prior oral agent use.\nAmerican Diabetes Association Care Guidence (Older): GLP-1 receptor agonists or dual GIP/GLP-1 receptor agonists should be considered before prandial insulin to reduce hypoglycemia and weight gain risks. -> Icmr Type 2 Diabetes (New Version): Rapid-acting insulins like Lispro, Aspart, and Glulisine are preferred over older short-acting options, with no explicit preference for GLP-1 agonists before insulin intensification.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin mixing protocol",
+      "change_type": "Therapeutic Option Addition",
+      "summary": "Version A provides a general protocol for mixing short and intermediate insulin with emphasis on immediate injection and vial preparation. Version B expands this by introducing pre-mixed formulations (e.g., Novomix 30/70, Ryzodeg 30/70) as ready-to-use options, explicitly prohibits shaking NPH vials to prevent aggregation, and includes additional safety checks like vial temperature assessment and particle inspection. The new version also formalizes the split-mix regimen procedure with step-by-step instructions and air bubble removal.",
+      "detail": "Icmr Type 2 Diabetes (Older): Inject mixed insulin immediately after preparation -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Allow insulin vials to reach room temperature before use and check for clumps or particles before administration\nIcmr Type 2 Diabetes (Older): Draw clear rapid or short-acting insulin first when mixing in the same syringe with NPH -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Draw regular insulin into the syringe first, followed by NPH insulin to prevent contamination\nIcmr Type 2 Diabetes (Older): Roll cloudy insulin vials gently to re-suspend insulin (avoid shaking) -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Explicit prohibition of shaking NPH vial to prevent aggregation of protamine particles\nIcmr Type 2 Diabetes (Older): Use of premixed insulins (NPH and analogue premixes) with standardized mixing protocols -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Availability of pre-mixed formulations including rapid-acting analogs with protaminated analogs (e.g., Novomix 30/70) and insulin aspart and insulin degludec combinations (e.g., Ryzodeg 30/70) as ready-to-use options",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin delivery device recommendations",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 guidance expands device recommendations to prioritize AID systems and connected pens for MDI users, while the ICMR 2023 update provides detailed injection technique protocols and pump features like hypoglycemia prevention algorithms. The ADA version includes patient-centered considerations (dexterity, vision), whereas ICMR focuses on technical specifications (color-coding, angle protocols). Both maintain pen devices as primary options but diverge in scope and specificity.",
+      "detail": "American Diabetes Association Care Guidence (Older): Insulin pens are preferred for MDI users, with connected pens recommended for dose tracking and data sharing -> Icmr Type 2 Diabetes (New Version): Pen-like devices and cartridges are noted as easy-to-use subcutaneous delivery methods without emphasis on connectivity\nAmerican Diabetes Association Care Guidence (Older): AID systems are the preferred insulin delivery method over MDI, CSII, and sensor-augmented pumps in type 1 diabetes and select type 2 diabetes -> Icmr Type 2 Diabetes (New Version): Insulin pumps with hypoglycemia prevention algorithms are restricted to diabetes specialists and indicated for brittle diabetes or recurrent hypoglycemia",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 7,
+      "confidence": "high"
+    },
+    {
+      "section": "insulin syringe selection and usage guidelines",
+      "change_type": "No Meaningful Change",
+      "summary": "Version A provides detailed guidance on syringe-vial concentration matching (U-40/U-100), needle reuse protocols, and fixed needle syringes. Version B retains the core principle of concentration matching but adds cap color coding (red for U-40, orange for U-100), stricter single-use policies, and introduces advanced injection aids like indwelling catheters and jet injectors. While Version B expands the scope to include newer technologies, the foundational syringe selection and usage principles remain consistent.",
+      "detail": "Icmr Type 2 Diabetes (Older): Use syringes marked in insulin units (U-40 or U-100) for subcutaneous insulin administration -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Use U-40 syringe (red cap) for U-40 insulin vials and U-100 syringe (orange cap) for U-100 insulin vials\nIcmr Type 2 Diabetes (Older): Change needles after 3-4 uses to reduce infection risk -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Avoid reuse of disposable plastic insulin syringes; if necessary, change syringes daily",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "non-nutritive sweetener use in diabetes",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR guidelines provide a more explicit list of specific non-nutritive sweeteners (e.g., saccharin, neotame, aspartame) and emphasize patient education on acceptable daily intake (ADI) compliance, which was only implied in the older ADA guidance. Both versions agree that NNS do not significantly improve glycemic control or weight outcomes but serve as safe substitutes for caloric sweeteners when used within ADI limits. The ICMR version also explicitly ties NNS use to cultural dietary practices, adding a nuanced recommendation not present in the ADA text.",
+      "detail": "American Diabetes Association Care Guidence (Older): NNS may be an acceptable substitute for nutritive sweeteners in people with diabetes accustomed to sugar-sweetened foods or beverages, when consumed in moderation (no more than acceptable daily intake). -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Non-nutritive sweeteners (e.g., saccharin, neotame, aspartame, acesulfame K, stevia, alitame, sucralose) are used to improve sweetness and palatability in low-sugar or 'diet' products and may replace table sugar in home cooking, with intake not exceeding acceptable daily intakes (ADI) considered safe.\nAmerican Diabetes Association Care Guidence (Older): Healthcare professionals should promote water as the healthiest beverage option but may recommend no-calorie or low-calorie sweetened products for people with overweight or obesity and diabetes to avoid deprivation. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Consideration of individual patient preferences and cultural dietary practices when recommending NNS as a sugar substitute.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "compounded diabetes medication guidance",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ADA guidance (older) primarily emphasizes avoiding non-FDA-approved compounded medications and provides strategies for shortages, while the ICMR (new version) introduces detailed guidance on indigenous herbal medications, including their potential efficacy, risks of contamination, and the need for herb-drug interaction assessment. This reflects a shift toward addressing locally relevant therapeutic practices in diabetes care.",
+      "detail": "American Diabetes Association Care Guidence (Older): Use of non-FDA-approved compounded diabetes medications is not recommended due to safety and efficacy risks, with guidance to switch to FDA-approved alternatives during shortages. -> Icmr Type 2 Diabetes (New Version): Guidance focuses on cautious integration of indigenous herbal medications (e.g., Pterocarpus marsupium, Gymnema sylvestre) with conventional therapy, emphasizing herb-drug interaction monitoring and contamination risks.\nAmerican Diabetes Association Care Guidence (Older): No specific mention of indigenous herbal medications or their integration with conventional therapy. -> Icmr Type 2 Diabetes (New Version): Explicitly lists herbal products with blood glucose-lowering effects and advises physicians to assess their safety, efficacy, and potential interactions.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "rapid-acting insulin secretagogues",
+      "change_type": "Therapeutic Option Addition",
+      "summary": "Version A (Older) details non-sulphonylurea insulin secretagogues (repaglinide, nateglinide) with meal-time administration and supervision requirements. Version B (New) shifts focus to rapid-acting insulin analogs (aspart, lispro, glulisine) and ultra-rapid analogs (Fiasp, Lyumjev), emphasizing pre-meal dosing flexibility and reduced hypoglycemia risk. The new version introduces advanced insulin analogs not previously covered, expanding therapeutic options beyond oral secretagogues.",
+      "detail": "Icmr Type 2 Diabetes (Older): Rapid-acting insulin secretagogues (repaglinide, nateglinide) administered with each meal due to rapid absorption and short half-life -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Rapid-acting insulin analogs (aspart, lispro, glulisine) and ultra-rapid analogs (Fiasp, Lyumjev) administered 5-10 minutes before meals with flexible timing for ultra-rapid variants\nIcmr Type 2 Diabetes (Older): Useful for managing postprandial hyperglycemia with fewer hypoglycemic episodes compared to sulfonylureas -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Useful for reducing immediate post-prandial hyperglycemia with shorter duration decreasing delayed hypoglycemia risk\nIcmr Type 2 Diabetes (Older): Must be used with caution in mild renal insufficiency, elderly, and hepatic impairment -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Not suitable for patients unable to monitor hypoglycemia; ultra-rapid analogs require careful dose titration\nIcmr Type 2 Diabetes (Older): Combining rapid-acting insulin secretagogues with sulfonylureas is not indicated -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Regular insulin administration 30 minutes before meals and NPH insulin for basal-bolus regimens are deprecated",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "2019 WHO diabetes classification",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ICMR update significantly refines the 2019 WHO classification by introducing 'hybrid forms of diabetes' (e.g., slowly evolving immune-mediated diabetes of adults, ketosis-prone type 2 diabetes) and a temporary 'unclassified diabetes' label for ambiguous cases. It also deprecates rigid subtype classifications (e.g., immune-mediated vs. idiopathic T1DM) in favor of clinical insulin need assessment. The ICMR version further emphasizes genetic testing for neonatal diabetes and sulfonylurea therapy for responsive mutations, expanding the WHO's framework with actionable diagnostic and therapeutic refinements.",
+      "detail": "American Diabetes Association Care Guidence (Older): Classifies diabetes into distinct types including Type 1 Diabetes, Prediabetes and Type 2 Diabetes, Diabetes Induced by Systemic Anti-Cancer Therapy, Pancreatic Diabetes, Posttransplantation Diabetes Mellitus, Monogenic Diabetes Syndromes, and Gestational Diabetes Mellitus. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Removed subtypes for T1DM and T2DM, introduced 'hybrid forms of diabetes' (e.g., slowly evolving immune-mediated diabetes of adults, ketosis-prone type 2 diabetes), and added 'unclassified diabetes' as a temporary label for unclear diagnoses.\nAmerican Diabetes Association Care Guidence (Older): Emphasizes the use of C-peptide testing and autoantibody assays to differentiate between Type 1 Diabetes and other forms of diabetes. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Deprecates classification based solely on autoimmunity for T1DM and emphasizes clinical insulin need assessment rather than isolated features for differentiation.\nAmerican Diabetes Association Care Guidence (Older): Includes 'Diabetes Induced by Systemic Anti-Cancer Therapy' as a distinct classification. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): No direct equivalent; focuses on hybrid forms and unclassified diabetes instead.\nAmerican Diabetes Association Care Guidence (Older): Updated criteria for Gestational Diabetes Mellitus. -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Includes 'Diabetes mellitus in Pregnancy' as a distinct entity, with Gestational Diabetes Mellitus under 'Hyperglycemia first detected during pregnancy'.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    }
+  ]
+}

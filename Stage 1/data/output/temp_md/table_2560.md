@@ -1,0 +1,5 @@
+|  Addison's disease | loss of function of the adrenal cortex = cortisol↓ and mineralocorticoids (aldosterone)↓, ACTH production significantly increased in prim. Addison's disease, hormone deficiency and increased ACTH cause hypotension, acidosis, hyponatraemia, hyperkalaemia  |
+| --- | --- |
+|  digoxin toxicity | digitalis compounds inhibit effect of the renal tubular Na/K-ATPase = less K is transported into the ICS  |
+|  non-steroidal anti-inflammatory drugs (NSAIDs) | NSAIDs interfere in prostaglandin metabolism by inhibiting cyclooxygenase. They also act as vasodilators = renin and aldosterone synthesis↑ because of Na deficiency due to drop in blood pressure = hyperkalaemia because of redistribution of fluid between the ECS and the ICS caused by Na/K-ATPase  |
+|  K-sparing diuretics | for example: Spironolactone, Amiloride Spironolactone: aldosterone antagonist = K secretion is inhibited Amiloride: inhibition of Na reabsorption of the tubular cells = also inhibition of K secretion  |

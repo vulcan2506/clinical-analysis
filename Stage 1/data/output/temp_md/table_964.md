@@ -1,0 +1,13 @@
+|  Domain | Sample screening questions | Suggested screening measure | No. of items | Score range | Cut points | Time to complete | Measure translated languages  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  Geriatric syndromes |  |  |  |  |  |  |   |
+|  Cognitive impairment or dementia | Have you noticed any changes in your memory or ability to think clearly? | Mini-Cog (31) | 5 | 0–5 | <3 validated for dementia screening | 3 min | Multiple  |
+|  Delirium | What day of the week is it? | 4AT (182) | 4 | 0–12 | ≥4 possible delirium | 2 min | Multiple  |
+|  Depression | During the past month, have you often been bothered by feeling down, depressed, or hopeless? | Geriatric Depression Scale 5 (GDS-5) (183,184) | 5 | 0–5 | ≥2 possible depression | 2 min | Multiple  |
+|  Falls and risk of falling | Have you fallen in the past year or are you afraid of falling due to a balance or walking problem? | STEADI tool (185) | 3 | 0–3 | A single “yes” response to any question indicates an increased risk of falling | 1–2 min | Multiple  |
+|  Frailty | Have you felt unusually tired recently or had difficulty walking up steps without resting? | Clinical Frailty Scale (CFS) (186) | 1 | 1–9 | ≥5 clinically meaningful frailty | 1–2 min | Multiple  |
+|  Malnutrition | Have you unintentionally lost weight in the last 6 months? | Mini Nutritional Assessment Short Form (MNA-SF) (187) | 6 | 0–14 | 12–14, normal nutritional status; 8–11, at risk for malnutrition; 0–7, malnourished | 5 min | Multiple  |
+|  Pain | Are you currently experiencing any pain? | Numeric Pain Rating Scale | 1 | 0–10 | 1–3, mild; 4–6, moderate; 7–10, severe | 1–2 min | NA  |
+|  Polypharmacy | Are you taking more medications than you think you should, or are you experiencing side effects? | Beers Criteria or review all prescription and nonprescription medications (188) | List review | NA | The presence of any medication on the list warrants review, especially if the risk outweighs the benefit | Varies | Multiple  |
+|  Sarcopenia | Have you had difficulty walking across a room or climbing a flight of stairs in the past year? | SARC-F Questionnaire (189) | 5 | 0–10 | ≥4 sarcopenia risk | 2–3 min | Multiple  |
+|  Sensory impairment: hearing | Do you have difficulty hearing, even when using a hearing aid? | Whisper test (190) | 6 | NA | Possible hearing loss: unable to repeat at least 3 of the random letters and numbers | 2–3 min | NA  |

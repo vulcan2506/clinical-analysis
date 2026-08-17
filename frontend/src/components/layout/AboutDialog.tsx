@@ -13,7 +13,7 @@ export function AboutDialog() {
         <DialogHeader>
           <DialogTitle>Adaptive Enterprise Knowledge Platform</DialogTitle>
           <DialogDescription>
-            A knowledge assistant over HealthRules Payer release documentation — built on
+            A clinical knowledge assistant over medical guidelines and patient reports — built on
             taxonomy-routed retrieval, cross-encoder reranking, and confidence-gated escalation.
           </DialogDescription>
         </DialogHeader>

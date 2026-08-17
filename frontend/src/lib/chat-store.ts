@@ -29,6 +29,16 @@ interface ChatStoreState {
 
   bestOf: BestOf;
   setBestOf: (bestOf: BestOf) => void;
+
+  corpusId: string;
+  setCorpusId: (corpusId: string) => void;
+
+  activePatientCorpusId: string | null;
+  setActivePatientCorpusId: (id: string | null) => void;
+
+  // Which patient is selected in the Knowledge panel (independent of corpus routing).
+  selectedPatientId: string | null;
+  setSelectedPatientId: (id: string | null) => void;
 }
 
 let counter = 0;
@@ -37,11 +47,6 @@ function nextId() {
   return `msg_${Date.now()}_${counter}`;
 }
 
-// Ties every /api/chat call in a conversation to the same backend
-// ConversationSession (see api_server.py) so follow-ups like "explain that in
-// more detail" get resolved against real history instead of retrieved on
-// their own literal (near-contentless) text. A new id per New Chat/loaded
-// thread starts a fresh session — the backend has no memory of it anyway.
 function nextSessionId() {
   return `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
 }
@@ -90,15 +95,30 @@ export const useChatStore = create<ChatStoreState>((set) => ({
 
   bestOf: 3,
   setBestOf: (bestOf) => set({ bestOf }),
+
+  corpusId: "default",
+  setCorpusId: (corpusId) => set({ corpusId }),
+
+  activePatientCorpusId: null,
+  setActivePatientCorpusId: (id) => set({ activePatientCorpusId: id }),
+
+  selectedPatientId: null,
+  setSelectedPatientId: (id) => set({ selectedPatientId: id }),
 }));
 
-// Mirrors cli.py exactly: forcing a real intent only has effect on the raw
-// path (see api_server.py's /api/chat) — so choosing anything but "auto"
-// here switches the request into diagnostic mode automatically, same as
-// cli.py's --intent implicitly needing --raw to do anything.
-export function buildChatParams(mode: ChatMode, intent: ChatIntent, bestOf: BestOf): Omit<ChatRequestParams, "query"> {
-  if (intent !== "auto") {
-    return { best_of: bestOf, intent, raw: true };
-  }
-  return { best_of: bestOf, mode };
+export function buildChatParams(
+  mode: ChatMode,
+  intent: ChatIntent,
+  bestOf: BestOf,
+  corpusId: string,
+  activePatientCorpusId: string | null,
+): Omit<ChatRequestParams, "query"> {
+  const base = intent !== "auto"
+    ? { best_of: bestOf, intent, raw: true }
+    : { best_of: bestOf, mode };
+  return {
+    ...base,
+    corpus_id: corpusId,
+    active_patient_corpus_id: activePatientCorpusId ?? undefined,
+  };
 }

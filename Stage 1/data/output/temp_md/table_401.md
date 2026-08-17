@@ -1,0 +1,12 @@
+|  Reviewer | Representation | Consultant | Speakers Bureau | Ownership/ Partnership/ Principal | Personal Research | Institutional, Organizational, or Other Financial Benefit | Expert Witness  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  Anand Rohatgi, Co-chair | AHA Official Reviewer | • Pozman University of Medical Sciences* • Raydel • Sansar | None |  | None | • Circulation* • CSL Behring* • Eli Lilly and Company† • NIH* | None  |
+|  Samuel M. Kim, Co-chair | ACC Official Reviewer | None | None | None | None | • Amgen‡ • Novartis†‡ • Novo Nordisk‡ • Silence Pharmaceuticals‡ | None  |
+|  Karen P. Alexander | ACC Content Reviewer | None | None | None | None | • National Institute on Aging * | None  |
+|  Cheryl Anderson | AHA/ACC Content Reviewer | • AstraZeneca • Dal-cor (Spouse) • Intellia (Spouse) • Merck | None | None | NHLBI (DSMB) | • ADA* • AHA* • AHA (Spouse)* • McCormick Foundation* • NHLBI* • WW International* | None  |
+|  Catherine P. Benziger | ACC Content Reviewer | • Novartis* | None | None | None | • Agency for Healthcare Research and Quality* • Amgen† • NIH† • Novartis* | None  |
+|  Dave L. Dixon | AHA Content Reviewer | None | None | None | Pharmacy Times CE* | • American Pharmacists Association* • Boehringer Ingelheim* | None  |
+|  Daniel Duprez | JCPM Content Reviewer | None | None | None | None | • Amgen* • Arrowhead Pharmaceuticals* • NHLBI* • Novartis* | None  |
+|  Keith C. Ferdinand | ABC Content Reviewer | None | None | None | None | • Amgen • Boehringer Ingelheim • Janssen Biotech, Inc. • Janssen Global Services, LLC • Medtronic USA, Inc. • Novartis | None  |
+|  Anne Carol Goldberg | ACC Content Reviewer | • Piper Sandler | None | None | None | • Amgen • Arrowhead Pharmaceuticals • Eli Lilly and Company† • Esperion Therapeutics, Inc.† • Ionis Pharmaceuticals† • Marea Therapeutics • NLA* • New Amsterdam Pharma • Novartis† • Pediatric Endocrine Society | None  |
+|  Parag Joshi | AHA/ACC Content Reviewer | • Kaneka Pharma America LLC • New Amsterdam • Novartis Pharmaceuticals Corporation | None | None | • Kaneka Pharma America LLC | • AHA • Eli Lilly and Company* • Kaneka Pharma America LLC* • Novartis | CMV Law*- Defendant, Coronary Artery Disease Testing, 2024  |

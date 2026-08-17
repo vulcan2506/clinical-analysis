@@ -16,10 +16,15 @@ has profile_A, profile_B, and a scored/classified delta.
 
 FILTER
 ──────
-Only constructive change types are carried forward: Minor Enhancement,
-New Requirement, Workflow Automation, Bug Fix. Direct Contradiction,
-Deprecation, and No Change Detected are skipped — those already surface
-correctly via the existing delta report and are not "value added" stories.
+"Constructive" is domain-agnostic by EXCLUSION, not a hardcoded whitelist:
+a job is skipped only if its change_type carries a non-constructive SIGNAL
+(reversal/contradiction, no-change/unrelated, deprecation/removal, or a
+purely-administrative edit) — see _NON_CONSTRUCTIVE_SIGNALS. Everything else
+is treated as a candidate value-add story. An earlier version of this filter
+was a fixed whitelist of software-release category names (Minor Enhancement,
+New Requirement, Workflow Automation, Bug Fix) — that produced ZERO matches
+on a medical-coding corpus, whose delta_analyzer.py classifies changes into
+entirely different, domain-native category names.
 
 SCOPE NOTE
 ──────────
@@ -52,12 +57,20 @@ DELTA_JOBS_CACHE_PATH = config.OUTPUT_DIR / "delta_jobs_cache.json"
 EVOLUTION_CACHE_PATH  = config.OUTPUT_DIR / "evolution_cards_cache.json"
 REPORT_MD_PATH        = config.OUTPUT_DIR / "version_evolution_report.md"
 
-CONSTRUCTIVE_CHANGE_TYPES = {
-    "Minor Enhancement",
-    "New Requirement",
-    "Workflow Automation",
-    "Bug Fix",
-}
+# Signals about the NATURE of a change (not domain vocabulary) that mark a
+# job as NOT a value-add story — everything else is a candidate. Deliberately
+# an exclude-list, not an include-whitelist: an include-whitelist has to
+# predict every domain's own category names in advance (impossible), while
+# these signal words describe change nature and hold up across domains.
+_NON_CONSTRUCTIVE_SIGNALS = (
+    "no change", "unrelated", "mismatch", "weak overlap", "reversal",
+    "contradiction", "deprecat", "removal", "no meaningful", "administrative",
+)
+
+
+def _is_constructive(change_type: str) -> bool:
+    ct = (change_type or "").lower()
+    return not any(sig in ct for sig in _NON_CONSTRUCTIVE_SIGNALS)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -71,6 +84,10 @@ class EvolutionCard(BaseModel):
     narrative:       str       = Field(description="2-3 sentences: older version introduced X; newer version builds on it by Y, enabling Z.")
     change_type:     str       = Field(default="")
     builds_on_prior: bool      = Field(default=True)
+    # Clinical fusion fields (only populated in patient-vs-guideline fusion mode)
+    clinical_finding:     Optional[str] = Field(default=None, description="What the patient's lab result shows — e.g. 'B12=200 pg/mL (below ref 211-911)'")
+    guideline_context:    Optional[str] = Field(default=None, description="What the clinical guideline says about this finding.")
+    clinical_significance: Optional[str] = Field(default=None, description="Why this matters — concordant with guideline, deviates, etc.")
 
 
 def unload():
@@ -82,8 +99,9 @@ def unload():
 # ══════════════════════════════════════════════════════════════════════════════
 
 _EVOLUTION_PROMPT = """\
-You are {analyst_role} writing a "value-add" note for the feature \
-"{topic}". You already have structured profiles for both versions and a \
+You are {analyst_role} writing a "value-add" note about a change in \
+{doc_purpose} for the feature "{topic}". You already have structured \
+profiles for both versions and a \
 classified delta below — do NOT re-read raw text, just re-synthesize \
 these facts into a constructive evolution narrative.
 
@@ -92,17 +110,19 @@ CRITICAL RULES:
 - Ground every statement in the profiles/delta below — do not invent facts.
 - Max 5 items in value_added. Close all braces.
 
+{clinical_rules}
+
 Output this exact structure with real values:
 
-{{
+{{{{
   "feature_name": "<short descriptive name>",
   "foundation": "<one sentence: what {vA} established>",
   "value_added": [
     "<concrete capability {vB} adds on top of that foundation>",
     "<another — max 5 total>"
   ],
-  "narrative": "<2-3 sentences: {vA} introduced X; {vB} builds on it by Y, enabling Z>"
-}}
+  "narrative": "<2-3 sentences: {vA} introduced X; {vB} builds on it by Y, enabling Z>"{clinical_fields}
+}}}
 
 ### EXAMPLE ###
 
@@ -121,7 +141,7 @@ Delta analysis: {vA} improved split handling so full evaluation completes before
 override handling gaps. The core {vA} behavior is preserved and extended.
 
 OUTPUT:
-{{
+{{{{
   "feature_name": "Service Definition Split Optimization",
   "foundation": "{vA} established correct split handling by completing full evaluation before applying splits.",
   "value_added": [
@@ -130,9 +150,10 @@ OUTPUT:
     "Optional performance metrics collection was added for visibility into evaluation cost"
   ],
   "narrative": "{vA} introduced correct, if unoptimized, split-handling logic. {vB} builds directly on that foundation by adding a configurable optimization path and fixing override edge cases, giving teams a faster evaluator without losing any of the correctness {vA} established."
-}}
+}}}
 
 ### ACTUAL TASK ###
+{clinical_example}
 TOPIC: {topic}
 
 {vA} profile:
@@ -149,6 +170,19 @@ OUTPUT (JSON only — close all braces, max 5 items in value_added):"""
 
 def _profile_to_text(p: dict) -> str:
     lines = [f"Feature: {p.get('feature_name', '')}"]
+    # Clinical fields — prominent placement when present
+    pv = p.get("patient_value")
+    rr = p.get("reference_range")
+    interp = p.get("interpretation")
+    if pv or interp:
+        clinical_bits = []
+        if pv:
+            clinical_bits.append(f"Patient value: {pv}")
+        if rr:
+            clinical_bits.append(f"Reference range: {rr}")
+        if interp:
+            clinical_bits.append(f"Interpretation: {interp}")
+        lines.append("Clinical: " + " | ".join(clinical_bits))
     if p.get("key_behaviors"):
         lines.append("Behaviors: " + " | ".join(p["key_behaviors"]))
     if p.get("requirements"):
@@ -158,17 +192,158 @@ def _profile_to_text(p: dict) -> str:
     return "\n  ".join(lines)
 
 
-def _build_prompt(job: Dict, analyst_role: str) -> str:
+def _build_dynamic_example_block(profile: dict) -> Optional[str]:
+    shot = profile.get("evolution_few_shot") or {}
+    topic       = shot.get("topic")
+    foundation  = shot.get("foundation")
+    narrative   = shot.get("narrative")
+    value_added = shot.get("value_added") or []
+    if not (topic and foundation and narrative and value_added):
+        return None
+
+    value_added_json = ",\n    ".join(json.dumps(v) for v in value_added[:5])
+    # Quadruple braces: this block gets spliced into _EVOLUTION_PROMPT, which
+    # itself undergoes a LATER .format() call in _build_prompt — {{{{ -> {{
+    # here, then {{ -> { at that call, so the JSON braces survive as literal.
+    return f"""### EXAMPLE ###
+
+TOPIC: {topic}
+
+OUTPUT:
+{{{{
+  "feature_name": {json.dumps(topic)},
+  "foundation": {json.dumps(foundation)},
+  "value_added": [
+    {value_added_json}
+  ],
+  "narrative": {json.dumps(narrative)}
+}}}}
+"""
+
+
+def _get_evolution_prompt_template(profile: Optional[dict]) -> str:
+    """Saved-on-disk > dynamic (from profile.evolution_few_shot) > static fallback."""
+    if not profile:
+        return _EVOLUTION_PROMPT
+    type_key = profile.get("type_key", "")
+
+    import context_profiler
+    if type_key:
+        saved = context_profiler.load_prompt(type_key, "evolution")
+        if saved:
+            return saved
+
+    block = _build_dynamic_example_block(profile)
+    if not block:
+        return _EVOLUTION_PROMPT
+
+    template = _EVOLUTION_PROMPT
+    start = template.find("### EXAMPLE ###")
+    end = template.find("### ACTUAL TASK ###")
+    if start != -1 and end != -1:
+        template = template[:start] + block + "\n" + template[end:]
+
+    if type_key:
+        context_profiler.save_prompt(type_key, "evolution", template)
+    return template
+
+
+def _build_prompt(job: Dict, analyst_role: str, doc_purpose: str) -> str:
     d = job["delta"]
-    return _EVOLUTION_PROMPT.format(
+    template = _get_evolution_prompt_template(job.get("_profile"))
+
+    is_fusion = job.get("_fusion_mode")
+
+    if is_fusion:
+        # User-selected framing for patient-vs-guideline fusion: the
+        # guideline is the established baseline ("foundation"), the
+        # patient's specific finding is what builds on top of it ("value
+        # added") — inverted relative to fusion delta jobs' own
+        # vA=Patient/vB=Guideline convention (kept as-is in the job dict so
+        # delta and evolution can share the exact same job list; swapped
+        # only here, at render time, for evolution's foundation/value-added
+        # framing specifically).
+        vA, vB = job["vB"], job["vA"]
+        profile_A, profile_B = job["profile_B"], job["profile_A"]
+    else:
+        vA, vB = job["vA"], job["vB"]
+        profile_A, profile_B = job["profile_A"], job["profile_B"]
+
+    # Clinical fusion extras — empty strings when not in fusion mode so
+    # the template still formats cleanly.
+    clinical_rules = ""
+    clinical_fields = ""
+    clinical_example = ""
+    if is_fusion:
+        clinical_rules = (
+            "- When in clinical fusion mode, you MUST also output these three fields:\n"
+            '  "clinical_finding": "<what the patient\'s lab result shows — include the actual value, '
+            'units, and reference range if available from the profile, e.g. \'Vitamin B12 = 200 pg/mL '
+            '(below reference 211–911 pg/mL)\' or \'Vitamin D = 150 nmol/L (within reference 75–250 nmol/L)\' '
+            '— use null only if the profile has no patient_value/interpretation>,"\n'
+            '  "guideline_context": "<what the clinical guideline recommends or states about this '
+            'parameter — one sentence>,"\n'
+            '  "clinical_significance": "<1-2 sentences: is the patient finding concordant with, '
+            'deviating from, or silent on the guideline? What clinical action (if any) does this imply?>"\n'
+        )
+        clinical_fields = ',\n  "clinical_finding": "...",\n  "guideline_context": "...",\n  "clinical_significance": "..."'
+        clinical_example = (
+            "### CLINICAL FUSION EXAMPLE ###\n"
+            "\n"
+            "TOPIC: Vitamin B12\n"
+            "{vA} profile (Guideline — established standard):\n"
+            "  Feature: Serum Vitamin B12 Assessment\n"
+            "  Behaviors: Serum B12 is a first-line test for B12 status; values below 211 pg/mL "
+            "indicate deficiency; methylmalonic acid or homocysteine used to confirm borderline results\n"
+            "\n"
+            "{vB} profile (Patient — specific finding):\n"
+            "  Feature: Patient Vitamin B12 Result\n"
+            "  Clinical: Patient value: 200 pg/mL | Reference range: 211–911 pg/mL | "
+            "Interpretation: Below reference range — consistent with B12 deficiency\n"
+            "  Behaviors: Serum B12 level measured as part of routine workup\n"
+            "\n"
+            "Delta analysis: The guideline establishes B12 < 211 pg/mL as the deficiency threshold. "
+            "The patient's result (200 pg/mL) falls below this threshold, confirming deficiency.\n"
+            "\n"
+            "OUTPUT:\n"
+            "{{{{\n"
+            '  "feature_name": "Vitamin B12 — Guideline vs Patient Finding",\n'
+            '  "foundation": "The clinical guideline establishes serum B12 < 211 pg/mL as the '
+            'diagnostic threshold for deficiency, with MMA/homocysteine as confirmatory tests.",\n'
+            '  "value_added": [\n'
+            '    "Patient\'s B12 result (200 pg/mL) falls below the guideline threshold, '
+            'confirming deficiency status",\n'
+            '    "Result is 11 pg/mL below the lower reference limit — subclinical but clinically '
+            'significant",\n'
+            '    "Guideline recommends confirming with MMA or homocysteine before initiating treatment"\n'
+            '  ],\n'
+            '  "narrative": "The guideline sets the diagnostic framework for B12 deficiency at <211 pg/mL. '
+            'The patient\'s result of 200 pg/mL falls below this threshold, confirming deficiency per '
+            'guideline criteria. Confirmatory testing with MMA or homocysteine is recommended before '
+            'initiating B12 replacement therapy.",\n'
+            '  "clinical_finding": "Vitamin B12 = 200 pg/mL (below reference 211–911 pg/mL) — '
+            'consistent with B12 deficiency",\n'
+            '  "guideline_context": "Serum B12 < 211 pg/mL indicates deficiency; confirm with MMA or '
+            'homocysteine before treatment.",\n'
+            '  "clinical_significance": "Patient finding is concordant with guideline — B12 level is '
+            'below the deficiency threshold. Confirmatory testing and B12 replacement therapy should '
+            'be considered."\n'
+            "}}}}\n"
+        ).format(vA=vA, vB=vB)
+
+    return template.format(
         analyst_role=analyst_role,
+        doc_purpose=doc_purpose,
         topic=job["topic"],
-        vA=job["vA"],
-        vB=job["vB"],
-        profile_A=_profile_to_text(job["profile_A"]),
-        profile_B=_profile_to_text(job["profile_B"]),
+        vA=vA,
+        vB=vB,
+        profile_A=_profile_to_text(profile_A),
+        profile_B=_profile_to_text(profile_B),
         delta_analysis=d.get("analysis", ""),
         key_differences=" | ".join(d.get("key_differences", [])),
+        clinical_rules=clinical_rules,
+        clinical_fields=clinical_fields,
+        clinical_example=clinical_example,
     )
 
 
@@ -246,6 +421,9 @@ def _parse_card(raw: str, job: Dict) -> Optional[EvolutionCard]:
             narrative=data.get("narrative", ""),
             change_type=job["delta"]["change_type"],
             builds_on_prior=True,
+            clinical_finding=data.get("clinical_finding"),
+            guideline_context=data.get("guideline_context"),
+            clinical_significance=data.get("clinical_significance"),
         )
     except Exception:
         log.warning(f"Could not construct EvolutionCard for '{job['topic']}' — skipping.")
@@ -257,20 +435,100 @@ def _parse_card(raw: str, job: Dict) -> Optional[EvolutionCard]:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _render_card(idx: int, job: Dict, card: EvolutionCard) -> List[str]:
+    is_fusion = job.get("_fusion_mode")
     md = []
     md.append(f"### {idx}. {card.feature_name}")
     md.append(f"**Location:** {job['parent']} → {job['sub']}  ")
     md.append(f"**Appears in:** {job['vA']} → {job['vB']}  ")
     md.append(f"**Change type:** {card.change_type}\n")
-    md.append(f"**Foundation ({job['vA']}):** {card.foundation}\n")
-    md.append(f"**Value added ({job['vB']}):**")
-    for v in card.value_added:
-        md.append(f"- {v}")
-    md.append("")
-    md.append(f"**Narrative:** {card.narrative}\n")
+
+    if is_fusion and card.clinical_finding:
+        # Clinical fusion rendering — patient value and guideline context
+        # are the most important information, placed prominently at top.
+        md.append(f"**Patient Finding:** {card.clinical_finding}\n")
+        md.append(f"**Guideline Standard ({job['vA']}):** {card.foundation}\n")
+        md.append(f"**Key Points:**")
+        for v in card.value_added:
+            md.append(f"- {v}")
+        md.append("")
+        md.append(f"**Clinical Significance:** {card.clinical_significance}\n")
+        md.append(f"**Guideline Context:** {card.guideline_context}\n")
+        md.append(f"**Narrative:** {card.narrative}\n")
+    else:
+        # Version-to-version rendering (original)
+        md.append(f"**Foundation ({job['vA']}):** {card.foundation}\n")
+        md.append(f"**Value added ({job['vB']}):**")
+        for v in card.value_added:
+            md.append(f"- {v}")
+        md.append("")
+        md.append(f"**Narrative:** {card.narrative}\n")
+
     md.append(f"*Traceability: Chunk `{job['id_A']}` ({job['vA']}) vs Chunk `{job['id_B']}` ({job['vB']})*")
     md.append("\n---\n")
     return md
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# JOB RUNNER — job-discovery-agnostic, mirrors delta_analyzer.run_delta_jobs()
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _as_dict(obj) -> dict:
+    """Normalizes a job's profile_A/profile_B/delta field to a plain dict
+    regardless of whether it arrived as JSON-loaded dict (Stage 1's own
+    run_evolution_analysis(), reading delta_jobs_cache.json off disk) or as
+    a live pydantic object straight out of delta_analyzer.run_delta_jobs()
+    (Stage 2/fusion_worker.py's in-memory use, which never round-trips
+    through JSON) — _build_prompt()/_profile_to_text()/_parse_card() all
+    assume dict-style .get()/[] access, same as before this function existed."""
+    if obj is None:
+        return {}
+    if isinstance(obj, dict):
+        return obj
+    if hasattr(obj, "model_dump"):
+        return obj.model_dump()
+    return dict(obj)
+
+
+def run_evolution_jobs(jobs: List[Dict]) -> None:
+    """
+    Builds prompts + calls the LLM for every job in `jobs`, mutating each in
+    place with job["card"] (EvolutionCard) on success — left unset on parse
+    failure. Job-discovery-agnostic (mirrors delta_analyzer.run_delta_jobs()'s
+    reuse contract): callers build `jobs` however they like, as long as each
+    job dict has the shape delta_analyzer.run_delta_jobs() already produces
+    (topic, vA, vB, profile_A, profile_B, delta, and optionally _profile/
+    _fusion_mode). Does not read or write delta_jobs_cache.json/
+    evolution_cards_cache.json itself — that I/O stays in
+    run_evolution_analysis() below (Stage 1's own caller) or in whatever the
+    new caller is (Stage 2's fusion_worker.py, which persists nothing).
+    """
+    for job in jobs:
+        job["profile_A"] = _as_dict(job.get("profile_A"))
+        job["profile_B"] = _as_dict(job.get("profile_B"))
+        job["delta"]     = _as_dict(job.get("delta"))
+
+    # Per-job profile (job["_profile"]) — not a single "first profile found"
+    # guess, so mixed-domain corpora each get their own analyst_role/
+    # doc_purpose/dynamic example, not whichever profile happened to load
+    # first.
+    DEFAULT_ANALYST_ROLE = "a technical analyst"
+    DEFAULT_DOC_PURPOSE  = "technical documentation"
+
+    prompts = []
+    for job in jobs:
+        profile = job.get("_profile") or {}
+        analyst_role = profile.get("analyst_role", DEFAULT_ANALYST_ROLE)
+        doc_purpose  = profile.get("document_purpose", DEFAULT_DOC_PURPOSE)
+        prompts.append(_build_prompt(job, analyst_role, doc_purpose))
+
+    raw_outputs = llm_client.generate_batch(
+        prompts, max_tokens=500, desc="Evolution synthesis", stop=["```\n"], enable_thinking=False
+    )
+
+    for job, raw in zip(jobs, raw_outputs):
+        card = _parse_card(raw, job)
+        if card:
+            job["card"] = card
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -288,7 +546,7 @@ def run_evolution_analysis():
 
     jobs = [
         j for j in all_jobs
-        if j.get("delta") and j["delta"].get("change_type") in CONSTRUCTIVE_CHANGE_TYPES
+        if j.get("delta") and _is_constructive(j["delta"].get("change_type", ""))
         and j.get("profile_A") and j.get("profile_B")
     ]
     log.info(f"{len(jobs)}/{len(all_jobs)} jobs are constructive change types — building evolution cards.")
@@ -296,28 +554,9 @@ def run_evolution_analysis():
         log.warning("No constructive-change jobs found — nothing to do.")
         return
 
-    analyst_role = "a healthcare IT analyst"
-    try:
-        import context_profiler
-        profiles = context_profiler.get_all_profiles()
-        if profiles:
-            first_profile = next(iter(profiles.values()))
-            analyst_role = first_profile.get("analyst_role", analyst_role)
-    except ImportError:
-        pass
-
-    prompts = [_build_prompt(job, analyst_role) for job in jobs]
-    raw_outputs = llm_client.generate_batch(
-        prompts, max_tokens=500, desc="Evolution synthesis", stop=["```\n"], enable_thinking=False
-    )
-
-    cards: List[EvolutionCard] = []
-    kept_jobs: List[Dict] = []
-    for job, raw in zip(jobs, raw_outputs):
-        card = _parse_card(raw, job)
-        if card:
-            cards.append(card)
-            kept_jobs.append(job)
+    run_evolution_jobs(jobs)
+    kept_jobs = [j for j in jobs if j.get("card")]
+    cards = [j["card"] for j in kept_jobs]
 
     log.info(f"Built {len(cards)} evolution cards.")
 
@@ -328,10 +567,9 @@ def run_evolution_analysis():
     md.append(f"# {global_vA} → {global_vB} — Feature Evolution Report\n")
     md.append(
         "Constructive value-add narratives, synthesized from delta_analyzer.py's "
-        "already-extracted profiles and classified deltas. Only constructive change "
-        "types are included (Minor Enhancement, New Requirement, Workflow Automation, "
-        "Bug Fix) — contradictions and deprecations are intentionally excluded here; "
-        "see version_delta_report.md for those.\n"
+        "already-extracted profiles and classified deltas. Reversals/contradictions, "
+        "no-change/unrelated pairs, deprecations, and purely administrative edits are "
+        "intentionally excluded here; see version_delta_report.md for those.\n"
     )
     md.append("## Summary\n")
     md.append("| # | Feature | Change Type |")

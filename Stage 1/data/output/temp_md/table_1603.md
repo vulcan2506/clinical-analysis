@@ -1,0 +1,9 @@
+|  Study | Impact of albuminuria/proteinuria  |
+| --- | --- |
+|  ESCAPE^{228} | A 50% reduction of proteinuria within the first 2 months of treatment initiation more than halved the risk of progression of kidney disease over 5 years.  |
+|  Gluck *et al.*^{225} | In a cohort of over 7 million children, 0.1% had CKD G2 or higher. The relative risk of CKD progression, defined as reaching CKD G5 or having a 50% decline in eGFR, was doubled for those who had ≥1+ proteinuria on dipstick without hypertension and was quadrupled for those with proteinuria and hypertension over a median follow-up of 5 years.  |
+|  CKiD^{393} | ACR of >300 mg/g (>30 mg/mmol) was associated with an 84% higher risk of disease progression over a median follow-up of 3 years compared with an ACR of 30 mg/g (3 mg/mmol). PCR of 630 mg/g (71 mg/mmol) was associated with an 87% higher risk of disease progression compared with a PCR of 140 mg/g (16 mg/mmol).  |
+|  4C study^{394,395} | Each log higher value of ACR was associated with a 50% higher risk of kidney failure or a 50% decline in eGFR over a median follow-up of 3 years. A 115% increase in albuminuria was associated with faster disease progression after cessation of RASi in children with advanced CKD.  |
+|  ItalKids^{396} | Significantly slower decline in creatinine clearance in people with baseline PCRs of <200 mg/g (<23 mg/mmol) and 200–900 mg/g (23–102 mg/mmol) when compared with those with a PCR of >900 mg/g (>102 mg/mmol). This translated to higher rates of kidney survival over 5 years in the lower proteinuria groups: 97% and 94% vs. 45%.  |
+|  Indian cohort^{397} | CKD progression risk within 2 years was tripled for those with proteinuria >2000 mg/g (226 mg/mmol).  |
+|  Japanese cohort^{398} | Risk of CKD progression was 7 times as high for those with proteinuria >2000 mg/g (>226 mg/mmol) compared with those with lower proteinuria concentrations after adjustment for CKD stage, hypertension, sex, and age.  |

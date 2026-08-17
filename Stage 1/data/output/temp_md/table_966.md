@@ -1,0 +1,9 @@
+|  Domain | Sample screening questions | Suggested screening measure | No. of items | Score range | Cut points | Time to complete | Measure translated languages  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  Sensory impairment: vision | Do you have difficulty seeing, even when wearing your glasses? | Snellen chart | 1 | NA | 20/40 or worse indicates vision impairment | 2–3 min | NA  |
+|  Sleep disorders: insomnia | Do you have trouble falling asleep, staying asleep, or waking up too early and not being able to fall back asleep? | Insomnia Severity Index 7 (ISI-7) (191) | 7 | 0–28 | ≥8 insomnia | 3 min | Multiple  |
+|  Urinary incontinence | Do you have trouble with bladder control or accidental leakage? | 3 Incontinence Questions (3IQ) (192) | 3 | NA | The tool classifies type of incontinence based on responses | 1–2 min | Multiple  |
+|  Functional impairments |  |  |  |  |  |  |   |
+|  Dexterity | Do you have trouble using your hands for everyday tasks like buttoning clothes? | Button and coin test: button and unbutton a shirt button and pick up a small coin from a flat surface | 2 | 0–2 | 0, significant impairment; 1, mild to moderate impairment; 2, limited to no impairment | 1–2 min | NA  |
+|  Dizziness | Do you experience dizziness, feeling lightheaded, or a feeling of spinning (vertigo)? Have you noticed any changes in your balance or steadiness? | Orthostatic vital signs; neurological examination (e.g., assessment of gait, balance, reflexes, sensory loss, vestibular function); medical evaluation | NA | NA | NA | NA | NA  |
+|  Executive functioning | Do you find it hard to plan or organize your daily activities? | Trail Making Test 8 | 25 | Time to finish | ≥180 s indicates impairment in executive function | 3–5 min | Multiple  |

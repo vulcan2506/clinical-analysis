@@ -1,0 +1,6 @@
+|  Factors | Comment  |
+| --- | --- |
+|  Balance of benefits and harms | The larger the difference between the desirable and undesirable effects, the more likely a strong recommendation is provided. The narrower the gradient, the more likely a weak recommendation is warranted.  |
+|  Certainty of the evidence | The higher the certainty of evidence, the more likely a strong recommendation is warranted. However, there are exceptions for which low- or very low-certainty evidence will warrant a strong recommendation.  |
+|  Values and preferences | The more variability or the more uncertainty in values and preferences, the more likely a weak recommendation is warranted. Values and preferences were obtained from the literature, where possible, or were assessed by the judgment of the Work Group, when robust evidence was not identified.  |
+|  Resources and other costs | The higher the costs of an intervention—that is, the more resources consumed—the less likely a strong recommendation is warranted.  |

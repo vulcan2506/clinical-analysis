@@ -1,0 +1,7 @@
+|  Agent | Starting dose | Maximum dose | Adverse effects | Remarks  |
+| --- | --- | --- | --- | --- |
+|  Gabapentinoids Pregabalin Gabapentin | 25-150 mg OD 100-300 mg OD | 150-300 mg BD 600-1200 mg TDS | Sedation, dizziness, visual blurring, peripheral edema, weight gain. | Dose adjustment needed in renal failure  |
+|  TCAs Amitriptyline Nortriptyline | 10-25 mg/d 10-25 mg/d | 100-150 mg/d 100-150 mg/d | Sedation, dry mouth, confusion, constipation, urinary retention, orthostatic hypotension, blurred vision, mydriasis, fatigue, weight gain, arrhythmia | Contraindicated in patients with glaucoma, symptomatic prostatic disease and cardiovascular disease. Use with caution in elderly population.  |
+|  SNRIs Duloxetine Venlafaxine | 30 mg/d 37.5 mg/d | 60-120 mg/d 150-225 mg/d | Sedation, dizziness, dry mouth, nausea, constipation, dyspepsia, ataxia | Exercise caution in patients with renal or liver disease  |
+|  Opioids Tramadol | 50 mg/d | 400 mg/d | Sedation, dizziness, light-headedness, nausea, vomiting, constipation Sedation, nausea, vomiting, constipation | May lower seizure threshold. Exercise caution in patients with seizure disorder Exercise caution in patients with seizure disorder, liver or renal dysfunction  |
+|  Tapentadol (controlled release) | 50 mg BD | 500 mg/d |  |   |

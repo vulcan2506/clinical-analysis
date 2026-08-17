@@ -12,11 +12,15 @@ import json
 import logging
 from pathlib import Path
 
+import config
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
-# Use your actual paths here
-INPUT_JSON_PATH = "/home/vulcan/Documents/Projects/Research Maker/Stage 1/data/output/enterprise_nested_topics.json"
-OUTPUT_JSON_PATH = "/home/vulcan/Documents/Projects/Research Maker/Stage 1/data/output/cross_version_topics_only.json"
+# Was hardcoded to the live Stage 1/data/output/ path — broke isolated test
+# corpora (e.g. STAGE1_OUTPUT_DIR overrides) by silently reading/writing the
+# live directory regardless of where the actual run's data lives.
+INPUT_JSON_PATH = str(config.NESTED_OUTPUT_PATH)
+OUTPUT_JSON_PATH = str(config.OUTPUT_DIR / "cross_version_topics_only.json")
 
 def has_multiple_sources(topic: dict) -> bool:
     """Safely checks if a topic has 2 or more source docs."""

@@ -1,0 +1,136 @@
+{
+  "domain": "clinical nephrology and kidney disease management",
+  "document_purpose": "clinical practice guideline for the evaluation and management of chronic kidney disease (CKD) published by KDIGO",
+  "specialist_role": "nephrologist or clinical nephrology specialist",
+  "analyst_role": "healthcare guideline analyst or clinical evidence reviewer",
+  "entity_types": [
+    "patient population",
+    "kidney function measurement",
+    "risk assessment tool",
+    "therapeutic intervention",
+    "clinical outcome",
+    "disease stage",
+    "comorbidity",
+    "pediatric consideration"
+  ],
+  "key_terminology": {
+    "CKD": "Chronic Kidney Disease",
+    "KDIGO": "Kidney Disease Improving Global Outcomes",
+    "eGFR": "estimated Glomerular Filtration Rate",
+    "ACR": "Albumin-to-Creatinine Ratio",
+    "RR": "Relative Risk",
+    "RASi": "Renin-Angiotensin System inhibitor",
+    "AKI": "Acute Kidney Injury",
+    "SGLT2i": "Sodium-Glucose Cotransporter-2 inhibitor",
+    "IOM": "Institute of Medicine"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "In people with CKD G3–G5, we recommend using an externally validated risk equation to estimate the absolute risk of kidney failure (1A).",
+      "master_label": "risk prediction recommendation",
+      "description": "A guideline statement recommending the use of validated tools to estimate individual risk of kidney failure in patients with moderate to severe CKD."
+    },
+    {
+      "text_snippet": "EQUIVALENT ALBUMINURIA CATEGORIES IN CKD (Table)",
+      "master_label": "albuminuria classification",
+      "description": "Structured table defining equivalent categories of albuminuria used for CKD staging and risk stratification."
+    },
+    {
+      "text_snippet": "Many children with CKD with underlying tubular disorders have an obligate urine output irrespective of their hydration status and are at particularly high risk of hypotension and AKI during an acute dehydrating illness.",
+      "master_label": "pediatric CKD complication",
+      "description": "Clinical scenario highlighting special considerations for pediatric CKD patients with tubular disorders and their vulnerability to volume depletion complications."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when the newer version provides additional detail or precision to existing recommendations without changing the core intent"
+    },
+    {
+      "name": "New Recommendation",
+      "description": "when the newer version introduces a new clinical recommendation or expands scope to a previously unaddressed patient group"
+    },
+    {
+      "name": "Risk Stratification Update",
+      "description": "when the newer version updates risk categories, thresholds, or prediction equations used for clinical decision-making"
+    },
+    {
+      "name": "Contradictory Recommendation",
+      "description": "when the newer version explicitly reverses or contradicts a prior recommendation in a clinically meaningful way"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when the two versions are substantively equivalent with no material difference in clinical guidance"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or mandatory conditions specified in the guideline for applying a recommendation or intervention",
+    "deprecated_items": "previously recommended practices, tests, or interventions that are no longer endorsed or have been superseded by newer evidence",
+    "new_items": "newly introduced recommendations, diagnostic criteria, therapeutic options, or risk assessment tools in the updated guideline"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Clinical Actions",
+    "requirements": "Patient Eligibility Criteria",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "use of SGLT2 inhibitors in CKD",
+      "version_a": "SGLT2 inhibitors were recommended for patients with type 2 diabetes and CKD with albuminuria (ACR ≥30 mg/g) and eGFR ≥30 mL/min/1.73m².",
+      "version_b": "SGLT2 inhibitors are now recommended for patients with CKD with or without diabetes who have albuminuria (ACR ≥30 mg/g) and eGFR ≥20 mL/min/1.73m², expanding eligibility to lower eGFR ranges.",
+      "change_type": "New Recommendation",
+      "analysis": "The 2024 guideline broadens the indication for SGLT2 inhibitors to include non-diabetic CKD patients and lowers the eGFR threshold, reflecting new evidence of benefit across a wider CKD population. This represents an expansion of therapeutic options rather than a reversal of prior guidance."
+    },
+    {
+      "topic": "blood pressure targets in CKD with diabetes",
+      "version_a": "Target systolic blood pressure <130 mmHg was recommended for adults with CKD and diabetes.",
+      "version_b": "Target systolic blood pressure <140 mmHg is now recommended for adults with CKD and diabetes, with <130 mmHg reserved for those at higher cardiovascular risk.",
+      "change_type": "Contradictory Recommendation",
+      "analysis": "The updated guideline explicitly relaxes the blood pressure target for CKD patients with diabetes from <130 to <140 mmHg, reversing a prior more aggressive target. This change reflects evolving evidence on the balance of benefits and harms at lower blood pressure levels."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the 2024 guideline expand the use of SGLT2 inhibitors to non-diabetic CKD patients?",
+      "a": "The 2024 KDIGO guideline incorporated new trial data showing cardiovascular and kidney benefits of SGLT2 inhibitors in patients with CKD regardless of diabetes status. This evidence base grew significantly after the prior guideline version, supporting broader indications."
+    },
+    {
+      "q": "How should clinicians interpret the change in blood pressure targets for CKD patients with diabetes?",
+      "a": "The updated target of <140 mmHg reflects a shift toward individualized care based on cardiovascular risk stratification. Clinicians should assess overall cardiovascular risk and consider reserving <130 mmHg for those at highest risk, balancing potential harms like hypotension and falls."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "use of SGLT2 inhibitors in CKD",
+    "foundation": "The 2012 guideline recommended SGLT2 inhibitors only for patients with type 2 diabetes and CKD with albuminuria and eGFR ≥30.",
+    "value_added": [
+      "Expanded indication to include non-diabetic CKD patients",
+      "Lowered eGFR threshold to ≥20 mL/min/1.73m²",
+      "Added broader cardiovascular benefits beyond kidney outcomes"
+    ],
+    "narrative": "The 2012 guideline established SGLT2 inhibitors as kidney-protective therapy in a narrow diabetic CKD population. Subsequent trials demonstrated benefits across CKD stages and diabetes status, enabling the 2024 guideline to broaden eligibility and lower the eGFR threshold, thereby increasing the number of patients who may benefit from this therapy."
+  },
+  "type_key": "Chronic Kidney Disease",
+  "source_files": [
+    "Chronic Kidney Disease.pdf"
+  ]
+}

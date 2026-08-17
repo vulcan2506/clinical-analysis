@@ -39,7 +39,7 @@ export function MessageInput({ onSend, disabled }: MessageInputProps) {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Ask a question about the HealthRules Payer documentation…"
+          placeholder="Ask a question about the clinical guidelines…"
           rows={2}
           className="min-h-[52px] resize-none"
           disabled={disabled}

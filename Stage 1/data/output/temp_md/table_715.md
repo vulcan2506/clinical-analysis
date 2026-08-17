@@ -1,0 +1,4 @@
+|  Clinical and biological risk factors | Social, cultural, and economic risk factors  |
+| --- | --- |
+|  **Major risk factors** - Recent (within the past 3–6 months) level 2 or 3 hypoglycemia - Intensive insulin therapy* - Impaired hypoglycemia awareness - Kidney failure - Cognitive impairment or dementia - History of metabolic surgery | **Major risk factors** - Food insecurity - Low-income status§ - Housing insecurity - Fasting for religious or cultural reasons - Underinsurance  |
+|  **Other risk factors** - Multiple recent episodes of level 1 hypoglycemia - Basal insulin therapy* - Age ≥75 years† - Female sex - High glycemic variability‡ - Polypharmacy - Cardiovascular disease - Chronic kidney disease (eGFR <60 mL/min/1.73 m² or albuminuria) - Neuropathy - Retinopathy - Major depressive disorder - Severe mental illness - Gastroparesis - β-Blocker therapy | **Other risk factors** - Low health literacy - Alcohol or substance use disorder  |

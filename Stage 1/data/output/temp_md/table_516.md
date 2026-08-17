@@ -1,0 +1,7 @@
+|  1. Testing should be considered in adults with overweight or obesity (BMI ≥25 kg/m² or ≥23 kg/m² in individuals of Asian ancestry) who have one or more of the following risk factors: • First-degree relative with diabetes • High-risk race, ethnicity, and ancestry (e.g., African American, Latino, Native American, Asian American) • History of cardiovascular disease • Hypertension (≥130/80 mmHg or on therapy for hypertension) • HDL cholesterol level <35 mg/dL (<0.9 mmol/L) and/or triglyceride level >250 mg/dL (>2.8 mmol/L) • Individuals with polycystic ovary syndrome • Physical inactivity • Other clinical conditions associated with insulin resistance (e.g., severe obesity, acanthosis nigricans, metabolic dysfunction-associated steatotic liver disease)  |
+| --- |
+|  2. People with prediabetes (A1C ≥5.7% [≥39 mmol/mol], IGT, or IFG) should be tested yearly.  |
+|  3. People who were diagnosed with GDM should have testing at least every 1–3 years.  |
+|  4. For all other people, testing should begin at age 35 years.  |
+|  5. If results are normal, testing should be repeated at a minimum of 3-year intervals, with consideration of more frequent testing depending on initial results and risk status.  |
+|  6. Individuals in other high-risk groups (e.g., people with HIV, exposure to high-risk medicines, evidence of periodontal disease, history of pancreatitis) should also be closely monitored.  |

@@ -1,0 +1,21 @@
+|  Domain | Specific clinical condition | Cause of decreased accuracy | Comments on GFR evaluation  |
+| --- | --- | --- | --- |
+|  Body habitus and changes in muscle mass | Eating disorders127 | Non-GFR determinants of SCr | eGFRcys may be appropriate if no comorbid illness other than reduction in muscle mass.  |
+|   |  Extreme sport/exercise/body builder | Non-GFR determinants of SCr | eGFRcys may be appropriate if an increase in muscle mass is the only abnormality.  |
+|   |  Above-knee amputation128 | Non-GFR determinants of SCr | eGFRcys may be appropriate in those without other comorbid conditions. Suggest eGFRcr-cys in those with comorbid illness.  |
+|   |  Spinal cord injury with paraplegia/paraparesis or quadriplegia/quadriparesis | Non-GFR determinants of SCr | eGFRcys may be appropriate in those without other comorbid illness. Suggest eGFRcr-cys in those with comorbid illness.  |
+|   |  Class III obesitya,b | Non-GFR determinants of SCr and SCys | eGFRcr-cys demonstrated to be most accurate.  |
+|  Lifestyle | Smoking129-131 | Non-GFR determinants of SCys | Minimal data, suggest eGFRcr if no changes to non-GFR determinants of SCr or comorbid illness.  |
+|  Diet | Low-protein diet | Non-GFR determinants of SCr |   |
+|   |  Keto diets | Non-GFR determinants of SCr | Minimal data, suggest eGFRcr may be appropriate if no changes to non-GFR determinants of SCr or no comorbid illness.  |
+|   |  Vegetarian | Non-GFR determinants of SCr  |   |
+|   |  High-protein diets and creatine supplements | Non-GFR determinants of SCr  |   |
+|  Illness other than CKD | Malnutrition | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | eGFRcr-cys may be less accurate because of coexistence of malnutrition and inflammation. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Cancera,132-137 | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | eGFRcr-cys demonstrated to be most accurate in populations studied but likelihood of lesser accuracy in more frail people or in cancers with high cell turnover. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Heart failurea,138,139 | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | Although limited data, eGFRcys appears less biased but all have low accuracy. Suggest using eGFRcr-cys or eGFRcys for routine GFR evaluation. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Cirrhosisa,79,140,141 | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | Although limited data, eGFRcys appears less biased but all have low accuracy. Suggest using eGFRcr-cys or eGFRcys for routine GFR evaluation. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Catabolic consuming diseasesc | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | Minimal data but eGFRcr-cys may be inaccurate. Suggest using eGFRcr-cys vs. eGFRcr for routine GFR evaluation. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Muscle wasting diseases142 | Chronic illness, presumed impact on non-GFR determinants of SCr and SCys | Minimal data. One study shows large bias for both eGFRcr and eGFRcys. Suggest using eGFRcr-cys for routine GFR evaluation. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|  Medication effects | Steroids (anabolic, hormone) | Non-GFR determinants of SCr. Effect on SCys not known | Physiological effect on SCys unknown, suggest eGFRcr-cys.  |
+|   |  Decreases in tubular secretion | Non-GFR determinants of SCr | eGFRcys may be appropriate if medication affects only creatinine and no comorbid illness. Suggest using mGFR for treatment decisions based on the level of GFR.  |
+|   |  Broad spectrum antibiotics that decrease extrarenal elimination | Non-GFR determinants of SCr | eGFRcys may be appropriate if medication affects only creatinine and no comorbid illness. Suggest using mGFR for treatment decisions based on the level of GFR.  |

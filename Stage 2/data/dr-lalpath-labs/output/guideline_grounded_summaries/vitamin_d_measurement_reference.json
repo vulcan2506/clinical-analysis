@@ -1,0 +1,38 @@
+{
+  "master_label": "Vitamin D Measurement Reference",
+  "original_summary": "**Patient Result:** 150.00 (ref: 75.00 - 250.00)\n\n**Clinical Interpretation:** Patient's 150.00 nmol/L falls within the 'Stimulant' range (75-250 nmol/L), indicating an optimal concentration for maximal health benefit per the guideline.\n\n**Significance Level:** HIGH\n\n**Clinical Recommendation:** Vitamin D Measurement Reference\n\n**Key Clinical Actions:**\n- The assay measures both D2 (Ergocalciferol) and D3 (Cholecalciferol) metabolites of vitamin D.\n- 25 (OH)D is influenced by sunlight, latitude, skin pigmentation, sunscreen use, and hepatic function.\n- Optimal calcium absorption requires vitamin D 25 (OH) levels exceeding 75 nmol/L.\n- Vitamin D levels show seasonal variation, with values being 40-50% lower in winter than in summer.",
+  "grounding": {
+    "status": "CONTEXTUAL_MATCH",
+    "matched_guideline_topics": [
+      {
+        "master_label": "glycemic management for bone health",
+        "match_type": "CONTEXTUAL_MATCH",
+        "confidence": 0.95,
+        "score": 0.9999388456344604,
+        "match_reason": "Guideline focuses on bone health in diabetes, which is relevant given patient's diabetes context.",
+        "context_requirements": [
+          "diabetes"
+        ],
+        "validated_context": [
+          "diabetes"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "American Diabetes Association Care Guidence.pdf"
+        ],
+        "summary": "# glycemic management for bone health\n*Source: American Diabetes Association Care Guidence.pdf*\n\n**Clinical Recommendation:** Glycemic management and pharmacological treatment for bone health in diabetes\n\n**Core Recommendations:**\n- Advocate for moderate physical activity to enhance muscle health, gait coordination, and balance as part of fracture preventive strategies\n- Ensure adequate daily intake of protein, calcium, and vitamin D, and cessation of smoking for all individuals with diabetes\n- Initiate antiosteoporosis therapy and adequate calcium/vitamin D supplementation as soon as possible for individuals with fragility fractures\n- Consider osteoanabolic therapy (teriparatide, abaloparatide, romosuzumab) for very-high-risk individuals given diabetes is a low-bone-turnover condition\n- Follow osteoanabolic treatments with antiresorptives to preserve BMD gains and prevent rapid loss of newly formed bone\n- Individualize vitamin D supplementation targets based on patient risk (e.g., osteoporosis, antiresorptive therapy) rather than rigid thresholds, with serum levels >30 ng/mL recommended for individuals receiving antiresorptive therapy\n\n**Patient Eligibility Criteria:**\n- Assessment of T-score (≤−2.5) or elevated FRAX score (≥3% for hip fracture or ≥20% for major osteoporotic fracture) for pharmacological treatment consideration\n- Evaluation of additional risk factors such as falls and elevated FRAX score for adults with T-score between −2.0 and −2.5\n- Pretreatment assessment, supplementation, close monitoring, and specialist consultation for individuals with advanced CKD (eGFR <30 mL/min/1.73 m²) receiving denosumab\n- Consideration of self-management abilities and ability to maintain injection schedules (e.g., every 6 months for denosumab) prior to drug initiation\n- Referral to a bone metabolic specialist for individuals on long-term treatment with antiosteoporosis medications, with multiple fragility fractures, or with multiple comorbidities\n\n**Previous Recommendations:**\n- Routine supplementation with vitamin D (with or without calcium) for the primary prevention of fractures in community-dwelling postmenopausal women and men aged 60 years or older\n- Prescription of romosuzumab in individuals who experienced a myocardial infarction or a stroke within the past year\n- Use of T-score alone without considering additional risk factors for fracture in type 2 diabetes, as T-score underestimates fracture risk in this population\n\n**Updated Recommendations:**\n- Strong consideration of pharmacological treatment for adults with diabetes with a T-score between −2.0 and −2.5 in the presence of additional risk factors for fracture\n- Use of osteoanabolic agents (teriparatide, abaloparatide, romosuzumab) for very-high-risk individuals due to the low-bone-turnover nature of diabetes\n- Initiation of antiosteoporosis therapy during an inpatient stay for individuals with fragility fractures to reduce care delays\n- Recognition that antiosteoporosis treatment reduces the risk of subsequent low-trauma fracture, especially in the first 1–2 years after a fracture\n- Individualized selection of bisphosphonate therapy (oral or intravenous) for individuals with poor medication-taking behavior or gaps in access to medical care\n- Initiate antiosteoporosis therapy during an inpatient stay for individuals with fragility fractures to reduce care delays"
+      }
+    ]
+  },
+  "grounded_summary": "**Patient Result:** 150.00 (ref: 75.00 - 250.00)\n\n**Clinical Interpretation:** Patient's 150.00 nmol/L falls within the 'Stimulant' range (75-250 nmol/L), indicating an optimal concentration for maximal health benefit per the guideline.\n\n**Significance Level:** HIGH\n\n**Clinical Recommendation:** Vitamin D Measurement Reference\n\n**Key Clinical Actions:**\n- The assay measures both D2 (Ergocalciferol) and D3 (Cholecalciferol) metabolites of vitamin D.\n- 25 (OH)D is influenced by sunlight, latitude, skin pigmentation, sunscreen use, and hepatic function.\n- Optimal calcium absorption requires vitamin D 25 (OH) levels exceeding 75 nmol/L.\n- Vitamin D levels show seasonal variation, with values being 40-50% lower in winter than in summer.",
+  "provenance": {
+    "patient_sources": [
+      "WM17S.pdf"
+    ],
+    "guideline_sources": [
+      "American Diabetes Association Care Guidence.pdf"
+    ]
+  },
+  "fused_summary": "**Patient Result:** 150.00 (ref: 75.00 - 250.00)\n\n**Clinical Interpretation:** Patient's 150.00 nmol/L falls within the 'Stimulant' range (75-250 nmol/L), indicating an optimal concentration for maximal health benefit per the guideline.\n\n**Significance Level:** HIGH\n\n**Clinical Recommendation:** Vitamin D Measurement Reference\n\n**Key Clinical Actions:**\n- The assay measures both D2 (Ergocalciferol) and D3 (Cholecalciferol) metabolites of vitamin D.\n- 25 (OH)D is influenced by sunlight, latitude, skin pigmentation, sunscreen use, and hepatic function.\n- Optimal calcium absorption requires vitamin D 25 (OH) levels exceeding 75 nmol/L.\n- Vitamin D levels show seasonal variation, with values being 40-50% lower in winter than in summer.",
+  "fuse_source_labels": []
+}

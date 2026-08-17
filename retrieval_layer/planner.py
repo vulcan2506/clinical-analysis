@@ -302,9 +302,9 @@ def _filter_novel(gaps: List[Dict], evidence_chunks: List[Dict]) -> List[Dict]:
 
 # ── Hierarchical retrieval per sub-query ────────────────────────────────────
 
-def _relationship_chunks(subquery: str, n: int = 2) -> List[Dict]:
+def _relationship_chunks(subquery: str, n: int = 2, corpus_id: str = "default") -> List[Dict]:
     chunks = []
-    for r in cs.get_store().query_relationships(subquery, n=n):
+    for r in cs.get_store(corpus_id).query_relationships(subquery, n=n):
         chunks.append({
             "chunk_id":       f"relationship_{abs(hash(r['text'])) % 100000}",
             "text":           r["text"],
@@ -319,6 +319,7 @@ def _relationship_chunks(subquery: str, n: int = 2) -> List[Dict]:
 def _hierarchical_retrieve(
     subquery: str,
     exclude_chunk_ids: set,
+    corpus_id: str = "default",
 ) -> List[Dict]:
     """
     One sub-query's worth of expansion — routed FRESH against the sub-query's
@@ -334,32 +335,39 @@ def _hierarchical_retrieve(
     chunks: List[Dict] = []
 
     try:
-        route_result = hnsw_router.route(subquery)
+        route_result = hnsw_router.route(subquery, corpus_id=corpus_id)
     except Exception as e:
         log.warning("Re-routing sub-query %r failed (%s) — skipping", subquery, e)
         route_result = {}
 
     parent_indices = sorted({p for p, s in route_result.get("_chosen_pairs", [])})
     if parent_indices:
-        expansion = hnsw_router.get_router().expand_children(
+        expansion = hnsw_router.get_router(corpus_id).expand_children(
             parent_indices, exclude_chunk_ids=exclude_chunk_ids,
         )
         if expansion["chunks"]:
             ranked = reranker.rerank(subquery, expansion["chunks"])
             chunks += ranked[: config.PLANNER_CHILDREN_TOP_N]
 
-    chunks += _relationship_chunks(subquery)
+    chunks += _relationship_chunks(subquery, corpus_id=corpus_id)
     return chunks
 
 
 # ── Main entry point ────────────────────────────────────────────────────────
 
-def explore(query: str, base_result: Dict, max_hops: Optional[int] = None) -> Dict:
+def explore(query: str, base_result: Dict, max_hops: Optional[int] = None, corpus_id: str = "default") -> Dict:
     """
     Runs the planner's gap assessment on EVERY call (no pre-call gate — see
     module docstring for why), then optionally expands base_result (from
     retriever.retrieve_merged_all()) via a multi-hop Evidence Gap Exploration
     loop if that assessment says fetching is actually warranted.
+
+    corpus_id: threaded into every _hierarchical_retrieve() call this hop
+    makes (fixed 2026-07-17 — every gap-fill hop was silently re-routing and
+    re-ranking against the "default" corpus regardless of which corpus
+    base_result actually came from, so Detailed Mode against a patient
+    corpus could seed correctly from retrieve_merged_all() and then have its
+    OWN expansion hops quietly pull in guideline-only content).
 
     Returns base_result unchanged if:
       - config.PLANNER_ENABLED is False (no planner call at all), or
@@ -415,7 +423,7 @@ def explore(query: str, base_result: Dict, max_hops: Optional[int] = None) -> Di
         fetched_new = False
         for gap in gaps:
             gap_filled = False
-            for c in _hierarchical_retrieve(gap["query"], exclude_ids):
+            for c in _hierarchical_retrieve(gap["query"], exclude_ids, corpus_id=corpus_id):
                 cid = c.get("chunk_id")
                 if not cid or cid not in exclude_ids:
                     pool.append(c)

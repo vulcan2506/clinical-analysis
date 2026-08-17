@@ -1,0 +1,3 @@
+|  FACTORS THAT INCREASED WITH HbA1C MEASUREMENTS | FACTORS THAT AFFECT INTERPRETATION OF HbA1C RESULTS  |
+| --- | --- |
+|  Hemoglobin variants, elevated fetal hemoglobin (Hb) and chemically modified derivatives of hemoglobin (H) (carboxylated Hb in patients with renal failure) can affect the accuracy of HbA1c measurements | Any condition that shortens erythrocyte survival or decreases mean erythrocyte age (e.g., recovery from acute blood loss, hemolytic anemia, HbSS, HbCC, and HbSC) will falsely lower HbA1c test results regardless of the assay method used. Iron deficiency anemia is associated with higher HbA1c  |

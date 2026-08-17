@@ -27,7 +27,7 @@ export function Conversation({ onRetry }: ConversationProps) {
       <div className="flex flex-1 flex-col items-center justify-center gap-3 p-8 text-center">
         <Sparkles className="size-8 text-muted-foreground/50" />
         <div>
-          <p className="font-medium">Ask about the HealthRules Payer documentation</p>
+          <p className="font-medium">Ask about the clinical guidelines</p>
           <p className="max-w-sm text-sm text-muted-foreground">
             Every answer shows its confidence, retrieval strategy, and cited sources — not just a response.
           </p>

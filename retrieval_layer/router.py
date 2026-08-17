@@ -40,16 +40,17 @@ log = logging.getLogger(__name__)
 
 
 class Router:
-    def __init__(self):
+    def __init__(self, index_dir: Optional[Path] = None):
         self._loaded = False
+        self._index_dir = index_dir or config.INDEX_DIR
 
     def load(self):
         if self._loaded:
             return
-        log.info("Loading retrieval index...")
+        log.info(f"Loading retrieval index from {self._index_dir}...")
 
         def _load(name):
-            with open(config.INDEX_DIR / name, "rb") as f:
+            with open(self._index_dir / name, "rb") as f:
                 return pickle.load(f)
 
         self.parent_meta  = _load("parent_meta.pkl")   # list of dicts (names only, now)
@@ -59,7 +60,7 @@ class Router:
 
         # HNSW
         self.hnsw = hnswlib.Index(space="cosine", dim=config.EMBED_DIM)
-        self.hnsw.load_index(str(config.INDEX_DIR / "hnsw.bin"),
+        self.hnsw.load_index(str(self._index_dir / "hnsw.bin"),
                              max_elements=config.HNSW_MAX_ELEMENTS)
         self.hnsw.set_ef(config.HNSW_EF_QUERY)
 
@@ -81,8 +82,15 @@ class Router:
         One unrestricted HNSW search over ALL topic + QnA vectors. This is
         the only search — routing and candidate selection both come from it.
         """
+        # Cap k to the index's actual element count — hnswlib raises
+        # ("Cannot return the results in a contiguous 2D array") if asked
+        # for more neighbors than exist. config.TOP_K_HNSW=100 is tuned for
+        # Stage 1's large guideline index (6590+ vectors); a small Stage 2
+        # patient corpus (as few as a few dozen vectors) needs a real cap,
+        # not just a large constant that happens to usually be safe.
+        k = min(config.TOP_K_HNSW, self.hnsw.get_current_count())
         labels, distances = self.hnsw.knn_query(
-            query_emb.reshape(1, -1), k=config.TOP_K_HNSW
+            query_emb.reshape(1, -1), k=k
         )
         hits = []
         seen_chunk_sets = set()
@@ -376,29 +384,41 @@ class Router:
 # loading the SAME SentenceTransformer model at once — observed to crash with
 # "Cannot copy out of meta tensor; no data!" (a torch/transformers lazy-init
 # race, not this codebase's model logic).
-_router: Optional[Router] = None
+_routers: Dict[str, Router] = {}
 _router_lock = threading.Lock()
 
-def get_router() -> Router:
-    global _router
-    if _router is None:
+def get_router(corpus_id: str = "default") -> Router:
+    """
+    corpus_id keys a small in-process registry of Router instances, one per
+    corpus (e.g. "guidelines" for Stage 1's permanent guideline KB, a
+    per-patient run id for Stage 2 outputs). Existing zero-arg callers keep
+    working unchanged against corpus_id="default" (Stage 1's original single
+    corpus). Index dir for a non-default corpus_id is resolved via
+    corpus_registry.resolve().
+    """
+    if corpus_id not in _routers:
         with _router_lock:
-            if _router is None:          # re-check inside the lock
-                _router = Router()
-                _router.load()
-    return _router
+            if corpus_id not in _routers:          # re-check inside the lock
+                if corpus_id == "default":
+                    index_dir = config.INDEX_DIR
+                else:
+                    import corpus_registry
+                    index_dir = corpus_registry.resolve(corpus_id).index_dir
+                r = Router(index_dir=index_dir)
+                r.load()
+                _routers[corpus_id] = r
+    return _routers[corpus_id]
 
 
-def reset_router() -> None:
+def reset_router(corpus_id: str = "default") -> None:
     """
-    Drops the cached Router so the next get_router() call rebuilds its HNSW
-    index from disk. Needed after a corpus reset + reprocess — see
-    chroma_store.reset_store()'s docstring for why.
+    Drops the cached Router for corpus_id so the next get_router() call
+    rebuilds its HNSW index from disk. Needed after a corpus reset +
+    reprocess — see chroma_store.reset_store()'s docstring for why.
     """
-    global _router
     with _router_lock:
-        _router = None
+        _routers.pop(corpus_id, None)
 
 
-def route(query: str) -> Dict:
-    return get_router().route(query)
+def route(query: str, corpus_id: str = "default") -> Dict:
+    return get_router(corpus_id).route(query)

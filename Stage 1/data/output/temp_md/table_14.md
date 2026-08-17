@@ -1,0 +1,4 @@
+|  New or Revised | Section Title | 2018 Recommendation | 2026 Recommendation  |
+| --- | --- | --- | --- |
+|  New | 4.2.10. Approach to Patients With Elevated Lp(a) | N/A | COR 1: In all individuals with elevated Lp(a) (≥125 nmol/L or ≥50 mg/dL), optimal early control of modifiable cardiovascular risk factors is recommended to reduce ASCVD risk.  |
+|  New | 4.2.10. Approach to Patients With Elevated Lp(a) | N/A | COR 1: In individuals with clinical ASCVD and elevated Lp(a) who have not achieved LDL-C and non-HDL-C treatment goals on maximally tolerated statin therapy, the addition of a PCSK9 mAb with proven cardiovascular benefit is recommended to achieve treatment goals and reduce ASCVD risk.  |

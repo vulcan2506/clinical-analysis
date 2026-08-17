@@ -18,7 +18,6 @@ Problems solved:
 
 import re
 import logging
-from collections import defaultdict
 from typing import Dict, List, Optional, Set, Tuple
 
 import numpy as np
@@ -91,41 +90,65 @@ def _is_garbage_label(label: str) -> bool:
     return False
 
 
-# ── Union-Find for label clustering ──────────────────────────────────────────
+# ── Complete-linkage clustering ───────────────────────────────────────────────
+# Single-linkage (union-find on any pairwise edge >= threshold) lets clusters
+# "chain": A merges with B, B merges with C, so A and C end up in one cluster
+# even though A and C were never directly similar. Confirmed in practice —
+# unrelated labels ("Sequela and Manifestation Coding Guidelines", "Multiple
+# Code Sequencing Rules") got merged with genuinely sepsis-specific ones
+# purely by transitive chaining through intermediate labels. Complete-linkage
+# instead requires EVERY cross-pair between two clusters to clear the
+# threshold before merging them, which is the standard fix for this failure
+# mode — a merge can no longer happen through a single weak bridging link.
 
-class _LabelUF:
-    def __init__(self, n: int):
-        self.parent = list(range(n))
+def _complete_linkage_clusters(sim_matrix: np.ndarray, threshold: float) -> List[List[int]]:
+    n = sim_matrix.shape[0]
+    clusters: List[List[int]] = [[i] for i in range(n)]
 
-    def find(self, x: int) -> int:
-        while self.parent[x] != x:
-            self.parent[x] = self.parent[self.parent[x]]
-            x = self.parent[x]
-        return x
+    def min_sim(c1: List[int], c2: List[int]) -> float:
+        return min(sim_matrix[i][j] for i in c1 for j in c2)
 
-    def union(self, a: int, b: int):
-        ra, rb = self.find(a), self.find(b)
-        if ra != rb:
-            self.parent[rb] = ra
+    while True:
+        best_pair: Optional[Tuple[int, int]] = None
+        best_sim = threshold
+        for a in range(len(clusters)):
+            for b in range(a + 1, len(clusters)):
+                s = min_sim(clusters[a], clusters[b])
+                if s >= threshold and (best_pair is None or s > best_sim):
+                    best_sim = s
+                    best_pair = (a, b)
+        if best_pair is None:
+            break
+        a, b = best_pair
+        clusters[a] = clusters[a] + clusters[b]
+        del clusters[b]
+
+    return clusters
 
 
 # ── Canonical label selection ─────────────────────────────────────────────────
 
-def _pick_canonical(labels: List[str], garbage_set: Set[str]) -> str:
+def _pick_canonical(
+    indices: List[int], unique_labels: List[str], sim_matrix: np.ndarray, garbage_set: Set[str]
+) -> str:
     """
-    Pick the best label from a cluster.
-    Prefers: non-garbage > longer > title-cased.
+    Pick the medoid of the cluster — the label with the highest average
+    similarity to every OTHER member — preferring non-garbage candidates.
+    This reflects what the cluster is actually about. The previous version
+    scored by raw word count, which let a longer, narrower label (e.g.
+    "Congenital Sepsis Coding Rules") win over the whole cluster even when
+    most members were general (e.g. plain "Sepsis Coding Guidelines").
     """
-    non_garbage = [l for l in labels if l not in garbage_set]
-    candidates = non_garbage if non_garbage else labels
+    candidates = [i for i in indices if unique_labels[i] not in garbage_set] or indices
+    if len(candidates) == 1:
+        return unique_labels[candidates[0]]
 
-    def score(label: str) -> Tuple[int, int, int]:
-        words = label.split()
-        is_good_length = 1 if 2 <= len(words) <= 6 else 0
-        is_title = 1 if label[0].isupper() else 0
-        return (is_good_length, len(words), is_title)
+    def avg_sim(i: int) -> float:
+        others = [j for j in indices if j != i]
+        return sum(sim_matrix[i][j] for j in others) / len(others)
 
-    return max(candidates, key=score)
+    best = max(candidates, key=avg_sim)
+    return unique_labels[best]
 
 
 # ── Main entry point ─────────────────────────────────────────────────────────
@@ -152,31 +175,20 @@ def normalize_labels(chunks: List[Dict]) -> List[Dict]:
     embedder = _get_embedder()
     embeddings = embedder.encode(normalized_forms, batch_size=64, normalize_embeddings=True, show_progress_bar=False)
 
-    # Build similarity matrix and cluster
+    # Build similarity matrix and cluster (complete-linkage — see docstring
+    # above _complete_linkage_clusters for why not union-find/single-linkage)
     sim_matrix = cosine_similarity(embeddings)
     threshold = config.LABEL_MERGE_THRESHOLD
 
-    uf = _LabelUF(len(unique_labels))
-    merge_count = 0
-
-    for i in range(len(unique_labels)):
-        for j in range(i + 1, len(unique_labels)):
-            if sim_matrix[i][j] >= threshold:
-                uf.union(i, j)
-                merge_count += 1
-
-    # Build clusters
-    clusters: Dict[int, List[int]] = defaultdict(list)
-    for i in range(len(unique_labels)):
-        clusters[uf.find(i)].append(i)
+    cluster_list = _complete_linkage_clusters(sim_matrix, threshold)
 
     # Build label mapping: old label -> canonical label
     label_map: Dict[str, str] = {}
     n_clusters_merged = 0
 
-    for indices in clusters.values():
+    for indices in cluster_list:
         cluster_labels = [unique_labels[i] for i in indices]
-        canonical = _pick_canonical(cluster_labels, garbage_set)
+        canonical = _pick_canonical(indices, unique_labels, sim_matrix, garbage_set)
 
         if len(cluster_labels) > 1:
             n_clusters_merged += 1

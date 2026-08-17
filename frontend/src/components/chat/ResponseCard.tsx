@@ -94,6 +94,19 @@ export function ResponseCard({ response }: { response: ChatResponse }) {
                 <div key={chunk.chunk_id || i} className="rounded-md border bg-muted/30 p-2.5 text-xs shadow-sm">
                   <div className="mb-1 flex flex-wrap items-center gap-1.5 font-medium">
                     <span className="text-muted-foreground">[{i + 1}]</span>
+                    {chunk._source_label && (
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          "h-4 px-1.5 text-[10px] border-transparent",
+                          chunk._source_type === "patient"
+                            ? "bg-sky-500/10 text-sky-600 dark:text-sky-400"
+                            : "bg-violet-500/10 text-violet-600 dark:text-violet-400"
+                        )}
+                      >
+                        {chunk._source_type === "patient" ? "Patient" : "Guideline"} {chunk._source_label}
+                      </Badge>
+                    )}
                     <span>{chunk.section_header || "Untitled section"}</span>
                     {chunk.version && (
                       <Badge variant="outline" className="h-4 px-1.5 text-[10px]">

@@ -1,0 +1,138 @@
+{
+  "domain": "clinical hematology laboratory diagnostics",
+  "document_purpose": "comprehensive review and analysis guide for Complete Blood Count (CBC) interpretation and quality assurance in medical laboratory practice",
+  "specialist_role": "clinical hematology laboratory specialist or medical laboratory professional",
+  "analyst_role": "clinical laboratory data analyst or hematology diagnostics reviewer",
+  "entity_types": [
+    "hematology analyzer",
+    "red blood cell parameter",
+    "white blood cell parameter",
+    "platelet parameter",
+    "anemia classification",
+    "leukocyte disorder",
+    "platelet disorder",
+    "quality control metric"
+  ],
+  "key_terminology": {
+    "CBC": "Complete Blood Count — a common laboratory blood test measuring various blood components",
+    "RBC": "Red Blood Cell count — measures the number of red blood cells per volume of blood",
+    "WBC": "White Blood Cell count — measures the number of white blood cells per volume of blood",
+    "MCV": "Mean Corpuscular Volume — average size of red blood cells",
+    "MPV": "Mean Platelet Volume — average size of platelets",
+    "CLSI": "Clinical and Laboratory Standards Institute — organization setting standards for laboratory testing",
+    "QC": "Quality Control — processes ensuring accuracy and reliability of laboratory results"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "This comprehensive review was conducted through systematic analysis of current literature, clinical guidelines, and established laboratory practices. Sources included peer-reviewed journal articles, professional organization standards, and authoritative textbooks in hematology and laboratory medicine.",
+      "master_label": "literature review source",
+      "description": "Identifies the origin of evidence or methodology used in the document, typically peer-reviewed journals, guidelines, or textbooks."
+    },
+    {
+      "text_snippet": "Modern hematology analyzers employ multiple detection principles to analyze blood cells (Clinical and Laboratory Standards Institute, 2019). Impedance-based counting measures cell volume through electrical resistance changes, while optical methods using laser light scattering provide information about cell size, granularity, and internal complexity.",
+      "master_label": "analytical method description",
+      "description": "Describes the technical principles and detection methods used by hematology analyzers to measure blood cell parameters."
+    },
+    {
+      "text_snippet": "Analytical Quality Control",
+      "master_label": "quality control process",
+      "description": "Refers to the systematic procedures and standards applied to ensure the accuracy and reliability of CBC test results."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Methodology Enhancement",
+      "description": "when a newer version introduces improved or expanded analytical techniques or testing protocols"
+    },
+    {
+      "name": "Guideline Clarification",
+      "description": "when a newer version provides clearer or more detailed guidance on interpretation or application"
+    },
+    {
+      "name": "Parameter Addition",
+      "description": "when a new blood parameter or measurement is introduced in the CBC panel"
+    },
+    {
+      "name": "Reference Range Update",
+      "description": "when normal or expected value ranges for CBC parameters are revised based on new evidence or population data"
+    },
+    {
+      "name": "Reversal/Contradiction",
+      "description": "when a newer version explicitly contradicts or reverses a prior recommendation or finding"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions are substantively equivalent with no significant difference in content or guidance"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "prerequisites or conditions that must be met for accurate CBC testing, including patient preparation, sample handling, and analytical standards",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "field_labels": {
+    "feature_name": "Analytical Parameter or Test Component",
+    "key_behaviors": "Clinical Findings or Diagnostic Patterns",
+    "requirements": "Pre-analytical Conditions",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "automated differential leukocyte counting",
+      "version_a": "Hematology analyzers used impedance and basic optical scatter to classify white blood cells into three categories: lymphocytes, granulocytes, and monocytes.",
+      "version_b": "Newer analyzers incorporate multi-angle light scatter and fluorescent markers to classify white blood cells into five distinct populations with improved accuracy and flagging of abnormal cells.",
+      "change_type": "Methodology Enhancement",
+      "analysis": "The older method provided limited granularity in WBC differentiation, which could miss subtle abnormalities. The newer method increases diagnostic precision by enabling more detailed classification and early detection of pathological states such as blasts or variant lymphocytes."
+    },
+    {
+      "topic": "reference ranges for pediatric patients",
+      "version_a": "Pediatric reference ranges for hemoglobin were based on age groups defined in 1990 guidelines and did not account for ethnic or regional variations.",
+      "version_b": "Updated reference ranges incorporate age, sex, and ethnicity-specific data from recent population studies conducted in 2020–2023, revising thresholds for anemia diagnosis.",
+      "change_type": "Reversal/Contradiction",
+      "analysis": "The new ranges contradict the older fixed thresholds by introducing variable baselines that better reflect biological diversity. This change may reclassify some children previously labeled as anemic as within normal limits, or vice versa, depending on demographic factors."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why is quality control emphasized in CBC interpretation guides?",
+      "a": "Quality control ensures that hematology analyzers produce accurate and consistent results, which is critical for correct diagnosis and treatment. The document highlights QC as a foundational element in both analytical and post-analytical phases to prevent errors that could lead to misdiagnosis or unnecessary follow-up testing."
+    },
+    {
+      "q": "How do modern hematology analyzers improve upon older impedance-based systems?",
+      "a": "Modern analyzers use optical methods with laser light scattering and flow cytometry with fluorescent markers to provide more detailed information about cell size, granularity, and internal structure. This enables better differentiation of cell types and earlier detection of abnormalities compared to older impedance-based systems."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "automated differential leukocyte counting",
+    "foundation": "Older hematology analyzers classified white blood cells into three broad categories using impedance and basic optical scatter.",
+    "value_added": [
+      "five-part differential with improved accuracy",
+      "flagging of abnormal or immature cells",
+      "reduced need for manual smear review in many cases"
+    ],
+    "narrative": "The foundational technology grouped WBCs coarsely, limiting diagnostic precision. The newer generation builds on this by using multi-angle light scatter and fluorescent markers to resolve five distinct populations and detect pathological variants, significantly enhancing clinical utility and reducing labor-intensive manual review."
+  },
+  "type_key": "Complete_Blood_Count_CBC_Interpretation_and_Analys",
+  "source_files": [
+    "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+  ]
+}

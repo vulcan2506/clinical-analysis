@@ -3,8 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv as _load_dotenv
 
-# Same key as Stage 1 — BYOK, loaded from Stage 1/.env (ANTHROPIC_API_KEY),
-# never hardcoded here. Does not override an already-set env var.
+# Same keys as Stage 1 — BYOK, loaded from Stage 1/.env, never hardcoded here.
+# Does not override an already-set env var.
 _load_dotenv(Path(__file__).parent.parent / "Stage 1" / ".env")
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
@@ -23,20 +23,27 @@ INDEX_DIR       = Path(_os.environ["INDEX_DIR_OVERRIDE"]) if _os.environ.get("IN
 LLAMA_SERVER_URL  = "http://127.0.0.1:8080"
 LLAMA_MODEL_NAME  = "qwen35-9b"
 
-# ── LLM: Claude API (primary backend — reformulation, rewriting, generation) ──
-LLM_BACKEND       = _os.environ.get("LLM_BACKEND", "anthropic")  # "anthropic" | "local"
-ANTHROPIC_API_KEY = _os.environ.get("ANTHROPIC_API_KEY")
-ANTHROPIC_MODEL   = _os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6")  # account only has Sonnet 4.6 access
+# ── LLM: text-generation backend (reformulation, rewriting, generation) ──────
+LLM_BACKEND       = _os.environ.get("LLM_BACKEND", "api")  # "api" | "local"
 
-# Fallback chain if Claude fails (auth, rate limit, outage, refusal):
-#   1. Claude (primary)
+# 4-tier fallback chain for LLM_BACKEND="api" (auth failure, rate limit,
+# outage, refusal at any tier falls through to the next):
+#   1. Mistral
 #   2. OpenRouter — free-tier model, OpenAI-compatible endpoint
 #   3. Groq — OpenAI-compatible endpoint
 #   4. Local llama.cpp server (auto-started if not already running, via
 #      Stage 1's start_server.sh). Separate from LLM_BACKEND=local, which
-#      skips Claude entirely.
+#      skips the API chain entirely.
+# Anthropic was removed from this chain entirely (2026-07-14, mirrors the
+# same change in Stage 1/config.py) — the key on file was returning 401 on
+# every call, so every reformulation/rewrite/generation call wasted an
+# attempt against a dead tier before cascading down. No longer used anywhere
+# in retrieval_layer.
+MISTRAL_API_KEY      = _os.environ.get("MISTRAL_API_KEY")
+MISTRAL_CHAT_MODEL   = _os.environ.get("MISTRAL_CHAT_MODEL", "mistral-small-latest")
+
 OPENROUTER_API_KEY   = _os.environ.get("OPENROUTER_API_KEY")
-OPENROUTER_MODEL     = _os.environ.get("OPENROUTER_MODEL", "openai/gpt-oss-120b:free")
+OPENROUTER_MODEL     = _os.environ.get("OPENROUTER_MODEL", "google/gemma-4-26b-a4b-it:free")
 OPENROUTER_BASE_URL  = "https://openrouter.ai/api/v1"
 
 GROQ_API_KEY         = _os.environ.get("GROQ_API_KEY")
@@ -81,7 +88,7 @@ TOP_K_HNSW           = 100
 TOP_K_FINAL          = 5     # chunks returned to LLM after reranking
 
 # ── Reranker ──────────────────────────────────────────────────────────────────
-RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+RERANKER_MODEL = "NeuML/biomedbert-base-reranker"
 
 # ── ChromaDB ──────────────────────────────────────────────────────────────────
 CHROMA_DIR             = Path(_os.environ["CHROMA_DIR_OVERRIDE"]) if _os.environ.get("CHROMA_DIR_OVERRIDE") else Path(__file__).parent / "chroma_db"

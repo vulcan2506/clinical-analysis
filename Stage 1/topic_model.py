@@ -136,8 +136,14 @@ def group_by_master_label(chunks: List[Dict]) -> Dict[str, List[Dict]]:
                 label_a = labels_a[i]
                 label_b = labels_b[j]
 
-                # Pick the more descriptive label as canonical
-                canonical = label_a if len(label_a) >= len(label_b) else label_b
+                # Pick whichever label already covers more chunks as canonical
+                # — a proxy for "more established/representative name" for
+                # this merged feature. Previously preferred whichever raw
+                # string was longer, which had the same bias as
+                # label_normalizer._pick_canonical: a longer, narrower label
+                # could win over a shorter, more general one that actually
+                # fit the merged group better.
+                canonical = label_a if len(groups[label_a]) >= len(groups[label_b]) else label_b
                 other = label_b if canonical == label_a else label_a
 
                 # Merge other group into canonical

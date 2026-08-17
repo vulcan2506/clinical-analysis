@@ -35,9 +35,10 @@ Outputs:
 
 import json
 import logging
+import os as _os
 import re
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 
@@ -54,6 +55,7 @@ from delta_analyzer import (
     _parse_additions,
     _parse_profile,
     _render_profile,
+    _validate_significance_level,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)-8s %(message)s")
@@ -61,7 +63,10 @@ log = logging.getLogger(__name__)
 
 NESTED_PATH   = config.NESTED_OUTPUT_PATH
 REGISTRY_PATH = config.REGISTRY_PATH
-CHUNKS_PATH   = config.CHUNKS_CACHE
+# Stage 2 (patient) runs point this at fused_chunk_text.json — patient text
+# with matched guideline text spliced in — instead of the raw ingest cache.
+# Stage 1's own runs never set this var, so CHUNKS_PATH is unchanged there.
+CHUNKS_PATH   = Path(_os.environ["STAGE2_FUSED_CHUNKS_PATH"]) if _os.environ.get("STAGE2_FUSED_CHUNKS_PATH") else config.CHUNKS_CACHE
 GROUPED_PATH  = config.OUTPUT_DIR / "filtered_chunks.json"
 CACHE_PATH    = config.OUTPUT_DIR / "delta_jobs_cache.json"
 SUMMARY_DIR   = config.OUTPUT_DIR / "topic_summaries"
@@ -73,14 +78,29 @@ SUMMARY_DIR   = config.OUTPUT_DIR / "topic_summaries"
 # (verified: Q5/Q19 regressed exactly this way). Capping keeps enriched
 # topics length-comparable to what they're competing against, instead of
 # structurally advantaged.
-EMBED_CHAR_BUDGET = 400    # per source-bracket text (feeds grounded_summary / topic vector)
-BLEND_CHAR_BUDGET = 500    # final cross-bracket blend (feeds summarized_description / intelligence)
+EMBED_CHAR_BUDGET = 800    # per source-bracket text (feeds grounded_summary / topic vector)
+BLEND_CHAR_BUDGET = 1000   # final cross-bracket blend (feeds summarized_description / intelligence)
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def _slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")[:80] or "untitled"
+
+
+def _strip_leading_label(text: str, label: str) -> str:
+    """Drop leading repetitions of a topic's own label from its summary text.
+
+    A topic's blended summary typically starts by restating the topic label,
+    e.g. 'Foo. Foo: subtitle. ...' or 'Foo. Foo. content...'. Since the
+    section heading already names the topic, those leading 'Label.' sentences
+    are redundant — strip them, leaving 'Foo: subtitle. ...' or 'content...'.
+    """
+    if not text or not label:
+        return text
+    pat = re.compile(rf"^\s*({re.escape(label)}\.\s*)+", re.IGNORECASE)
+    stripped = pat.sub("", text).strip()
+    return stripped or text
 
 
 def _split_brackets(raw) -> List[str]:
@@ -110,6 +130,14 @@ def _qna_for_bracket(qna_dict: Dict, ids: List[str]) -> list:
     return out
 
 
+def _find_bracket(all_brackets: List[Dict], label: str, doc: str) -> Optional[Dict]:
+    """Find a bracket entry by (label, doc) pair."""
+    for b in all_brackets:
+        if b["label"] == label and b["doc"] == doc:
+            return b
+    return None
+
+
 def _profile_to_embed_text(label: str, p: BehavioralProfile, char_budget: int = EMBED_CHAR_BUDGET) -> str:
     """
     Greedily fills up to char_budget in priority order (feature name, then
@@ -135,8 +163,15 @@ def _profile_to_embed_text(label: str, p: BehavioralProfile, char_budget: int = 
 def _truncate_at_boundary(text: str, limit: int) -> str:
     if len(text) <= limit:
         return text
-    cut = text.rfind(" ", 0, limit)
-    return text[:cut if cut > 0 else limit].rstrip()
+    # Prefer a sentence boundary (". " or ".  ") within the limit so the
+    # blend never ends mid-sentence; fall back to the last space (the old
+    # word-boundary cutoff) only if no sentence boundary exists.
+    cut = text.rfind(". ", 0, limit)
+    if cut <= 0:
+        cut = text.rfind("  ", 0, limit)
+    if cut <= 0:
+        cut = text.rfind(" ", 0, limit)
+    return text[:cut + 1 if cut > 0 else limit].rstrip()
 
 
 def _load_cache() -> Dict[str, Dict]:
@@ -205,6 +240,25 @@ def run_topic_summarization(cached_only: bool = False):
 
     analyst_role, doc_purpose = _get_domain_profile(taxonomy_data)
 
+    # Per-doc profile lookup, not the single corpus-wide analyst_role/
+    # doc_purpose above — _get_domain_profile only ever returns the FIRST
+    # topic's first source doc's profile, which silently mislabels every
+    # other document in a mixed-domain corpus. More importantly: this
+    # dict is threaded into each job as job["_profile"] below, which is
+    # what _build_holistic_prompts/_build_gap_fill_prompts (imported from
+    # delta_analyzer.py) actually key their DYNAMIC schema adaptation off
+    # of via _get_holistic_prompt_template(job.get("_profile")) — without
+    # it, those calls silently fall back to the fully-hardcoded
+    # WebLogic/workbasket-flavored template regardless of domain, even
+    # though the function signature suggests it's already domain-aware.
+    import context_profiler
+    profile_by_doc: Dict[str, Optional[dict]] = {}
+
+    def _doc_profile(doc: str) -> Optional[dict]:
+        if doc not in profile_by_doc:
+            profile_by_doc[doc] = context_profiler.get_profile(doc)
+        return profile_by_doc[doc]
+
     # ── Pass 1: walk every topic/source-doc bracket, reuse cache where possible ──
     fresh_jobs: List[Dict]  = []
     all_brackets: List[Dict] = []
@@ -239,12 +293,14 @@ def run_topic_summarization(cached_only: bool = False):
                     if entry["profile"] is None:
                         if cached_only:
                             continue   # drop — leave this bracket's topic on its old summary
+                        doc_profile = _doc_profile(doc)
                         fresh_jobs.append({
                             "topic": label,
                             "text_A": text,
                             "qna_A": _qna_for_bracket(qna_dict, ids),
-                            "_analyst_role": analyst_role,
-                            "_doc_purpose": doc_purpose,
+                            "_analyst_role": (doc_profile or {}).get("analyst_role", analyst_role),
+                            "_doc_purpose":  (doc_profile or {}).get("document_purpose", doc_purpose),
+                            "_profile":      doc_profile,
                             "_entry": entry,   # backref filled in after extraction
                         })
 
@@ -272,12 +328,19 @@ def run_topic_summarization(cached_only: bool = False):
         for job, raw in zip(fresh_jobs, raw_gaps):
             job["_entry"]["profile"] = _merge_profiles(job["rough_profile_A"], _parse_additions(raw))
 
+        # ── Sub-pass 1c: keyword validation of significance_level ──
+        for job in fresh_jobs:
+            p = job["_entry"]["profile"]
+            if p:
+                job["_entry"]["profile"] = _validate_significance_level(p, job.get("text_A", ""))
+
     # ── Pass 3: render markdown, build per-topic embed text ──
     log.info("Rendering per-source markdown summaries...")
     by_topic_text: Dict[str, List[Tuple[str, str]]] = {}
     for entry in all_brackets:
         label, doc, p = entry["label"], entry["doc"], entry["profile"]
-        md = [f"# {label}", f"*Source: {doc}*\n", *_render_profile(p)]
+        field_labels = (_doc_profile(doc) or {}).get("field_labels")
+        md = [f"# {label}", f"*Source: {doc}*\n", *_render_profile(p, field_labels)]
         out_dir = SUMMARY_DIR / _slugify(doc)
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / f"{_slugify(label)}.md").write_text("\n".join(md), encoding="utf-8")
@@ -289,17 +352,27 @@ def run_topic_summarization(cached_only: bool = False):
     # ── Pass 4: patch topic_registry.csv ──
     log.info("Updating topic_registry.csv...")
     df = pd.read_csv(REGISTRY_PATH)
-    grounded_col, blended_col = [], []
+    grounded_col, blended_col, sig_col = [], [], []
     for _, row in df.iterrows():
         entries = by_topic_text.get(row["master_label"], [])
         if not entries:
             grounded_col.append("")
             blended_col.append(row.get("summarized_description", ""))
+            sig_col.append(row.get("significance_level", ""))
             continue
         grounded_col.append(" | ".join(f"[{t}]" for _, t in entries))
         blended_col.append(_blend(entries))
+        # Propagate significance_level from the first bracket's profile
+        sl = ""
+        for doc_name, _txt in entries:
+            bracket = _find_bracket(all_brackets, row["master_label"], doc_name)
+            if bracket and bracket.get("profile") and bracket["profile"].significance_level:
+                sl = bracket["profile"].significance_level
+                break
+        sig_col.append(sl)
     df["grounded_summary"]       = grounded_col
     df["summarized_description"] = blended_col
+    df["significance_level"]     = sig_col
     df.to_csv(REGISTRY_PATH, index=False)
     log.info(f"Registry updated → {REGISTRY_PATH}")
 
@@ -313,6 +386,14 @@ def run_topic_summarization(cached_only: bool = False):
                     continue
                 topic["grounded_summary"]       = " | ".join(f"[{t}]" for _, t in entries)
                 topic["summarized_description"] = _blend(entries)
+                # Propagate significance_level from the first bracket's profile
+                for doc_name, _txt in entries:
+                    bracket = _find_bracket(all_brackets, topic.get("master_label", ""), doc_name)
+                    if bracket and bracket.get("profile"):
+                        sl = bracket["profile"].significance_level
+                        if sl:
+                            topic["significance_level"] = sl
+                            break
                 n_patched += 1
 
     with open(NESTED_PATH, "w", encoding="utf-8") as f:

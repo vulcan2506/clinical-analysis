@@ -439,7 +439,7 @@ def repl(args):
                 # gated call rather than best-of silently taking over. Ignored
                 # by the library itself when mode="detailed" (see redis_cache.
                 # answer_query's docstring — detailed never reformulates).
-                kwargs = {"mode": turn_mode}
+                kwargs = {"mode": turn_mode, "original_query": query}
                 if turn_best_of is not None:
                     kwargs["best_of"] = turn_best_of
                 if turn_mode == "detailed" and turn_best_of:

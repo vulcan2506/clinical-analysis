@@ -106,19 +106,31 @@ def _normalize(query: str) -> str:
     return " ".join(query.strip().lower().split())
 
 
-def cache_key(query: str, mode: str = "concise") -> str:
-    digest = hashlib.sha256(f"{mode}:{_normalize(query)}".encode("utf-8")).hexdigest()[:24]
+def cache_key(query: str, mode: str = "concise", corpus_id: str = "default") -> str:
+    """
+    corpus_id is part of the key so an identical query string against two
+    different corpora (e.g. "guidelines" vs. a Stage 2 patient corpus) can't
+    collide and serve a cross-corpus-wrong cached answer — previously the
+    key was hashed from mode+query only, with no corpus awareness at all.
+    """
+    digest = hashlib.sha256(f"{corpus_id}:{mode}:{_normalize(query)}".encode("utf-8")).hexdigest()[:24]
     return f"{config.REDIS_KEY_PREFIX}{digest}"
 
 
 # ── Dynamic gate (confidence-based, not category-based) ────────────────────────
 
+# corpus_id defaults to "default" here ONLY for the prefer_method path in
+# answer_query() below, which stays uncorpus-aware (unchanged, pre-existing
+# scope limit). gate_and_retrieve()'s own escalation call (below) always
+# passes corpus_id explicitly — see its docstring for why that one was a
+# real, confirmed bug (silent fallback to "default", not just an unused
+# default) and had to be fixed rather than left as a documented gap.
 METHOD_FNS = {
-    "pipeline":    lambda q: retriever.retrieve(q),
-    "naive":       lambda q: retriever.retrieve_naive(q),
-    "traditional": lambda q: retriever.retrieve_overlap(q),
-    "merged":      lambda q: retriever.retrieve_merged(q),
-    "merged_all":  lambda q: retriever.retrieve_merged_all(q),
+    "pipeline":    lambda q, corpus_id="default": retriever.retrieve(q, corpus_id=corpus_id),
+    "naive":       lambda q, corpus_id="default": retriever.retrieve_naive(q, corpus_id=corpus_id),
+    "traditional": lambda q, corpus_id="default": retriever.retrieve_overlap(q, corpus_id=corpus_id),
+    "merged":      lambda q, corpus_id="default": retriever.retrieve_merged(q, corpus_id=corpus_id),
+    "merged_all":  lambda q, corpus_id="default": retriever.retrieve_merged_all(q, corpus_id=corpus_id),
 }
 
 
@@ -145,7 +157,13 @@ def select_method(query: str) -> str:
     return "traditional"
 
 
-def gate_and_retrieve(query: str, best_of: int = 3) -> Dict:
+def gate_and_retrieve(
+    query: str,
+    best_of: int = 3,
+    corpus_id: Optional[str] = None,
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
+) -> Dict:
     """
     Run pipeline first — cheap, and also the first leg of merged/merged_all
     anyway — and check its own live rerank confidence via the SAME mechanism
@@ -168,11 +186,32 @@ def gate_and_retrieve(query: str, best_of: int = 3) -> Dict:
     top rerank score is highest. The confidence check and escalation above
     then run against that winning result. Pass 0 or 1 to skip reformulation
     and use a single plain retrieve() call instead.
+
+    corpus_id / active_patient_corpus_id: resolved once up front via
+    retriever._classify_corpus_target() (or corpus_id used as-is if given)
+    and applied to BOTH the pipeline pass and any escalation rung.
+
+    Fixed 2026-07-17 — this used to be a real, confirmed bug, not just a
+    documented gap: escalation (naive/traditional/merged/merged_all via
+    METHOD_FNS) silently dropped to "default" regardless of the actual
+    resolved_corpus_id, AND the returned dict's "corpus_id" field was
+    overwritten with resolved_corpus_id afterward anyway — so a
+    low-confidence query against a patient corpus (exactly the queries most
+    likely to need escalation, since they're the ones the cheap pipeline
+    pass couldn't answer confidently) would silently retrieve from the
+    guidelines-only "default" corpus while the API response kept claiming
+    the patient corpus was used. Verified directly: "Can you analyze
+    patient report and suggest key findings?" against a real patient corpus
+    scored well below CONFIDENCE_THRESHOLD on the cheap pass, triggered
+    this exact path, and returned guideline-only citations with zero
+    patient content.
     """
+    resolved_corpus_id = corpus_id or retriever._classify_corpus_target(query, active_patient_corpus_id)
+
     if best_of and best_of > 1:
-        pipeline_result = retriever.retrieve_best_of_n(query, n=best_of)
+        pipeline_result = retriever.retrieve_best_of_n(query, n=best_of, corpus_id=resolved_corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
     else:
-        pipeline_result = retriever.retrieve(query)
+        pipeline_result = retriever.retrieve(query, corpus_id=resolved_corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
     top_score = retriever._top_rerank_score(pipeline_result)
 
     if top_score >= config.CONFIDENCE_THRESHOLD:
@@ -188,13 +227,19 @@ def gate_and_retrieve(query: str, best_of: int = 3) -> Dict:
     else:
         method = "merged_all"   # generic escalation: pool everything available
 
-    result = dict(METHOD_FNS[method](query))
+    result = dict(METHOD_FNS[method](query, corpus_id=resolved_corpus_id))
     result["_gated_method"] = method
     result["_gated_confidence"] = top_score
+    result["corpus_id"] = resolved_corpus_id
     return result
 
 
-def retrieve_detailed(query: str) -> Dict:
+def retrieve_detailed(
+    query: str,
+    corpus_id: Optional[str] = None,
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
+) -> Dict:
     """
     "Detailed/explanatory" mode — always uses merged_all, no confidence
     check at all. Per the full 53-query x 6-method eval (deep_eval_full_6method.md),
@@ -220,10 +265,20 @@ def retrieve_detailed(query: str) -> Dict:
     no-op, including that round-trip, unless config.PLANNER_ENABLED is True
     — see planner.py's module docstring and config.py's PLANNER_ENABLED
     comment for the evaluation this decision was based on.
+
+    Fixed 2026-07-17 — same bug class as gate_and_retrieve()'s escalation
+    path (see its docstring): this call neither accepted nor threaded
+    corpus_id, so retrieve_merged_all() always resolved "default" internally
+    (no active_patient_corpus_id ever reached it), and planner.explore()'s
+    own expansion hops were separately hardcoded to "default" regardless.
+    Detailed Mode against a patient corpus was therefore guidelines-only
+    end to end, not just on the seed retrieval.
     """
-    result = dict(retriever.retrieve_merged_all(query))
-    result = planner.explore(query, result)
+    resolved_corpus_id = corpus_id or retriever._classify_corpus_target(query, active_patient_corpus_id)
+    result = dict(retriever.retrieve_merged_all(query, corpus_id=resolved_corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query))
+    result = planner.explore(query, result, corpus_id=resolved_corpus_id)
     result["_gated_method"] = "merged_all+explore" if result.get("_explored") else "merged_all"
+    result["corpus_id"] = resolved_corpus_id
     return result
 
 
@@ -251,7 +306,10 @@ def _generate_answer(query: str, result: Dict, max_tokens: int = 900) -> str:
             "sub-topic not covered above):\n" + outline
         )
     return llm_client.chat(
-        f"{context}\n\nQuestion: {query}",
+        f"{context}\n\nQuestion: {query}\n\n"
+        "Note: If the question contains meta-references (e.g., \"previous question asked\", "
+        "\"above\", \"this topic\"), interpret them as referring to the clinical subject matter "
+        "evident from the provided context. Answer based solely on the information in the context.",
         system_prompt=result["system_prompt"],
         max_tokens=max_tokens,
     )
@@ -259,21 +317,65 @@ def _generate_answer(query: str, result: Dict, max_tokens: int = 900) -> str:
 
 # ── Cache read/write ────────────────────────────────────────────────────────────
 
-def get_cached(query: str, mode: str = "concise") -> Optional[Dict]:
-    raw = _get_client().get(cache_key(query, mode))
+def get_cached(query: str, mode: str = "concise", corpus_id: str = "default") -> Optional[Dict]:
+    raw = _get_client().get(cache_key(query, mode, corpus_id))
     return json.loads(raw) if raw else None
 
 
-def set_cached(query: str, method: str, answer: str, latency_s: float, mode: str = "concise") -> None:
+def set_cached(
+    query: str, method: str, answer: str, latency_s: float,
+    mode: str = "concise", corpus_id: str = "default",
+) -> None:
     payload = {
         "query": query, "method": method, "answer": answer, "mode": mode,
-        "latency_s_at_seed": latency_s, "cached_at": time.time(),
+        "corpus_id": corpus_id, "latency_s_at_seed": latency_s, "cached_at": time.time(),
     }
-    key = cache_key(query, mode)
+    key = cache_key(query, mode, corpus_id)
     if config.REDIS_TTL_SECONDS:
         _get_client().setex(key, config.REDIS_TTL_SECONDS, json.dumps(payload))
     else:
         _get_client().set(key, json.dumps(payload))
+
+
+# ── Cross-corpus derived-output cache (merge/delta/evolution/chat_hop2) ────────
+# A DIFFERENT cache than the answer cache above, with different semantics:
+# auto-write-on-miss with a real TTL, not a curated no-expiry demo preset —
+# this exists purely as a performance layer for expensive live cross_corpus
+# lookups + LLM calls, keyed so it self-invalidates the moment the guideline
+# KB actually changes. Reuses _get_client()'s exact connection setup; gets
+# its own key namespace ("xcorp:") so it never collides with cache_key()'s
+# answer-cache keys.
+
+XCORP_TTL_SECONDS = 604_800  # 7 days — starting default, recalibrate once real usage patterns are known
+
+
+def xcorp_cache_key(task_type: str, entity_id: str, guideline_kb_version: str, prompt_version: str = "v1") -> str:
+    """
+    task_type in {"merge", "delta", "evolution", "chat_hop2", "lookup"}.
+    entity_id: patient-topic slug for merge/delta/evolution; a hash of
+    (resolved_corpus_id, hop2_query) for chat_hop2. guideline_kb_version
+    comes from cross_corpus.guideline_kb_version() — a content hash of
+    topic_registry.csv, so this key changes automatically the moment the
+    guideline KB is reprocessed, with no explicit invalidation step needed.
+    """
+    digest = hashlib.sha256(
+        f"{task_type}:{entity_id}:{guideline_kb_version}:{prompt_version}".encode("utf-8")
+    ).hexdigest()[:24]
+    return f"{config.REDIS_KEY_PREFIX}xcorp:{task_type}:{digest}"
+
+
+def get_xcorp_cached(
+    task_type: str, entity_id: str, guideline_kb_version: str, prompt_version: str = "v1"
+) -> Optional[dict]:
+    raw = _get_client().get(xcorp_cache_key(task_type, entity_id, guideline_kb_version, prompt_version))
+    return json.loads(raw) if raw else None
+
+
+def set_xcorp_cached(
+    task_type: str, entity_id: str, guideline_kb_version: str, payload: dict, prompt_version: str = "v1"
+) -> None:
+    key = xcorp_cache_key(task_type, entity_id, guideline_kb_version, prompt_version)
+    _get_client().setex(key, XCORP_TTL_SECONDS, json.dumps(payload))
 
 
 def answer_query(
@@ -281,6 +383,9 @@ def answer_query(
     mode: str = "concise",
     prefer_method: Optional[str] = None,
     best_of: int = 3,
+    corpus_id: Optional[str] = None,
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     """
     Cache-checked entry point, now with two modes (each cached separately —
@@ -311,24 +416,26 @@ def answer_query(
     seeding is a deliberate, separate step (build_cache_preset.py) so the
     demo's cached/uncached split stays exactly as curated.
     """
+    resolved_corpus_id = corpus_id or retriever._classify_corpus_target(query, active_patient_corpus_id)
+
     t0 = time.time()
-    cached = get_cached(query, mode)
+    cached = get_cached(query, mode, resolved_corpus_id)
     if cached:
         return {**cached, "from_cache": True, "latency_s": time.time() - t0}
 
     if prefer_method:
         method = prefer_method
-        result = METHOD_FNS[method](query)
+        result = METHOD_FNS[method](query)  # NOTE: not corpus-aware — deliberately unchanged, see METHOD_FNS comment
     elif mode == "detailed":
-        result = retrieve_detailed(query)
+        result = retrieve_detailed(query, corpus_id=resolved_corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
         method = result["_gated_method"]
     else:
-        result = gate_and_retrieve(query, best_of=best_of)
+        result = gate_and_retrieve(query, best_of=best_of, corpus_id=resolved_corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
         method = result["_gated_method"]
 
     answer = _generate_answer(query, result)
     return {
-        "query": query, "method": method, "mode": mode, "answer": answer,
+        "query": query, "method": method, "mode": mode, "corpus_id": resolved_corpus_id, "answer": answer,
         "confidence": result.get("_gated_confidence"),
         # Passthrough only — result["chunks"] is already the exact list
         # retriever.retrieve()/retrieve_merged()/retrieve_merged_all() produced

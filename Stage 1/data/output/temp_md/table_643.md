@@ -1,0 +1,8 @@
+|  Medication name | Risk of hypoglycemia | Timing | Total daily dose  |
+| --- | --- | --- | --- |
+|  Metformin, SGLT2 inhibitor, DPP-4 inhibitor, GLP-1 receptor agonist, acarbose, or pioglitazone | Low | - If once daily, then take at main mealtime. - If twice daily, then split dose between the two meals. - If once weekly, no change of time. | - No change  |
+|  New generation of sulfonylurea (glimepiride and gliclazide) | Low to moderate | - If once daily, then take at main mealtime. - If twice daily, then split dose between the two meals. | - Reduce dose if glucose levels are within individualized goal range and if no hypoglycemia or hyperglycemia is present at baseline.  |
+|  Older generation of sulfonylurea (glyburide) | Moderate to high | - Take at time of main meal | - Replace with newer-generation sulfonylurea or reduce dose by 50%.  |
+|  Basal insulin | Moderate to high | - For longer-acting basal analogs (glargine 300 or degludec), no need to change timing. - For other basal insulins, take at beginning of breaking fast meal. | - Choose the insulin with lower risk of hypoglycemia among the class. - Reduce dose by 25–35% if not well managed.  |
+|  Prandial insulin | High | - At mealtime | - Reduce dose of insulin for the meal followed by fasting (35–50%). - For other meals, insulin dose should match carbohydrate intake.  |
+|  Mixed insulin and insulin coformulations | High | - If once daily, then take at main mealtime. - If twice daily, then split dose between the two meals | - Reduce dose of insulin for the meal followed by fasting (35–50%). - For other meals, no change of dose.  |

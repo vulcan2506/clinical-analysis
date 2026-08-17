@@ -1,0 +1,366 @@
+00:41:29  INFO      ═══════════════════════════════════════════════════════
+00:41:29  INFO        STAGE 1  —  Ingest → Rectify → Label → Enrich → Filter → Registry
+00:41:29  INFO      ═══════════════════════════════════════════════════════
+00:41:29  INFO      
+[1/7] Processing PDFs (Extract -> Rectify -> Re-Rectify)
+00:41:29  INFO      
+--- Processing PDF: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia.pdf ---
+00:41:29  INFO      Extracting: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia.pdf...
+00:41:29  INFO      Extracting 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia.pdf via Mistral OCR (primary)...
+00:41:29  INFO      Mistral client constructed — OCR model=mistral-ocr-latest, chat model=mistral-small-latest
+00:41:32  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:41:32  INFO      Saved converted markdown → 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia_Converted.md
+00:41:32  INFO      Loading embedder: paraphrase-multilingual-MiniLM-L12-v2
+00:41:33  INFO      Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+Rectifying tables:   0%|          | 0/95 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 95/95 [00:00<00:00, 1677.21it/s]
+00:43:49  INFO      [Re-Rectifier] 44/95 tables need fixing (51 skipped — already clean)
+00:43:49  INFO      Re-Rectification: starting 44 items (6 parallel slots, backend=api)
+00:43:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:51  INFO      Re-Rectification: 4/44 (9%) — ~0m23s remaining
+00:43:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:52  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:52  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:52  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:52  INFO      Re-Rectification: 8/44 (18%) — ~0m14s remaining
+00:43:52  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:53  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:53  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:54  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:54  INFO      Re-Rectification: 12/44 (27%) — ~0m12s remaining
+00:43:54  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:54  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:55  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:56  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:56  INFO      Re-Rectification: 16/44 (36%) — ~0m12s remaining
+00:43:56  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:56  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:56  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:57  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:57  INFO      Re-Rectification: 20/44 (45%) — ~0m09s remaining
+00:43:57  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:58  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:58  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:59  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:43:59  INFO      Re-Rectification: 24/44 (54%) — ~0m08s remaining
+00:43:59  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:00  INFO      Re-Rectification: 28/44 (63%) — ~0m06s remaining
+00:44:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:01  INFO      Re-Rectification: 32/44 (72%) — ~0m04s remaining
+00:44:02  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:02  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:02  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:02  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:02  INFO      Re-Rectification: 36/44 (81%) — ~0m02s remaining
+00:44:03  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:03  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:03  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:03  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:03  INFO      Re-Rectification: 40/44 (90%) — ~0m01s remaining
+00:44:04  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:04  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:04  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:05  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:44:05  INFO      Re-Rectification: 44/44 (100%) — ~0m00s remaining
+00:44:05  WARNING   [Re-Rectifier] chunk 41 — fix produced 2 rows vs ~4 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 45 — fix produced 1 rows vs ~5 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 69 — fix produced 3 rows vs ~5 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 85 — fix produced 2 rows vs ~4 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 104 — fix produced 7 rows vs ~9 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 118 — fix produced 1 rows vs ~3 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 154 — fix produced 2 rows vs ~11 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 161 — fix produced 1 rows vs ~4 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 199 — fix produced 7 rows vs ~10 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 200 — fix produced 2 rows vs ~5 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 211 — fix produced 2 rows vs ~4 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 239 — fix produced 2 rows vs ~4 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 258 — fix produced 1 rows vs ~3 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 261 — fix produced 3 rows vs ~5 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 270 — fix produced 6 rows vs ~8 in the source table — flagged for review
+00:44:05  WARNING   [Re-Rectifier] chunk 281 — fix produced 1 rows vs ~4 in the source table — flagged for review
+00:44:05  INFO      
+--- Processing PDF: American Diabetes Association Care Guidence.pdf ---
+00:44:05  INFO      Extracting: American Diabetes Association Care Guidence.pdf...
+00:44:05  INFO      Extracting American Diabetes Association Care Guidence.pdf via Mistral OCR (primary)...
+00:44:07  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:44:08  INFO      Saved converted markdown → American Diabetes Association Care Guidence_Converted.md
+Rectifying tables:   0%|          | 0/69 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 69/69 [00:00<00:00, 1990.01it/s]
+00:51:27  INFO      [Re-Rectifier] 7/69 tables need fixing (62 skipped — already clean)
+00:51:27  INFO      Re-Rectification: starting 7 items (6 parallel slots, backend=api)
+00:51:28  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:28  INFO      Re-Rectification: 1/7 (14%) — ~0m05s remaining
+00:51:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:30  INFO      Re-Rectification: 2/7 (28%) — ~0m07s remaining
+00:51:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:30  INFO      Re-Rectification: 3/7 (42%) — ~0m03s remaining
+00:51:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:30  INFO      Re-Rectification: 4/7 (57%) — ~0m02s remaining
+00:51:31  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:31  INFO      Re-Rectification: 5/7 (71%) — ~0m01s remaining
+00:51:33  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:33  INFO      Re-Rectification: 6/7 (85%) — ~0m01s remaining
+00:51:34  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:51:34  INFO      Re-Rectification: 7/7 (100%) — ~0m00s remaining
+00:51:34  WARNING   [Re-Rectifier] chunk 905 — fix produced 6 rows vs ~10 in the source table — flagged for review
+00:51:34  INFO      
+--- Processing PDF: American Thyroid Association.pdf ---
+00:51:34  INFO      Extracting: American Thyroid Association.pdf...
+00:51:34  INFO      Extracting American Thyroid Association.pdf via Mistral OCR (primary)...
+00:51:35  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:51:36  INFO      Saved converted markdown → American Thyroid Association_Converted.md
+Rectifying tables:   0%|          | 0/13 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 13/13 [00:00<00:00, 1618.17it/s]
+00:54:34  INFO      [Re-Rectifier] 3/13 tables need fixing (10 skipped — already clean)
+00:54:34  INFO      Re-Rectification: starting 3 items (6 parallel slots, backend=api)
+00:54:35  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:54:35  INFO      Re-Rectification: 1/3 (33%) — ~0m01s remaining
+00:54:36  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:54:36  INFO      Re-Rectification: 2/3 (66%) — ~0m01s remaining
+00:54:39  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:54:39  INFO      Re-Rectification: 3/3 (100%) — ~0m00s remaining
+00:54:39  WARNING   [Re-Rectifier] chunk 1205 — fix produced 28 rows vs ~31 in the source table — flagged for review
+00:54:39  INFO      
+--- Processing PDF: Chronic Kidney Disease.pdf ---
+00:54:39  INFO      Extracting: Chronic Kidney Disease.pdf...
+00:54:39  INFO      Extracting Chronic Kidney Disease.pdf via Mistral OCR (primary)...
+00:54:41  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:54:41  INFO      Saved converted markdown → Chronic Kidney Disease_Converted.md
+Rectifying tables:   0%|          | 0/82 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 82/82 [00:00<00:00, 2829.54it/s]
+00:58:10  INFO      [Re-Rectifier] 22/83 tables need fixing (61 skipped — already clean)
+00:58:10  INFO      Re-Rectification: starting 22 items (6 parallel slots, backend=api)
+00:58:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:12  INFO      Re-Rectification: 2/22 (9%) — ~0m21s remaining
+00:58:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:14  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:14  INFO      Re-Rectification: 4/22 (18%) — ~0m18s remaining
+00:58:15  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:16  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:16  INFO      Re-Rectification: 6/22 (27%) — ~0m16s remaining
+00:58:17  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:19  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:19  INFO      Re-Rectification: 8/22 (36%) — ~0m15s remaining
+00:58:20  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:21  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:21  INFO      Re-Rectification: 10/22 (45%) — ~0m13s remaining
+00:58:22  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:23  INFO      Re-Rectification: 12/22 (54%) — ~0m10s remaining
+00:58:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:23  INFO      Re-Rectification: 14/22 (63%) — ~0m07s remaining
+00:58:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:24  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:24  INFO      Re-Rectification: 16/22 (72%) — ~0m05s remaining
+00:58:25  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:26  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:26  INFO      Re-Rectification: 18/22 (81%) — ~0m03s remaining
+00:58:26  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:26  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:26  INFO      Re-Rectification: 20/22 (90%) — ~0m01s remaining
+00:58:26  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:28  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:28  INFO      Re-Rectification: 22/22 (100%) — ~0m00s remaining
+00:58:28  WARNING   [Re-Rectifier] chunk 1388 — fix produced 7 rows vs ~9 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1391 — fix produced 6 rows vs ~10 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1411 — fix produced 28 rows vs ~37 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1412 — fix produced 14 rows vs ~37 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1431 — fix produced 39 rows vs ~47 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1599 — fix produced 6 rows vs ~10 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1672 — fix produced 4 rows vs ~6 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1679 — fix produced 6 rows vs ~8 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1680 — fix produced 6 rows vs ~8 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1784 — fix produced 4 rows vs ~6 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1786 — fix produced 3 rows vs ~5 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1790 — fix produced 3 rows vs ~6 in the source table — flagged for review
+00:58:28  WARNING   [Re-Rectifier] chunk 1820 — fix produced 2 rows vs ~4 in the source table — flagged for review
+00:58:28  INFO      
+--- Processing PDF: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf ---
+00:58:28  INFO      Extracting: Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf...
+00:58:28  INFO      Extracting Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf via Mistral OCR (primary)...
+00:58:28  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:58:29  INFO      Saved converted markdown → Complete_Blood_Count_CBC_Interpretation_and_Analys_Converted.md
+Rectifying tables:   0%|          | 0/22 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 22/22 [00:00<00:00, 3727.67it/s]
+00:58:40  INFO      [Re-Rectifier] 4/22 tables need fixing (18 skipped — already clean)
+00:58:40  INFO      Re-Rectification: starting 4 items (6 parallel slots, backend=api)
+00:58:42  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:42  INFO      Re-Rectification: 1/4 (25%) — ~0m05s remaining
+00:58:43  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:43  INFO      Re-Rectification: 2/4 (50%) — ~0m02s remaining
+00:58:43  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:43  INFO      Re-Rectification: 3/4 (75%) — ~0m00s remaining
+00:58:43  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:43  INFO      Re-Rectification: 4/4 (100%) — ~0m00s remaining
+00:58:43  INFO      
+--- Processing PDF: Dietary advice for Vitamin B12 and folate deficiency.pdf ---
+00:58:43  INFO      Extracting: Dietary advice for Vitamin B12 and folate deficiency.pdf...
+00:58:43  INFO      Extracting Dietary advice for Vitamin B12 and folate deficiency.pdf via Mistral OCR (primary)...
+00:58:44  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:58:44  INFO      Saved converted markdown → Dietary advice for Vitamin B12 and folate deficiency_Converted.md
+Rectifying tables:   0%|          | 0/1 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 1/1 [00:00<00:00, 4832.15it/s]
+00:58:45  INFO      [Re-Rectifier] 0/1 tables need fixing (1 skipped — already clean)
+00:58:45  INFO      
+--- Processing PDF: Endocrine_Society_Guideline_Methodology_links.pdf ---
+00:58:45  INFO      Extracting: Endocrine_Society_Guideline_Methodology_links.pdf...
+00:58:45  INFO      Extracting Endocrine_Society_Guideline_Methodology_links.pdf via Mistral OCR (primary)...
+00:58:46  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:58:46  INFO      Saved converted markdown → Endocrine_Society_Guideline_Methodology_links_Converted.md
+Rectifying tables:   0%|          | 0/5 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 5/5 [00:00<00:00, 5628.43it/s]
+00:58:51  INFO      [Re-Rectifier] 1/5 tables need fixing (4 skipped — already clean)
+00:58:51  INFO      Re-Rectification: starting 1 items (6 parallel slots, backend=api)
+00:58:52  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:58:52  INFO      Re-Rectification: 1/1 (100%) — ~0m00s remaining
+00:58:52  INFO      
+--- Processing PDF: ICMR Type 2 Diabetes.pdf ---
+00:58:52  INFO      Extracting: ICMR Type 2 Diabetes.pdf...
+00:58:52  INFO      Extracting ICMR Type 2 Diabetes.pdf via Mistral OCR (primary)...
+00:58:54  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:58:54  INFO      Saved converted markdown → ICMR Type 2 Diabetes_Converted.md
+Rectifying tables:   0%|          | 0/23 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 23/23 [00:00<00:00, 5803.00it/s]
+00:59:22  INFO      [Re-Rectifier] 3/23 tables need fixing (20 skipped — already clean)
+00:59:22  INFO      Re-Rectification: starting 3 items (6 parallel slots, backend=api)
+00:59:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:59:23  INFO      Re-Rectification: 1/3 (33%) — ~0m01s remaining
+00:59:24  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:59:24  INFO      Re-Rectification: 2/3 (66%) — ~0m00s remaining
+00:59:24  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+00:59:24  INFO      Re-Rectification: 3/3 (100%) — ~0m00s remaining
+00:59:24  WARNING   [Re-Rectifier] chunk 1964 — fix produced 4 rows vs ~6 in the source table — flagged for review
+00:59:24  INFO      
+--- Processing PDF: ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf ---
+00:59:24  INFO      Extracting: ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf...
+00:59:24  INFO      Extracting ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf via Mistral OCR (primary)...
+00:59:26  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+00:59:26  INFO      Saved converted markdown → ICMR_Guidelines_for_Management_of_Type_1_Diabetes_Converted.md
+Rectifying tables:   0%|          | 0/39 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 39/39 [00:00<00:00, 2831.98it/s]
+01:01:27  INFO      [Re-Rectifier] 11/39 tables need fixing (28 skipped — already clean)
+01:01:27  INFO      Re-Rectification: starting 11 items (6 parallel slots, backend=api)
+01:01:29  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:29  INFO      Re-Rectification: 1/11 (9%) — ~0m11s remaining
+01:01:29  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:29  INFO      Re-Rectification: 2/11 (18%) — ~0m07s remaining
+01:01:29  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:29  INFO      Re-Rectification: 3/11 (27%) — ~0m04s remaining
+01:01:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:30  INFO      Re-Rectification: 4/11 (36%) — ~0m04s remaining
+01:01:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:30  INFO      Re-Rectification: 5/11 (45%) — ~0m03s remaining
+01:01:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:30  INFO      Re-Rectification: 6/11 (54%) — ~0m02s remaining
+01:01:31  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:31  INFO      Re-Rectification: 7/11 (63%) — ~0m02s remaining
+01:01:31  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:31  INFO      Re-Rectification: 8/11 (72%) — ~0m01s remaining
+01:01:31  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:31  INFO      Re-Rectification: 9/11 (81%) — ~0m00s remaining
+01:01:33  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:33  INFO      Re-Rectification: 10/11 (90%) — ~0m00s remaining
+01:01:33  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:01:33  INFO      Re-Rectification: 11/11 (100%) — ~0m00s remaining
+01:01:33  WARNING   [Re-Rectifier] chunk 2378 — fix produced 7 rows vs ~9 in the source table — flagged for review
+01:01:33  WARNING   [Re-Rectifier] chunk 2416 — fix produced 5 rows vs ~7 in the source table — flagged for review
+01:01:33  INFO      
+--- Processing PDF: Iron_metabolism.pdf ---
+01:01:33  INFO      Extracting: Iron_metabolism.pdf...
+01:01:33  INFO      Extracting Iron_metabolism.pdf via Mistral OCR (primary)...
+01:01:34  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+01:01:34  INFO      Saved converted markdown → Iron_metabolism_Converted.md
+Rectifying tables: 0it [00:00, ?it/s]Rectifying tables: 0it [00:00, ?it/s]
+01:01:38  INFO      [Re-Rectifier] No raw markdown files found. Skipping.
+01:01:38  INFO      
+--- Processing PDF: Lipid Disorders.pdf ---
+01:01:38  INFO      Extracting: Lipid Disorders.pdf...
+01:01:38  INFO      Extracting Lipid Disorders.pdf via Mistral OCR (primary)...
+01:01:40  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+01:01:40  INFO      Saved converted markdown → Lipid Disorders_Converted.md
+Rectifying tables:   0%|          | 0/17 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 17/17 [00:00<00:00, 8796.34it/s]
+01:02:04  INFO      [Re-Rectifier] 2/17 tables need fixing (15 skipped — already clean)
+01:02:04  INFO      Re-Rectification: starting 2 items (6 parallel slots, backend=api)
+01:02:06  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:02:06  INFO      Re-Rectification: 1/2 (50%) — ~0m01s remaining
+01:02:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:02:08  INFO      Re-Rectification: 2/2 (100%) — ~0m00s remaining
+01:02:08  INFO      
+--- Processing PDF: Sodium and Cloride .pdf ---
+01:02:08  INFO      Extracting: Sodium and Cloride .pdf...
+01:02:08  INFO      Extracting Sodium and Cloride .pdf via Mistral OCR (primary)...
+01:02:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+01:02:08  INFO      Saved converted markdown → Sodium and Cloride _Converted.md
+Rectifying tables:   0%|          | 0/6 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 6/6 [00:00<00:00, 5752.19it/s]
+01:02:10  INFO      [Re-Rectifier] 0/7 tables need fixing (7 skipped — already clean)
+01:02:10  INFO      
+--- Processing PDF: electrolytes.pdf ---
+01:02:10  INFO      Extracting: electrolytes.pdf...
+01:02:10  INFO      Extracting electrolytes.pdf via Mistral OCR (primary)...
+01:02:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+01:02:11  INFO      Saved converted markdown → electrolytes_Converted.md
+Rectifying tables:   0%|          | 0/22 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 22/22 [00:00<00:00, 5772.22it/s]
+01:02:21  INFO      [Re-Rectifier] 0/22 tables need fixing (22 skipped — already clean)
+01:02:21  INFO      Finished extracting all PDFs. Total chunks: 2648
+01:02:21  INFO      llm_client reset (llama-server keeps model loaded)
+01:02:21  INFO      Unloaded ingest models + local LLM.
+01:02:21  INFO      
+[2/7] Enriching content-poor chunk descriptions and calculating quality scores
+01:02:22  INFO      Heuristic judge evaluating 2648 potentially poor chunks...
+01:02:22  INFO      Heuristic judge: 0/2648 flagged for enrichment
+01:02:22  INFO      Enrichment: LLM Judge determined 0/2648 chunks truly need RAG/Web Search
+01:02:22  INFO      No chunks require enrichment — skipping.
+01:02:22  INFO      Enriched chunks saved to cache.
+01:02:22  INFO      llm_client reset (llama-server keeps model loaded)
+01:02:22  INFO      Unloaded enricher models + local LLM.
+01:02:22  INFO      
+[2.5/7] Building domain profiles for dynamic prompting
+01:02:22  INFO      [Context Profiler] 13 document type(s) detected: ['ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia', 'American Diabetes Association Care Guidence', 'American Thyroid Association', 'Chronic Kidney Disease', 'Complete_Blood_Count_CBC_Interpretation_and_Analys', 'Dietary advice for Vitamin B12 and folate deficiency', 'Endocrine_Society_Guideline_Methodology_links', 'ICMR Type 2 Diabetes', 'ICMR_Guidelines_for_Management_of_Type_1_Diabetes', 'Iron_metabolism', 'Lipid Disorders', 'Sodium and Cloride ', 'electrolytes']
+01:02:22  INFO      [Context Profiler] Profiling 'ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia' (407 chunks from 1 file(s))...
+01:02:34  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:02:34  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia.json
+01:02:34  INFO      [Context Profiler] Profiling 'American Diabetes Association Care Guidence' (721 chunks from 1 file(s))...
+01:02:44  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:02:44  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/American Diabetes Association Care Guidence.json
+01:02:44  INFO      [Context Profiler] Profiling 'American Thyroid Association' (243 chunks from 1 file(s))...
+01:02:54  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:02:54  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/American Thyroid Association.json
+01:02:54  INFO      [Context Profiler] Profiling 'Chronic Kidney Disease' (459 chunks from 1 file(s))...
+01:03:04  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:04  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Chronic Kidney Disease.json
+01:03:04  INFO      [Context Profiler] Profiling 'Complete_Blood_Count_CBC_Interpretation_and_Analys' (58 chunks from 1 file(s))...
+01:03:14  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:14  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Complete_Blood_Count_CBC_Interpretation_and_Analys.json
+01:03:14  INFO      [Context Profiler] Profiling 'Dietary advice for Vitamin B12 and folate deficiency' (11 chunks from 1 file(s))...
+01:03:23  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:23  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Dietary advice for Vitamin B12 and folate deficiency.json
+01:03:23  INFO      [Context Profiler] Profiling 'Endocrine_Society_Guideline_Methodology_links' (23 chunks from 1 file(s))...
+01:03:32  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:32  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Endocrine_Society_Guideline_Methodology_links.json
+01:03:32  INFO      [Context Profiler] Profiling 'ICMR Type 2 Diabetes' (193 chunks from 1 file(s))...
+01:03:41  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:41  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/ICMR Type 2 Diabetes.json
+01:03:41  INFO      [Context Profiler] Profiling 'ICMR_Guidelines_for_Management_of_Type_1_Diabetes' (387 chunks from 1 file(s))...
+01:03:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:03:51  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/ICMR_Guidelines_for_Management_of_Type_1_Diabetes.json
+01:03:51  INFO      [Context Profiler] Profiling 'Iron_metabolism' (4 chunks from 1 file(s))...
+01:04:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:04:01  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Iron_metabolism.json
+01:04:01  INFO      [Context Profiler] Profiling 'Lipid Disorders' (47 chunks from 1 file(s))...
+01:04:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+01:04:12  INFO      [Context Profiler] Profile cached → /home/vulcan/Documents/Projects/Research Maker/Stage 1/data_guidelines/output/profiles/Lipid Disorders.json
+01:04:12  INFO      [Context Profiler] Profiling 'Sodium and Cloride ' (13 chunks from 1 file(s))...

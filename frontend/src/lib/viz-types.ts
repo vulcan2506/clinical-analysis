@@ -9,9 +9,10 @@ export interface VizTypeOption {
   disabledReason?: string;
 }
 
-// Infographic/Comic Strip are intentionally disabled — Anthropic has no
-// image-generation API, and faking them with the diagram-as-code approach
-// used for the other 5 types wouldn't produce anything resembling either.
+// Infographic/Comic Strip are intentionally disabled — none of the text-gen
+// providers in the fallback chain have an image-generation API, and faking
+// them with the diagram-as-code approach used for the other 5 types
+// wouldn't produce anything resembling either.
 export const VIZ_TYPE_OPTIONS: VizTypeOption[] = [
   { value: "flowchart", label: "Flowchart", icon: Workflow, enabled: true },
   { value: "timeline", label: "Timeline", icon: GitBranch, enabled: true },
@@ -23,13 +24,13 @@ export const VIZ_TYPE_OPTIONS: VizTypeOption[] = [
     label: "Infographic",
     icon: Image,
     enabled: false,
-    disabledReason: "Needs an image-generation model — not available on Anthropic's API today.",
+    disabledReason: "Needs an image-generation model — not available in the current text-gen chain today.",
   },
   {
     value: "comic-strip",
     label: "Comic Strip (Fun Mode)",
     icon: Users,
     enabled: false,
-    disabledReason: "Needs an image-generation model — not available on Anthropic's API today.",
+    disabledReason: "Needs an image-generation model — not available in the current text-gen chain today.",
   },
 ];

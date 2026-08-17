@@ -1,0 +1,4 @@
+|  Recommendations | Classᵃ | Levelᵇ  |
+| --- | --- | --- |
+|  High-dose icosapent ethyl (2 × 2 g/day) should be considered in combination with a statin in high-risk or very high-risk patients with elevated triglyceride levels (fasting triglyceride level 135–499 mg/dL or 1.52–5.63 mmol/L) to reduce the risk of cardiovascular events.⁸,¹¹¹ | IIa | B  |
+|  Volanesorsen (300 mg/week) should be considered in patients with severe hypertriglyceridaemia (>750 mg/dL or >8.5 mmol/L) due to familial chylomicronemia syndrome, to lower triglyceride levels and reduce the risk of pancreatitis.⁶,¹¹⁷ | IIa | B  |

@@ -3,10 +3,11 @@ llm_client.py — retrieval_layer
 ────────────────────────────────
 Single LLM client for retrieval-side calls: query reformulation
 (retriever.py:_reformulate), query rewriting (graph.py:node_rewrite_query),
-and answer generation (redis_cache.py:_generate_answer). Defaults to Claude
-(Anthropic API, BYOK via Stage 1/.env's ANTHROPIC_API_KEY — see config.py).
-Set LLM_BACKEND=local in Stage 1/.env to route back to the local llama.cpp
-server instead, with zero call-site changes.
+and answer generation (redis_cache.py:_generate_answer). Defaults to a
+4-tier fallback chain — Mistral → OpenRouter → Groq → local llama.cpp —
+BYOK via Stage 1/.env (see config.py). Set LLM_BACKEND=local in Stage 1/.env
+to route straight to the local llama.cpp server instead, with zero
+call-site changes.
 """
 
 import logging
@@ -19,7 +20,7 @@ import config
 
 log = logging.getLogger(__name__)
 
-_anthropic_client = None
+_mistral_client = None
 _local_client = None
 _openrouter_client = None
 _groq_client = None
@@ -52,7 +53,7 @@ def _ensure_local_server() -> bool:
             log.error(f"Cannot start local fallback server — {script} not found")
             return False
         _local_server_starting = True
-        log.warning("Claude unavailable — starting local llama.cpp server (start_server.sh) as fallback...")
+        log.warning("API tiers unavailable — starting local llama.cpp server (start_server.sh) as fallback...")
         log_path = config.STAGE1_OUTPUT / "llama_server_fallback.log"
         log_path.parent.mkdir(parents=True, exist_ok=True)
         with open(log_path, "a") as logf:
@@ -76,20 +77,20 @@ def _ensure_local_server() -> bool:
     return False
 
 
-def _get_anthropic_client():
-    global _anthropic_client
-    if _anthropic_client is None:
-        if not config.ANTHROPIC_API_KEY:
+def _get_mistral_client():
+    global _mistral_client
+    if _mistral_client is None:
+        if not config.MISTRAL_API_KEY:
             raise RuntimeError(
-                "LLM_BACKEND is 'anthropic' but ANTHROPIC_API_KEY is not set. "
-                "BYOK: add your own key to Stage 1/.env — ANTHROPIC_API_KEY=sk-ant-... "
+                "LLM_BACKEND is 'api' but MISTRAL_API_KEY is not set. "
+                "BYOK: add your own key to Stage 1/.env — MISTRAL_API_KEY=... "
                 "(never paste it into chat/logs). Set LLM_BACKEND=local in .env to use "
                 "the local llama.cpp server instead."
             )
-        import anthropic
-        _anthropic_client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-        log.info(f"Anthropic client → model={config.ANTHROPIC_MODEL}")
-    return _anthropic_client
+        from mistralai.client import Mistral
+        _mistral_client = Mistral(api_key=config.MISTRAL_API_KEY)
+        log.info(f"Mistral client → model={config.MISTRAL_CHAT_MODEL}")
+    return _mistral_client
 
 
 def _get_local_client():
@@ -132,7 +133,7 @@ def chat(
     timeout: Optional[float] = None,
 ) -> str:
     """
-    Single chat call, routed by config.LLM_BACKEND. Fallback chain on Claude
+    Single chat call, routed by config.LLM_BACKEND. Fallback chain on Mistral
     failure: OpenRouter -> Groq -> local llama.cpp (auto-started). Raises on
     total failure — callers that need a soft-fail (e.g. _reformulate's
     fall-back-to-original-query behavior) should catch around this, same as
@@ -142,9 +143,9 @@ def chat(
         return _chat_local(prompt, system_prompt, max_tokens, stop, temperature, enable_thinking, timeout)
 
     try:
-        return _chat_anthropic(prompt, system_prompt, max_tokens, stop, enable_thinking, timeout)
-    except Exception as e_claude:
-        log.warning(f"Claude call failed ({type(e_claude).__name__}: {e_claude}) — trying OpenRouter fallback")
+        return _chat_mistral(prompt, system_prompt, max_tokens, stop, temperature, enable_thinking, timeout)
+    except Exception as e_mistral:
+        log.warning(f"Mistral call failed ({type(e_mistral).__name__}: {e_mistral}) — trying OpenRouter fallback")
 
         or_client = _get_openrouter_client()
         if or_client is not None:
@@ -172,40 +173,39 @@ def chat(
 
         if not _ensure_local_server():
             raise RuntimeError(
-                "Claude, OpenRouter, and Groq all failed, and the local llama.cpp "
+                "Mistral, OpenRouter, and Groq all failed, and the local llama.cpp "
                 "fallback server did not come up"
-            ) from e_claude
+            ) from e_mistral
         return _chat_local(prompt, system_prompt, max_tokens, stop, temperature, enable_thinking, timeout)
 
 
-def _chat_anthropic(
+def _chat_mistral(
     prompt: str,
     system_prompt: Optional[str],
     max_tokens: int,
     stop: Optional[List[str]],
-    enable_thinking: bool,
+    temperature: float,
+    enable_thinking: bool,  # unused — Mistral's chat.complete() has no equivalent
     timeout: Optional[float],
 ) -> str:
-    client = _get_anthropic_client()
-    if timeout:
-        client = client.with_options(timeout=timeout)
+    client = _get_mistral_client()
+    messages = [{"role": "user", "content": prompt}]
+    if system_prompt:
+        messages.insert(0, {"role": "system", "content": system_prompt})
 
     kwargs = dict(
-        model=config.ANTHROPIC_MODEL,
+        model=config.MISTRAL_CHAT_MODEL,
+        messages=messages,
         max_tokens=max_tokens,
-        messages=[{"role": "user", "content": prompt}],
+        temperature=temperature,
     )
-    if system_prompt:
-        kwargs["system"] = system_prompt
     if stop:
-        kwargs["stop_sequences"] = stop
-    if enable_thinking:
-        kwargs["thinking"] = {"type": "adaptive"}
-    # temperature intentionally omitted — Opus 4.8 rejects sampling params outright,
-    # and every call site here already runs at temperature=0.0.
+        kwargs["stop"] = stop
+    if timeout:
+        kwargs["timeout_ms"] = int(timeout * 1000)
 
-    resp = client.messages.create(**kwargs)
-    return next((b.text for b in resp.content if b.type == "text"), "").strip()
+    resp = client.chat.complete(**kwargs)
+    return (resp.choices[0].message.content or "").strip()
 
 
 def _chat_openai_compatible(

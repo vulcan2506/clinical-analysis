@@ -221,6 +221,12 @@ def _find_affiliate_candidates(embs, genuine: Dict[int, List[int]], placed_ids: 
     n = embs.shape[0]
     unplaced = [i for i in range(n) if i not in placed_ids]
     candidates: Dict[int, List[int]] = {}
+    if not unplaced:
+        # Nothing left to find an affiliation for — small corpora (few parent
+        # topics) can genuinely place every parent in the first pass, which
+        # larger corpora may never hit. cosine_similarity rejects an empty
+        # array, so this must return early rather than call it below.
+        return candidates
     for cid, members in genuine.items():
         centroid = embs[members].mean(axis=0, keepdims=True)
         sims = cosine_similarity(centroid, embs[unplaced])[0]

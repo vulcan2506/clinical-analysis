@@ -3,12 +3,14 @@ from pathlib import Path
 
 from dotenv import load_dotenv as _load_dotenv
 
-# Loads Stage 1/.env (ANTHROPIC_API_KEY) — does not override already-set env vars.
+# Loads Stage 1/.env (MISTRAL_API_KEY, etc.) — does not override already-set env vars.
 _load_dotenv(Path(__file__).parent / ".env")
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PDF_DIR          = Path("data/pdfs")
-OUTPUT_DIR       = Path("data/output")
+# Overridable so an isolated test corpus (e.g. a second document domain) can be
+# run through the pipeline without touching the live data/pdfs, data/output.
+PDF_DIR          = Path(_os.environ["STAGE1_PDF_DIR"]) if _os.environ.get("STAGE1_PDF_DIR") else Path("data/pdfs")
+OUTPUT_DIR       = Path(_os.environ["STAGE1_OUTPUT_DIR"]) if _os.environ.get("STAGE1_OUTPUT_DIR") else Path("data/output")
 REGISTRY_PATH    = OUTPUT_DIR / "topic_registry.csv"
 CHUNKS_CACHE     = OUTPUT_DIR / "chunks.json"
 
@@ -22,44 +24,69 @@ LLAMA_SERVER_URL    = "http://127.0.0.1:8080"
 LLAMA_MODEL_NAME    = "qwen35-9b"       # matches --alias in start_server.sh
 LLAMA_PARALLEL_SLOTS = 6               # 6 parallel slots (-c 4096 -np 6); ~6x batch throughput
 
-# ── LLM: Claude API (primary backend — hackathon) ───────────────────────────
+# ── LLM: text-generation backend ─────────────────────────────────────────────
 # "local" routes llm_client.generate()/generate_batch() back to the llama.cpp
 # server above with zero call-site changes (same abstraction the KT doc
 # describes for the gemma→Qwen swap — only this pointer changes).
-LLM_BACKEND          = _os.environ.get("LLM_BACKEND", "anthropic")  # "anthropic" | "local"
-ANTHROPIC_API_KEY    = _os.environ.get("ANTHROPIC_API_KEY")
-ANTHROPIC_MODEL      = _os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6")  # account only has Sonnet 4.6 access
-ANTHROPIC_PARALLEL_SLOTS = 6            # concurrent request cap for generate_batch()
+LLM_BACKEND          = _os.environ.get("LLM_BACKEND", "api")  # "api" | "local"
+API_PARALLEL_SLOTS   = 6                # concurrent request cap for generate_batch()
 
-# Fallback chain if Claude fails (auth, rate limit, outage, refusal):
-#   1. Claude (primary)
+# 4-tier fallback chain for LLM_BACKEND="api" (auth failure, rate limit,
+# outage, refusal at any tier falls through to the next):
+#   1. Mistral — same account as the OCR chain below
 #   2. OpenRouter — free-tier model, OpenAI-compatible endpoint
 #   3. Groq — OpenAI-compatible endpoint
 #   4. Local llama.cpp server (auto-started if not already running)
-# NOTE: per the KT doc ("External LLM APIs are a hard block, not a soft
-# preference", Section 10) and this project's own memory, OpenRouter and Groq
-# were both already hard-blocked here by Claude Code's data-exfiltration
-# classifier when corpus content would be sent to them. Wiring them back in
-# at the user's explicit request, to demonstrate the block again.
+# Anthropic was removed from this chain entirely (2026-07-14) — the key on
+# file was returning 401 on every call, so every single text-generation call
+# in the pipeline wasted 3 failed attempts before cascading to OpenRouter/Groq
+# anyway. No longer used anywhere in Stage 1.
+#
+# openai/gpt-oss-120b:free was verified DEAD this session (404 — moved to a
+# paid-only slug); google/gemma-4-26b-a4b-it:free was verified live with a
+# short token budget. Some OpenRouter free models (e.g. openai/gpt-oss-20b)
+# are reasoning models that can burn an entire short max_tokens budget on
+# hidden chain-of-thought and return empty content — verify short-budget
+# behavior specifically before swapping this default again, not just that
+# the model responds at all.
 OPENROUTER_API_KEY   = _os.environ.get("OPENROUTER_API_KEY")
-OPENROUTER_MODEL     = _os.environ.get("OPENROUTER_MODEL", "openai/gpt-oss-120b:free")
+OPENROUTER_MODEL     = _os.environ.get("OPENROUTER_MODEL", "google/gemma-4-26b-a4b-it:free")
 OPENROUTER_BASE_URL  = "https://openrouter.ai/api/v1"
 
 GROQ_API_KEY         = _os.environ.get("GROQ_API_KEY")
 GROQ_MODEL           = _os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_VISION_MODEL    = _os.environ.get("GROQ_VISION_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
 GROQ_BASE_URL        = "https://api.groq.com/openai/v1"
+# Groq's on-demand tier caps llama-4-scout at 30,000 tokens/minute; a single
+# rendered page (image + prompt) runs ~3,000 tokens — close to the sustainable
+# per-page rate on its own. Concurrency=2 caused two threads to retry in
+# lockstep and repeatedly collide over the same refill window (each 429,
+# back off, retry — together — and collide again); serializing at 1 avoids
+# that entirely. The retry/backoff pair below rides out the occasional 429
+# that still happens near the window boundary.
+GROQ_VISION_PARALLEL_SLOTS      = 1
+GROQ_VISION_RATE_LIMIT_RETRIES  = 4     # attempts per page before giving up (→ next OCR tier)
+GROQ_VISION_RATE_LIMIT_BACKOFF  = 20    # seconds to wait between retries — long enough for
+                                         # a meaningful chunk of the 60s TPM window to roll off
+
+MISTRAL_API_KEY      = _os.environ.get("MISTRAL_API_KEY")
+MISTRAL_OCR_MODEL    = _os.environ.get("MISTRAL_OCR_MODEL", "mistral-ocr-latest")
+MISTRAL_CHAT_MODEL   = _os.environ.get("MISTRAL_CHAT_MODEL", "mistral-small-latest")  # primary text-gen tier
+# Mistral's dedicated document-OCR endpoint processes an entire PDF in one
+# request (not per-page like the Groq fallback), so there's no per-page
+# concurrency or TPM-budget knob needed here.
 
 LOCAL_FALLBACK_STARTUP_TIMEOUT = 90     # seconds to wait for start_server.sh to report healthy
 LOCAL_FALLBACK_POLL_INTERVAL   = 2.0    # seconds between health-check polls
 LOCAL_FALLBACK_HEALTH_TIMEOUT  = 2.0    # per-request timeout for the health check itself
 
-# ── OCR: Claude vision (primary) with Docling fallback ──────────────────────
-# Docling extraction (ingest.py:_extract_pdf_with_docling) remains the
-# fallback path — triggered only if the Claude OCR pass raises an exception
-# (API error, timeout, refusal), not on output-quality heuristics.
-USE_CLAUDE_OCR       = _os.environ.get("USE_CLAUDE_OCR", "true").lower() == "true"
-OCR_PAGE_DPI         = 150               # page render resolution fed to Claude vision
-OCR_MAX_TOKENS       = 4096              # per-page transcription budget
+# ── OCR: 3-tier chain — Mistral (primary) → Groq (fallback 1) → Docling (fallback 2)
+# Each tier is only tried if the previous one raises an exception (API error,
+# timeout, refusal), not on output-quality heuristics. Docling is the only
+# tier with no external API dependency.
+USE_VISION_OCR       = _os.environ.get("USE_VISION_OCR", "true").lower() == "true"
+OCR_PAGE_DPI         = 150               # page render resolution fed to Groq vision fallback
+OCR_MAX_TOKENS       = 4096              # per-page transcription budget (Groq fallback tier)
 
 # ── Context-shift chunking ─────────────────────────────────────────────────────
 # Sentences are split into a new chunk when cosine similarity between

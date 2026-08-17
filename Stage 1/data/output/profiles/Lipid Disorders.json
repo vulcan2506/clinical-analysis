@@ -1,0 +1,142 @@
+{
+  "domain": "clinical lipidology and cardiovascular risk management guidelines",
+  "document_purpose": "evidence-based clinical practice guidelines for the management of lipid disorders and dyslipidaemias, including focused updates to prior versions",
+  "specialist_role": "a lipidology or cardiovascular disease specialist interpreting guideline recommendations for patient care",
+  "analyst_role": "a clinical guideline analyst or medical librarian extracting and classifying recommendations and evidence from cardiovascular guidelines",
+  "entity_types": [
+    "patient population",
+    "cardiovascular risk category",
+    "lipid-lowering therapy",
+    "pharmacological agent",
+    "biomarker",
+    "clinical condition",
+    "recommendation class",
+    "evidence level",
+    "guideline task force",
+    "medical association"
+  ],
+  "key_terminology": {
+    "ESC": "European Society of Cardiology",
+    "EAS": "European Atherosclerosis Society",
+    "LDL-C": "low-density lipoprotein cholesterol",
+    "HDL-C": "high-density lipoprotein cholesterol",
+    "TG": "triglycerides",
+    "Lp(a)": "lipoprotein(a)",
+    "ACS": "acute coronary syndromes",
+    "HIV": "human immunodeficiency virus",
+    "CV": "cardiovascular",
+    "EHRA": "European Heart Rhythm Association",
+    "ACNAP": "Association of Cardiovascular Nursing & Allied Professions",
+    "ACVC": "Association for Acute Cardiovascular Care",
+    "EAPC": "European Association of Preventive Cardiology"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "No new data were generated or analysed in support of this research.",
+      "master_label": "data availability statement",
+      "description": "A formal declaration regarding the generation or analysis of new data in the context of guideline development."
+    },
+    {
+      "text_snippet": "©ESC/EAS 2025\nDownloaded from https://academic.oup.com/eurheartj/article/4/42/4359/8234482 by guest on 14 July 2026",
+      "master_label": "copyright and source attribution",
+      "description": "Metadata indicating the issuing bodies, year, and source publication of the guideline document."
+    },
+    {
+      "text_snippet": "Associations: Association of Cardiovascular Nursing & Allied Professions (ACNAP), Association for Acute Cardiovascular Care (ACVC), European Association of Cardiovascular Imaging (EACVI), European Association of Preventive Cardiology (EAPC), European Association of Percutaneous Cardiovascular Interventions (EAPCI), European Heart Rhythm Association (EHRA), and Heart Failure Association (HFA).",
+      "master_label": "collaborating subspecialty associations",
+      "description": "List of professional societies and associations involved in the development of the guideline document."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when a recommendation is refined or clarified without changing its core intent or class"
+    },
+    {
+      "name": "New Recommendation Added",
+      "description": "when a new therapeutic option, diagnostic test, or patient population is addressed for the first time"
+    },
+    {
+      "name": "Recommendation Strengthened",
+      "description": "when the evidence base or expert consensus leads to a higher class of recommendation or stricter criteria"
+    },
+    {
+      "name": "Recommendation Weakened or Reversed",
+      "description": "when prior strong recommendations are downgraded or contradicted by new evidence"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions are compared and no substantial difference in recommendations or evidence is found"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "a prerequisite or mandatory condition specified in the guideline for applying a recommendation, such as patient risk category, biomarker thresholds, or prior therapy",
+    "deprecated_items": "therapeutic options, diagnostic tests, or patient subgroups that are no longer recommended or have been superseded by newer evidence",
+    "new_items": "newly introduced therapeutic options, diagnostic approaches, risk assessment tools, or patient populations addressed in the updated guideline"
+  },
+  "field_labels": {
+    "feature_name": "Recommendation Topic",
+    "key_behaviors": "Clinical Recommendations",
+    "requirements": "Eligibility Criteria",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "use of bempedoic acid in patients with statin intolerance",
+      "version_a": "Bempedoic acid was mentioned as a potential option for patients intolerant to statins, but no formal recommendation was provided due to limited evidence.",
+      "version_b": "Recommendation Table 2 now includes bempedoic acid as a Class IIa recommendation for LDL-C lowering in patients with statin intolerance after failure of other lipid-lowering therapies.",
+      "change_type": "New Recommendation Added",
+      "analysis": "The 2025 update formalizes the role of bempedoic acid based on emerging trial data, elevating it from a potential option to a recognized therapeutic choice. This reflects growing evidence and consensus among the Task Force, enabling clinicians to confidently consider this agent in appropriate patients."
+    },
+    {
+      "topic": "lipoprotein(a) measurement in primary prevention",
+      "version_a": "Routine measurement of lipoprotein(a) was not recommended for primary prevention due to insufficient evidence linking levels to treatment decisions.",
+      "version_b": "Recommendation Table 4 now recommends measuring lipoprotein(a) at least once in adults to refine cardiovascular risk assessment, especially in those with a family history of premature ASCVD.",
+      "change_type": "Recommendation Strengthened",
+      "analysis": "The updated guideline reverses prior caution by endorsing routine Lp(a) measurement in select populations. This shift is driven by improved assay standardization and observational data showing independent risk prediction, enabling more personalized risk stratification."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the 2025 guideline add bempedoic acid as a recommended therapy for statin-intolerant patients?",
+      "a": "The Task Force incorporated new randomized trial data demonstrating that bempedoic acid significantly lowers LDL-C with a favorable safety profile in patients unable to tolerate statins. This evidence base was deemed sufficient to support a formal recommendation, particularly for those at high or very high cardiovascular risk."
+    },
+    {
+      "q": "How should clinicians interpret the new recommendation to measure lipoprotein(a) in primary prevention?",
+      "a": "The guideline now suggests measuring Lp(a) once in adults, especially those with a family history of premature ASCVD, to refine risk beyond traditional factors. This is not intended as a screening test for all, but as a targeted assessment to personalize prevention strategies, particularly when LDL-C is borderline or risk remains uncertain."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "use of bempedoic acid in patients with statin intolerance",
+    "foundation": "Bempedoic acid was previously considered a potential option for statin-intolerant patients but lacked formal endorsement due to limited evidence.",
+    "value_added": [
+      "Inclusion in Recommendation Table 2 with a Class IIa recommendation",
+      "Endorsement as a second-line therapy after failure of other lipid-lowering options",
+      "Supporting evidence from recent randomized controlled trials"
+    ],
+    "narrative": "The 2019 guideline acknowledged bempedoic acid as a possible alternative but did not provide structured guidance. The 2025 Focused Update builds on this by formalizing its role through a dedicated recommendation table, supported by new trial data. This enables clinicians to integrate bempedoic acid confidently into treatment algorithms for statin-intolerant patients at high cardiovascular risk."
+  },
+  "type_key": "Lipid Disorders",
+  "source_files": [
+    "Lipid Disorders.pdf"
+  ]
+}

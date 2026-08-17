@@ -80,6 +80,12 @@ class BehavioralProfile(BaseModel):
     requirements:     List[str]  = Field(description="Config flags, runtime properties, restart requirements.")
     deprecated_items: List[str]  = Field(description="Items removed, replaced, or deprecated.")
     new_items:        List[str]  = Field(description="New features, APIs, columns, UI elements introduced.")
+    # Clinical lab result fields — empty/None for non-clinical documents.
+    patient_value:    Optional[str] = Field(default=None, description="Patient's actual measured value with units, e.g. '200.00 pg/mL'. Null if no patient-specific value in text.")
+    reference_range:  Optional[str] = Field(default=None, description="Normal/reference range for this test, e.g. '211.00 - 911.00 pg/mL'. Null if no reference range in text.")
+    interpretation:   Optional[str] = Field(default=None, description="Clinical interpretation: whether the value is normal/borderline/abnormal and what it means for the patient.")
+    # Clinical urgency classification — None for non-clinical documents.
+    significance_level: Optional[str] = Field(default=None, description="Clinical urgency: 'critical' | 'high' | 'moderate' | 'low' | 'informational'. Null for non-clinical content.")
 
 
 class ProfileAdditions(BaseModel):
@@ -88,6 +94,10 @@ class ProfileAdditions(BaseModel):
     additional_requirements: List[str] = Field(description="Requirements not in the initial profile.")
     additional_deprecated:   List[str] = Field(description="Deprecated items not in the initial profile.")
     additional_new_items:    List[str] = Field(description="New items not in the initial profile.")
+    additional_patient_value:    Optional[str] = Field(default=None, description="Patient value missed in initial profile.")
+    additional_reference_range:  Optional[str] = Field(default=None, description="Reference range missed in initial profile.")
+    additional_interpretation:   Optional[str] = Field(default=None, description="Clinical interpretation missed in initial profile.")
+    additional_significance_level: Optional[str] = Field(default=None, description="Clinical urgency level missed in initial profile.")
 
 
 class DeltaResult(BaseModel):
@@ -174,7 +184,11 @@ Output this exact structure with real values:
   ],
   "new_items": [
     "<new UI element / API / table column / property — max 5 total>"
-  ]
+  ],
+  "patient_value": "<patient's actual measured result with units, e.g. '200.00 pg/mL'. NULL if text has no patient-specific value>",
+  "reference_range": "<normal/reference range for this test, e.g. '211.00 - 911.00 pg/mL'. NULL if no reference range>",
+  "interpretation": "<clinical interpretation: is the value normal/low/high? What does it mean? NULL if no clinical context>",
+  "significance_level": "<clinical urgency: 'critical' | 'high' | 'moderate' | 'low' | 'informational'. NULL for non-clinical content>"
 }}
 
 ### EXAMPLES ###
@@ -209,7 +223,11 @@ OUTPUT:
     "Apache Tomcat application server",
     "Apache Artemis messaging",
     "OpenJDK 11 (Temurin)"
-  ]
+  ],
+  "patient_value": null,
+  "reference_range": null,
+  "interpretation": null,
+  "significance_level": null
 }}
 
 EXAMPLE B — Multi-feature chunk (Workbasket + Reprocessed Claims)
@@ -238,7 +256,11 @@ OUTPUT:
     "Authorization Input Source condition for Utilization Review workbasket rules",
     "Visual indicator icon on Claim ID in Reprocessed Claims workbasket",
     "Claim ID filter in Reprocessed Claims screen"
-  ]
+  ],
+  "patient_value": null,
+  "reference_range": null,
+  "interpretation": null,
+  "significance_level": null
 }}
 
 EXAMPLE C — Bug fix with new property
@@ -264,7 +286,31 @@ OUTPUT:
   ],
   "new_items": [
     "EXCLUDE_LINES_FROM_CURRENT_CONFINEMENT runtime property"
-  ]
+  ],
+  "patient_value": null,
+  "reference_range": null,
+  "interpretation": null,
+  "significance_level": null
+}}
+
+EXAMPLE D — Clinical lab result with patient value
+TEXT: | Vitamin B12; Cyanocobalamin | 200.00 | pg/mL | 211.00 - 911.00 |
+Interpretation: Vitamin B12 levels below 200 pg/mL indicate deficiency.
+
+OUTPUT:
+{{
+  "feature_name": "Vitamin B12 (Cyanocobalamin)",
+  "key_behaviors": [
+    "Vitamin B12 measured via CLIA method",
+    "Reference range 211.00 - 911.00 pg/mL"
+  ],
+  "requirements": [],
+  "deprecated_items": [],
+  "new_items": [],
+  "patient_value": "200.00 pg/mL",
+  "reference_range": "211.00 - 911.00 pg/mL",
+  "interpretation": "Patient value is below the reference range, indicating Vitamin B12 deficiency",
+  "significance_level": "high"
 }}
 
 ### ACTUAL TASK ###
@@ -272,7 +318,20 @@ TOPIC: {topic}
 TEXT:
 {text}
 
-OUTPUT (JSON only — close all braces, max 5 items per list):"""
+IMPORTANT — GUIDELINE GROUNDING:
+If the text above contains a section labeled "MATCHED CLINICAL GUIDELINES", \
+you MUST use it to ground your extraction:
+- The "interpretation" field must reference the guideline's classification \
+  thresholds, risk categories, or clinical recommendations — not just state \
+  "below/above reference range".
+- The "key_behaviors" must include at least one guideline-sourced clinical \
+  fact (e.g. "Per [Guideline Name]: levels below X indicate Y risk").
+- The "patient_value" must show the patient's actual result, and the \
+  "interpretation" must explain where it falls within the guideline's \
+  classification (e.g. "Patient's 200.00 pg/mL falls in the Deficient \
+  range per the guideline (<50 nmol/L for Vitamin D)").
+
+OUTPUT (JSON only — close all braces, max 5 items per list, include patient_value/reference_range/interpretation if the text contains a lab result):"""
 
 
 # ── Sub-pass 1b — Fine-Grained Gap Fill ───────────────────────────────────────
@@ -293,13 +352,19 @@ Max 5 items per list. Close all braces.
   "additional_behaviors": ["<missed behavior, or empty list>"],
   "additional_requirements": ["<missed property/config/restart, or empty list>"],
   "additional_deprecated": ["<missed deprecated item, or empty list>"],
-  "additional_new_items": ["<missed new item, or empty list>"]
+  "additional_new_items": ["<missed new item, or empty list>"],
+  "additional_patient_value": "<missed patient-specific measured value with units, or empty string>",
+  "additional_reference_range": "<missed reference/normal range, or empty string>",
+  "additional_interpretation": "<missed clinical interpretation, or empty string>",
+  "additional_significance_level": "<missed clinical urgency level ('critical'|'high'|'moderate'|'low'|'informational'), or empty string>"
 }}
 
 Rules:
 - Add a fact ONLY if it is GENUINELY MISSING from the initial profile.
 - Do NOT repeat facts already captured (even if worded differently).
-- If nothing is missing, write [] for every key.
+- If nothing is missing, write [] for every list key and "" for every string key.
+- Pay special attention to patient-specific lab values (e.g. "| Vitamin D, 25 Hydroxy | 150.00 | nmol/L | 75.00 - 250.00 |") — if the initial profile missed the patient_value or reference_range, capture them here.
+- If the text contains a "MATCHED CLINICAL GUIDELINES" section, ensure the additional_interpretation field grounds the patient's value in the guideline's classification thresholds and clinical recommendations — not just "low" or "high".
 - No text before or after the JSON. Close all braces.
 
 TOPIC: {topic}
@@ -309,9 +374,223 @@ FULL TEXT:
 OUTPUT (JSON only — close all braces):"""
 
 
+# ── Domain-dynamic prompt building ──────────────────────────────────────────
+# _HOLISTIC_PROMPT/_GAP_FILL_PROMPT/_build_compare_prompt's schema hints and
+# worked examples were hardcoded to a software-release shape (runtime
+# properties, UI tabs, WebLogic migrations) regardless of the actual corpus's
+# domain — the analyst_role/doc_purpose substitution alone didn't touch this.
+# These build a per-type_key adapted version from context_profiler's
+# delta_change_types/delta_field_meaning/delta_few_shot, saved to disk via
+# save_prompt() (same "saved > dynamic > static" pattern as labeler.py) so a
+# rebuilt prompt persists across process runs instead of only living in
+# memory for the run that generated it.
+
+def _get_holistic_prompt_template(profile: Optional[dict]) -> str:
+    if not profile:
+        return _HOLISTIC_PROMPT
+    type_key = profile.get("type_key", "")
+    if type_key:
+        import context_profiler
+        saved = context_profiler.load_prompt(type_key, "delta_holistic")
+        if saved:
+            return saved
+
+    field_meaning = profile.get("delta_field_meaning") or {}
+    few_shots = profile.get("delta_few_shots") or []
+    if not field_meaning and not few_shots:
+        return _HOLISTIC_PROMPT
+
+    template = _HOLISTIC_PROMPT
+    req_hint = field_meaning.get("requirements")
+    dep_hint = field_meaning.get("deprecated_items")
+    new_hint = field_meaning.get("new_items")
+    if req_hint:
+        template = template.replace(
+            "<runtime property / config flag / restart requirement — max 5 total>",
+            f"<{req_hint} — max 5 total>",
+        )
+    if dep_hint:
+        template = template.replace(
+            "<technology or feature removed/replaced — max 5 total>",
+            f"<{dep_hint} — max 5 total>",
+        )
+    if new_hint:
+        template = template.replace(
+            "<new UI element / API / table column / property — max 5 total>",
+            f"<{new_hint} — max 5 total>",
+        )
+
+    usable_shots = [fs for fs in few_shots if fs.get("topic") and fs.get("version_b")]
+    if usable_shots:
+        start = template.find("### EXAMPLES ###")
+        end = template.find("### ACTUAL TASK ###")
+        if start != -1 and end != -1:
+            blocks = []
+            for n, fs in enumerate(usable_shots, 1):
+                # Quadruple braces: the f-string collapses {{{{ -> {{, then
+                # the LATER .format() call in _build_holistic_prompts (which
+                # substitutes analyst_role/doc_purpose/topic/text into this
+                # whole returned template) needs {{ -> { to keep these as
+                # literal JSON braces instead of trying to resolve them as
+                # format placeholders (that mismatch is what threw the
+                # KeyError on the first run of this fix).
+                blocks.append(f"""### EXAMPLE {n} ###
+
+TOPIC: {fs.get('topic')}
+TEXT: {fs.get('version_b')}
+
+OUTPUT:
+{{{{
+  "feature_name": {json.dumps(fs.get('topic'))},
+  "key_behaviors": [{json.dumps(fs.get('version_b'))}],
+  "requirements": [],
+  "deprecated_items": [],
+  "new_items": []
+}}}}
+""")
+            template = template[:start] + "\n".join(blocks) + "\n" + template[end:]
+
+    if type_key:
+        import context_profiler
+        context_profiler.save_prompt(type_key, "delta_holistic", template)
+    return template
+
+
+def _get_gapfill_prompt_template(profile: Optional[dict]) -> str:
+    if not profile:
+        return _GAP_FILL_PROMPT
+    type_key = profile.get("type_key", "")
+    if type_key:
+        import context_profiler
+        saved = context_profiler.load_prompt(type_key, "delta_gapfill")
+        if saved:
+            return saved
+
+    field_meaning = profile.get("delta_field_meaning") or {}
+    if not field_meaning:
+        return _GAP_FILL_PROMPT
+
+    template = _GAP_FILL_PROMPT
+    req_hint = field_meaning.get("requirements")
+    dep_hint = field_meaning.get("deprecated_items")
+    new_hint = field_meaning.get("new_items")
+    if req_hint:
+        template = template.replace(
+            "<missed property/config/restart, or empty list>",
+            f"<missed {req_hint}, or empty list>",
+        )
+    if dep_hint:
+        template = template.replace(
+            "<missed deprecated item, or empty list>",
+            f"<missed {dep_hint}, or empty list>",
+        )
+    if new_hint:
+        template = template.replace(
+            "<missed new item, or empty list>",
+            f"<missed {new_hint}, or empty list>",
+        )
+
+    if type_key:
+        import context_profiler
+        context_profiler.save_prompt(type_key, "delta_gapfill", template)
+    return template
+
+
+def _build_dynamic_change_section(
+    profile: Optional[dict], types_key: str = "delta_change_types"
+) -> Optional[str]:
+    """Returns a (change_type_list, few_shot_examples) block to splice into
+    the compare prompt, or None if the profile has nothing usable — caller
+    keeps the static hardcoded version in that case.
+
+    types_key selects which category vocabulary to render:
+      - "delta_change_types" (default): same-document version-vs-version
+        comparison, e.g. "Assay Methodology Update".
+      - "fusion_change_types": patient-vs-guideline conformance comparison
+        (Stage 2 fusion delta jobs), e.g. "Deviates — Clinically Significant".
+    These are two independent, non-overlapping vocabularies on the same
+    profile — never mixed in one prompt.
+    """
+    if not profile:
+        return None
+    change_types = profile.get(types_key) or []
+    few_shots = profile.get("delta_few_shots") or []
+    if not change_types:
+        return None
+
+    is_fusion = types_key != "delta_change_types"
+    type_key = profile.get("type_key", "")
+    # Distinct cache filename per types_key — fusion mode reuses the SAME
+    # forced guideline type_key for every patient run, so a bare
+    # "delta_compare_section" cache key would silently clobber Stage 1's own
+    # non-fusion cached prompt for that same type_key.
+    cache_name = f"delta_compare_section_{types_key}" if is_fusion else "delta_compare_section"
+    if type_key:
+        import context_profiler
+        saved = context_profiler.load_prompt(type_key, cache_name)
+        if saved:
+            return saved
+
+    lines = ["CHANGE TYPE (pick the MOST SPECIFIC match):"]
+    for ct in change_types:
+        name = ct.get("name", "").strip()
+        desc = ct.get("description", "").strip()
+        if name:
+            lines.append(f"  {name} - {desc}")
+    change_type_block = "\n".join(lines)
+
+    example_blocks = []
+    if not is_fusion:
+        # Two examples covering DIFFERENT change_type values — one example
+        # only ever demonstrates one category, leaving every other category
+        # (reversal, mismatch, etc.) with nothing to calibrate against.
+        # No fusion-specific few-shots exist (delta_few_shots is written in
+        # version-vs-version style, e.g. "Older"/"New Version" framing) —
+        # showing them alongside fusion_change_types categories would mismatch
+        # the example's change_type against the vocabulary being asked for,
+        # so fusion mode renders the category list only, no worked examples.
+        usable_shots = [fs for fs in few_shots if fs.get("topic") and fs.get("change_type")]
+        for n, fs in enumerate(usable_shots, 1):
+            example_blocks.append(f"""
+
+### EXAMPLE {n} ###
+
+{{label_A}} profile:
+  Feature: {fs.get('topic')}
+  Behaviors: {fs.get('version_a', '')}
+
+{{label_B}} profile:
+  Feature: {fs.get('topic')}
+  Behaviors: {fs.get('version_b', '')}
+
+OUTPUT:
+{{{{
+  "relevance_score": 9,
+  "relevance_reason": "Both profiles describe the same topic across versions.",
+  "change_type": {json.dumps(fs.get('change_type'))},
+  "analysis": {json.dumps(fs.get('analysis', ''))},
+  "key_differences": [
+    "{{label_A}}: {fs.get('version_a', '')} -> {{label_B}}: {fs.get('version_b', '')}"
+  ],
+  "confidence": "medium"
+}}}}""")
+
+    section = change_type_block + "".join(example_blocks)
+    if type_key:
+        import context_profiler
+        context_profiler.save_prompt(type_key, cache_name, section)
+    return section
+
+
 def _profile_to_text(p: BehavioralProfile) -> str:
     """Compact text rendering of a profile for use inside the gap-fill prompt."""
     lines = [f"Feature: {p.feature_name}"]
+    if p.patient_value:
+        lines.append(f"Patient Value: {p.patient_value}")
+    if p.reference_range:
+        lines.append(f"Reference Range: {p.reference_range}")
+    if p.interpretation:
+        lines.append(f"Interpretation: {p.interpretation}")
     if p.key_behaviors:
         lines.append("Behaviors: " + " | ".join(p.key_behaviors))
     if p.requirements:
@@ -370,9 +649,9 @@ def _get_qna_for_id(qna_dict: Dict, compound_id: str) -> list:
 
 def _build_holistic_prompts(jobs: List[Dict], side: str) -> List[str]:
     return [
-        _HOLISTIC_PROMPT.format(
-            analyst_role=job.get("_analyst_role", "a healthcare IT analyst"),
-            doc_purpose=job.get("_doc_purpose", "release note"),
+        _get_holistic_prompt_template(job.get("_profile")).format(
+            analyst_role=job.get("_analyst_role", "a technical analyst"),
+            doc_purpose=job.get("_doc_purpose", "technical documentation"),
             topic=job["topic"],
             text=_clean_text(job[f"text_{side}"]),
         )
@@ -382,9 +661,9 @@ def _build_holistic_prompts(jobs: List[Dict], side: str) -> List[str]:
 
 def _build_gap_fill_prompts(jobs: List[Dict], side: str) -> List[str]:
     return [
-        _GAP_FILL_PROMPT.format(
-            analyst_role=job.get("_analyst_role", "a healthcare IT analyst"),
-            doc_purpose=job.get("_doc_purpose", "release note"),
+        _get_gapfill_prompt_template(job.get("_profile")).format(
+            analyst_role=job.get("_analyst_role", "a technical analyst"),
+            doc_purpose=job.get("_doc_purpose", "technical documentation"),
             topic=job["topic"],
             rough_profile=_profile_to_text(job[f"rough_profile_{side}"]),
             qna_hints=_format_qna_hint(job.get(f"qna_{side}", [])),
@@ -484,6 +763,13 @@ def _extract_json_block(raw: str) -> Optional[dict]:
                 for m in re.findall(r'"([^"]+)"', items[0])
                 if m.strip()
             ]
+    # Clinical string fields (not arrays)
+    for field in ["patient_value", "reference_range", "interpretation",
+                  "additional_patient_value", "additional_reference_range",
+                  "additional_interpretation"]:
+        m = re.search(rf'"{field}"\s*:\s*"([^"]*)"', content)
+        if m:
+            result[field] = m.group(1) or None
     return result if result else None
 
 
@@ -492,6 +778,28 @@ def _parse_profile(raw: str) -> BehavioralProfile:
     if data:
         try:
             return BehavioralProfile(**data)
+        except Exception:
+            pass
+
+    # Rule-based recovery for JSON that was rendered as markdown bullets
+    # (e.g. '- {', '- "feature_name": ...'). Stripping the leading '- '
+    # markers turns the blob back into parseable JSON so raw JSON text never
+    # leaks into the rendered bullets.
+    de_bulleted = "\n".join(
+        ln.lstrip("-•n ").rstrip()
+        for ln in raw.splitlines()
+    )
+    data = _extract_json_block(de_bulleted)
+    if data:
+        try:
+            return BehavioralProfile(**{
+                "feature_name":      "Could not extract",
+                "key_behaviors":     [],
+                "requirements":      [],
+                "deprecated_items":  [],
+                "new_items":         [],
+                **data,
+            })
         except Exception:
             pass
 
@@ -547,49 +855,45 @@ def _merge_profiles(base: BehavioralProfile, additions: ProfileAdditions) -> Beh
         requirements     = dedup(base.requirements,     additions.additional_requirements),
         deprecated_items = dedup(base.deprecated_items, additions.additional_deprecated),
         new_items        = dedup(base.new_items,         additions.additional_new_items),
+        patient_value    = additions.additional_patient_value    or base.patient_value,
+        reference_range  = additions.additional_reference_range  or base.reference_range,
+        interpretation   = additions.additional_interpretation   or base.interpretation,
+        significance_level = additions.additional_significance_level or base.significance_level,
     )
+
+
+def _validate_significance_level(profile: BehavioralProfile, text: str) -> BehavioralProfile:
+    """
+    Hybrid validation: keyword classifier acts as a floor for urgency.
+    If keywords match a higher-urgency level than the LLM returned,
+    upgrade. If LLM returned None but keywords match, fill in.
+    The LLM can still override downward when it sees broader context
+    (e.g. a keyword matches but the overall document is informational).
+    """
+    from context_profiler import classify_clinical_urgency, SIGNIFICANCE_LEVELS
+
+    kw_level = classify_clinical_urgency(text)
+    if not kw_level:
+        return profile
+
+    llm_level = profile.significance_level
+    if not llm_level:
+        return profile.model_copy(update={"significance_level": kw_level})
+
+    # Keyword level takes precedence (deterministic, faster, catches
+    # obvious emergency/sepsis/stroke keywords the LLM might underweight)
+    if kw_level != llm_level:
+        log.debug(f"significance_level override: LLM={llm_level} -> keyword={kw_level}")
+        return profile.model_copy(update={"significance_level": kw_level})
+
+    return profile
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PASS 2 — DELTA COMPARISON
 # ══════════════════════════════════════════════════════════════════════════════
 
-def _build_compare_prompt(job: Dict) -> str:
-    vA      = job["vA"]
-    vB      = job["vB"]
-    label_A = f"{vA} (Older)"
-    label_B = f"{vB} (New Version)"
-
-    analyst_role = job.get("_analyst_role", "a healthcare IT analyst")
-    doc_purpose  = job.get("_doc_purpose", "software releases")
-
-    prompt = f"""\
-You are {analyst_role} comparing the feature "{job['topic']}" \
-across two {doc_purpose}.
-
-Output ONLY a single JSON object with this exact structure — fill in real \
-values, do not copy the structure itself. Close all braces. \
-Max 4 items in key_differences.
-
-{{
-  "relevance_score": <integer 1-10>,
-  "relevance_reason": "<one sentence citing specific content from each version>",
-  "change_type": "<one of the types below>",
-  "analysis": "<3-4 complete sentences explaining the delta with direct version references>",
-  "key_differences": [
-    "{label_A}: <old behavior> -> {label_B}: <new behavior>",
-    "<another difference>"
-  ],
-  "confidence": "<high | medium | low>"
-}}
-
-RELEVANCE SCORING RUBRIC (be strict — do NOT default to 9 or 10):
-  1-3  Mismatched pair — the two chunks describe unrelated features
-  4-5  Weak overlap — same broad area but different specific features
-  6-7  Moderate — same feature area, but chunks focus on different aspects
-  8-9  Strong — clearly the same feature, with meaningful differences to compare
-  10   Perfect — identical feature, both chunks describe the same behavior in detail
-
+_STATIC_CHANGE_TYPE_SECTION = """\
 CHANGE TYPE (pick the MOST SPECIFIC match — do NOT default to Direct Contradiction):
   Direct Contradiction - a behavior in {label_A} is EXPLICITLY REVERSED in {label_B} (e.g. "required" → "not required", "enabled" → "disabled"). Must cite the specific contradicting statements.
   Deprecation          - a technology/feature present in {label_A} is REMOVED or REPLACED in {label_B}
@@ -642,7 +946,7 @@ OUTPUT:
   "relevance_score": 9,
   "relevance_reason": "Both chunks describe the same runtime property but {label_A} requires a restart while {label_B} eliminates that requirement.",
   "change_type": "Direct Contradiction",
-  "analysis": "{label_A} explicitly requires a server restart after every property change, making configuration updates a disruptive operation needing maintenance windows. {label_B} reverses this entirely, introducing hot-swap capability where changes take effect immediately without downtime. This is a significant operational improvement that changes deployment and maintenance procedures. Teams relying on restart procedures in {vA} will need to update their runbooks for {vB}.",
+  "analysis": "{label_A} explicitly requires a server restart after every property change, making configuration updates a disruptive operation needing maintenance windows. {label_B} reverses this entirely, introducing hot-swap capability where changes take effect immediately without downtime. This is a significant operational improvement that changes deployment and maintenance procedures. Teams relying on restart procedures will need to update their runbooks.",
   "key_differences": [
     "{label_A}: server restart required after property change -> {label_B}: no restart required, hot-swap applied immediately",
     "{label_A}: configuration updates need maintenance windows -> {label_B}: changes can be applied live"
@@ -666,7 +970,7 @@ OUTPUT:
   "relevance_score": 8,
   "relevance_reason": "Both chunks address split handling during service definition evaluation, with {label_B} adding runtime property control and performance tooling.",
   "change_type": "Minor Enhancement",
-  "analysis": "{label_A} improved split handling so full evaluation completes before splits are applied, ensuring splits only take effect when they impact the outcome. {label_B} extends this with SERVICE_DEFINITION_EVALUATOR_OPTIMIZATION_ENABLED (default: true) controlling expression reordering for better performance. The evaluation utility is also fixed to correctly handle optimization override scenarios. The core behavior from {vA} is preserved and extended.",
+  "analysis": "{label_A} improved split handling so full evaluation completes before splits are applied, ensuring splits only take effect when they impact the outcome. {label_B} extends this with SERVICE_DEFINITION_EVALUATOR_OPTIMIZATION_ENABLED (default: true) controlling expression reordering for better performance. The evaluation utility is also fixed to correctly handle optimization override scenarios. The core behavior is preserved and extended.",
   "key_differences": [
     "{label_A}: no runtime control over evaluation optimization -> {label_B}: SERVICE_DEFINITION_EVALUATOR_OPTIMIZATION_ENABLED added (default: true)",
     "{label_A}: evaluation utility had gaps in override handling -> {label_B}: all override scenarios handled correctly",
@@ -692,7 +996,66 @@ OUTPUT:
     "{label_A}: UI feature (Reinsurance Details tab) vs {label_B}: infrastructure change (WebLogic deprecation)"
   ],
   "confidence": "low"
+}}"""
+
+
+def _build_compare_prompt(job: Dict) -> str:
+    vA      = job["vA"]
+    vB      = job["vB"]
+    is_fusion_mode = bool(job.get("_fusion_mode"))
+    if is_fusion_mode:
+        # Patient-vs-guideline conformance framing — "Older"/"New Version"
+        # would be actively wrong here, there is no version relationship.
+        label_A = vA
+        label_B = f"{vB} Reference"
+    else:
+        label_A = f"{vA} (Older)"
+        label_B = f"{vB} (New Version)"
+
+    analyst_role = job.get("_analyst_role", "a technical analyst")
+    doc_purpose  = job.get("_doc_purpose", "technical documentation")
+
+    types_key = "fusion_change_types" if is_fusion_mode else "delta_change_types"
+    change_section = _build_dynamic_change_section(job.get("_profile"), types_key)
+    if change_section is None:
+        change_section = _STATIC_CHANGE_TYPE_SECTION
+    change_section = change_section.format(label_A=label_A, label_B=label_B)
+
+    comparison_framing = (
+        f"You are {analyst_role} checking whether the patient/case finding "
+        f'"{job["topic"]}" conforms with the matched clinical guideline.'
+        if is_fusion_mode else
+        f'You are {analyst_role} comparing the feature "{job["topic"]}" '
+        f"across two {doc_purpose}."
+    )
+
+    prompt = f"""\
+{comparison_framing}
+
+Output ONLY a single JSON object with this exact structure — fill in real \
+values, do not copy the structure itself. Close all braces. \
+Max 4 items in key_differences.
+
+{{
+  "relevance_score": <integer 1-10>,
+  "relevance_reason": "<one sentence citing specific content from each version>",
+  "change_type": "<one of the types below>",
+  "analysis": "<3-4 complete sentences explaining the delta with direct version references>",
+  "key_differences": [
+    "{label_A}: <old behavior> -> {label_B}: <new behavior>",
+    "<another difference>"
+  ],
+  "confidence": "<high | medium | low>"
 }}
+
+RELEVANCE SCORING RUBRIC (be strict — do NOT default to 9 or 10):
+  1-3  Mismatched pair — the two chunks describe unrelated features
+  4-5  Weak overlap — same broad area but different specific features
+  6-7  Moderate — same feature area, but chunks focus on different aspects
+  8-9  Strong — clearly the same feature, with meaningful differences to compare
+  10   Perfect — identical feature, both chunks describe the same behavior in detail
+
+{change_section}
 
 ### ACTUAL TASK ###
 
@@ -743,9 +1106,44 @@ def _parse_delta(raw: str, vA: str, vB: str) -> DeltaResult:
 # DATA PARSING HELPERS
 # ══════════════════════════════════════════════════════════════════════════════
 
+_MONTH_NAMES = (
+    "january|february|march|april|may|june|july|august|"
+    "september|october|november|december"
+)
+
+
 def _extract_version(filename: str) -> str:
-    m = re.search(r"(\d+\.\d+(?:\.\d+)?)", filename)
-    return f"v{m.group(1)}" if m else filename.replace(".pdf", "").split("_")[0]
+    """
+    Best-effort human-readable version label from a filename. Tries, in order:
+    1. A decimal version number (e.g. "25.2", "26.1") — HealthRules-style.
+    2. A month + day + year, or month + year (e.g. "October 1, 2024").
+    3. A bare 4-digit year.
+    4. Prettified full stem (underscores/dashes -> spaces, title-cased) — NOT
+       split(\"_\")[0], which silently truncated any filename using
+       underscores as general word separators (rather than a
+       version-prefix delimiter) down to its first word, e.g.
+       "icd_10_cm_october_2025_guidelines_0.pdf" -> "icd" — meaningless
+       and, worse, indistinguishable from a different truncated file.
+    """
+    stem = re.sub(r"\.pdf$|\.md$", "", filename, flags=re.IGNORECASE)
+
+    m = re.search(r"(\d+\.\d+(?:\.\d+)?)", stem)
+    if m:
+        return f"v{m.group(1)}"
+
+    m = re.search(rf"({_MONTH_NAMES})[\s_-]+\d{{1,2}}[,\s_-]+\d{{4}}", stem, re.IGNORECASE)
+    if m:
+        return m.group(0).replace("_", " ").strip().title()
+
+    m = re.search(rf"({_MONTH_NAMES})[\s_-]+\d{{4}}", stem, re.IGNORECASE)
+    if m:
+        return m.group(0).replace("_", " ").strip().title()
+
+    m = re.search(r"\b(19|20)\d{2}\b", stem)
+    if m:
+        return m.group(0)
+
+    return stem.replace("_", " ").replace("-", " ").strip().title()
 
 
 def _parse_source_docs(source_docs) -> Tuple[Optional[str], Optional[str]]:
@@ -827,27 +1225,76 @@ TYPE_EMOJI = {
 CONF_BADGE = {"high": "🟢 High", "medium": "🟡 Medium", "low": "🔴 Low"}
 
 
-def _render_profile(p: BehavioralProfile) -> List[str]:
-    """Render a profile as clean markdown bullets — no strikethrough."""
-    lines = [f"**Feature:** {p.feature_name}\n"]
+_DEFAULT_FIELD_LABELS = {
+    "feature_name":     "Feature",
+    "key_behaviors":    "Key Behaviors",
+    "requirements":     "Requirements / Properties",
+    "deprecated_items": "Deprecated in this version",
+    "new_items":        "New in this version",
+    "patient_value":    "Patient Result",
+    "reference_range":  "Reference Range",
+    "interpretation":   "Clinical Interpretation",
+    "significance_level": "Significance Level",
+}
 
-    if p.key_behaviors:
-        lines.append("**Key Behaviors:**")
+
+def _render_profile(p: BehavioralProfile, field_labels: Optional[dict] = None) -> List[str]:
+    """
+    Render a profile as clean markdown bullets — no strikethrough.
+
+    field_labels (from context_profiler's per-domain profile) overrides the
+    hardcoded software-release-note header text below. These were static —
+    "New in this version" / "Deprecated in this version" — regardless of
+    domain, which is actively wrong for a point-in-time document with no
+    prior version to compare against (e.g. a single lab report). A key
+    explicitly set to JSON null in field_labels means the domain profile
+    judged that concept inapplicable — that section is skipped entirely,
+    even if the model extracted content for it, rather than shown under a
+    header that doesn't fit. Falls back to the original hardcoded labels
+    when no field_labels are available (no profile, or the original
+    HealthRules-Payer-shaped domain where they're already correct).
+    """
+    labels = {**_DEFAULT_FIELD_LABELS, **(field_labels or {})}
+    lines = []
+
+    # Clinical fields render FIRST, prominently, when present
+    if p.patient_value or p.reference_range or p.interpretation:
+        pv_label = labels.get("patient_value", "Patient Result")
+        rr_label = labels.get("reference_range", "Reference Range")
+        ci_label = labels.get("interpretation", "Clinical Interpretation")
+
+        if p.patient_value:
+            range_hint = f" (ref: {p.reference_range})" if p.reference_range else ""
+            lines.append(f"**{pv_label}:** {p.patient_value}{range_hint}\n")
+
+        if p.reference_range and not p.patient_value:
+            lines.append(f"**{rr_label}:** {p.reference_range}\n")
+
+        if p.interpretation:
+            lines.append(f"**{ci_label}:** {p.interpretation}\n")
+
+    if p.significance_level:
+        lines.append(f"**Significance Level:** {p.significance_level.upper()}\n")
+
+    lines.append(f"**{labels['feature_name']}:** {p.feature_name}\n")
+
+    if p.key_behaviors and labels.get("key_behaviors"):
+        lines.append(f"**{labels['key_behaviors']}:**")
         lines.extend(f"- {b}" for b in p.key_behaviors)
         lines.append("")
 
-    if p.requirements:
-        lines.append("**Requirements / Properties:**")
+    if p.requirements and labels.get("requirements"):
+        lines.append(f"**{labels['requirements']}:**")
         lines.extend(f"- {r}" for r in p.requirements)
         lines.append("")
 
-    if p.deprecated_items:
-        lines.append("**Deprecated in this version:**")
+    if p.deprecated_items and labels.get("deprecated_items"):
+        lines.append(f"**{labels['deprecated_items']}:**")
         lines.extend(f"- {d}" for d in p.deprecated_items)
         lines.append("")
 
-    if p.new_items:
-        lines.append("**New in this version:**")
+    if p.new_items and labels.get("new_items"):
+        lines.append(f"**{labels['new_items']}:**")
         lines.extend(f"- {n}" for n in p.new_items)
         lines.append("")
 
@@ -866,6 +1313,7 @@ def _render_topic(idx: int, job: Dict) -> List[str]:
     )
     label_A = f"{job['vA']} (Older)"
     label_B = f"{job['vB']} (New Version)"
+    field_labels = (job.get("_profile") or {}).get("field_labels")
 
     md = []
     md.append(f"### {idx}. {job['topic']}")
@@ -880,7 +1328,7 @@ def _render_topic(idx: int, job: Dict) -> List[str]:
         md.append(f"> {line}" if line.strip() else ">")
     md.append("")
     md.append("**Extracted Profile:**")
-    md.extend(_render_profile(job["profile_A"]))
+    md.extend(_render_profile(job["profile_A"], field_labels))
 
     md.append("---")
 
@@ -891,7 +1339,7 @@ def _render_topic(idx: int, job: Dict) -> List[str]:
         md.append(f"> {line}" if line.strip() else ">")
     md.append("")
     md.append("**Extracted Profile:**")
-    md.extend(_render_profile(job["profile_B"]))
+    md.extend(_render_profile(job["profile_B"], field_labels))
 
     md.append("---")
 
@@ -916,6 +1364,63 @@ def _render_topic(idx: int, job: Dict) -> List[str]:
 # ══════════════════════════════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════════════════════════════
+
+def run_delta_jobs(jobs: List[Dict]) -> None:
+    """
+    Runs the sub-pass-1a/1b/pass-2 LLM extraction+comparison loop over an
+    already-built job list, mutating each job in place with rough_profile_A/B,
+    profile_A/B, and delta.
+
+    Job-discovery-agnostic — callers build `jobs` however they like:
+    run_delta_analysis() below does version-pair matching within one corpus;
+    Stage 2/guideline_fusion.py's run_fusion_delta_analysis() does nearest-
+    neighbor patient-topic-to-guideline-topic matching across two corpora.
+    Each job dict just needs the same shape either way (topic, vA, vB, id_A,
+    id_B, desc_A, desc_B, text_A, text_B, qna_A, qna_B, _analyst_role,
+    _doc_purpose, _profile, and optionally _fusion_mode).
+    """
+    # ── Sub-pass 1a: Holistic extraction ──────────────────────────────────────
+    log.info("Sub-pass 1a: Holistic extraction (full read)...")
+
+    raw_holistic_A = llm_client.generate_batch(
+        _build_holistic_prompts(jobs, "A"), max_tokens=700, desc="1a — Older", stop=["```\n"], enable_thinking=False
+    )
+    raw_holistic_B = llm_client.generate_batch(
+        _build_holistic_prompts(jobs, "B"), max_tokens=700, desc="1a — New", stop=["```\n"], enable_thinking=False
+    )
+    for job, ra, rb in zip(jobs, raw_holistic_A, raw_holistic_B):
+        job["rough_profile_A"] = _parse_profile(ra)
+        job["rough_profile_B"] = _parse_profile(rb)
+
+    # ── Sub-pass 1b: Gap fill (paragraph-by-paragraph) ────────────────────────
+    log.info("Sub-pass 1b: Fine-grained gap fill...")
+
+    raw_gaps_A = llm_client.generate_batch(
+        _build_gap_fill_prompts(jobs, "A"), max_tokens=500, desc="1b — Older gaps", stop=["```\n"], enable_thinking=False
+    )
+    raw_gaps_B = llm_client.generate_batch(
+        _build_gap_fill_prompts(jobs, "B"), max_tokens=500, desc="1b — New gaps", stop=["```\n"], enable_thinking=False
+    )
+    for job, ga, gb in zip(jobs, raw_gaps_A, raw_gaps_B):
+        job["profile_A"] = _merge_profiles(job["rough_profile_A"], _parse_additions(ga))
+        job["profile_B"] = _merge_profiles(job["rough_profile_B"], _parse_additions(gb))
+
+    # ── Sub-pass 1c: Keyword validation of significance_level ────────────────
+    log.info("Sub-pass 1c: Keyword validation of significance_level...")
+    for job in jobs:
+        job["profile_A"] = _validate_significance_level(job["profile_A"], job.get("text_A", ""))
+        job["profile_B"] = _validate_significance_level(job["profile_B"], job.get("text_B", ""))
+
+    # ── Pass 2: Delta comparison ───────────────────────────────────────────────
+    log.info("Pass 2: Delta comparison + relevance scoring...")
+
+    raw_deltas = llm_client.generate_batch(
+        [_build_compare_prompt(job) for job in jobs],
+        max_tokens=750, desc="Pass 2 — Compare", stop=["```\n"], enable_thinking=False
+    )
+    for job, raw in zip(jobs, raw_deltas):
+        job["delta"] = _parse_delta(raw, job["vA"], job["vB"])
+
 
 def run_delta_analysis():
     log.info("Loading data...")
@@ -969,17 +1474,22 @@ def run_delta_analysis():
                     log.warning(f"Skipped '{topic['master_label']}' — chunk text missing (id_A={id_A}, id_B={id_B}).")
                     continue
 
-                # Inject domain context from profile if available
-                analyst_role = "a healthcare IT analyst"
-                doc_purpose  = "release note"
+                # Inject domain context from profile if available — carries
+                # the full profile (not just two strings) so the prompt
+                # builders below can also pull delta_change_types/
+                # delta_field_meaning/delta_few_shot, not just the role/
+                # purpose framing text.
+                analyst_role = "a technical analyst"
+                doc_purpose  = "technical documentation"
+                job_profile: Optional[dict] = None
                 try:
                     import context_profiler
                     source_docs = topic.get("source_docs", [])
                     ref_doc = source_docs[0] if isinstance(source_docs, list) and source_docs else ""
-                    profile = context_profiler.get_profile(ref_doc) if ref_doc else None
-                    if profile:
-                        analyst_role = profile.get("analyst_role", analyst_role)
-                        doc_purpose  = profile.get("document_purpose", doc_purpose)
+                    job_profile = context_profiler.get_profile(ref_doc) if ref_doc else None
+                    if job_profile:
+                        analyst_role = job_profile.get("analyst_role", analyst_role)
+                        doc_purpose  = job_profile.get("document_purpose", doc_purpose)
                 except ImportError:
                     pass
 
@@ -995,80 +1505,34 @@ def run_delta_analysis():
                     "qna_B":  _get_qna_for_id(qna_dict, id_B),
                     "_analyst_role": analyst_role,
                     "_doc_purpose":  doc_purpose,
+                    "_profile": job_profile,
                 })
 
     log.info(f"Collected {len(jobs)} analysis jobs.")
     if not jobs:
+        # Still write an empty cache — run_tail.py's step_delta_analyzer()
+        # treats a MISSING delta_jobs_cache.json as a hard failure (sys.exit),
+        # but zero cross-version topics (single-document corpora, e.g. the
+        # Sterling/ICD test docs) is a legitimate, expected state, not an
+        # error. Every downstream reader (evolution_analyzer.py,
+        # topic_summarizer.py, run_tail.py's step_convert_delta) already
+        # handles an empty list gracefully — this just makes sure they get
+        # one instead of a missing file.
+        jobs_cache_path = config.OUTPUT_DIR / "delta_jobs_cache.json"
+        with open(jobs_cache_path, "w", encoding="utf-8") as f:
+            json.dump([], f)
+        log.info("No cross-version topics to analyze — wrote empty delta_jobs_cache.json, skipping delta comparison.")
         return
 
-    # ── Save prompt templates as .md reference files ─────────────────────────
-    try:
-        import context_profiler
-        ref = jobs[0]
-        ref_role = ref.get("_analyst_role", "a healthcare IT analyst")
-        ref_purpose = ref.get("_doc_purpose", "release note")
-        source_docs = []
-        for parent in data.get("taxonomy", []):
-            for sub in parent.get("sub_categories", []):
-                for topic in sub.get("topics", []):
-                    sd = topic.get("source_docs", [])
-                    if isinstance(sd, list):
-                        source_docs.extend(sd)
-        ref_doc = source_docs[0] if source_docs else ""
-        ref_profile = context_profiler.get_profile(ref_doc) if ref_doc else None
-        if ref_profile:
-            tk = ref_profile.get("type_key", "")
-            if tk and not context_profiler.load_prompt(tk, "delta_holistic"):
-                context_profiler.save_prompt(
-                    tk, "delta_holistic",
-                    _HOLISTIC_PROMPT.replace(
-                        "{analyst_role}", ref_role
-                    ).replace("{doc_purpose}", ref_purpose),
-                )
-                context_profiler.save_prompt(
-                    tk, "delta_gapfill",
-                    _GAP_FILL_PROMPT.replace(
-                        "{analyst_role}", ref_role
-                    ).replace("{doc_purpose}", ref_purpose),
-                )
-    except ImportError:
-        pass
+    # Prompt templates are now built (and saved to disk) properly per job's
+    # own profile inside _build_holistic_prompts/_build_gap_fill_prompts/
+    # _build_compare_prompt themselves — see _get_holistic_prompt_template()
+    # etc. above. This used to be a separate block here that only ever
+    # substituted analyst_role/doc_purpose into the STATIC template (not the
+    # domain-specific schema/examples), and silently produced nothing anyway
+    # whenever get_profile() returned None (see its docstring for why).
 
-    # ── Sub-pass 1a: Holistic extraction ──────────────────────────────────────
-    log.info("Sub-pass 1a: Holistic extraction (full read)...")
-
-    raw_holistic_A = llm_client.generate_batch(
-        _build_holistic_prompts(jobs, "A"), max_tokens=700, desc="1a — Older", stop=["```\n"], enable_thinking=False
-    )
-    raw_holistic_B = llm_client.generate_batch(
-        _build_holistic_prompts(jobs, "B"), max_tokens=700, desc="1a — New", stop=["```\n"], enable_thinking=False
-    )
-    for job, ra, rb in zip(jobs, raw_holistic_A, raw_holistic_B):
-        job["rough_profile_A"] = _parse_profile(ra)
-        job["rough_profile_B"] = _parse_profile(rb)
-
-    # ── Sub-pass 1b: Gap fill (paragraph-by-paragraph) ────────────────────────
-    log.info("Sub-pass 1b: Fine-grained gap fill...")
-
-    raw_gaps_A = llm_client.generate_batch(
-        _build_gap_fill_prompts(jobs, "A"), max_tokens=500, desc="1b — Older gaps", stop=["```\n"], enable_thinking=False
-    )
-    raw_gaps_B = llm_client.generate_batch(
-        _build_gap_fill_prompts(jobs, "B"), max_tokens=500, desc="1b — New gaps", stop=["```\n"], enable_thinking=False
-    )
-    for job, ga, gb in zip(jobs, raw_gaps_A, raw_gaps_B):
-        job["profile_A"] = _merge_profiles(job["rough_profile_A"], _parse_additions(ga))
-        job["profile_B"] = _merge_profiles(job["rough_profile_B"], _parse_additions(gb))
-
-    # ── Pass 2: Delta comparison ───────────────────────────────────────────────
-    log.info("Pass 2: Delta comparison + relevance scoring...")
-
-    raw_deltas = llm_client.generate_batch(
-        [_build_compare_prompt(job) for job in jobs],
-        max_tokens=750, desc="Pass 2 — Compare", stop=["```\n"], enable_thinking=False
-    )
-    for job, raw in zip(jobs, raw_deltas):
-        job["delta"] = _parse_delta(raw, job["vA"], job["vB"])
+    run_delta_jobs(jobs)
 
     # ── Markdown report ────────────────────────────────────────────────────────
     log.info("Generating Markdown report...")
@@ -1126,6 +1590,7 @@ def run_delta_analysis():
             "profile_A": job["profile_A"].model_dump() if job.get("profile_A") else None,
             "profile_B": job["profile_B"].model_dump() if job.get("profile_B") else None,
             "delta":   job["delta"].model_dump() if job.get("delta") else None,
+            "_profile": job.get("_profile"),  # domain/context profile — consumed by evolution_analyzer.py
         })
     with open(jobs_cache_path, "w", encoding="utf-8") as f:
         json.dump(cache_jobs, f, indent=2, ensure_ascii=False)

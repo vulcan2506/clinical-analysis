@@ -1,0 +1,7 @@
+|  Categories | Conditions and Medications Contributing to Hypertriglyceridemia  |
+| --- | --- |
+|  Diseases | Poorly controlled diabetes Chronic kidney disease, nephrotic syndrome Lipodystrophy Uncontrolled hypothyroidism Cushing syndrome Glycogen storage disease, acute hepatitis Rheumatoid arthritis Psoriasis Systemic lupus erythematosus Multiple myeloma Sepsis (repeat measurement is recommended if lipids were measured during an episode of sepsis)  |
+|  Diet/Lifestyle | History of alcohol abuse or alcohol excess Diets high in saturated fat, sugar, or high-glycemic-index foods Sedentary lifestyle Total parenteral nutrition with lipid emulsions  |
+|  Drugs* (Medications) | Anesthesia: Propofol Cardiology: Beta-adrenergic-blocking agents Thiazide and loop diuretic agents Bile acid sequestrants (cholestyramine, colestipol, colesevelam) Endocrine: Glucocorticosteroids Anabolic steroids Oral estrogens Raloxifene Clomiphene citrate Estradiol Ethinyl estradiol Conjugated estrogens Tamoxifen Dermatology: Isotretinoin Infectious Disease: HIV protease inhibitors Oncology: Tamoxifen L-asparaginase Bexarotene Cyclophosphamide Psychiatry: Atypical antipsychotic agents (eg, olanzapine, mirtazapine, clozapine) Immunosuppressive agents: Tacrolimus Sirolimus Cyclosporine Interferons  |
+|  Disorders of metabolism | Overweight and obesity Metabolic syndrome/insulin resistance Weight gain after weight loss  |
+|  Physiological | Pregnancy (especially during the third trimester, when pregnancy-associated TG elevation is peaking)  |

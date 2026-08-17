@@ -1,0 +1,538 @@
+14:19:25  INFO      ═══════════════════════════════════════════════════════
+14:19:25  INFO        STAGE 1  —  Ingest → Rectify → Label → Enrich → Filter → Registry
+14:19:25  INFO      ═══════════════════════════════════════════════════════
+14:19:25  INFO      
+[1/7] Processing PDFs (Extract -> Rectify -> Re-Rectify)
+14:19:25  INFO      
+--- Processing PDF: WM17S.pdf ---
+14:19:25  INFO      Extracting: WM17S.pdf...
+14:19:25  INFO      Extracting WM17S.pdf via Mistral OCR (primary)...
+14:19:26  INFO      Mistral client constructed — OCR model=mistral-ocr-latest, chat model=mistral-small-latest
+14:19:30  INFO      HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+14:19:30  INFO      Saved converted markdown → WM17S_Converted.md
+14:19:30  INFO      Loading embedder: paraphrase-multilingual-MiniLM-L12-v2
+14:19:30  INFO      Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+Rectifying tables:   0%|          | 0/17 [00:00<?, ?it/s]Rectifying tables: 100%|██████████| 17/17 [00:00<00:00, 5808.34it/s]
+14:19:39  INFO      [Re-Rectifier] 3/20 tables need fixing (17 skipped — already clean)
+14:19:39  INFO      Re-Rectification: starting 3 items (6 parallel slots, backend=api)
+14:19:40  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:40  INFO      Re-Rectification: 1/3 (33%) — ~0m01s remaining
+14:19:40  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:40  INFO      Re-Rectification: 2/3 (66%) — ~0m00s remaining
+14:19:41  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:41  INFO      Re-Rectification: 3/3 (100%) — ~0m00s remaining
+14:19:41  WARNING   [Re-Rectifier] chunk 8 — fix produced 3 rows vs ~5 in the source table — flagged for review
+14:19:41  INFO      Finished extracting all PDFs. Total chunks: 34
+14:19:41  INFO      llm_client reset (llama-server keeps model loaded)
+14:19:41  INFO      Unloaded ingest models + local LLM.
+14:19:41  INFO      
+[2/7] Enriching content-poor chunk descriptions and calculating quality scores
+14:19:41  INFO      Heuristic judge evaluating 34 potentially poor chunks...
+14:19:41  INFO      Heuristic judge: 0/34 flagged for enrichment
+14:19:41  INFO      Enrichment: LLM Judge determined 0/34 chunks truly need RAG/Web Search
+14:19:41  INFO      No chunks require enrichment — skipping.
+14:19:41  INFO      Enriched chunks saved to cache.
+14:19:42  INFO      llm_client reset (llama-server keeps model loaded)
+14:19:42  INFO      Unloaded enricher models + local LLM.
+14:19:42  INFO      
+[2.5/7] Skipping context profiling — forced profile in effect (Stage 2 patient run)
+14:19:42  INFO      
+[3/7] Running Quality Threshold Filter (< 70%)
+14:19:42  INFO      [Quality Filter] Dropped 9 chunks with quality score < 70.0%.
+14:19:42  INFO      [Quality Filter] Remaining high-quality chunks: 25
+14:19:42  INFO      
+[3.5/7] Running CoT LLM Grouper to merge related chunks
+14:19:42  INFO      Stage 1 (rules): 4 merges, 0 cohesion splits. Chunks after Stage 1: 21 (was 25).
+14:19:42  INFO      Stage 2 (LLM): building prompts (sequence window: 10 chunks)...
+14:19:42  INFO      [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/grouper.md
+14:19:42  INFO      LLM Grouper Inference: starting 3 items (6 parallel slots, backend=api)
+14:19:42  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:42  INFO      LLM Grouper Inference: 1/3 (33%) — ~0m01s remaining
+14:19:42  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:42  INFO      LLM Grouper Inference: 2/3 (66%) — ~0m00s remaining
+14:19:42  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:42  INFO      LLM Grouper Inference: 3/3 (100%) — ~0m00s remaining
+14:19:43  INFO      Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 17.89it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 15.02it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 16.71it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 12.11it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 16.03it/s]
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 14.37it/s]
+14:19:48  INFO      Stage 2.5 (cohesion): validated 14 groups, split 1 incoherent groups → 15 final groups.
+14:19:48  INFO      Stage 2 + 2.5: 6 net merges. Final chunk count: 15 (total reduction: 10 from 25).
+14:19:48  INFO      Unloaded grouper embedder.
+14:19:48  INFO      
+[4/7] Assigning master labels (15 chunks)
+14:19:48  INFO      [Pass 1] Labeling 15 chunks...
+14:19:48  INFO      [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/labeler.md
+14:19:48  INFO      Labeling: starting 15 items (6 parallel slots, backend=api)
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 1/15 (6%) — ~0m09s remaining
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 2/15 (13%) — ~0m05s remaining
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 3/15 (20%) — ~0m03s remaining
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 4/15 (26%) — ~0m02s remaining
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 5/15 (33%) — ~0m01s remaining
+14:19:49  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:49  INFO      Labeling: 6/15 (40%) — ~0m01s remaining
+14:19:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:50  INFO      Labeling: 7/15 (46%) — ~0m01s remaining
+14:19:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:50  INFO      Labeling: 8/15 (53%) — ~0m01s remaining
+14:19:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:50  INFO      Labeling: 9/15 (60%) — ~0m01s remaining
+14:19:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:50  INFO      Labeling: 10/15 (66%) — ~0m00s remaining
+14:19:50  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:50  INFO      Labeling: 11/15 (73%) — ~0m00s remaining
+14:19:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:51  INFO      Labeling: 12/15 (80%) — ~0m00s remaining
+14:19:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:51  INFO      Labeling: 13/15 (86%) — ~0m00s remaining
+14:19:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:51  INFO      Labeling: 14/15 (93%) — ~0m00s remaining
+14:19:51  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:51  INFO      Labeling: 15/15 (100%) — ~0m00s remaining
+14:19:51  INFO      All descriptions present — no fill pass needed.
+14:19:51  INFO      Labeling complete. Empty descriptions remaining: 0
+14:19:51  INFO      Labeling complete.
+14:19:51  INFO      
+[4.5/7] Normalizing and deduplicating master labels
+14:19:51  INFO      [Label Normalizer] Analyzing 15 unique labels...
+14:19:52  INFO      Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+14:19:56  INFO        Merged cluster (2 labels) → 'Vitamin D Status Classification': ['Vitamin D Status Classification', 'Vitamin D Laboratory Reference Range']
+14:19:56  INFO      [Label Normalizer] Done. Merged 1 clusters, updated 1 chunks. Unique labels: 15 → 14
+14:19:56  INFO      Labeled chunks saved to filtered_chunks.json.
+14:19:57  INFO      
+[4.7/7] Generating synthetic Q&A pairs for grouped chunks
+14:19:57  INFO      [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/qna.md
+14:19:57  INFO      [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/qna_system.md
+14:19:57  INFO      QnA Generation: 13 chunks to process (2 skipped — too short)
+14:19:57  INFO      QnA Generation: starting 13 items (6 parallel slots, backend=api)
+14:19:57  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:57  INFO      QnA Generation: 1/13 (7%) — ~0m05s remaining
+14:19:57  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:58  INFO      QnA Generation: 2/13 (15%) — ~0m02s remaining
+14:19:58  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:58  INFO      QnA Generation: 3/13 (23%) — ~0m03s remaining
+14:19:58  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:58  INFO      QnA Generation: 4/13 (30%) — ~0m02s remaining
+14:19:58  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:58  INFO      QnA Generation: 5/13 (38%) — ~0m02s remaining
+14:19:59  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:59  INFO      QnA Generation: 6/13 (46%) — ~0m02s remaining
+14:19:59  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:59  INFO      QnA Generation: 7/13 (53%) — ~0m02s remaining
+14:19:59  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:19:59  INFO      QnA Generation: 8/13 (61%) — ~0m01s remaining
+14:20:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:00  INFO      QnA Generation: 9/13 (69%) — ~0m01s remaining
+14:20:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:00  INFO      QnA Generation: 10/13 (76%) — ~0m00s remaining
+14:20:00  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:00  INFO      QnA Generation: 11/13 (84%) — ~0m00s remaining
+14:20:01  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:01  INFO      QnA Generation: 12/13 (92%) — ~0m00s remaining
+14:20:02  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:02  INFO      QnA Generation: 13/13 (100%) — ~0m00s remaining
+14:20:02  INFO      QnA Generation complete — total pairs: 22, avg per chunk: 1.7
+14:20:02  INFO      Chunks with QnA metadata saved to filtered_chunks.json.
+14:20:02  INFO      
+[5/7] Building topic registry from filtered chunks
+14:20:02  INFO      [Cross-Version] Only one document — skipping fuzzy matching.
+14:20:02  INFO      Merging descriptions for 14 master label groups (bracket format)...
+14:20:02  INFO      Summarizing 1 multi-description groups in parallel...
+14:20:02  INFO      Summarizing registry: starting 1 items (6 parallel slots, backend=api)
+14:20:03  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:03  INFO      Summarizing registry: 1/1 (100%) — ~0m00s remaining
+Building registry:   0%|          | 0/14 [00:00<?, ?it/s]Building registry: 100%|██████████| 14/14 [00:00<00:00, 160877.41it/s]
+14:20:03  INFO      Registry saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/topic_registry.csv  (14 master labels)
+14:20:03  INFO      
+[6/7] Building nested taxonomy
+14:20:03  INFO      Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+
+── Topic Registry Summary ──────────────────────
+  Master labels : 14
+  pending       : 14
+  in_progress   : 0
+  done          : 0
+  skipped       : 0
+  Saved at      : /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/topic_registry.csv
+────────────────────────────────────────────────
+
+1. Loading CSV Data...
+   (14 topics -> macro/micro thresholds 0.35/0.35)
+2. Generating Semantic Embeddings (For Initial Graph Clustering)...
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  6.83it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  6.82it/s]
+14:20:08  INFO      Auditing: starting 5 items (6 parallel slots, backend=api)
+14:20:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:08  INFO      Auditing: 1/5 (20%) — ~0m01s remaining
+14:20:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:08  INFO      Auditing: 2/5 (40%) — ~0m00s remaining
+14:20:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:08  INFO      Auditing: 3/5 (60%) — ~0m00s remaining
+14:20:08  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:08  INFO      Auditing: 4/5 (80%) — ~0m00s remaining
+14:20:09  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:09  INFO      Auditing: 5/5 (100%) — ~0m00s remaining
+14:20:09  INFO      Naming: starting 4 items (6 parallel slots, backend=api)
+14:20:09  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:09  INFO      Naming: 1/4 (25%) — ~0m01s remaining
+14:20:09  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:09  INFO      Naming: 2/4 (50%) — ~0m00s remaining
+14:20:09  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:09  INFO      Naming: 3/4 (75%) — ~0m00s remaining
+14:20:09  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:09  INFO      Naming: 4/4 (100%) — ~0m00s remaining
+14:20:09  INFO      Describing: starting 4 items (6 parallel slots, backend=api)
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Describing: 1/4 (25%) — ~0m02s remaining
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Describing: 2/4 (50%) — ~0m00s remaining
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Describing: 3/4 (75%) — ~0m00s remaining
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Describing: 4/4 (100%) — ~0m00s remaining
+14:20:10  INFO      Scoring: starting 8 items (6 parallel slots, backend=api)
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Scoring: 1/8 (12%) — ~0m02s remaining
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Scoring: 2/8 (25%) — ~0m01s remaining
+14:20:10  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:10  INFO      Scoring: 3/8 (37%) — ~0m00s remaining
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Scoring: 4/8 (50%) — ~0m00s remaining
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Scoring: 5/8 (62%) — ~0m00s remaining
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Scoring: 6/8 (75%) — ~0m00s remaining
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Scoring: 7/8 (87%) — ~0m00s remaining
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Scoring: 8/8 (100%) — ~0m00s remaining
+14:20:11  INFO      Macro Naming: starting 3 items (6 parallel slots, backend=api)
+14:20:11  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:11  INFO      Macro Naming: 1/3 (33%) — ~0m00s remaining
+14:20:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:12  INFO      Macro Naming: 2/3 (66%) — ~0m00s remaining
+14:20:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:12  INFO      Macro Naming: 3/3 (100%) — ~0m00s remaining
+14:20:12  INFO      Macro Describing: starting 3 items (6 parallel slots, backend=api)
+14:20:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:12  INFO      Macro Describing: 1/3 (33%) — ~0m01s remaining
+14:20:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:12  INFO      Macro Describing: 2/3 (66%) — ~0m00s remaining
+14:20:12  INFO      HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+14:20:12  INFO      Macro Describing: 3/3 (100%) — ~0m00s remaining
+14:20:12  INFO      Nested taxonomy saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/enterprise_nested_topics.json
+14:20:12  INFO      
+Stage 1 complete.
+3. Pass 1: Building Macro-Graph...
+
+4. LLM client ready (OpenRouter)...
+
+5. Pass 2: Structuring Micro-Clusters (Graph Analysis)...
+
+--- Batch Executing 5 Audit Prompts ---
+
+--- Batch Executing 4 Naming & Description Prompts ---
+
+--- Batch Executing LLM Confidence Scoring ---
+
+--- Batch Executing 3 Macro Naming & Description Prompts ---
+
+--- Assembling Final JSON ---
+
+✅ Enterprise JSON with Parent Descriptions & Confidence Scoring saved to /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/enterprise_nested_topics.json
+2026-07-21 14:20:15,271 [INFO] run_tail — 
+[1/12] Filtering nested topics to cross-version only…
+2026-07-21 14:20:15,281 [INFO] run_tail — Cross-version filter done → cross_version_topics_only.json  (1 entries)
+2026-07-21 14:20:15,281 [INFO] run_tail — 
+[2/12] Running parent relationship clustering (grandparent groups)…
+2026-07-21 14:20:19,268 [INFO] parent_relationship — Loaded 3 parents
+2026-07-21 14:20:19,830 [INFO] sentence_transformers.base.model — Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-07-21 14:20:23,987 [INFO] parent_relationship — Parent graph: 1 edges (threshold=0.6)
+2026-07-21 14:20:23,987 [INFO] parent_relationship — Louvain: 2 grandparent groups, 1 multi-parent, 1 singleton
+2026-07-21 14:20:23,988 [INFO] parent_relationship — Auditing 1 multi-member grandparent group(s) for outliers...
+2026-07-21 14:20:23,988 [INFO] llm_client — Grandparent outlier audit: starting 1 items (6 parallel slots, backend=api)
+2026-07-21 14:20:24,125 [INFO] llm_client — Mistral client constructed — OCR model=mistral-ocr-latest, chat model=mistral-small-latest
+2026-07-21 14:20:24,581 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:24,582 [INFO] llm_client — Grandparent outlier audit: 1/1 (100%) — ~0m00s remaining
+2026-07-21 14:20:24,582 [INFO] parent_relationship — Group 1: removed outlier(s) ['Biomarker & Risk Management']
+2026-07-21 14:20:24,582 [INFO] parent_relationship — After outlier audit: 0 multi-parent group(s) remain
+2026-07-21 14:20:24,582 [INFO] parent_relationship — Generating 0 grandparent name(s) + description(s)...
+2026-07-21 14:20:24,582 [INFO] run_tail — Parent relationship clustering done — 0 grandparent group(s)
+2026-07-21 14:20:24,582 [INFO] run_tail — 
+[5/12] Running topic summarizer (leaf-level, chunk-grounded)…
+2026-07-21 14:20:24,583 [INFO] topic_summarizer — Loading chunk text, QnA hints, delta cache, and taxonomy...
+2026-07-21 14:20:24,583 [INFO] topic_summarizer — Delta cache: 0 cached cross-version topic profiles available for reuse.
+2026-07-21 14:20:24,584 [INFO] topic_summarizer — 14 (topic, source) brackets total — 0 reused from delta cache, 14 need fresh extraction.
+2026-07-21 14:20:24,584 [INFO] topic_summarizer — Sub-pass 1a: holistic extraction...
+2026-07-21 14:20:24,584 [INFO] context_profiler — [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/delta_holistic.md
+2026-07-21 14:20:24,585 [INFO] llm_client — Topic summary — holistic: starting 14 items (6 parallel slots, backend=api)
+2026-07-21 14:20:25,210 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:25,216 [INFO] llm_client — Topic summary — holistic: 1/14 (7%) — ~0m08s remaining
+2026-07-21 14:20:25,462 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:25,468 [INFO] llm_client — Topic summary — holistic: 2/14 (14%) — ~0m05s remaining
+2026-07-21 14:20:26,042 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:26,047 [INFO] llm_client — Topic summary — holistic: 3/14 (21%) — ~0m05s remaining
+2026-07-21 14:20:26,233 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:26,238 [INFO] llm_client — Topic summary — holistic: 4/14 (28%) — ~0m04s remaining
+2026-07-21 14:20:26,240 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:26,244 [INFO] llm_client — Topic summary — holistic: 5/14 (35%) — ~0m02s remaining
+2026-07-21 14:20:26,338 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:26,346 [INFO] llm_client — Topic summary — holistic: 6/14 (42%) — ~0m02s remaining
+2026-07-21 14:20:26,760 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:26,766 [INFO] llm_client — Topic summary — holistic: 7/14 (50%) — ~0m02s remaining
+2026-07-21 14:20:27,153 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,158 [INFO] llm_client — Topic summary — holistic: 8/14 (57%) — ~0m01s remaining
+2026-07-21 14:20:27,294 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,295 [INFO] llm_client — Topic summary — holistic: 9/14 (64%) — ~0m01s remaining
+2026-07-21 14:20:27,491 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,492 [INFO] llm_client — Topic summary — holistic: 10/14 (71%) — ~0m01s remaining
+2026-07-21 14:20:27,633 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,634 [INFO] llm_client — Topic summary — holistic: 11/14 (78%) — ~0m00s remaining
+2026-07-21 14:20:27,767 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,768 [INFO] llm_client — Topic summary — holistic: 12/14 (85%) — ~0m00s remaining
+2026-07-21 14:20:27,772 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:27,773 [INFO] llm_client — Topic summary — holistic: 13/14 (92%) — ~0m00s remaining
+2026-07-21 14:20:28,043 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:28,046 [INFO] llm_client — Topic summary — holistic: 14/14 (100%) — ~0m00s remaining
+2026-07-21 14:20:28,047 [INFO] topic_summarizer — Sub-pass 1b: gap fill...
+2026-07-21 14:20:28,047 [INFO] context_profiler — [Prompt Saved] /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/prompts/ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia/delta_gapfill.md
+2026-07-21 14:20:28,048 [INFO] llm_client — Topic summary — gap fill: starting 14 items (6 parallel slots, backend=api)
+2026-07-21 14:20:28,665 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:28,671 [INFO] llm_client — Topic summary — gap fill: 1/14 (7%) — ~0m08s remaining
+2026-07-21 14:20:28,733 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:28,739 [INFO] llm_client — Topic summary — gap fill: 2/14 (14%) — ~0m04s remaining
+2026-07-21 14:20:28,850 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:28,856 [INFO] llm_client — Topic summary — gap fill: 3/14 (21%) — ~0m02s remaining
+2026-07-21 14:20:28,891 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:28,901 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:28,944 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:28,944 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:29,037 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:29,043 [INFO] llm_client — Topic summary — gap fill: 4/14 (28%) — ~0m02s remaining
+2026-07-21 14:20:29,043 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,044 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:29,063 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:29,067 [INFO] llm_client — Topic summary — gap fill: 5/14 (35%) — ~0m01s remaining
+2026-07-21 14:20:29,114 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,115 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,168 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,168 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,222 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:29,229 [INFO] llm_client — Topic summary — gap fill: 6/14 (42%) — ~0m01s remaining
+2026-07-21 14:20:29,235 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,235 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,249 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,250 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:29,284 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,284 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:29,342 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,343 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,343 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:29,354 [INFO] llm_client — OpenRouter client → model=google/gemma-4-26b-a4b-it:free
+2026-07-21 14:20:29,381 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,381 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,381 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:29,422 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,422 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:29,475 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,476 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,476 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:29,506 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,507 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,513 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,514 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,642 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,642 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:29,731 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,731 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,731 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:29,769 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,769 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,769 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:29,858 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:29,858 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:29,859 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:31,779 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:32,539 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:33,005 [INFO] llm_client — Topic summary — gap fill: 7/14 (50%) — ~0m04s remaining
+2026-07-21 14:20:33,097 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:33,125 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:33,211 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:33,211 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:33,440 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:33,440 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:33,647 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:33,648 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:33,648 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:33,909 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:34,306 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:34,986 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:34,998 [INFO] llm_client — Topic summary — gap fill: 8/14 (57%) — ~0m05s remaining
+2026-07-21 14:20:35,112 [INFO] llm_client — Topic summary — gap fill: 9/14 (64%) — ~0m03s remaining
+2026-07-21 14:20:35,257 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:35,257 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:35,472 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:35,473 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:35,681 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:35,681 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:35,681 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:36,751 [INFO] llm_client — Topic summary — gap fill: 10/14 (71%) — ~0m03s remaining
+2026-07-21 14:20:39,166 [INFO] llm_client — Topic summary — gap fill: 11/14 (78%) — ~0m03s remaining
+2026-07-21 14:20:39,349 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:20:39,653 [INFO] llm_client — Topic summary — gap fill: 12/14 (85%) — ~0m01s remaining
+2026-07-21 14:20:40,388 [INFO] llm_client — Topic summary — gap fill: 13/14 (92%) — ~0m00s remaining
+2026-07-21 14:20:57,685 [INFO] llm_client — Topic summary — gap fill: 14/14 (100%) — ~0m00s remaining
+2026-07-21 14:20:57,686 [INFO] topic_summarizer — Rendering per-source markdown summaries...
+2026-07-21 14:20:57,687 [INFO] topic_summarizer — Updating topic_registry.csv...
+2026-07-21 14:20:57,691 [INFO] topic_summarizer — Registry updated → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/topic_registry.csv
+2026-07-21 14:20:57,691 [INFO] topic_summarizer — Patched 14 topics in /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/enterprise_nested_topics.json
+2026-07-21 14:20:57,691 [INFO] topic_summarizer — Markdown summaries written → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/topic_summaries
+2026-07-21 14:20:57,692 [INFO] run_tail — 
+[6/12] Running hierarchy summarizer (sub-category/parent roll-up)…
+2026-07-21 14:20:57,701 [INFO] hierarchy_summarizer — Synthesizing 7 sub-category profiles...
+2026-07-21 14:20:57,701 [INFO] llm_client — Sub-category profiles: starting 7 items (6 parallel slots, backend=api)
+2026-07-21 14:20:57,925 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,926 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:57,939 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,939 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:57,945 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,945 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:57,945 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,948 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:57,953 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,954 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:57,959 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:57,959 [WARNING] llm_client — Mistral API error (attempt 1/3), retrying...
+2026-07-21 14:20:58,122 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,122 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,129 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,129 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,156 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,156 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,166 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,167 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,186 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,186 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,319 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,319 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,319 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:58,339 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,340 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,340 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:58,366 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,366 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,366 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:58,381 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,382 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,382 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:58,397 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,397 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,397 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:20:58,567 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,569 [WARNING] llm_client — Mistral API error (attempt 2/3), retrying...
+2026-07-21 14:20:58,773 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-07-21 14:20:58,774 [ERROR] llm_client — Mistral API error after 3 attempts: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}
+2026-07-21 14:20:58,774 [WARNING] llm_client — Mistral call failed after retries (SDKError: API error occurred: Status 429. Body: {"object":"error","message":"Rate limit exceeded","type":"rate_limited","param":null,"code":"1300","raw_status_code":429}) — trying OpenRouter fallback
+2026-07-21 14:21:00,688 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:01,183 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:01,229 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:01,775 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:01,780 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:01,797 [INFO] httpx — HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:06,389 [INFO] llm_client — Sub-category profiles: 1/7 (14%) — ~0m52s remaining
+2026-07-21 14:21:07,113 [INFO] llm_client — Sub-category profiles: 2/7 (28%) — ~0m23s remaining
+2026-07-21 14:21:08,082 [INFO] llm_client — Sub-category profiles: 3/7 (42%) — ~0m13s remaining
+2026-07-21 14:21:08,155 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:08,156 [INFO] llm_client — Sub-category profiles: 4/7 (57%) — ~0m07s remaining
+2026-07-21 14:21:08,632 [INFO] llm_client — Sub-category profiles: 5/7 (71%) — ~0m04s remaining
+2026-07-21 14:21:08,635 [INFO] llm_client — Sub-category profiles: 6/7 (85%) — ~0m01s remaining
+2026-07-21 14:21:08,640 [INFO] llm_client — Sub-category profiles: 7/7 (100%) — ~0m00s remaining
+2026-07-21 14:21:08,641 [INFO] hierarchy_summarizer — Synthesizing 3 parent profiles...
+2026-07-21 14:21:08,641 [INFO] llm_client — Parent profiles: starting 3 items (6 parallel slots, backend=api)
+2026-07-21 14:21:10,784 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:10,785 [INFO] llm_client — Parent profiles: 1/3 (33%) — ~0m04s remaining
+2026-07-21 14:21:11,029 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:11,030 [INFO] llm_client — Parent profiles: 2/3 (66%) — ~0m01s remaining
+2026-07-21 14:21:11,107 [INFO] httpx — HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-21 14:21:11,108 [INFO] llm_client — Parent profiles: 3/3 (100%) — ~0m00s remaining
+2026-07-21 14:21:11,110 [INFO] hierarchy_summarizer — Patched 7 sub-category profiles, 3 parent profiles in /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/enterprise_nested_topics.json
+2026-07-21 14:21:11,110 [INFO] hierarchy_summarizer — Rendered 3 parent markdown reports → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/hierarchy_summaries
+2026-07-21 14:21:11,110 [INFO] run_tail — 
+[9/12] Building HNSW index…
+INFO     Loading /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/enterprise_nested_topics.json
+INFO     Loading embedder: paraphrase-multilingual-MiniLM-L12-v2
+INFO     Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+INFO     Embedding 3 items: parents
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 13.77it/s]
+INFO     Embedding 7 items: sub-categories
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.54it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.53it/s]
+INFO     Building chunk lookup from filtered_chunks.json...
+INFO     Chunk lookup: 15 entries
+INFO     HNSW corpus: 65 vectors (14 topic, 22 QnA, 14 description, 15 chunk)
+INFO     Embedding 65 items: HNSW corpus
+Batches:   0%|          | 0/3 [00:00<?, ?it/s]Batches:  33%|███▎      | 1/3 [00:00<00:01,  1.48it/s]Batches:  67%|██████▋   | 2/3 [00:00<00:00,  2.17it/s]Batches: 100%|██████████| 3/3 [00:01<00:00,  2.97it/s]
+INFO     Building HNSW index...
+INFO     HNSW saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/index/hnsw.bin
+INFO     Saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/index/parent_meta.pkl
+INFO     Saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/index/sub_meta.pkl
+INFO     Saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/index/hnsw_meta.pkl
+INFO     Saved → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/index/chunk_lookup.pkl
+INFO     Index build complete.
+INFO       Parents      : 3
+INFO       Sub-categories: 7
+INFO       HNSW vectors : 65
+INFO       Chunk lookup : 15
+2026-07-21 14:21:23,160 [INFO] run_tail — HNSW index built → /home/vulcan/Documents/Projects/Research Maker/retrieval_layer/index  (5 files)
+2026-07-21 14:21:23,160 [INFO] run_tail — 
+[10/12] Populating ChromaDB collections…
+INFO     Ingesting corpus from filtered_chunks.json...
+INFO     Loading embedder for ChromaDB: paraphrase-multilingual-MiniLM-L12-v2
+INFO     Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.83it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  2.83it/s]
+INFO     corpus: 15 documents ingested into 'corpus'
+INFO     Ingesting intelligence from topic_registry.csv...
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.20it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.19it/s]
+INFO     intelligence: 14 documents ingested into 'intelligence'
+INFO     Ingesting hierarchy summaries from enterprise_nested_topics.json...
+INFO     Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.60it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.59it/s]
+INFO     intelligence (hierarchy): 10 documents ingested into 'intelligence'
+INFO     Ingesting enumeration doc from enterprise_nested_topics.json...
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.11it/s]
+INFO     intelligence (enumeration): 1 documents ingested into 'intelligence'
+INFO     Ingesting grandparent groups from parent_relationship_clusters.json...
+WARNING  intelligence (relationships): nothing to ingest (no genuine clusters found, or file empty)
+INFO     Ingesting evolution cards from evolution_cards_cache.json...
+WARNING  evolution_cards_cache.json not found — skipping evolution ingestion (run evolution_analyzer.py first)
+INFO     Ingesting cross-corpus relationships from cross_corpus_relationship_clusters.json...
+WARNING  cross_corpus_relationship_clusters.json not found — skipping cross-corpus ingestion (no second corpus yet, or run cross_corpus_relationship.py first)
+WARNING  Delta dir not found: /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/delta_reports — skipping delta ingestion
+INFO     overlap: WM17S_Converted.md → 25 chunks (size=1000, overlap=200)
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s]
+INFO     overlap: 25 documents ingested into 'corpus_overlap'
+INFO     ChromaDB stats: {'corpus': 15, 'intelligence': 25, 'delta': 0, 'corpus_overlap': 25}
+2026-07-21 14:21:42,219 [INFO] run_tail — ChromaDB populated — {'corpus': 15, 'delta': 0, 'intelligence': 25, 'corpus_overlap': 25}
+2026-07-21 14:21:42,219 [INFO] stage2_run_tail — 
+✅ Stage 2 pipeline tail complete.
+
+Wrote 0 grandparent group(s) → /home/vulcan/Documents/Projects/Research Maker/Stage 2/data/dr-lalpath-labs/output/parent_relationship_clusters.json

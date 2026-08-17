@@ -1,0 +1,184 @@
+Now what I was saying was with examples... We have summaries ... We are fetching it and combining it with relatable ones
+We ask llm to fetch which summaries talk about something more or less same
+like it should not be we are talking about A and its bringing up b
+if something in guidelines is genuinely not available for example 
+
+- **Lipid Test Result Thresholds**: Lipid Test Result Thresholds. Lipid Test Result Thresholds. Per guideline thresholds, LDL-C <70 mg/dL is classified as 'High' risk category. Per guideline thresholds, LDL-C <100 mg/dL is classified as 'Moderate' risk category. Per guideline thresholds, LDL-C <130 mg/dL is classified as 'Low' risk category
+
+or
+
+- **Lipid Treatment Thresholds**: Lipid Treatment Thresholds. Lipid Treatment Thresholds for Extreme/Very High Risk Groups. For Extreme Risk Group Category A, LDL-C treatment goal is <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goal is <80 mg/dL (optional ≤60 mg/dL).. For Very High Risk, LDL-C treatment goal is <50 mg/dL and non-HDL-C goal is <80 mg/dL.
+
+We skip it because nothing relatable is present
+
+But here is the example of something relatable
+
+this is example of coming from topic summaries in guidelines and topic summaries in hierarchy summary
+
+`- **Lipid Panel Measurement Protocol**: Lipid Panel Measurement Protocol. Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing. Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol to account for physiological and analytical variations.
+
+-- Add On As
+
+# Lipid Measurement Guideline Update
+*Source: 2026 ACC-AHA-AACVPR-ABC-ACPM-ADA 
+ AGS-APhA-ASPC-NLA-PCNA Guideline on
+the Management of Dyslipidemia.pdf*
+
+**Clinical Recommendation:** Lipid Measurement Guideline Update: LDL-C Estimation + ApoB/Lp(a) Assessment + CAC Imaging
+
+**Key Clinical Actions:**
+- Use Martin/Hopkins or Sampson/NIH equations over Friedewald for LDL-C estimation in adults and children with standard lipid profiles.
+- Prefer nonfasting lipid profiles for most adults due to minimal prognostic differences vs fasting, except in TG ≥400 mg/dL or genetic dyslipidemia.
+- Measure apoB in adults on lipid-lowering therapy (LLT) with ASCVD, CKM syndrome, type 2 diabetes, or elevated TG to guide intensification after LDL-C/non-HDL-C goals are met.
+- Measure Lp(a) at least once in all adults for ASCVD risk assessment.
+- Use CAC score >0 AU to initiate LLT in intermediate-risk adults; ≥100 AU or ≥75th percentile to intensify LLT.
+
+**Patient Preparation / Diagnostic Criteria:**
+- Fasting lipid profile required for TG ≥400 mg/dL, suspected TG metabolism disorders, or family history of premature ASCVD/genetic dyslipidemia.
+- Standard lipid profile includes TC, HDL-C, TG (direct measurement), with LDL-C and non-HDL-C calculated.
+- CAC scoring recommended for adults at intermediate or borderline risk to refine LLT intensity decisions.
+- Fasting lipid profile required for TG ≥200 mg/dL in individuals with known or suspected disorders in triglyceride metabolism or if further evaluation of hypertriglyceridemia is warranted.
+
+# Lipid Panel Measurement Protocol
+*Source: WM17S.pdf*
+
+**Patient Result:** 100.00 mg/dL (Total Cholesterol), 100.00 mg/dL (Triglycerides), >200 mg/dL (HDL Cholesterol) (ref: Total Cholesterol <200.00 mg/dL, Triglycerides <150.00 mg/dL, HDL Cholesterol >40.00 mg/dL)
+
+**Clinical Interpretation:** Patient's Total Cholesterol (100.00 mg/dL) and Triglycerides (100.00 mg/dL) are within normal range, while HDL Cholesterol (>200 mg/dL) is elevated per guideline thresholds.
+
+**Significance Level:** MODERATE
+
+**Clinical Recommendation:** Lipid Panel Measurement Protocol + Serial Sampling & Additional Testing
+
+**Key Clinical Actions:**
+- Three serial samples 3 weeks apart are recommended for Total Cholesterol, Triglycerides, HDL & LDL Cholesterol to account for physiological and analytical variations.
+- Additional testing for Apolipoprotein B, hsCRP, Lp(a), and LP-PLA2 should be considered among patients with moderate risk for ASCVD for risk refinement.
+
+**Patient Preparation / Diagnostic Criteria:**
+- Physiological and analytical variations necessitate serial sampling for accurate lipid measurement.
+- Fasting for at least 9-12 hours prior to lipid panel measurement to minimize dietary influences on triglycerides and other lipid fractions.
+
+
+Same as for Introduction
+
+# Lipid & Cardiovascular Risk Management
+
+These profiles outline standardized clinical protocols for lipid and cardiovascular risk management, emphasizing evidence-based thresholds, precise measurement methodologies, and risk stratification to guide treatment decisions.
+
+**Key Features:**
+- Lipid Test Result Thresholds: Risk-based LDL-C classification (<70 mg/dL 'High', <100 mg/dL 'Moderate', <130 mg/dL 'Low')
+- Lipid Panel Measurement Protocol: Serial sampling (three samples 3 weeks apart) for accurate lipid assessment
+- Fasting Glucose Measurement: Hexokinase method for baseline glucose quantification with strict 8-hour fasting requirement
+
+**Notable Details:**
+- Extreme/Very High Risk Groups require LDL-C goals of <50 mg/dL (optional ≤30 mg/dL) and non-HDL-C goals of <80 mg/dL (optional ≤60 mg/dL)
+- Serial lipid sampling accounts for physiological and analytical variations in lipid measurements
+- Non-HDL-C goals are aligned with LDL-C targets for high-risk groups
+- The Hexokinase method is a gold-standard enzymatic assay for glucose quantification
+- Fasting duration must be strictly adhered to avoid interference from recent food intake
+- Risk categories are defined by LDL-C thresholds: <70 mg/dL (High), <100 mg/dL (Moderate), and <130 mg/dL (Low)
+- Accurate fasting glucose measurement is essential for diagnosing diabetes or prediabetes
+
+### Lipid and Cardiovascular Risk Management
+
+This collection of guidelines and recommendations focuses on evidence-based management of lipid disorders and cardiovascular risk across diverse populations, emphasizing individualized care, advanced therapies, and integration of novel biomarkers and genetic testing.
+
+**Key Features:**
+- 2026 Dyslipidemia Guideline Update: Intensified LDL-C and non-HDL-C targets (<55 mg/dL and <85 mg/dL) for severe hypercholesterolemia with ASCVD using ezetimibe, PCSK9 mAb, or bempedoic acid
+- Dyslipidemia Treatment Guideline: Shift from statin monotherapy to combination therapy targeting multiple lipid pathways with shared decision-making
+- Lp(a) Integration in Cardiovascular Risk Assessment: Elevated Lp(a) ≥50 mg/dL triggers statin intensification or PCSK9 inhibitor consideration in high-risk patients
+- Lipid Management in Pregnancy: Discontinue statins during gestation except hydrophilic statins (e.g., pravastatin) after individualized risk-benefit discussion
+- Obesity-Related Lipid Management: Non-HDL-C and apoB prioritized over LDL-C; Lp(a) screening recommended at least once in adulthood
+- Familial Hypercholesterolemia Treatment: Genetic sequencing and validated risk scores (e.g., Montreal-FH-SCORE) guide advanced therapy selection
+- Pediatric Lipid Management: Lifestyle intervention first; statins for children ≥8 years with LDL-C ≥160 mg/dL unresponsive to lifestyle
+- Hypertriglyceridemia Management: Lifestyle modification (diet, exercise, weight loss) as first-line for TG ≥150 mg/dL after secondary cause evaluation
+- Genetic Testing for FH: Panel-based testing for LDLR, APOB, PCSK9 improves detection and enables cascade screening
+- Coronary Artery Disease Screening: Routine screening in asymptomatic individuals not recommended; targeted testing for symptomatic or high-risk patients
+- Dietary Recommendations: Plant-based Mediterranean-style diet emphasized for lipid reduction, especially in CKD
+- Physical Activity Recommendations: ≥150 minutes/week moderate-to-vigorous aerobic exercise plus resistance training 2 days/week
+- Primary Prevention Guideline: Health behavior counseling and risk-based lipid-lowering therapy discussions for adults aged 30–59
+
+**Notable Details:**
+- PCSK9 monoclonal antibodies are recommended for severe hypercholesterolemia with ASCVD to achieve LDL-C <55 mg/dL
+- Lp(a) ≥50 mg/dL is a threshold for intensifying statin therapy or considering PCSK9 inhibitors in high-risk patients
+- Statin therapy should be discontinued during pregnancy except for hydrophilic statins (e.g., pravastatin) in select cases
+- Genetic sequencing for FH diagnosis improves detection beyond limited-variant screening and enables cascade screening
+- Non-HDL-C and apoB are preferred lipid markers over LDL-C in obesity due to better reflection of atherogenic risk
+
+I hope this makes you understand what is needed
+
+Another Example
+
+Another example
+
+From Patient
+### Renal and Cardiometabolic Risk
+
+These guidelines emphasize the critical role of kidney function assessment in managing cardiometabolic risks, particularly in dyslipidemia, to refine cardiovascular risk stratification and guide treatment decisions.
+
+**Key Features:**
+- Kidney Function Assessment in Dyslipidemia Management: Evaluate serum creatinine as part of cardiovascular risk stratification in dyslipidemia management.
+- Standardized Serum Creatinine Testing: Perform serum creatinine testing using standardized methods (e.g., Modified Jaffe, Kinetic) to ensure accurate kidney function evaluation.
+
+**Notable Details:**
+- Serum creatinine testing should be performed using standardized methods (Modified Jaffe or Kinetic) to ensure consistency and reliability in kidney function assessment.
+- Kidney function assessment is integrated into cardiovascular risk stratification for dyslipidemia management to optimize patient care.
+- Serum creatinine is the primary biomarker used for kidney function evaluation in this context.
+
+**Topics in this group:**
+
+- **Kidney Function Assessment**: Kidney Function Assessment. Kidney Function Assessment in Dyslipidemia Management. Assess kidney function (e.g., serum creatinine) as part of cardiovascular risk stratification in dyslipidemia management.. Perform serum creatinine testing using standardized methods (e.g., Modified Jaffe, Kinetic) to evaluate kidney function.
+
+From Guidelines:
+
+# point-of-care kidney function testing
+*Source: Chronic Kidney Disease.pdf*
+
+**Clinical Recommendation:** point-of-care kidney function testing for creatinine and albumin
+
+**Clinical Actions:**
+- POCT may be used for creatinine and urine albumin measurement where access to a laboratory is limited or to facilitate the clinical pathway
+- Ensure pre-analytical, analytical, and post-analytical quality criteria are met for POCT devices
+- Generate an estimate of GFR using the equation consistent with the region when using POCT for creatinine
+- POCT ACR devices should produce a positive result in 85% of people with significant albuminuria (ACR ≥30 mg/g or ≥3 mg/mmol)
+- POCT devices for albuminuria testing should also analyze creatinine to produce an ACR when feasible
+
+**Patient Eligibility Criteria:**
+- Access to a laboratory is limited or point-of-care testing facilitates the clinical pathway
+- Pre-analytical, analytical, and post-analytical quality criteria must be met
+- Use region-consistent GFR estimation equation with POCT creatinine
+- POCT ACR devices must meet performance criteria for detecting significant albuminuria
+- External quality assessment must be included in the quality criteria for POCT devices
+
+# hypertension and kidney function management
+*Source: American Diabetes Association Care Guidence.pdf*
+
+**Clinical Recommendation:** Hypertension and kidney function management in diabetes
+
+**Core Recommendations:**
+- Frequency of kidney function assessment clarified
+- Systolic blood pressure goals emphasized
+- Monitoring for medication intolerance in nonpregnant individuals with diabetes and hypertension
+- Monitoring frequency for eGFR drops, serum potassium changes, and hypokalemia with ACE inhibitors, ARBs, or MRAs
+- Potassium level monitoring after initiation of nonsteroidal mineralocorticoid receptor antagonists (nsMRAs)
+
+**Patient Eligibility Criteria:**
+- Urine albumin-to-creatinine ratio ≥100 mg/g
+- eGFR 30–90 mL/1.73 m²
+- On a renin-angiotensin-aldosterone system (RAS) inhibitor
+- Type 2 diabetes diagnosis
+- Non-dialysis status for SGLT2 inhibitor use
+
+**Previous Recommendations:**
+- Fixed numeric A1C targets for older adults (implied by individualized targets in broader guidelines)
+
+**Updated Recommendations:**
+- Simultaneous initiation of SGLT2 inhibitor and nsMRA can be considered in eligible patients
+- SGLT2 inhibitor use in non-dialysis individuals to reduce CKD progression and cardiovascular risk
+- Guidance on GLP-1-based therapy in individuals on dialysis to reduce cardiovascular risk
+- Reordered RAS inhibitor dose placement in kidney outcome trials figure
+- Clarified guidance on kidney-protective medications in pregnant or sexually active individuals of childbearing potential
+- Guidance on initiation or continuation of GLP-1-based therapy in individuals on dialysis to reduce cardiovascular risk (Recommendation 11.11b)
+- Clarified guidance on kidney-protective medications that are potentially harmful in pregnant and sexually active individuals of childbearing potential (Recommendation 11.10)
+
+

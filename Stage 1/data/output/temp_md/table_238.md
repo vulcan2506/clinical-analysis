@@ -1,0 +1,5 @@
+|  COR | LOE | Recommendations  |
+| --- | --- | --- |
+|  1 | C-LD | 1. Persons of childbearing age with hypercholesterolemia who are not at high risk for ASCVD and plan to become pregnant should stop statin therapy 1 to 2 mo before attempting to become pregnant or as soon as pregnancy is discovered to avoid uncertain risks to the fetus.¹⁻⁴  |
+|  2a | B-NR | 2. In pregnant or lactating individuals with HoFH, it is reasonable to undergo lipoprotein apheresis to lower LDL-C and reduce ASCVD risk.⁵⁻⁷  |
+|  2a | B-NR | 3. In pregnant individuals with severe fasting hypertriglyceridemia (TG ≥500 mg/dL [5.7 mmol/L]), the use of fibrates (after the first trimester) or high-dose omega-3 ethyl esters is reasonable as an adjunct to lifestyle management to lower TG levels and reduce the risk of pancreatitis.⁸  |

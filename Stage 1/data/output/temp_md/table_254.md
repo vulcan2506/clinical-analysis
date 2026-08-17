@@ -1,0 +1,6 @@
+|  Recommendations for Adults With CKD—Stage 3 or Higher Referenced studies that support recommendations are summarized in the Evidence Table.  |   |   |
+| --- | --- | --- |
+|  COR | LOE | Recommendations  |
+|  1 | B-R | 1. In adults 40 to 75 y of age with CKD stage 3 or higher and an LDL-C of 70 to 189 mg/dL (1.8–4.9 mmol/L), moderate-intensity statin therapy or moderate-intensity statin combined with ezetimibe is recommended to reduce ASCVD risk.¹²  |
+|  1 | B-R | 2. In adults with CKD stage 3 or higher and clinical ASCVD, LLT with high-intensity statin therapy, with or without ezetimibe and/or a PCSK9 mAb, is recommended to achieve a ≥50% reduction in LDL-C levels and a goal of LDL-C <55 mg/dL (1.4 mmol/L) and non-HDL-C <85 mg/dL (2.2 mmol/L) to reduce ASCVD risk.¹³  |
+|  2b | C-LD | 3. In adults with CKD who require maintenance hemodialysis, it may be reasonable to continue statin therapy to reduce the risk of ASCVD events. Treatment decisions should be individualized with consideration of expected survival, other comorbidities, and severity of ASCVD.¹  |

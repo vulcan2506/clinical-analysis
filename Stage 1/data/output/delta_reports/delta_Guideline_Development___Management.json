@@ -1,0 +1,35 @@
+{
+  "parent": "Guideline Development & Management",
+  "findings": [
+    {
+      "section": "Guideline Development Process",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA's older version outlines a comprehensive framework including GRADE methodology, multidisciplinary panels, and annual updates, while the ATA's new version specifies the use of GRADE for evidence appraisal, editorial independence, and explicit inclusion of patient representatives. Both emphasize conflict-of-interest management but differ in procedural details like committee approval and public feedback incorporation.",
+      "detail": "American Diabetes Association Care Guidence (Older): Defines scope, intended audience, and ADA guidance categories with systematic review using GRADE methodology -> American Thyroid Association (New Version): Uses GRADE system for critical appraisal of evidence and maintains editorial independence from the ATA\nAmerican Diabetes Association Care Guidence (Older): Requires external peer review by stakeholders before finalization -> American Thyroid Association (New Version): Guidelines reviewed and approved by ATA Clinical Practice Guidelines and Statements Committee and ATA Board of Directors before publication",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "American Thyroid Association",
+      "relevance_score": 7,
+      "confidence": "high"
+    },
+    {
+      "section": "clinical practice guideline framework",
+      "change_type": "No Meaningful Change",
+      "summary": "The older version (2025 AHA/ACC) details a highly structured, evidence-based framework with cost/value assessments, FDA integration, and GRADE methodology, reflecting a push for methodological transparency and rigor. The new version (CKD) shifts focus to the *application* of guidelines, explicitly stating they are designed to assist—not dictate—clinical decisions, acknowledging variability in practice settings. While the older version prioritizes methodological standardization, the new version prioritizes adaptability, but both serve complementary roles in guideline implementation.",
+      "detail": "2026 (Older): Incorporates cost/value methodology, FDA process integration, and GRADE evidence grading into guideline development -> Chronic Kidney Disease (New Version): Explicitly states the guideline is designed to assist decision-making without defining a standard of care, encouraging adaptation to individual patient needs\n2026 (Older): Mandates systematic review of evidence using GRADE methodology for all recommendations -> Chronic Kidney Disease (New Version): No explicit requirement for GRADE or systematic review; focuses on practical application over methodological rigor",
+      "version_from": "2026",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "guideline development contributors",
+      "change_type": "No Meaningful Change",
+      "summary": "The core concept of diverse, multidisciplinary teams remains consistent across versions, but the newer guideline explicitly formalizes the role of international cardiology societies (ESC, EAS) and their national affiliates in the review process. The older version highlights operational and advisory roles (e.g., medical librarians, science advisors) while the new version deemphasizes these in favor of society-based contributors. Both versions acknowledge leadership oversight but differ in the granularity of contributor roles.",
+      "detail": "2026 (Older): Contributors include leadership (e.g., President, CEO) and operational staff (e.g., Project Manager) with multidisciplinary roles like medical librarians and science advisors -> Lipid Disorders (New Version): Contributors emphasize ESC/EAS committees, national cardiac societies, and Document Reviewers, with formalized roles like Chairperson and Co-Chairperson\n2026 (Older): Features a 'Science and Medicine Advisor' with a nursing background (PhD, RN) -> Lipid Disorders (New Version): No explicit mention of non-physician science advisors; focuses on cardiology society representatives",
+      "version_from": "2026",
+      "version_to": "Lipid Disorders",
+      "relevance_score": 8,
+      "confidence": "high"
+    }
+  ]
+}

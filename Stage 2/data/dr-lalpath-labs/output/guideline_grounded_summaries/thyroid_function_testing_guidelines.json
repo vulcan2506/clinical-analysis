@@ -1,0 +1,40 @@
+{
+  "master_label": "Thyroid Function Testing Guidelines",
+  "original_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "grounding": {
+    "status": "CONTEXTUAL_MATCH",
+    "matched_guideline_topics": [
+      {
+        "master_label": "preconception thyroid screening",
+        "match_type": "CONTEXTUAL_MATCH",
+        "confidence": 0.95,
+        "score": 0.9988036155700684,
+        "match_reason": "Guideline focuses on preconception thyroid screening in T1DM, which is relevant due to patient's pregnancy context.",
+        "context_requirements": [
+          "pregnancy",
+          "diabetes"
+        ],
+        "validated_context": [
+          "pregnancy",
+          "diabetes"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+        ],
+        "summary": "# preconception thyroid screening\n*Source: ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf*\n\n**Clinical Recommendation:** preconception thyroid screening in T1DM\n\n**Core Management Principles:**\n- Screen all pregnant women with T1DM for thyroid disorders in the preconception period using TSH, T4, and TPO antibodies.\n\n**Clinical Prerequisites:**\n- Preconception screening must include TSH, T4, and TPO antibody tests.\n- Preconception thyroid screening must be performed in the preconception period, not during pregnancy."
+      }
+    ]
+  },
+  "grounded_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "provenance": {
+    "patient_sources": [
+      "WM17S.pdf"
+    ],
+    "guideline_sources": [
+      "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+    ]
+  },
+  "fused_summary": "**Clinical Recommendation:** Thyroid Function Testing Considerations\n\n**Key Clinical Actions:**\n- TSH levels vary with circadian rhythm, peaking between 2-4 a.m. and troughing between 6-10 p.m., with up to 50% variation.\n- Total T3/T4 levels are affected by thyroid hormone binding protein concentrations, particularly in pregnancy or steroid therapy.\n- Free T3 and Free T4 (unbound fractions) are biologically active and better correlate with clinical status than total hormone levels.\n- TSH values <0.05 μIU/mL require clinical correlation due to rare TSH variants in some individuals.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Time of day for TSH testing should be standardized to account for circadian variation.\n- Clinical correlation is required for TSH <0.05 μIU/mL due to potential TSH variants.",
+  "fuse_source_labels": []
+}

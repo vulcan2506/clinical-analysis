@@ -9,6 +9,7 @@ import re
 import os
 import math
 import json
+import time
 import base64
 import logging
 import multiprocessing as mp
@@ -23,7 +24,8 @@ from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 import torch
-import fitz  # PyMuPDF — page-image rendering for Claude vision OCR
+import fitz  # PyMuPDF — page-image rendering for vision OCR
+import openai
 
 import config
 import llm_client
@@ -140,7 +142,38 @@ def _extract_pdf_with_docling(pdf_path: Path) -> List[Dict]:
     return md_pages
 
 
-# ── STEP 0: Claude vision OCR (primary — falls back to Docling on exception) ───
+# ── STEP -1: Mistral document OCR (primary — falls back to Groq, then Docling) ─
+
+def _extract_pdf_with_mistral(pdf_path: Path) -> List[Dict]:
+    """
+    Primary OCR path. Mistral's dedicated document-OCR endpoint processes the
+    entire PDF in a single request (not per-page, unlike the Groq fallback
+    below) and returns per-page markdown plus a separate structured `tables`
+    array. The page markdown references tables as `[tbl-N.md](tbl-N.md)`
+    placeholder links rather than inlining them, so those links are spliced
+    out here and replaced with the real table markdown before handing off to
+    _chunk_by_structure, which expects tables inline as consecutive `|...|`
+    lines — same contract the Groq/Docling paths already produce.
+    """
+    client = llm_client.get_mistral_client()
+    b64 = base64.standard_b64encode(pdf_path.read_bytes()).decode("utf-8")
+
+    resp = client.ocr.process(
+        model=config.MISTRAL_OCR_MODEL,
+        document={"type": "document_url", "document_url": f"data:application/pdf;base64,{b64}"},
+        table_format="markdown",
+    )
+
+    md_pages = []
+    for page in resp.pages:
+        text = page.markdown
+        for table in (page.tables or []):
+            text = text.replace(f"[{table.id}]({table.id})", table.content)
+        md_pages.append({"text": text})
+    return md_pages
+
+
+# ── STEP 0: Groq vision OCR (fallback 1 — falls back to Docling on exception) ──
 
 _OCR_PROMPT = (
     "Transcribe this document page to clean Markdown. Preserve section headers "
@@ -162,41 +195,66 @@ def _render_page_png(pdf_path: Path, page_num: int, dpi: int) -> bytes:
         doc.close()
 
 
-def _ocr_page_with_claude(pdf_path: Path, page_num: int) -> str:
-    client = llm_client.get_anthropic_client()
+def _ocr_page_with_groq(pdf_path: Path, page_num: int) -> str:
+    """
+    Rate-limit-aware: Groq's on-demand tier TPM cap is small relative to a
+    vision request's cost, so 429s are an expected steady-state condition on
+    documents beyond ~10 pages, not an exceptional one. Retried here with a
+    real backoff (long enough for the rolling 60s window to partially clear)
+    rather than treated as a page failure — a single 429 shouldn't drop the
+    whole document to the Docling fallback via _extract_pdf_primary. Any
+    other exception (auth, malformed request, etc.) still propagates
+    immediately, same as before.
+    """
+    client = llm_client.get_groq_client()
     image_b64 = base64.standard_b64encode(
         _render_page_png(pdf_path, page_num, config.OCR_PAGE_DPI)
     ).decode("utf-8")
 
-    resp = client.messages.create(
-        model=config.ANTHROPIC_MODEL,
+    kwargs = dict(
+        model=config.GROQ_VISION_MODEL,
         max_tokens=config.OCR_MAX_TOKENS,
+        temperature=0,
         messages=[{
             "role": "user",
             "content": [
-                {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": image_b64}},
+                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{image_b64}"}},
                 {"type": "text", "text": _OCR_PROMPT},
             ],
         }],
     )
-    return next((b.text for b in resp.content if b.type == "text"), "").strip()
+
+    for attempt in range(config.GROQ_VISION_RATE_LIMIT_RETRIES):
+        try:
+            resp = client.chat.completions.create(**kwargs)
+            return (resp.choices[0].message.content or "").strip()
+        except openai.RateLimitError:
+            if attempt == config.GROQ_VISION_RATE_LIMIT_RETRIES - 1:
+                raise
+            log.warning(
+                f"Groq TPM limit hit on {pdf_path.name} page {page_num} — "
+                f"waiting {config.GROQ_VISION_RATE_LIMIT_BACKOFF}s "
+                f"(attempt {attempt + 1}/{config.GROQ_VISION_RATE_LIMIT_RETRIES})"
+            )
+            time.sleep(config.GROQ_VISION_RATE_LIMIT_BACKOFF)
 
 
-def _extract_pdf_with_claude(pdf_path: Path) -> List[Dict]:
+def _extract_pdf_with_groq(pdf_path: Path) -> List[Dict]:
     """
     Primary OCR path: renders every page to an image and transcribes it via
-    Claude vision, in parallel (I/O-bound — threads, not the mp.Pool used for
-    Docling's CPU-bound extraction). Any page failure (API error, timeout,
-    refusal) propagates out of this function so the caller falls back to the
-    whole-document Docling path — no per-page silent degrade, to avoid mixing
-    inconsistent extraction quality within one document.
+    Groq's Llama-4 Scout vision model, in parallel (I/O-bound — threads, not
+    the mp.Pool used for Docling's CPU-bound extraction). Any page failure
+    (API error, timeout, refusal) propagates out of this function so the
+    caller falls back to the whole-document Docling path — no per-page silent
+    degrade, to avoid mixing inconsistent extraction quality within one
+    document.
     """
     total_pages = len(PdfReader(pdf_path).pages)
     md_pages: List[Optional[Dict]] = [None] * total_pages
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=config.ANTHROPIC_PARALLEL_SLOTS) as pool:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=config.GROQ_VISION_PARALLEL_SLOTS) as pool:
         futures = {
-            pool.submit(_ocr_page_with_claude, pdf_path, i): i
+            pool.submit(_ocr_page_with_groq, pdf_path, i): i
             for i in range(total_pages)
         }
         for fut in concurrent.futures.as_completed(futures):
@@ -207,15 +265,30 @@ def _extract_pdf_with_claude(pdf_path: Path) -> List[Dict]:
 
 
 def _extract_pdf_primary(pdf_path: Path) -> List[Dict]:
-    """Claude vision OCR (primary) with Docling as the exception-triggered fallback."""
-    if not config.USE_CLAUDE_OCR:
+    """
+    3-tier OCR chain: Mistral document OCR (primary) → Groq Llama-4 Scout
+    vision OCR (fallback 1) → Docling TableFormer (fallback 2, no external
+    API dependency). Each tier is only tried if the previous one raises —
+    no per-page/per-tier silent degrade based on output quality.
+    """
+    if not config.USE_VISION_OCR:
         return _extract_pdf_with_docling(pdf_path)
+
     try:
-        log.info(f"Extracting {pdf_path.name} via Claude vision OCR (primary)...")
-        return _extract_pdf_with_claude(pdf_path)
-    except Exception as e:
+        log.info(f"Extracting {pdf_path.name} via Mistral OCR (primary)...")
+        return _extract_pdf_with_mistral(pdf_path)
+    except Exception as e_mistral:
         log.error(
-            f"Claude OCR failed for {pdf_path.name} ({type(e).__name__}: {e}) — "
+            f"Mistral OCR failed for {pdf_path.name} ({type(e_mistral).__name__}: {e_mistral}) — "
+            f"falling back to Groq vision OCR"
+        )
+
+    try:
+        log.info(f"Extracting {pdf_path.name} via Groq vision OCR (fallback 1)...")
+        return _extract_pdf_with_groq(pdf_path)
+    except Exception as e_groq:
+        log.error(
+            f"Groq OCR failed for {pdf_path.name} ({type(e_groq).__name__}: {e_groq}) — "
             f"falling back to Docling extraction"
         )
         return _extract_pdf_with_docling(pdf_path)
@@ -241,6 +314,17 @@ def _clean_text(text: str) -> str:
     text = re.sub(r"__([^_]+)__", r"\1", text)
     return text.strip()
 
+def _is_garbled_header(raw_headers: List[str]) -> bool:
+    """
+    A genuine column header ('Test', 'Result', 'Unit') never contains a digit.
+    On borderless tables (e.g. ruling-free lab report grids), TableFormer can
+    fuse the real header row into the first data row instead of emitting it
+    on its own line — e.g. '14.5 Result' or '13.0 - 16.5 Biological Ref.
+    Interval' as a "header" cell. Trusting that as a JSON key would silently
+    mis-map every row beneath it under a nonsense column name.
+    """
+    return any(re.search(r"\d", h) for h in raw_headers)
+
 def _md_table_to_jsonl(table_lines: List[str]) -> str:
     if len(table_lines) < 3:
         return "\n".join(table_lines)
@@ -249,25 +333,33 @@ def _md_table_to_jsonl(table_lines: List[str]) -> str:
     sep_indices = [i for i, line in enumerate(table_lines) if re.match(r"^\|[\s\-:|]+\|$", line.strip())]
     if not sep_indices:
         sep_indices = [1]
-        
+
     for idx_count, sep_idx in enumerate(sep_indices):
         header_idx = sep_idx - 1
         if header_idx < 0: continue
-            
+
         end_idx = sep_indices[idx_count+1] - 1 if idx_count + 1 < len(sep_indices) else len(table_lines)
         raw_headers = [h.strip() for h in table_lines[header_idx].strip().strip("|").split("|")]
-        
-        headers, counts = [], {}
-        for h in raw_headers:
-            h = _clean_text(h)
-            if h in counts:
-                counts[h] += 1
-                headers.append(f"{h}_{counts[h]}")
-            else:
-                counts[h] = 0
-                headers.append(h)
-                
-        for line in table_lines[sep_idx + 1:end_idx]:
+
+        if _is_garbled_header(raw_headers):
+            # Header row is actually fused data — don't trust it as column
+            # names. Fall back to generic labels and keep the row itself as
+            # the first data row instead of discarding its content.
+            headers = [f"Column_{i+1}" for i in range(len(raw_headers))]
+            data_lines = [table_lines[header_idx]] + table_lines[sep_idx + 1:end_idx]
+        else:
+            headers, counts = [], {}
+            for h in raw_headers:
+                h = _clean_text(h)
+                if h in counts:
+                    counts[h] += 1
+                    headers.append(f"{h}_{counts[h]}")
+                else:
+                    counts[h] = 0
+                    headers.append(h)
+            data_lines = table_lines[sep_idx + 1:end_idx]
+
+        for line in data_lines:
             if not line.strip(): continue
             cols = [c.strip() for c in line.strip().strip("|").split("|")]
             while len(cols) > len(headers):
@@ -281,17 +373,94 @@ def _md_table_to_jsonl(table_lines: List[str]) -> str:
 def _detect_section_break(line: str) -> Optional[str]:
     s = line.strip()
     if 5 < len(s) < 200:
-        if s.isupper() and not re.search(r"\d{2,}", s):
-            return s
+        if s.isupper():
+            # Pure-alpha uppercase is always a section break.  Uppercase
+            # lines that contain digits are section breaks only when the
+            # line is *mostly* alphabetic (e.g. "VITAMIN B12; CYANOCOBALAMIN
+            # (CLIA)") — reject lines that are mostly digits/numbers
+            # (e.g. "2026 ACC-AHA...", "Page 123 of 456").
+            alpha_count = sum(1 for c in s if c.isalpha())
+            if not re.search(r"\d{2,}", s) or alpha_count / max(len(s), 1) > 0.6:
+                return s
         if (s.startswith("**") and s.endswith("**")) or (s.startswith("__") and s.endswith("__")):
             return s.strip("*_").strip()
     return None
+
+
+_TAB_DATA_RE = re.compile(
+    r"(?:pg/mL|ng/mL|mg/dL|mmol/L|mIU/L|U/mL|μIU/mL|%|nmol/L|g/dL|"
+    r"x10[³6]/μL|fL|pg|fl|g/L|mEq/L|mm/hr|mm/h)",
+    re.IGNORECASE,
+)
+
+
+def _is_tab_data_row(line: str) -> bool:
+    """Detect lab-report-style tab-separated data rows.
+
+    A row qualifies when it has ≥2 tab-separated fields AND at least one
+    field is numeric or contains medical-unit tokens.  This prevents false
+    positives on plain prose that happens to contain a tab.
+    """
+    stripped = line.strip()
+    if not stripped or stripped.startswith("|"):
+        return False
+    parts = stripped.split("\t")
+    if len(parts) < 2:
+        return False
+    has_number = any(re.search(r"\d+\.?\d*", p) for p in parts)
+    has_units = bool(_TAB_DATA_RE.search(stripped))
+    return has_number or has_units
+
+
+def _tab_rows_to_jsonl(header: str, data_lines: List[str]) -> str:
+    """Convert tab-separated lab-report rows to JSONL.
+
+    Infers column names from the data pattern:
+      - First column is always "Test" (test name / analyte)
+      - If any row has ≥4 fields → Test | Result | Unit | Reference_Range
+      - If any row has 3 fields  → Test | Result | Unit
+      - If any row has 2 fields  → Test | Value
+      - Otherwise                → Column_1 .. Column_N
+    """
+    if not data_lines:
+        return ""
+
+    max_cols = max(len(ln.strip().split("\t")) for ln in data_lines)
+
+    if max_cols >= 4:
+        headers = ["Test", "Result", "Unit", "Reference_Range"]
+    elif max_cols == 3:
+        headers = ["Test", "Result", "Unit"]
+    elif max_cols == 2:
+        headers = ["Test", "Value"]
+    else:
+        headers = [f"Column_{i+1}" for i in range(max_cols)]
+
+    rows = []
+    for line in data_lines:
+        fields = [f.strip() for f in line.strip().split("\t")]
+        while len(fields) < len(headers):
+            fields.append("")
+        row = {headers[i]: _clean_text(fields[i]) for i in range(len(headers))}
+        if any(row.values()):
+            rows.append(json.dumps(row, ensure_ascii=False))
+
+    return "\n".join(rows)
+
 
 def _chunk_by_structure(md_pages: List[Dict]) -> List[Dict]:
     chunks, current_header = [], "Introduction / Front Matter"
     current_text, current_table = [], []
     in_table = False
     current_pages: set = set()
+
+    # Tab-separated lab-data state
+    in_tab_data = False
+    tab_data_lines: List[str] = []
+    tab_header: str = ""
+    tab_pages: set = set()
+    tab_header_is_section = False  # True when header came from _detect_section_break
+    tab_pending_section: Optional[str] = None  # buffered section-break line for lookahead
 
     def flush_text():
         body = _clean_text("\n".join(current_text))
@@ -302,38 +471,116 @@ def _chunk_by_structure(md_pages: List[Dict]) -> List[Dict]:
     def flush_table():
         if current_table:
             body = _md_table_to_jsonl(current_table)
-            raw_md = "\n".join(current_table) 
+            raw_md = "\n".join(current_table)
             if body.strip():
                 chunks.append({
                     "section_header": current_header + " (Table)",
-                    "text": body, 
+                    "text": body,
                     "_temp_raw_md": raw_md,
                     "pages": sorted(current_pages)
                 })
         current_table.clear(); current_pages.clear()
 
+    def flush_tab_data():
+        nonlocal in_tab_data, tab_data_lines, tab_header, tab_pages, tab_header_is_section
+        if tab_data_lines:
+            body = _tab_rows_to_jsonl(tab_header, tab_data_lines)
+            if body.strip():
+                suffix = " (Table)" if not tab_header.endswith("(Table)") else ""
+                chunks.append({
+                    "section_header": tab_header + suffix,
+                    "text": body,
+                    "pages": sorted(tab_pages)
+                })
+        tab_data_lines = []
+        tab_pages = set()
+        in_tab_data = False
+        tab_header_is_section = False
+
     for page_num, page in enumerate(md_pages, start=1):
         for line in page.get("text", "").splitlines():
-            is_table = line.strip().startswith("|") and line.strip().endswith("|")
-            hm       = re.match(r"^(#{1,6})\s+(.*)", line.strip())
-            sb       = _detect_section_break(line)
+            is_pipe_table = line.strip().startswith("|") and line.strip().endswith("|")
+            is_tab_row = _is_tab_data_row(line)
+            hm = re.match(r"^(#{1,6})\s+(.*)", line.strip())
+            sb = _detect_section_break(line)
 
-            if is_table:
+            # ── Pipe-delimited table ──────────────────────────────────────
+            if is_pipe_table:
+                if in_tab_data:
+                    flush_tab_data()
                 if not in_table:
                     flush_text(); in_table = True
                 current_table.append(line); current_pages.add(page_num)
-            else:
-                if in_table:
-                    flush_table(); in_table = False
-                if hm:
-                    flush_text(); current_header = hm.group(2).strip()
-                    current_pages.add(page_num)
-                elif sb:
-                    flush_text(); current_header = sb
-                    current_pages.add(page_num)
-                else:
-                    current_text.append(line); current_pages.add(page_num)
+                continue
 
+            if in_table:
+                flush_table(); in_table = False
+
+            # ── Markdown header (# ... ) ──────────────────────────────────
+            if hm:
+                if in_tab_data:
+                    flush_tab_data()
+                flush_text()
+                current_header = hm.group(2).strip()
+                current_pages.add(page_num)
+                tab_pending_section = None
+                continue
+
+            # ── Tab-separated data row ────────────────────────────────────
+            if is_tab_row:
+                if in_tab_data and tab_pending_section:
+                    # A section-break header was buffered while we were in
+                    # tab data.  Flush the current group and start a new one
+                    # under the pending header.
+                    flush_tab_data()
+                    in_tab_data = True
+                    tab_header = tab_pending_section
+                    tab_header_is_section = True
+                    tab_data_lines = [line]
+                    tab_pages = {page_num}
+                    tab_pending_section = None
+                elif in_tab_data:
+                    tab_data_lines.append(line)
+                    tab_pages.add(page_num)
+                else:
+                    # Use the buffered section-break as header if available;
+                    # otherwise promote the most recent section_header.
+                    hdr = tab_pending_section if tab_pending_section else current_header
+                    in_tab_data = True
+                    tab_header = hdr
+                    tab_header_is_section = bool(tab_pending_section)
+                    tab_data_lines = [line]
+                    tab_pages = {page_num}
+                    tab_pending_section = None
+                continue
+
+            # ── Section break (upper-case line) ───────────────────────────
+            if sb:
+                if in_tab_data:
+                    # This section break follows tab data → it belongs to
+                    # the table.  Buffer it for lookahead: the next line
+                    # decides whether it becomes a *new* table header or we
+                    # close the current table and start a text section.
+                    tab_pending_section = sb
+                    tab_pages.add(page_num)
+                else:
+                    flush_text()
+                    current_header = sb
+                    current_pages.add(page_num)
+                # Always update current_header so that if the section break
+                # is NOT followed by tab data, the header is still correct.
+                current_header = sb
+                continue
+
+            # ── Plain text ────────────────────────────────────────────────
+            if in_tab_data:
+                # Non-tab, non-header line after tab data → table is over.
+                flush_tab_data()
+            current_text.append(line); current_pages.add(page_num)
+            tab_pending_section = None
+
+    if in_tab_data:
+        flush_tab_data()
     flush_text(); flush_table()
     return chunks
 

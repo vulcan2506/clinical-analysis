@@ -1,0 +1,15 @@
+{
+  "parent": "Clinical Laboratory Systems",
+  "findings": [
+    {
+      "section": "quality control data",
+      "change_type": "Guideline Clarification",
+      "summary": "The older version outlines broad QC principles for CBC analyzers, including Westgard rules and accreditation standards, without granular statistical metrics. The new version provides highly specific QC data for urine electrolytes, including lot-specific mean, SD, CV values, and Levey-Jennings chart visualizations, tailored to NHANES 2014 protocols. This shift reflects a move from general QC principles to detailed, analyte-specific statistical validation in large-scale studies.",
+      "detail": "Complete Blood Count Cbc Interpretation And Analys (Older): Monitoring quality control performance over a 24-month period to ensure accuracy and reliability of CBC results -> Electrolytes (New Version): Analyzes lot-specific QC data for urine sodium, potassium, and chloride with mean, standard deviation, and coefficient of variation (CV) metrics\nComplete Blood Count Cbc Interpretation And Analys (Older): Adherence to predefined control limits and Westgard rules for result validation -> Electrolytes (New Version): Compliance with acceptance criteria (e.g., CV ≤ 6.0%) for QC data with stricter thresholds for low-concentration controls",
+      "version_from": "Complete Blood Count Cbc Interpretation And Analys",
+      "version_to": "Electrolytes",
+      "relevance_score": 8,
+      "confidence": "high"
+    }
+  ]
+}

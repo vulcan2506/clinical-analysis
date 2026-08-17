@@ -1,0 +1,188 @@
+{
+  "master_label": "Kidney Function Assessment",
+  "original_summary": "**Patient Result:** 1.00 mg/dL (ref: 0.70 - 1.30 mg/dL)\n\n**Clinical Interpretation:** Patient's creatinine level of 1.00 mg/dL falls within the normal reference range (0.70 - 1.30 mg/dL), indicating no immediate concern for kidney dysfunction in the context of dyslipidemia management. \n- Guideline context: Clinical guidelines suggest that serum creatinine should be used in association with an estimating equation (eGFR) for the initial assessment of GFR. \n- Guideline context: When evaluating changes in GFR over time, clinicians should assess the potential for error in eGFR.\n- Guideline context: A single abnormal level for eGFR should not be used to assume chronicity, as the finding could be the result of a recent AKI event or AKD.\n- Guideline context: Proof of chronicity (duration of a minimum of 3 months) can be established by review of past measurements/estimations of GFR, albuminuria or proteinuria, imaging findings, kidney pathological findings, medical history, or repeat measurements within and beyond the 3-month point.\n- Guideline context: Assessment of GFR is critical for guiding medication choice and dosing decisions to avoid treatment failure or adverse events.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Kidney Function Assessment in Dyslipidemia Management\n\n**Key Clinical Actions:**\n- Assess kidney function (e.g., serum creatinine) as part of cardiovascular risk stratification in dyslipidemia management.\n- Perform serum creatinine testing using standardized methods (e.g., Modified Jaffe, Kinetic) to evaluate kidney function.\n- Unexpected or alarming kidney function results should prompt immediate patient contact for remedial action.\n- Guideline context: Use serum creatinine and an estimating equation (eGFRcr) for initial GFR assessment; consider cystatin C (eGFRcr-cys) if eGFRcr is expected to be inaccurate or for higher accuracy.\n- Guideline context: For highly accurate clinical decisions or if eGFRcr-cys is inaccurate, consider GFR measurement using plasma or urinary clearance of exogenous filtration markers.\n- Guideline context: When monitoring, use Reference Change Value (RCV) thresholds (14%–20%) to distinguish pathological changes from biological or analytical variation.\n- Guideline context: Test people at risk for and with CKD using both urine albumin measurement and assessment of GFR.\n- Guideline context: Flag decreased eGFR values to alert providers to potential kidney disease or need for medication adjustments.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Serum creatinine must be measured using validated laboratory methods (e.g., Modified Jaffe, Kinetic) for accurate kidney function assessment.\n- Guideline context: Standardized assays are required for creatinine and cystatin C to decrease between-center analytical variation.\n- Guideline context: For accurate eGFRcr-cys calculation, creatinine and cystatin C should be measured on the same sample.\n- Guideline context: Assays should be traceable to JCTLM-listed reference materials and methods.\n- Guideline context: For Jaffe assays, serum should be removed from red blood cells within 12 hours to prevent SCr increase over time.",
+  "grounding": {
+    "status": "DIRECT_MATCH",
+    "matched_guideline_topics": [
+      {
+        "master_label": "creatinine and cystatin C assay standardization",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9999781847000122,
+        "match_reason": "Guideline directly addresses assay standardization for creatinine and cystatin C, which are key markers for kidney function assessment (eGFR). Patient has CKD and diabetes, making this highly relevant.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# creatinine and cystatin C assay standardization\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** creatinine and cystatin C assay standardization for CKD\n\n**Clinical Actions:**\n- Use assays with required specificity for creatinine/cystatin C and calibrate to reference materials (e.g., JCTLM-listed standards).\n- Ensure traceability of results to international reference standards for accuracy and reliability.\n- Flag decreased eGFR values to alert providers to potential kidney disease or need for medication adjustments.\n- Remove serum from red blood cells within 12 hours for Jaffe assays to prevent SCr increase over time.\n- Implement enzymatic assays for creatinine in children due to higher non-creatinine chromogen interference in Jaffe assays.\n- Consider measuring both creatinine and cystatin C either in-house or as a referred test when resources allow.\n\n**Patient Eligibility Criteria:**\n- Assays must be traceable to JCTLM-listed reference materials and methods.\n- Laboratories should use GFR estimating equations validated for the population and assays in use.\n- Quality control must include the lowest expected creatinine range for infants/small children.\n- Close communication between labs and clinical users (e.g., primary care, pharmacists) for GFR reporting.\n- Regular external quality assessment (EQA) of end-to-end reporting processes, including embedded calculations.\n- Ensure end-to-end reporting processes, including embedded calculations in laboratory information systems, are subject to regular external quality assessment (EQA).\n- Document the filtration marker (e.g., eGFRcr, eGFRcys, eGFRcr-cys) and the specific equation used in laboratory reports."
+      },
+      {
+        "master_label": "GFR evaluation methodology",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9999767541885376,
+        "match_reason": "Guideline focuses on GFR evaluation methodology using serum creatinine and cystatin C, which is the core of kidney function assessment. Patient has CKD and diabetes, making this directly applicable.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# GFR evaluation methodology\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** GFR evaluation methodology and marker selection\n\n**Clinical Actions:**\n- Use serum creatinine and an estimating equation (eGFRcr) for the initial assessment of GFR.\n- Measure cystatin C and estimate eGFRcr-cys if eGFRcr is expected to be inaccurate or for clinical decision-making requiring higher accuracy.\n- Measure GFR using plasma or urinary clearance of exogenous filtration markers if eGFRcr-cys is expected to be inaccurate or for highly accurate clinical decisions.\n- Consider eGFRcys rather than eGFRcr-cys in healthy populations with decreased creatinine generation due to reduced muscle mass or specific medications.\n- Assess the potential for error in eGFR when evaluating changes in GFR over time.\n- Consider eGFRcys rather than eGFRcr-cys in otherwise healthy populations with decreased creatinine generation due to reduced muscle mass, decreased creatinine secretion, or extrarenal elimination due to specific medications.\n- Assess the potential for error in eGFR when assessing a change in GFR over time.\n\n**Patient Eligibility Criteria:**\n- eGFR should be used in association with SCr reporting by clinical laboratories.\n- Standardized assays are required for creatinine and cystatin C to decrease between-center analytical variation.\n- Standard protocols and standardized assays are required for clearance methods of exogenous markers.\n- Cystatin C measurements should be available when evaluating GFR to support the use of eGFRcr-cys.\n- Healthcare providers must understand the value and limitations of both eGFR and mGFR as well as factors influencing SCr and cystatin C measurements."
+      },
+      {
+        "master_label": "CKD diagnostic method comparison tables",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.9,
+        "score": 0.9999428987503052,
+        "match_reason": "Guideline discusses CKD diagnostic methods, including urine albumin measurement and GFR assessment, which are relevant to kidney function assessment. However, it is broader than the patient's immediate need.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# CKD diagnostic method comparison tables\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** CKD diagnostic method comparison tables and practice points\n\n**Clinical Actions:**\n- Test people at risk for and with CKD using both urine albumin measurement and assessment of GFR.\n- Following incidental detection of elevated ACR, hematuria, or low eGFR, repeat tests to confirm presence of CKD.\n- Do not assume chronicity based upon a single abnormal level for eGFR and ACR, as the finding could be the result of a recent AKI event or AKD.\n- Consider initiation of treatments for CKD at first presentation of decreased GFR or elevated ACR if CKD is deemed likely due to presence of other clinical indicators.\n\n**Patient Eligibility Criteria:**\n- Proof of chronicity (duration of a minimum of 3 months) can be established by review of past measurements/estimations of GFR, albuminuria or proteinuria, imaging findings, kidney pathological findings, medical history, or repeat measurements within and beyond the 3-month point.\n- Repeat measurements for proof of chronicity must include at least one measurement beyond the 3-month point to confirm duration."
+      },
+      {
+        "master_label": "renal dosing and GFR assessment",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.9989848732948303,
+        "match_reason": "Guideline focuses on renal dosing and GFR assessment, which is critical for medication management in patients with kidney dysfunction. Patient has CKD and is on statin therapy.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# renal dosing and GFR assessment\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** renal dosing and GFR assessment in CKD\n\n**Clinical Actions:**\n- Failure to account for GFR when designing drug-dosing regimens can lead to treatment failure or adverse events.\n- Assessment of GFR is critical for guiding medication choice and dosing decisions.\n- There is inconsistency between dosing guidance and package inserts or pharmacopeias.\n- Regulatory agencies now accept any contemporary, widely accepted, and clinically applicable eGFR equation for pharmacokinetic studies.\n- Inconsistencies exist between manufacturer-provided dosing guidance in pharmacopeias, textbooks, or online references and clinical practice needs for accurate GFR-based drug dosing.\n\n**Patient Eligibility Criteria:**\n- Use validated eGFR equations (eGFRcr-cys or mGFR) for accurate GFR assessment.\n- Consider GFR when designing drug-dosing regimens to avoid treatment failure or adverse events.\n- Pharmacokinetic studies for medication approval are not universally required to include abnormal kidney function data, despite the importance of GFR in dosing decisions."
+      },
+      {
+        "master_label": "GFR assessment standardization",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.6947,
+        "match_reason": "Guideline addresses GFR assessment standardization using creatinine and cystatin C, which is directly relevant to the patient's kidney function assessment.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# GFR assessment standardization\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** GFR assessment standardization using creatinine and cystatin C\n\n**Clinical Actions:**\n- Report eGFR in addition to serum concentrations of filtration markers using validated equations.\n- Report eGFR rounded to the nearest whole number and relative to a body surface area (BSA) of 1.73m² in adults.\n- Flag eGFR levels <60 ml/min per 1.73m² as low in adults.\n- Use enzymatic methods for creatinine assays where possible.\n- Measure filtration markers with assays having CV <2.3% for creatinine and <2.0% for cystatin C, with calibration traceable to international standards.\n\n**Patient Eligibility Criteria:**\n- Separate serum/plasma from red blood cells by centrifugation within 12 hours of venipuncture.\n- When cystatin C is measured, measure creatinine on the same sample to enable eGFRcr-cys calculation.\n- For infants/small children, ensure quality control includes the lowest end of the expected range of values.\n- Use enzymatic creatinine assays in children due to higher non-creatinine chromogen interference with Jaffe assays.\n- Flag eGFRcr <90 ml/min per 1.73m² as low in children/adolescents over 2 years.\n- Report serum creatinine (SCr) concentration rounded to the nearest whole number when expressed in standard international units (µmol/L) and to the nearest 100th when expressed in conventional units (mg/dL).\n- Report serum cystatin C concentration rounded to the nearest 100th when expressed in conventional units (mg/L)."
+      },
+      {
+        "master_label": "point-of-care kidney function testing",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.8,
+        "score": 0.663,
+        "match_reason": "Guideline discusses point-of-care testing for creatinine and albumin, which may be relevant if lab access is limited. However, the patient's context does not indicate a need for POCT.",
+        "context_requirements": [],
+        "validated_context": [],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# point-of-care kidney function testing\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** point-of-care kidney function testing for creatinine and albumin\n\n**Clinical Actions:**\n- POCT may be used for creatinine and urine albumin measurement where access to a laboratory is limited or to facilitate the clinical pathway\n- Ensure pre-analytical, analytical, and post-analytical quality criteria are met for POCT devices\n- Generate an estimate of GFR using the equation consistent with the region when using POCT for creatinine\n- POCT ACR devices should produce a positive result in 85% of people with significant albuminuria (ACR ≥30 mg/g or ≥3 mg/mmol)\n- POCT devices for albuminuria testing should also analyze creatinine to produce an ACR when feasible\n\n**Patient Eligibility Criteria:**\n- Access to a laboratory is limited or point-of-care testing facilitates the clinical pathway\n- Pre-analytical, analytical, and post-analytical quality criteria must be met\n- Use region-consistent GFR estimation equation with POCT creatinine\n- POCT ACR devices must meet performance criteria for detecting significant albuminuria\n- External quality assessment must be included in the quality criteria for POCT devices"
+      },
+      {
+        "master_label": "eGFR variation analysis framework",
+        "match_type": "PARTIAL_MATCH",
+        "confidence": 0.9,
+        "score": 0.6126,
+        "match_reason": "Guideline discusses eGFR variation analysis, which is relevant to interpreting changes in kidney function over time. Patient has CKD, making this partially applicable.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# eGFR variation analysis framework\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** eGFR variation analysis framework\n\n**Clinical Actions:**\n- Intraindividual biological variation in eGFR is similar across CKD-EPI equations (creatinine: 5.3%, cystatin C: 5.3%, creatinine-cystatin C: 5.0%).\n- Reference change value (RCV) for eGFR ranges from 14%–20% in positive/negative directions, requiring cautious interpretation of small changes.\n- Progressive loss of eGFR should be monitored, but transient changes may not reflect true kidney health deterioration.\n- Clinical trials use 30%–40% GFR declines as progression thresholds, minimizing individual measurement errors at group level.\n- RCV thresholds (14%–20%) are defined as the change differing from an individual's prior eGFR value with 95% confidence interval (CI)\n\n**Patient Eligibility Criteria:**\n- Monitoring frequency should align with CKD progression risk (green to deep red grid in Figure 13).\n- Use RCV thresholds to distinguish pathological from biological/analytical variation in eGFR.\n- Monitoring frequency should align with the risk of CKD progression as depicted in the albuminuria and GFR grid (Figure 13), with specific annual frequencies provided for each risk zone (green to deep red)"
+      },
+      {
+        "master_label": "GFR estimation methodology",
+        "match_type": "DIRECT_MATCH",
+        "confidence": 1.0,
+        "score": 0.5961,
+        "match_reason": "Guideline focuses on GFR estimation methodology, which is the core of kidney function assessment. Patient has CKD and diabetes, making this highly relevant.",
+        "context_requirements": [
+          "ckd"
+        ],
+        "validated_context": [
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "Chronic Kidney Disease.pdf"
+        ],
+        "summary": "# GFR estimation methodology\n*Source: Chronic Kidney Disease.pdf*\n\n**Clinical Recommendation:** GFR estimation methodology in CKD\n\n**Clinical Actions:**\n- Use creatinine-based eGFR (eGFRcr) for adults at risk for CKD\n- Use combined creatinine and cystatin C-based eGFR (eGFRcr-cys) if cystatin C is available for more accurate GFR estimation\n- Do not assume chronicity based on a single abnormal eGFR or ACR; repeat measurements are required to confirm CKD\n- Use validated GFR estimating equations within geographical regions to ensure consistency and reduce clinical confusion\n- Standardize GFR thresholds for disease definition and staging using equations optimized for the local population\n- Use eGFRcr-cys as the preferred method for GFR estimation when cystatin C is available due to superior accuracy in risk stratification and reclassification of GFR stages\n\n**Patient Eligibility Criteria:**\n- Cystatin C availability for eGFRcr-cys estimation\n- Repeat GFR and ACR measurements over at least 3 months to confirm chronicity\n- Use of GFR estimating equations validated in the population of interest\n- Review of past GFR measurements, albuminuria/proteinuria, imaging findings, kidney pathology, and medical history\n- Geographical standardization of GFR estimating equations within regions\n- Mechanism for regional review and selection of validated GFR estimating equations by national kidney societies or regional laboratory groups (e.g., via national kidney society collaboration with laboratory physician organizations)\n- Use of GFR estimating equations developed with assays traceable to reference materials and rigorous mGFR methods for validation"
+      },
+      {
+        "master_label": "diabetic nephropathy monitoring",
+        "match_type": "CONTEXTUAL_MATCH",
+        "confidence": 0.95,
+        "score": 0.5953,
+        "match_reason": "Guideline focuses on diabetic nephropathy monitoring, which is relevant because the patient has diabetes and CKD. However, it is specific to diabetic kidney disease management.",
+        "context_requirements": [
+          "diabetes",
+          "ckd"
+        ],
+        "validated_context": [
+          "diabetes",
+          "ckd"
+        ],
+        "rejected_context": [],
+        "source_docs": [
+          "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf",
+          "ICMR Type 2 Diabetes.pdf"
+        ],
+        "summary": "# diabetic nephropathy monitoring\n*Source: ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf*\n\n**Clinical Recommendation:** diabetic nephropathy monitoring and management\n\n**Core Management Principles:**\n- Focus on glycemic control to prevent progression from normoalbuminuria to microalbuminuria (primary prevention) and from microalbuminuria to overt nephropathy (secondary prevention)\n- Use RAAS blockade (ACEi/ARB) for secondary prevention in T2DM with hypertension or microalbuminuria, but not in normotensive, normoalbuminuric T1DM patients\n- Implement multimodal interventions including optimal blood glucose control, antihypertensive therapy, lipid-lowering drugs, and dietary protein restriction (0.6–0.8 g/kg/day)\n- Screen annually for albuminuria and renal function in patients with diabetes duration ≥5 years, considering non-albuminuric phenotypes\n- Target blood pressure <140/90 mmHg (or <130/80 mmHg in high cardiovascular risk) with RAAS blockade for renoprotection\n- Consider ACE gene polymorphism (II, ID, DD genotypes) to guide RAAS blockade intensity in T1DM, with DD genotype warranting more aggressive therapy\n\n**Clinical Prerequisites:**\n- Annual screening for albuminuria and renal function in patients with diabetes duration ≥5 years\n- Optimal blood glucose control to preserve GFR and reduce hyperfiltration injury\n- Use of RAAS blockade in T2DM with hypertension or microalbuminuria, but not in normotensive, normoalbuminuric T1DM patients\n- Dietary protein restriction (0.6–0.8 g/kg/day) for patients with progressive nephropathy\n- Lipid-lowering therapy (statins) for diabetic patients with CKD stages 1–4\n- Target systolic blood pressure <140 mmHg and diastolic <90 mmHg (or <130/80 mmHg in high cardiovascular risk) in T1DM for renoprotection\n- Use RAAS blockade in T1DM patients with microalbuminuria to delay progression to overt nephropathy and CKD\n\n---\n\n# diabetic nephropathy monitoring\n*Source: ICMR Type 2 Diabetes.pdf*\n\n**Clinical Recommendation:** diabetic nephropathy monitoring\n\n**Therapeutic Actions:**\n- Perform urine microscopy to assess casts, pus cells, and RBCs\n- Measure blood urea and serum creatinine levels\n- Calculate estimated glomerular filtration rate (eGFR)\n- Screen for microalbuminuria\n- Conduct USG abdomen if feasible\n- Perform urine dipstick test for proteinuria as an initial screening step\n\n**Prerequisites:**\n- Availability of laboratory facilities for urine microscopy and serum chemistry\n- Access to ultrasound equipment for abdominal imaging\n- Patient eligibility for feasible imaging studies\n- Ensure standardized laboratory protocols for urine sample collection (e.g., first-morning void for microalbuminuria)"
+      }
+    ]
+  },
+  "grounded_summary": "**Patient Result:** 1.00 mg/dL (ref: 0.70 - 1.30 mg/dL)\n\n**Clinical Interpretation:** Patient's creatinine level of 1.00 mg/dL falls within the normal reference range (0.70 - 1.30 mg/dL), indicating no immediate concern for kidney dysfunction in the context of dyslipidemia management. \n- Guideline context: Clinical guidelines suggest that serum creatinine should be used in association with an estimating equation (eGFR) for the initial assessment of GFR. \n- Guideline context: When evaluating changes in GFR over time, clinicians should assess the potential for error in eGFR.\n- Guideline context: A single abnormal level for eGFR should not be used to assume chronicity, as the finding could be the result of a recent AKI event or AKD.\n- Guideline context: Proof of chronicity (duration of a minimum of 3 months) can be established by review of past measurements/estimations of GFR, albuminuria or proteinuria, imaging findings, kidney pathological findings, medical history, or repeat measurements within and beyond the 3-month point.\n- Guideline context: Assessment of GFR is critical for guiding medication choice and dosing decisions to avoid treatment failure or adverse events.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Kidney Function Assessment in Dyslipidemia Management\n\n**Key Clinical Actions:**\n- Assess kidney function (e.g., serum creatinine) as part of cardiovascular risk stratification in dyslipidemia management.\n- Perform serum creatinine testing using standardized methods (e.g., Modified Jaffe, Kinetic) to evaluate kidney function.\n- Unexpected or alarming kidney function results should prompt immediate patient contact for remedial action.\n- Guideline context: Use serum creatinine and an estimating equation (eGFRcr) for initial GFR assessment; consider cystatin C (eGFRcr-cys) if eGFRcr is expected to be inaccurate or for higher accuracy.\n- Guideline context: For highly accurate clinical decisions or if eGFRcr-cys is inaccurate, consider GFR measurement using plasma or urinary clearance of exogenous filtration markers.\n- Guideline context: When monitoring, use Reference Change Value (RCV) thresholds (14%–20%) to distinguish pathological changes from biological or analytical variation.\n- Guideline context: Test people at risk for and with CKD using both urine albumin measurement and assessment of GFR.\n- Guideline context: Flag decreased eGFR values to alert providers to potential kidney disease or need for medication adjustments.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Serum creatinine must be measured using validated laboratory methods (e.g., Modified Jaffe, Kinetic) for accurate kidney function assessment.\n- Guideline context: Standardized assays are required for creatinine and cystatin C to decrease between-center analytical variation.\n- Guideline context: For accurate eGFRcr-cys calculation, creatinine and cystatin C should be measured on the same sample.\n- Guideline context: Assays should be traceable to JCTLM-listed reference materials and methods.\n- Guideline context: For Jaffe assays, serum should be removed from red blood cells within 12 hours to prevent SCr increase over time.",
+  "provenance": {
+    "patient_sources": [
+      "WM17S.pdf"
+    ],
+    "guideline_sources": [
+      "Chronic Kidney Disease.pdf",
+      "ICMR Type 2 Diabetes.pdf",
+      "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+    ]
+  },
+  "fused_summary": "**Patient Result:** 1.00 mg/dL (ref: 0.70 - 1.30 mg/dL)\n\n**Clinical Interpretation:** Patient's creatinine level of 1.00 mg/dL falls within the normal reference range (0.70 - 1.30 mg/dL), indicating no immediate concern for kidney dysfunction in the context of dyslipidemia management. \n- Guideline context: Clinical guidelines suggest that serum creatinine should be used in association with an estimating equation (eGFR) for the initial assessment of GFR. \n- Guideline context: When evaluating changes in GFR over time, clinicians should assess the potential for error in eGFR.\n- Guideline context: A single abnormal level for eGFR should not be used to assume chronicity, as the finding could be the result of a recent AKI event or AKD.\n- Guideline context: Proof of chronicity (duration of a minimum of 3 months) can be established by review of past measurements/estimations of GFR, albuminuria or proteinuria, imaging findings, kidney pathological findings, medical history, or repeat measurements within and beyond the 3-month point.\n- Guideline context: Assessment of GFR is critical for guiding medication choice and dosing decisions to avoid treatment failure or adverse events.\n\n**Significance Level:** MODERATE\n\n**Clinical Recommendation:** Kidney Function Assessment in Dyslipidemia Management\n\n**Key Clinical Actions:**\n- Assess kidney function (e.g., serum creatinine) as part of cardiovascular risk stratification in dyslipidemia management.\n- Perform serum creatinine testing using standardized methods (e.g., Modified Jaffe, Kinetic) to evaluate kidney function.\n- Unexpected or alarming kidney function results should prompt immediate patient contact for remedial action.\n- Guideline context: Use serum creatinine and an estimating equation (eGFRcr) for initial GFR assessment; consider cystatin C (eGFRcr-cys) if eGFRcr is expected to be inaccurate or for higher accuracy.\n- Guideline context: For highly accurate clinical decisions or if eGFRcr-cys is inaccurate, consider GFR measurement using plasma or urinary clearance of exogenous filtration markers.\n- Guideline context: When monitoring, use Reference Change Value (RCV) thresholds (14%–20%) to distinguish pathological changes from biological or analytical variation.\n- Guideline context: Test people at risk for and with CKD using both urine albumin measurement and assessment of GFR.\n- Guideline context: Flag decreased eGFR values to alert providers to potential kidney disease or need for medication adjustments.\n\n**Patient Preparation / Diagnostic Criteria:**\n- Serum creatinine must be measured using validated laboratory methods (e.g., Modified Jaffe, Kinetic) for accurate kidney function assessment.\n- Guideline context: Standardized assays are required for creatinine and cystatin C to decrease between-center analytical variation.\n- Guideline context: For accurate eGFRcr-cys calculation, creatinine and cystatin C should be measured on the same sample.\n- Guideline context: Assays should be traceable to JCTLM-listed reference materials and methods.\n- Guideline context: For Jaffe assays, serum should be removed from red blood cells within 12 hours to prevent SCr increase over time.",
+  "fuse_source_labels": [
+    "creatinine and cystatin C assay standardization",
+    "GFR evaluation methodology",
+    "CKD diagnostic method comparison tables",
+    "renal dosing and GFR assessment"
+  ]
+}

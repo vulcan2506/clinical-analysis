@@ -73,8 +73,8 @@ _QNA_SYSTEM = (
 )
 
 _QNA_PROMPT = """\
-Read this release note text about "{topic}" and generate {n} Q&A pairs \
-that explore WHY this change happened, HOW the mechanism works, or \
+Read this {doc_purpose} text about "{topic}" and generate {n} Q&A pairs \
+that explore WHY this is the case, HOW the mechanism or rule works, or \
 WHAT the implications are for real-world use.
 
 Rules:
@@ -150,44 +150,128 @@ def _parse_qna(raw: str) -> List[Dict]:
     return pairs
 
 
+def _get_qna_prompt_and_system(profile: Optional[dict]) -> Tuple[str, str]:
+    """
+    Returns (prompt_template, system_prompt) for QnA generation — domain-
+    adapted from the profile's qna_few_shots/domain/specialist_role (saved >
+    dynamic > static, same pattern as labeler.py / delta_analyzer.py), or the
+    static release-notes-flavored default if no profile/fields are available.
+
+    _QNA_SYSTEM/_QNA_PROMPT were previously 100% hardcoded regardless of
+    domain — every corpus got HealthRules examples (card masking,
+    WORKBASKET_RULE_OPTIMIZATION_ENABLE) as its calibration reference.
+    """
+    if not profile:
+        return _QNA_PROMPT, _QNA_SYSTEM
+    type_key = profile.get("type_key", "")
+    if type_key:
+        import context_profiler
+        saved_prompt = context_profiler.load_prompt(type_key, "qna")
+        saved_system = context_profiler.load_prompt(type_key, "qna_system")
+        if saved_prompt and saved_system:
+            return saved_prompt, saved_system
+
+    few_shots = profile.get("qna_few_shots") or []
+    domain = profile.get("domain")
+    specialist_role = profile.get("specialist_role")
+    if not few_shots and not domain:
+        return _QNA_PROMPT, _QNA_SYSTEM
+
+    system = _QNA_SYSTEM
+    if domain:
+        system = (
+            f"You are {specialist_role or 'a subject-matter specialist'} who reads "
+            f"{domain} content with genuine curiosity. You want to understand WHY "
+            "changes were made, HOW mechanisms actually work, and WHAT the "
+            "real-world implications are — not just catalog what changed."
+        )
+
+    prompt = _QNA_PROMPT
+    if few_shots:
+        # Quadruple braces: the f-string collapses {{{{ -> {{, then the
+        # LATER .format(topic=..., text=..., n=...) call in
+        # generate_group_qna needs {{ -> { to keep these as literal JSON
+        # braces instead of resolving them as format placeholders (same
+        # class of bug as delta_analyzer's holistic-prompt splice).
+        example_lines = [
+            f'  {{{{"q": {json.dumps(fs.get("q", ""))}, "a": {json.dumps(fs.get("a", ""))}}}}}'
+            for fs in few_shots[:2] if fs.get("q") and fs.get("a")
+        ]
+        if example_lines:
+            start = prompt.find("Examples of the depth we want:")
+            end = prompt.find("TOPIC: {topic}")
+            if start != -1 and end != -1:
+                prompt = (
+                    prompt[:start]
+                    + "Examples of the depth we want:\n[\n"
+                    + ",\n".join(example_lines)
+                    + "\n]\n\n"
+                    + prompt[end:]
+                )
+
+    if type_key:
+        import context_profiler
+        context_profiler.save_prompt(type_key, "qna", prompt)
+        context_profiler.save_prompt(type_key, "qna_system", system)
+    return prompt, system
+
+
 def generate_group_qna(chunks: List[Dict], n_pairs: int = 3) -> List[Dict]:
     """
     Generate Q&A pairs for each grouped chunk and store as chunk["qna"].
-    Skips chunks with fewer than 20 words. Batches all LLM calls in parallel.
+    Skips chunks with fewer than 20 words. Batches all LLM calls in parallel,
+    grouped by document type_key so each domain gets its own adapted prompt/
+    system message rather than one prompt shared across every domain.
     """
-    prompts: List[str] = []
-    indices: List[int] = []
+    import context_profiler
+
+    # ── Group eligible chunks by (prompt_template, system_prompt, doc_purpose) ─
+    groups: Dict[Tuple[str, str, str], List[int]] = {}
+    skipped = 0
 
     for i, c in enumerate(chunks):
         text = c.get("text", "")
         word_count = len(text.split())
         if word_count < 20:
             c.setdefault("qna", [])
+            skipped += 1
             continue
 
-        topic = c.get("master_label") or c.get("section_header") or "this feature"
-        n = min(n_pairs, max(1, word_count // 40))
-        prompts.append(_QNA_PROMPT.format(topic=topic, text=text[:2000], n=n))
-        indices.append(i)
+        source_doc = c.get("source_doc", "")
+        profile = context_profiler.get_profile(source_doc) if source_doc else None
+        prompt_template, system = _get_qna_prompt_and_system(profile)
+        doc_purpose = (profile or {}).get("document_purpose", "technical documentation")
+        groups.setdefault((prompt_template, system, doc_purpose), []).append(i)
 
-    if not prompts:
+    total_eligible = sum(len(idxs) for idxs in groups.values())
+    if not total_eligible:
         return chunks
 
-    log.info(f"QnA Generation: {len(prompts)} chunks to process ({len(chunks) - len(prompts)} skipped — too short)")
-    raw_outputs = llm_client.generate_batch(
-        prompts,
-        max_tokens=500,
-        system_prompt=_QNA_SYSTEM,
-        desc="QnA Generation",
-        stop=["```\n", "```"],
-        enable_thinking=False,
-    )
+    log.info(f"QnA Generation: {total_eligible} chunks to process ({skipped} skipped — too short)")
 
-    for i, raw in zip(indices, raw_outputs):
-        chunks[i]["qna"] = _parse_qna(raw)
-        log.debug(f"Chunk {chunks[i].get('chunk_id')}: {len(chunks[i]['qna'])} Q&A pairs")
+    for (prompt_template, system, doc_purpose), indices in groups.items():
+        prompts = []
+        for i in indices:
+            c = chunks[i]
+            text = c.get("text", "")
+            word_count = len(text.split())
+            topic = c.get("master_label") or c.get("section_header") or "this feature"
+            n = min(n_pairs, max(1, word_count // 40))
+            prompts.append(prompt_template.format(topic=topic, text=text[:2000], n=n, doc_purpose=doc_purpose))
 
-    parsed_counts = [len(chunks[i]["qna"]) for i in indices]
+        raw_outputs = llm_client.generate_batch(
+            prompts,
+            max_tokens=500,
+            system_prompt=system,
+            desc="QnA Generation",
+            stop=["```\n", "```"],
+            enable_thinking=False,
+        )
+        for i, raw in zip(indices, raw_outputs):
+            chunks[i]["qna"] = _parse_qna(raw)
+            log.debug(f"Chunk {chunks[i].get('chunk_id')}: {len(chunks[i]['qna'])} Q&A pairs")
+
+    parsed_counts = [len(chunks[i]["qna"]) for idxs in groups.values() for i in idxs]
     log.info(
         f"QnA Generation complete — "
         f"total pairs: {sum(parsed_counts)}, "

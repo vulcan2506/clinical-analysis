@@ -1,0 +1,9 @@
+|  Study (N); study design | CKD stage or GFR | Intervention (follow-up) | Outcome  |
+| --- | --- | --- | --- |
+|  \( CRIC^{467} \)(N = 2403); observational | 20–70 ml/min per 1.73 \( m^2 \) | High DASH vs. low DASH (14 yr) | CKD progression: HR: 0.83; 95% CI: 0.69–0.99Mortality: HR: 0.75; 95% CI: 0.62–0.90  |
+|  \( NHANES^{468} \)(N = 1110); observational | 30–59 ml/min per 1.73 \( m^2 \) | DASH by quintiles (7.8 yr) | Kidney failure relative hazard (RH) compared with quintile 5: quintile 1: RH: 1.7; 95% CI: 1.1–2.7; quintile 2: RH: 2.2; 95% CI: 1.1–4.1  |
+|  \( CORDIOPREV^{466} \)(N = 53); RCT | <60 ml/min per 1.73 \( m^2 \) | Mediterranean diet vs. low-fat diet (5 yr) | Decline in GFR -3.72 ml/min per 1.73 \( m^2 \)vs. -5.4 ml/min per 1.73 \( m^2 \), P = 0.03  |
+|  \( CKD QLD^{469} \)(N = 145); observational | CKD G3–G4 | High vegetable and nut intake (median 36 mo) | Composite all-cause mortality, kidney failure, or doubling of SCr: HR: 0.61, 95% CI: 0.39–0.94  |
+|  \( REGARDS^{470} \)(N = 3972); observational | <60 ml/min per 1.73 \( m^2 \) | Plant-based diet (6 yr) | All-cause mortality: HR: 0.77; 95% CI: 0.61–0.97  |
+|  \( NHANES III^{465} \)(N = 5346); observational | <60 ml/min per 1.73 \( m^2 \) | Increasing plant-to-protein ratio (8.4 yr) | All-cause mortality for every 33% increase: HR: 0.77, 95% CI: 0.61–0.96  |
+|  Longitudinal study of aging women\( ^{464} \)(N = 1374); observational | Baseline 65.6 ± 13.1 ml/min per 1.73 \( m^2 \) | Higher vs. lower intake of plant-based protein (10 yr) | Each 10 g higher intake of plant-based protein reduced a decline in GFR by 0.12 ml/min per 1.73 \( m^2 \) per year  |

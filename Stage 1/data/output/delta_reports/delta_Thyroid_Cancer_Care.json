@@ -1,0 +1,25 @@
+{
+  "parent": "Thyroid Cancer Care",
+  "findings": [
+    {
+      "section": "Contrast Imaging and Risk Stratification",
+      "change_type": "No Meaningful Change",
+      "summary": "The ATA guideline emphasizes individualized imaging needs and molecular risk stratification for DTC patients, including considerations for contrast use in preoperative risk assessment. The CKD guideline, however, centers on managing contrast risks in patients with chronic kidney disease, detailing AKI risk assessment and gadolinium-based contrast agent selection. The two guidelines address entirely different patient populations and clinical priorities, with no substantive overlap in recommendations or definitions regarding contrast imaging and risk stratification.",
+      "detail": "American Thyroid Association (Older): Individualized imaging needs and molecular risk stratification for DTC patients, including preoperative 18F-fluorodeoxyglucose-PET imaging for select high-risk patients. -> Chronic Kidney Disease (New Version): Risk assessment and management of contrast media in CKD patients, including validated AKI tools and gadolinium-based contrast agent selection for GFR <30 ml/min/1.73 m².\nAmerican Thyroid Association (Older): Focus on thyroidectomy and molecular testing for DTC prognosis and treatment tailoring. -> Chronic Kidney Disease (New Version): Focus on hydration status, volume optimization, and adherence to radiology society consensus statements for contrast administration in CKD.",
+      "version_from": "American Thyroid Association",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "Recommendation Grading Methodology",
+      "change_type": "Recommendation Clarification",
+      "summary": "The older version uses a binary strong/conditional grading system adapted from USPSTF and Cochrane, with majority approval and informal consensus, while the newer version introduces a dual grading system (Level 1/Level 2) with explicit certainty levels (A-D) and standardized patient/clinician/policy implications. The newer version also formalizes 'practice points' for insufficient evidence and expands resource considerations to include non-healthcare costs and informal caregiver time, reflecting a more structured and transparent approach to recommendation development.",
+      "detail": "American Thyroid Association (Older): Recommendations graded as strong or conditional based on benefits/harms balance, certainty, feasibility, acceptability, costs, and equity impacts with majority approval and informal consensus -> Chronic Kidney Disease (New Version): Strength of recommendations graded as Level 1 ('We recommend') or Level 2 ('We suggest') with overall certainty of evidence graded as high (A), moderate (B), low (C), or very low (D), including standardized patient/clinician/policy implications and explicit resource use evaluation\nAmerican Thyroid Association (Older): Good Practice Statements (GPS) used when evidence quality is low or insufficient, requiring unanimous consensus -> Chronic Kidney Disease (New Version): Introduction of 'practice points' as consensus statements to supplement graded recommendations when evidence is insufficient, formatted as tables, figures, or algorithms for clinical utility",
+      "version_from": "American Thyroid Association",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 8,
+      "confidence": "high"
+    }
+  ]
+}

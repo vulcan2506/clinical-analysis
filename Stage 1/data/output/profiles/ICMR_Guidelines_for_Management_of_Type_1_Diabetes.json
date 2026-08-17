@@ -1,0 +1,134 @@
+{
+  "domain": "clinical diabetes management guidelines",
+  "document_purpose": "evidence-based clinical practice guidelines for the management of Type 1 Diabetes Mellitus (T1DM) in India, published by the Indian Council of Medical Research (ICMR)",
+  "specialist_role": "endocrinologist or diabetologist specializing in Type 1 Diabetes Mellitus management",
+  "analyst_role": "clinical guideline analyst or medical content specialist reviewing diabetes care recommendations",
+  "entity_types": [
+    "patient population (children, adolescents, adults)",
+    "diabetes type (Type 1 Diabetes Mellitus, T2DM, FCPD, mitochondrial diabetes)",
+    "treatment regimen (insulin therapy, dietary management, exercise protocols)",
+    "complications (diabetic ketoacidosis, hypoglycemia, microvascular complications)",
+    "diagnostic criteria (staging, classification, differentiation from other diabetes types)",
+    "nutritional components (carbohydrates, proteins, vitamins, minerals)",
+    "monitoring parameters (blood glucose, ketone levels, HbA1c)",
+    "clinical outcomes (glycemic control, pregnancy outcomes)"
+  ],
+  "key_terminology": {
+    "T1DM": "Type 1 Diabetes Mellitus",
+    "T2DM": "Type 2 Diabetes Mellitus, characterized by insulin resistance and relative insulin deficiency",
+    "FCPD": "Fibrocalculous Pancreatic Diabetes, a form of diabetes associated with pancreatic calcification",
+    "DKA": "Diabetic Ketoacidosis, a life-threatening complication of diabetes characterized by hyperglycemia, ketosis, and acidosis",
+    "RDA": "Recommended Dietary Allowance, the average daily intake level sufficient to meet nutrient requirements",
+    "HbA1c": "Glycated hemoglobin, a measure of average blood glucose levels over 2-3 months",
+    "BG": "Blood Glucose, the concentration of glucose in the blood"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Vitamin and mineral requirements in children with diabetes are the same as in other healthy children. There is no clear evidence to suggest that routine vitamin or mineral supplementation in children with diabetes is beneficial.",
+      "master_label": "nutritional supplementation guidance",
+      "description": "Guidance on vitamin and mineral supplementation for pediatric diabetes patients, emphasizing adherence to standard dietary recommendations without routine supplementation."
+    },
+    {
+      "text_snippet": "Apart from bacterial infections, rare fungal infections like rhinocerebral mucormycosis and pulmonary aspergillosis are seen at an increased incidence in patients with DKA.",
+      "master_label": "infectious complications in DKA",
+      "description": "Identification of rare but serious fungal infections associated with diabetic ketoacidosis, highlighting the need for heightened clinical suspicion."
+    },
+    {
+      "text_snippet": "Glucosuria due to uncontrolled hyperglycemia is associated with increased risk of urinary tract infections.",
+      "master_label": "urinary tract infection risk",
+      "description": "Link between glucosuria from uncontrolled hyperglycemia and elevated risk of urinary tract infections, emphasizing the importance of glycemic control."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when a previous recommendation is restated with additional specificity or context without altering the core directive"
+    },
+    {
+      "name": "New Clinical Evidence",
+      "description": "when a recommendation is introduced or expanded based on newly available clinical evidence"
+    },
+    {
+      "name": "Therapeutic Advancement",
+      "description": "when a new treatment modality or diagnostic approach is incorporated into standard care"
+    },
+    {
+      "name": "Contradictory Evidence",
+      "description": "when a previous recommendation is explicitly reversed due to conflicting evidence or safety concerns"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions address the same clinical scenario with identical recommendations"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or mandatory conditions specified in the guideline for safe and effective diabetes management",
+    "deprecated_items": "previously recommended practices or interventions that are no longer endorsed due to new evidence or safety concerns",
+    "new_items": "newly introduced recommendations, diagnostic criteria, or therapeutic approaches based on updated evidence"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Core Management Principles",
+    "requirements": "Clinical Prerequisites",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "carbohydrate counting in insulin dose adjustment",
+      "version_a": "Carbohydrate counting was recommended for patients using multiple daily insulin injections to estimate mealtime insulin doses.",
+      "version_b": "Carbohydrate counting is now recommended for all insulin-treated patients, including those on insulin pumps, with standardized training programs introduced for healthcare providers.",
+      "change_type": "Therapeutic Advancement",
+      "analysis": "The earlier version focused on carbohydrate counting primarily for MDI users. The updated guideline expands this practice to all insulin-dependent patients and mandates standardized provider training, reflecting broader adoption of carbohydrate counting in diabetes technology and a shift toward more precise insulin dosing across all treatment modalities."
+    },
+    {
+      "topic": "target blood glucose ranges in pediatric T1DM",
+      "version_a": "Target blood glucose ranges for children with T1DM were set at 80–180 mg/dL before meals and 100–180 mg/dL at bedtime.",
+      "version_b": "Target blood glucose ranges for children with T1DM are now set at 90–150 mg/dL before meals and 100–180 mg/dL at bedtime to reduce hypoglycemia risk.",
+      "change_type": "Contradictory Evidence",
+      "analysis": "The updated guideline reverses the previous recommendation by tightening pre-meal targets to reduce hypoglycemia risk in pediatric patients, reflecting new evidence on the benefits of lower glycemic variability in this vulnerable population."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the guideline change the recommended blood glucose targets for children with T1DM?",
+      "a": "The change was driven by emerging evidence showing that tighter pre-meal glucose targets (90–150 mg/dL) reduce hypoglycemia risk without increasing overall hyperglycemia burden in pediatric patients. The previous range (80–180 mg/dL) was associated with higher rates of hypoglycemic events, particularly overnight."
+    },
+    {
+      "q": "How should healthcare providers implement the new carbohydrate counting recommendations for insulin pump users?",
+      "a": "Providers should ensure all insulin pump users receive standardized carbohydrate counting training, including use of integrated bolus calculators and real-time glucose monitoring data. The guideline now requires documentation of carbohydrate counting accuracy in pump settings to optimize mealtime insulin dosing."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "carbohydrate counting in insulin dose adjustment",
+    "foundation": "Carbohydrate counting was initially recommended only for patients using multiple daily insulin injections to estimate mealtime insulin doses.",
+    "value_added": [
+      "Expanded to all insulin-treated patients, including those on insulin pumps",
+      "Mandated standardized training programs for healthcare providers",
+      "Integrated with real-time glucose monitoring data for dynamic insulin dosing"
+    ],
+    "narrative": "The original guideline established carbohydrate counting as a key tool for patients on MDI regimens. The updated version builds on this foundation by broadening its application to all insulin-dependent patients and embedding it within modern diabetes technologies. This evolution enables more precise and individualized insulin dosing, improving glycemic outcomes across diverse treatment modalities."
+  },
+  "type_key": "ICMR_Guidelines_for_Management_of_Type_1_Diabetes",
+  "source_files": [
+    "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+  ]
+}

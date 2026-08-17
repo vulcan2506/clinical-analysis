@@ -1,0 +1,5 @@
+|  Medication (route of administration) | Glucose-lowering efficacy1 | Hypoglycemia risk | Weight effects2 | CV effects |   | Kidney effects |   |   | Clinical considerations and adverse effects  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|   |   |   |   |  Effect on MACE | Effect on HF | Progression of CKD | Dosing/use considerations* | MASH effects  |   |
+|  Insulin (human) (SQ; regular insulin also available as inhaled formulation) | High to very high | Yes | Gain | Neutral | Neutral | Neutral | Lower insulin doses required with a decrease in eGFR; titrate per clinical response | Unknown | Injection site reactionsHigher risk of hypoglycemia with human insulin (NPH or premixed formulations) vs. analogsRisk of hypoglycemia and duration of activity increases with severity of impaired kidney functionRefer to device-specific instructions for insulins compatible with different delivery systems (i.e., pumps, connected insulin pens, insulin patches)  |
+|  Insulin (analogs) (SQ) |  |  |  |  |  |  |  |  |   |

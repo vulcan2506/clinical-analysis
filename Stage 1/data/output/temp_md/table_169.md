@@ -1,0 +1,6 @@
+|  COR | LOE | Recommendations  |
+| --- | --- | --- |
+|  1 | B-NR | 1. In adults with severe hypercholesterolemia with an LDL-C ≥190 mg/dL (4.9 mmol/L),* secondary causes of dyslipidemia should be excluded and addressed to reduce LDL-C (Table 15).¹  |
+|  1 | B-R | 2. In adults with severe hypercholesterolemia with an LDL-C ≥190 mg/dL (4.9 mmol/L),* treatment with maximally tolerated statin therapy is recommended to lower LDL-C and reduce ASCVD risk.²⁻⁴  |
+|  Severe Hypercholesterolemia in Primary Prevention (Without HeFH, Subclinical Atherosclerosis, and Additional ASCVD Risk Factors)  |   |   |
+|  1 | B-NR | 3. In adults with severe hypercholesterolemia with an LDL-C ≥190 mg/dL (4.9 mmol/L),* and without clinical ASCVD,† additional ASCVD risk factors, HeFH, or subclinical atherosclerosis who are on maximally tolerated statin therapy, the addition of ezetimibe,⁶ a PCSK9 mAb,¹⁸ and/or bempedoic acid⁷ is recommended to achieve a goal of LDL-C <100 mg/dL (2.6 mmol/L) and a non-HDL-C goal of <130 mg/dL (3.4 mmol/L) and to reduce ASCVD risk.  |

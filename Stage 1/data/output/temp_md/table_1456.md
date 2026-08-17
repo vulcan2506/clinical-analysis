@@ -1,0 +1,4 @@
+|  Biological sex | Females have lower urinary creatinine excretion, therefore higher ACR and PCR | Males have higher urinary creatinine excretion, therefore lower ACR and PCR  |
+| --- | --- | --- |
+|  Weight73,160 | Low urinary creatinine excretion consistent with low weight can cause high ACR or PCR relative to timed excretion | High urinary creatinine excretion consistent with high weight can cause low ACR or PCR relative to timed excretion  |
+|  Changes in creatinine excretion | Lower urinary creatinine excretion with AKI or low-protein intake | High urinary creatinine excretion with high-protein intake or exercise  |

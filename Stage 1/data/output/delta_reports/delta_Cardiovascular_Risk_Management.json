@@ -1,0 +1,195 @@
+{
+  "parent": "Cardiovascular Risk Management",
+  "findings": [
+    {
+      "section": "cardiovascular risk assessment",
+      "change_type": "No Meaningful Change",
+      "summary": "The two guidelines address distinct components of cardiovascular risk assessment. The 2026 (Older) guideline provides detailed recommendations on Lp(a) measurement and its integration into risk stratification, including genetic characterization and standardized assays. In contrast, the ADA Care Guidence focuses on advanced cardiac testing protocols specifically for adults with diabetes, such as coronary artery calcium measurement and stress imaging. Neither guideline directly contradicts or expands upon the other's primary focus area.",
+      "detail": "2026 (Older): Lp(a) integration in cardiovascular risk assessment with standardized assays, genetic characterization, and repeat measurements -> American Diabetes Association Care Guidence (New Version): Advanced cardiac testing protocols (e.g., coronary artery calcium, stress imaging) for adults with diabetes\n2026 (Older): Lp(a) ≥50 mg/dL as a risk-enhancing factor for therapeutic intensification -> American Diabetes Association Care Guidence (New Version): No direct mention of Lp(a) in risk assessment",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "lipid management in pregnancy",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The updated guideline introduces statin therapy initiation during pregnancy for high-risk individuals (e.g., FH or ASCVD), a notable shift from the prior recommendation to discontinue statins in most cases. Additionally, it endorses icosapent ethyl as an adjunct to statin therapy for cardiovascular risk reduction in individuals with triglycerides 150–499 mg/dL, expanding therapeutic options beyond the older version's focus on fibrates and omega-3 ethyl esters for severe hypertriglyceridemia. The new version also emphasizes preconception counseling and contraception use for individuals on lipid-lowering medications, reflecting a more proactive approach to risk mitigation.",
+      "detail": "2026 (Older): Stop statin therapy 1 to 2 months before attempting pregnancy or as soon as pregnancy is discovered in persons with hypercholesterolemia not at high ASCVD risk. -> American Diabetes Association Care Guidence (New Version): Consider initiating statin therapy during pregnancy for high-risk individuals (e.g., familial hypercholesterolemia or preexisting ASCVD).\n2026 (Older): Use fibrates (after first trimester) or high-dose omega-3 ethyl esters for severe hypertriglyceridemia (TG ≥500 mg/dL) to reduce pancreatitis risk. -> American Diabetes Association Care Guidence (New Version): Addition of icosapent ethyl to statin therapy for individuals with ASCVD or risk factors and elevated triglycerides (150–499 mg/dL) to reduce cardiovascular risk.\n2026 (Older): Use bile acid sequestrants for hypercholesterolemia in pregnancy due to lack of systemic absorption and fetal safety. -> American Diabetes Association Care Guidence (New Version): Discontinue lipid-lowering therapies during gestation for most pregnant individuals, with bile acid sequestrants not explicitly endorsed.\n2026 (Older): Consider pravastatin for statin continuation in pregnant individuals at very high ASCVD risk (e.g., FH with additional risk factors) after individualized benefit-risk discussion. -> American Diabetes Association Care Guidence (New Version): Meta-analysis evidence suggesting pravastatin may reduce preeclampsia, premature birth, and NICU admissions, supporting its use in high-risk pregnancies.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "Obesity-Related Lipid and Cardiovascular Risk Management",
+      "change_type": "New Recommendation Addition",
+      "summary": "The older guideline prioritizes weight reduction and dietary patterns (e.g., plant-based diets, GLP-1 agonists) for managing obesity-related dyslipidemia, while the new version introduces Lp(a) measurement as a critical risk-enhancing factor. This shift reflects a broader risk stratification approach, particularly for patients with obesity-related dyslipidemia who may benefit from more precise risk assessment.",
+      "detail": "2026 (Older): Non-HDL-C and apoB levels more accurately reflect atherogenic risk than LDL-C in obesity -> Lipid Disorders (New Version): Lp(a) levels >50 mg/dL (≥105 nmol/L) are now a recognized CV risk-enhancing factor for reclassifying risk in moderate-risk individuals\n2026 (Older): Weight reduction interventions (≥5% weight loss) should be offered to all individuals with dyslipidemia and overweight/obesity -> Lipid Disorders (New Version): Early risk factor management and more intensive LDL-C lowering are recommended for patients with high Lp(a) levels in the absence of specific Lp(a)-lowering therapies",
+      "version_from": "2026",
+      "version_to": "Lipid Disorders",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "genetic testing guidelines",
+      "change_type": "No Meaningful Change",
+      "summary": "The two guidelines address entirely different genetic testing applications—one for cardiovascular risk stratification in dyslipidemia (FH) and the other for diabetes subtypes (neonatal diabetes/MODY). Neither version modifies the other's scope, as they serve distinct clinical populations and purposes. The ADA guidance does not engage with FH-related genetic testing, and the 2026 guideline does not discuss monogenic diabetes.",
+      "detail": "2026 (Older): Panel-based genetic testing identifies LDLR/APOB/PCSK9 variants for FH to improve LDL-C detection and ASCVD risk stratification. -> American Diabetes Association Care Guidence (New Version): Genetic testing targets neonatal diabetes and MODY in diabetes, unrelated to dyslipidemia or cardiovascular risk.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "dietary recommendations for lipid management",
+      "change_type": "Guideline Clarification",
+      "summary": "The older guideline (2017) specifically recommends a plant-based Mediterranean-style diet rich in fruits, vegetables, nuts, and olive oil to reduce cardiovascular risk in CKD patients. The newer version (2024) broadens this to a general 'healthy diet' low in saturated fat with wholegrains, vegetables, fruit, and fish, while explicitly cautioning against dietary supplements (e.g., red yeast rice, PUFAs) lacking proven LDL-C-lowering efficacy or cardiovascular benefits. The new version also includes stricter regulatory notes on red yeast rice monacolin content in the EU.",
+      "detail": "Chronic Kidney Disease (Older): Recommend plant-based 'Mediterranean-style' diet with specific emphasis on fruits, vegetables, nuts, legumes, fish, olive oil, yogurt, and whole grains to reduce cardiovascular risk. -> Lipid Disorders (New Version): Recommend a healthy diet low in saturated fat with focus on wholegrain products, vegetables, fruit, and fish, while explicitly discouraging dietary supplements (e.g., red yeast rice, PUFAs) without proven LDL-C-lowering efficacy.\nChronic Kidney Disease (Older): Prefer vegetable sources of fats and polyunsaturated fatty acids over animal fats. -> Lipid Disorders (New Version): No specific preference for vegetable fats; instead, discourages general PUFA supplementation for LDL-C lowering or CV risk reduction.",
+      "version_from": "Chronic Kidney Disease",
+      "version_to": "Lipid Disorders",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "Physical Activity Recommendation",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The new guideline strengthens the recommendation by explicitly defining intensity thresholds (moderate vs. vigorous) and mandating a minimum of 3 days per week to prevent inactivity, whereas the older version focused on total weekly volume without specifying the frequency constraint. Additionally, the new version introduces a critical safety step requiring assessment of patient readiness using validated tools like PAR-Q+ before initiating exercise, which was absent in the older guidance. The new version also emphasizes gradual progression for sedentary individuals to minimize injury risk, adding a layer of clinical nuance to the prescription process.",
+      "detail": "2026 (Older): Recommend ≥150 min/wk aerobic exercise and resistance training 2 days/week without specifying frequency constraints or intensity definitions -> American Diabetes Association Care Guidence (New Version): Encourage ≥150 min/week moderate-intensity OR ≥75 min/week vigorous-intensity activity spread over ≥3 days/week with no more than 2 consecutive days of inactivity.\n2026 (Older): Prescribe physical activity in a structured, supervised manner for high-risk individuals -> American Diabetes Association Care Guidence (New Version): Assess patient readiness for physical activity using validated tools (e.g., PAR-Q+) before initiating recommendations and emphasize gradual progression for sedentary individuals.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "Statin Therapy Intensification in Diabetes",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The older guideline primarily recommends moderate-intensity statins for primary prevention in adults 40–75 years with diabetes, reserving high-intensity therapy for those with multiple risk factors. The new version strengthens this by explicitly recommending high-intensity statins for secondary prevention with a stricter LDL-C goal of <55 mg/dL and adding specific guidance for intensification in primary prevention when LDL-C goals are not met. Additionally, the new version introduces considerations for individuals <40 years with risk factors, expanding the scope beyond the older age-centric approach.",
+      "detail": "2026 (Older): Moderate-intensity statin is indicated for adults 40–75 with diabetes without ASCVD, with high-intensity reserved for those with multiple risk factors. -> American Diabetes Association Care Guidence (New Version): High-intensity statin is recommended for secondary prevention with an LDL-C goal of <55 mg/dL, and intensification is explicitly triggered if LDL-C goals are not met on maximum tolerated statin.\n2026 (Older): Focuses on age stratification (40–75 years) and risk enhancers for primary prevention intensification. -> American Diabetes Association Care Guidence (New Version): Emphasizes linear benefit of LDL reduction without a low threshold and includes specific guidance for individuals <40 years with ASCVD risk factors.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "Severe Hypercholesterolemia Management",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The older guideline establishes a broad framework for managing LDL-C ≥190 mg/dL by prioritizing statin therapy and excluding secondary causes, without explicitly detailing non-statin alternatives for intolerance. The new version introduces bempedoic acid as a specific therapeutic option for patients who are statin-intolerant or require additional lowering, supported by CLEAR Outcomes trial data showing cardiovascular risk reduction. This represents an expansion of the pharmacologic toolkit rather than a direct modification of the core statin-first recommendation found in the older text.",
+      "detail": "2026 (Older): Emphasizes excluding secondary causes and initiating maximally tolerated statin therapy as the primary intervention for LDL-C ≥190 mg/dL. -> American Diabetes Association Care Guidence (New Version): Introduces bempedoic acid as a specific option for statin-intolerant patients, citing a 13% reduction in major adverse cardiovascular events in the CLEAR Outcomes trial.\n2026 (Older): Lists inclisiran as a second-line PCSK9 inhibitor pending cardiovascular outcomes trials. -> American Diabetes Association Care Guidence (New Version): Highlights bempedoic acid's mechanism and efficacy in reducing LDL by 15-24% and improving outcomes in statin-intolerant populations.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "Diabetes-Specific Lipid Management Guideline",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The new guideline explicitly expands therapeutic options by endorsing inclisiran siRNA as an alternative for statin-intolerant patients with ASCVD, whereas the older version only listed ezetimibe, bempedoic acid, and PCSK9 mAbs. Additionally, the new version introduces specific LDL-C thresholds (<55 mg/dL) for high-risk patients with ASCVD, adding a quantitative target absent in the older text. Both versions agree on the use of ezetimibe and bempedoic acid for statin intolerance, but the new version places greater emphasis on lifestyle modifications and specific monitoring frequencies.",
+      "detail": "2026 (Older): Initiation of ezetimibe and/or bempedoic acid and/or a PCSK9 mAb is recommended for statin-attributed side effects. -> American Diabetes Association Care Guidence (New Version): Bempedoic acid is recommended for statin-intolerant diabetes, and inclisiran siRNA is considered an alternative for statin-intolerant diabetes with ASCVD.\n2026 (Older): Consideration of apoB levels alongside LDL-C for risk stratification. -> American Diabetes Association Care Guidence (New Version): Targeting LDL reduction ≥50% and LDL <55 mg/dL for diabetes with ASCVD on high-intensity statin therapy.\n2026 (Older): Consideration of triglycerides ≥150 mg/dL as a diabetes-specific risk enhancer. -> American Diabetes Association Care Guidence (New Version): Intensify lifestyle therapy and optimize glycemic control for triglycerides ≥150 mg/dL and/or low HDL (<40 mg/dL men, <50 mg/dL women).",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "statin intolerance management",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The 2026 guideline emphasizes a rigorous diagnostic workup to exclude alternative causes before labeling a patient as intolerant, whereas the new version explicitly recommends considering nonstatin treatments in combination with maximum tolerated statin therapy to improve goal achievement. The new version also broadens the therapeutic scope by identifying ezetimibe as a first-line nonstatin option and mandating evaluation for secondary causes like hypothyroidism, moving beyond the older focus on dose modification and alternate statins alone.",
+      "detail": "2026 (Older): Exclude excessive muscular activity, primary muscle/metabolic disorders, and drug-drug interactions before diagnosing statin intolerance -> American Diabetes Association Care Guidence (New Version): Evaluate for secondary causes of statin intolerance (e.g., drug interactions, hypothyroidism, vitamin D deficiency) before deeming a patient truly intolerant\n2026 (Older): Use maximum tolerated statin therapy or less-than-daily dosing before adding nonstatin therapies -> American Diabetes Association Care Guidence (New Version): Consider nonstatin treatments in combination with maximum tolerated statin therapy for improved LDL cholesterol goal achievement",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 9,
+      "confidence": "high"
+    },
+    {
+      "section": "Lipid-Lowering Therapy Framework",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The older guideline establishes a broad framework where statins are the cornerstone and nonstatins are reserved for specific scenarios like statin intolerance or severe hypertriglyceridemia, explicitly deprecating fibrates and niacin for ASCVD reduction. The new version expands this framework by introducing Bempedoic Acid as a distinct therapeutic option for statin-intolerant patients, supported by the CLEAR Outcomes trial showing MACE reduction, and clarifies its mechanism via ATP-citrate lyase inhibition. While the older version emphasizes Icosapent ethyl for triglycerides and restricts add-on therapies, the new version refines the non-statin hierarchy by adding oral non-statin options with proven cardiovascular benefits alongside injectable agents like PCSK9 inhibitors and Evinacumab.",
+      "detail": "2026 (Older): Nonstatin therapies were broadly categorized with a strong emphasis on Icosapent ethyl for TG reduction and restricted use of fibrates/niacin, lacking specific guidance on oral non-statin alternatives for statin intolerance. -> Lipid Disorders (New Version): Bempedoic acid is explicitly recommended for statin-intolerant patients to achieve LDL-C goals and reduce CV events, supported by Class I evidence from the CLEAR Outcomes trial.\n2026 (Older): TG-lowering medications like fibrates and niacin were deprecated as add-on therapy for ASCVD risk reduction due to lack of proven event reduction. -> Lipid Disorders (New Version): The framework now includes specific efficacy data for Bempedoic acid showing ~23% monotherapy LDL-C reduction and 13% MACE reduction in high-risk statin-intolerant patients.\n2026 (Older): Medication selection was guided by mechanism and patient factors without specific new oral non-statin recommendations beyond ezetimibe. -> Lipid Disorders (New Version): New items include genetic variant evidence supporting ATP-citrate lyase inhibition and specific dosing/mechanism details for Bempedoic acid as a primary alternative to statins.",
+      "version_from": "2026",
+      "version_to": "Lipid Disorders",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "Statin Therapy in HFrEF",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The older guideline explicitly deprecates routine statin monotherapy for hard ASCVD outcomes in HFrEF, citing negative RCTs (CORONA, GISSI-HF, PEARL), while acknowledging a potential MI benefit in ischemic HFrEF. The new version shifts focus to combination therapy (statin + ezetimibe) as an add-on for patients not achieving LDL-C targets, supported by IMPROVE-IT trial data. This represents a therapeutic expansion beyond monotherapy, though the new guidance does not directly address statin monotherapy's lack of benefit in HFrEF.",
+      "detail": "2026 (Older): Routine statin therapy for reducing hard ASCVD events or improving primary outcomes in all HFrEF patients is not recommended. -> American Diabetes Association Care Guidence (New Version): Combination therapy of statins and ezetimibe is recommended for patients with HFrEF who have not achieved LDL-C targets on moderate-intensity statin monotherapy alone.\n2026 (Older): Consider statins in HFrEF patients with ischemic etiology for potential reduction in myocardial infarction. -> American Diabetes Association Care Guidence (New Version): Consideration of ezetimibe addition is emphasized in HFrEF patients with persistently elevated LDL-C (>70 mg/dL) despite moderate-intensity statin therapy.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "triglyceride-lowering therapy recommendations",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The new guideline significantly refines triglyceride-lowering recommendations by de-emphasizing fibrates (including pemafibrate) due to mixed trial evidence, while introducing high-dose icosapent ethyl and volanesorsen as targeted therapies. The older version's broader inclusion of pemafibrate and n-3 PUFAs is replaced by more precise, evidence-based options with explicit risk stratification criteria.",
+      "detail": "2026 (Older): Triglyceride lowering with pemafibrate is evaluated for reducing cardiovascular risk in specific patient populations -> Lipid Disorders (New Version): Fibrates (e.g., fenofibrate, bezafibrate) have moderate triglyceride-lowering effects but lack evidence for reducing MACE or total mortality in statin-treated patients.\n2026 (Older): Marine n-3 fatty acids (e.g., EPA/DHA) are considered for triglyceride lowering, especially in post-myocardial infarction patients -> Lipid Disorders (New Version): Routine use of n-3 PUFAs (EPA+DHA mixtures) for MACE reduction based on STRENGTH trial evidence is deprecated.\n2026 (Older): Modest weight loss is emphasized for its beneficial effects on triglyceride levels -> Lipid Disorders (New Version): No direct mention of weight loss as a standalone triglyceride-lowering strategy.\n2026 (Older): No specific recommendation for icosapent ethyl -> Lipid Disorders (New Version): High-dose icosapent ethyl is recommended for high-risk or very high-risk patients with elevated triglycerides (135–499 mg/dL) despite statin therapy to lower CVD events.",
+      "version_from": "2026",
+      "version_to": "Lipid Disorders",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "CKD-Specific ASCVD Risk Management",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The 2026 guideline expands therapeutic options for CKD patients by endorsing PCSK9 monoclonal antibodies (evolocumab, alirocumab) as preferred agents for aggressive LDL-C lowering in high-risk or established ASCVD, supported by cardiovascular outcome trials (FOURIER, ODYSSEY OUTCOMES). The new version also deprecates inclisiran as a first-line PCSK9 therapy due to lack of outcome data, contrasting with the older version's inclusion of inclisiran as an option. Additionally, the new version specifies that PCSK9 inhibitors are particularly beneficial in type 1 diabetes with established ASCVD, a nuance not addressed in the older guideline.",
+      "detail": "2026 (Older): Aggressive LLT (including ezetimibe and PCSK9 mAb) is effective and safe in adults with CKD and ASCVD, with no preference among agents. -> American Diabetes Association Care Guidence (New Version): PCSK9 monoclonal antibodies (evolocumab, alirocumab) are preferred over inclisiran for established ASCVD or high-risk patients due to proven cardiovascular outcome benefits.\n2026 (Older): In adults with elevated LDL-C, CKD favors initiation of lipid-lowering therapy (LLT). -> American Diabetes Association Care Guidence (New Version): Therapy with PCSK9 monoclonal antibodies is recommended only for high-risk ASCVD or established ASCVD patients, not for primary prevention in low/moderate-risk individuals.",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "Cardiovascular Risk in Diabetes",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The updated guideline shifts from primarily identifying risk factors (e.g., albuminuria, retinopathy) to actively recommending specific pharmacotherapies (e.g., finerenone, SGLT2 inhibitors, GLP-1 receptor agonists) for cardiovascular risk reduction in diabetes. The new version also expands lipid assessment beyond LDL-C to include non-HDL cholesterol and apolipoprotein B, reflecting a more comprehensive risk evaluation approach.",
+      "detail": "2026 (Older): Risk stratification relied on albuminuria, renal function, and retinopathy as predictors -> American Diabetes Association Care Guidence (New Version): Incorporates albuminuria and renal function into risk assessment algorithms and uses diabetic retinopathy as a risk-enhancing factor in stratification\n2026 (Older): No specific pharmacologic recommendations beyond statins and non-statins for statin-intolerant patients -> American Diabetes Association Care Guidence (New Version): Recommends ACE inhibitors/ARBs, finerenone, SGLT2 inhibitors, and GLP-1 receptor agonists for cardiovascular risk reduction in diabetes\n2026 (Older): Lipid testing emphasized LDL-C for statin eligibility -> American Diabetes Association Care Guidence (New Version): Expands lipid testing to include non-HDL cholesterol and apolipoprotein B for more comprehensive risk assessment\n2026 (Older): No mention of β-blockers post-MI or for HFrEF -> American Diabetes Association Care Guidence (New Version): Recommends β-blockers for active angina, HFrEF, or 3 years post-MI with preserved LVEF",
+      "version_from": "2026",
+      "version_to": "American Diabetes Association Care Guidence",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "Secondary ASCVD Prevention Guideline",
+      "change_type": "Mismatched pair",
+      "summary": "The 2026 guideline emphasizes aggressive LDL-C lowering (<55 mg/dL) with statins, ezetimibe, PCSK9 inhibitors, and emerging therapies like inclisiran for very high-risk ASCVD patients. In contrast, the CKD guideline prioritizes low-dose aspirin for secondary prevention in established ischemic CVD, with recommendations for gastroprotection and P2Y12 inhibitors. These are fundamentally different clinical strategies (lipid management vs. antiplatelet therapy) with no direct comparison points.",
+      "detail": "2026 (Older): Goal LDL-C <55 mg/dL for very high-risk ASCVD patients with lipid-lowering therapies (statins, ezetimibe, PCSK9 inhibitors) -> Chronic Kidney Disease (New Version): Oral low-dose aspirin (75–100 mg) recommended for secondary prevention in CKD with established ischemic cardiovascular disease (1C recommendation).\n2026 (Older): Use of inclisiran (pending CVOTs) as a 6-month injectable LDL-C lowering option -> Chronic Kidney Disease (New Version): Ticagrelor’s benefits are not modified by CKD, supporting its use in dual antiplatelet therapy.",
+      "version_from": "2026",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "primordial prevention strategies",
+      "change_type": "No Meaningful Change",
+      "summary": "The 2026 guideline emphasizes primordial prevention for dyslipidemia and ASCVD through lifelong lifestyle interventions, while the ICMR guideline frames primordial prevention in the context of diabetes prevention, particularly obesity reduction. Neither directly references the other's condition-specific strategies, though both advocate for early-life interventions and healthy behaviors. The ICMR guideline introduces metformin for high-risk prediabetic individuals, which is outside the dyslipidemia scope.",
+      "detail": "2026 (Older): Primordial prevention focuses on lifelong lifestyle interventions (diet, exercise, sleep, stress management) to prevent dyslipidemia and ASCVD, with early-life interventions and supervision for rare conditions like FCS. -> Icmr Type 2 Diabetes (New Version): Primordial prevention targets obesity reduction to prevent diabetes, with emphasis on urbanization-driven lifestyle changes and metformin use in high-risk prediabetic individuals.\n2026 (Older): Portfolio diet and tailored dietary strategies for hypertriglyceridemia are explicitly recommended. -> Icmr Type 2 Diabetes (New Version): No mention of dietary patterns beyond general healthy diet and weight control; metformin is introduced for prediabetes.",
+      "version_from": "2026",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "pediatric diabetes cardiovascular risk management",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR 2026 update introduces advanced cardiovascular risk assessment tools (e.g., MRI/CT angiography, PWV) and pediatric-specific risk prediction models (e.g., modified Reynolds Risk Score) that were not present in the ADA 2026 guidance. While ADA focuses on standardized screening intervals and pharmacologic interventions, ICMR expands to include subclinical atherosclerosis detection and novel biomarkers, reflecting a shift toward earlier and more nuanced risk stratification in pediatric diabetes.",
+      "detail": "American Diabetes Association Care Guidence (Older): Lipid screening in children with type 1 diabetes at 9–11 years and every 3 years if LDL ≤100 mg/dL; statin initiation for LDL >130 mg/dL after 6 months of MNT with goal LDL <100 mg/dL -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Screen for dyslipidemia using fasting lipid profiles or non-HDL cholesterol with age/pubertal-adjusted thresholds; adoption of pediatric-specific lipid management algorithms (e.g., AAP 2011 guidelines) to guide statin therapy initiation.\nAmerican Diabetes Association Care Guidence (Older): Annual MASLD evaluation (AST/ALT) in children with type 2 diabetes -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Integration of novel biomarkers (e.g., CRP, adiponectin) for refined cardiovascular risk stratification in pediatric diabetes.\nAmerican Diabetes Association Care Guidence (Older): Blood pressure measurement at every clinic visit; ambulatory BP monitoring for persistent high BP -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Screen for hypertension using standardized pediatric blood pressure tables and assess obesity using WHO/CDC growth charts for BMI classification.\nAmerican Diabetes Association Care Guidence (Older): Nephropathy screening in type 1 diabetes at puberty or age ≥11 years (after 5 years of diabetes) and annually thereafter -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Baseline assessment of albuminuria/eGFR to identify nephropathy as a cardiovascular risk multiplier in pediatric diabetes.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "dietary fat and salt restriction",
+      "change_type": "No Meaningful Change",
+      "summary": "Version A (Older) provides detailed dietary fat and salt restriction guidelines for adults with T2DM, including specific fat sources to restrict and promoting healthy fats. Version B (New Version) shifts focus to salt restriction in children with diabetes, introducing age-specific salt intake limits and deprecating routine vitamin supplementation. While the core principle of salt restriction remains, the target population and specificity differ significantly.",
+      "detail": "Icmr Type 2 Diabetes (Older): Restrict saturated and trans fats (e.g., vanaspati, butter, ghee) and salt intake in adults with T2DM -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Limit daily salt intake to age-specific thresholds (e.g., 1000 mg for 1-3 years) in children with diabetes\nIcmr Type 2 Diabetes (Older): Promote flax seeds (10 g/day) for omega-3 in vegetarians -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Deprecate routine vitamin/mineral supplementation in children with diabetes",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    }
+  ]
+}

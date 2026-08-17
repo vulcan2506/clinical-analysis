@@ -25,8 +25,22 @@ import config
 CSV_PATH = config.REGISTRY_PATH
 OUTPUT_JSON_PATH = config.NESTED_OUTPUT_PATH
 
-MACRO_THRESHOLD = 0.50
-MICRO_THRESHOLD = 0.60
+# Fixed thresholds tuned for corpora the size of the 907-topic/13-PDF
+# guideline KB. A small single-document corpus (e.g. a Stage 2 patient
+# report, typically ~10 topics) rarely has any pair clear 0.50/0.60 cosine
+# similarity even when topics are genuinely related, so Louvain finds no
+# edges and nearly every topic falls to the singleton-orphan path —
+# producing a taxonomy that's structurally nested but visually flat
+# ("Miscellaneous Clinical Topics (N)" repeated per topic). Verified via a
+# local (no-LLM) similarity sweep against a real 10-topic patient corpus:
+# 0.35/0.35 was the threshold that produced clean, semantically coherent
+# multi-topic clusters with zero singletons, while 0.50/0.60 produced 8-9
+# singletons and going lower than 0.35 started over-merging unrelated
+# topics. 25 topics is comfortably below the guideline KB's scale, so this
+# never engages for that corpus.
+SMALL_CORPUS_TOPIC_CUTOFF = 25
+MACRO_THRESHOLD_DEFAULT, MICRO_THRESHOLD_DEFAULT = 0.50, 0.60
+MACRO_THRESHOLD_SMALL, MICRO_THRESHOLD_SMALL = 0.35, 0.35
 
 # ==========================================
 # HELPER FUNCTIONS
@@ -56,6 +70,12 @@ def run_enterprise_pipeline():
     df['grounded_summary'] = df['grounded_summary'].fillna("") if 'grounded_summary' in df.columns else ""
 
     df['combined_text'] = df['master_label'] + ". " + df['summarized_description'] + " " + df['keywords']
+
+    if len(df) < SMALL_CORPUS_TOPIC_CUTOFF:
+        MACRO_THRESHOLD, MICRO_THRESHOLD = MACRO_THRESHOLD_SMALL, MICRO_THRESHOLD_SMALL
+    else:
+        MACRO_THRESHOLD, MICRO_THRESHOLD = MACRO_THRESHOLD_DEFAULT, MICRO_THRESHOLD_DEFAULT
+    print(f"   ({len(df)} topics -> macro/micro thresholds {MACRO_THRESHOLD}/{MICRO_THRESHOLD})")
 
     # Domain-aware roles from context_profiler (see context_profiler.py) —
     # previously this whole file hardcoded "healthcare IT" phrasing

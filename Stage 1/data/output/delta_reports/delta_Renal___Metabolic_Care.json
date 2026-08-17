@@ -1,0 +1,135 @@
+{
+  "parent": "Renal & Metabolic Care",
+  "findings": [
+    {
+      "section": "protein intake guideline for CKD",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 update introduces very low–protein diets (0.3–0.4 g/kg/day) with essential amino acid supplementation for metabolically stable adults at risk of kidney failure, a significant expansion beyond the older version's fixed 0.8 g/kg/day target. The new version also emphasizes plant-based proteins and integration with RASi/SGLT2i therapies, while the older version focused on avoiding high protein intake (>1.3 g/kg/day) and unsupervised low-protein diets. Both versions agree on 0.8 g/kg/day as a standard target but diverge in advanced strategies.",
+      "detail": "American Diabetes Association Care Guidence (Older): For CKD stage G3 or higher, protein intake should be 0.8 g/kg body weight per day, with 1.0–1.2 g/kg/day for dialysis patients. -> Chronic Kidney Disease (New Version): Maintain protein intake at 0.8 g/kg body weight/day for adults with CKD G3–G5, with consideration of very low–protein diets (0.3–0.4 g/kg/day) supplemented with essential amino acids for metabolically stable adults at risk of kidney failure.\nAmerican Diabetes Association Care Guidence (Older): Higher protein intake (>1.3 g/kg/day) should be avoided due to increased albuminuria, rapid kidney function loss, and CVD mortality. -> Chronic Kidney Disease (New Version): Avoid high protein intake (>1.3 g/kg/day) in adults with CKD at risk of progression, with additional emphasis on plant-based protein sources for potential kidney protection.\nAmerican Diabetes Association Care Guidence (Older): Low-protein eating patterns (0.6–0.8 g/kg/day) may be recommended for kidney protection but require guidance from a healthcare professional. -> Chronic Kidney Disease (New Version): Do not prescribe low- or very low-protein diets in metabolically unstable individuals; very low–protein diets require close supervision by renal dietitians.\nAmerican Diabetes Association Care Guidence (Older): Avoidance of protein intake below 0.8 g/kg/day in CKD with diabetes due to lack of benefit. -> Chronic Kidney Disease (New Version): Consideration of individualized protein targets in older adults balancing CKD progression and malnutrition risks, with shared decision-making.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "CKD medication safety guidance",
+      "change_type": "Therapeutic Option Expansion",
+      "summary": "The older guideline provides specific monitoring requirements for lipid-lowering therapies in CKD patients, such as bempedoic acid and bile acid sequestrants, while the new version expands the scope to include general nephrotoxic medication safety, drug dosing accuracy, and patient education. The new version also introduces more precise GFR measurement methods for drug dosing, reflecting a shift toward comprehensive medication stewardship in CKD.",
+      "detail": "2026 (Older): Ezetimibe and PCSK9 inhibitors are generally well tolerated in CKD patients; bempedoic acid requires monitoring for elevated blood urea nitrogen, creatinine, and uric acid levels; bile acid sequestrants are not often used due to poor tolerability. -> Chronic Kidney Disease (New Version): Always consider benefits versus potential harms when prescribing nephrotoxic medications to people with CKD; monitor eGFR, electrolytes, and therapeutic medication levels; review and limit the use of over-the-counter medicines and dietary or herbal remedies that may be harmful.\n2026 (Older): Monitoring of blood urea nitrogen, creatinine, and uric acid levels is required for patients on bempedoic acid. -> Chronic Kidney Disease (New Version): Use validated eGFR equations using SCr for drug dosing in most clinical settings; adapt drug dosing when GFR, non-GFR determinants, or volume of distribution are not in a steady state.",
+      "version_from": "2026",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "hypertension management",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The ADA 2026 update introduces stricter systolic BP targets (<120 mmHg for high-risk individuals) and emphasizes individualized goals, while the ICMR version maintains a higher threshold (>140/90 mmHg) for treatment initiation. The ADA also provides more detailed pharmacologic guidance, including monitoring requirements for ACE inhibitors/ARBs and resistant hypertension criteria, whereas ICMR focuses on non-pharmacologic measures and simpler monotherapy escalation.",
+      "detail": "American Diabetes Association Care Guidence (Older): Encourages systolic blood pressure goal <120 mmHg for high cardiovascular/kidney risk -> Icmr Type 2 Diabetes (New Version): Initiates drug therapy if BP remains >140/90 mm Hg after non-pharmacological measures\nAmerican Diabetes Association Care Guidence (Older): Requires confirmed office-based BP ≥130/80 mmHg for pharmacologic therapy initiation -> Icmr Type 2 Diabetes (New Version): Triggers treatment at BP >140/90 mm Hg\nAmerican Diabetes Association Care Guidence (Older): Uses ACE inhibitors/ARBs as first-line for albuminuria or reduced eGFR -> Icmr Type 2 Diabetes (New Version): Monotherapy may include ACE inhibitors/ARB, calcium channel blockers, or beta blockers/diuretics as third-line\nAmerican Diabetes Association Care Guidence (Older): Requires monitoring for eGFR drop and potassium changes with ACE inhibitors/ARBs/MRAs -> Icmr Type 2 Diabetes (New Version): No explicit monitoring requirements mentioned",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes treatment guidelines",
+      "change_type": "No Meaningful Change",
+      "summary": "The older version provides detailed, standalone diabetes treatment guidelines covering prevention, pharmacologic interventions, and person-centered care. The new version explicitly defers to KDIGO 2022 for CKD-specific diabetes management, which does not directly compare or update the older version's recommendations but rather directs clinicians to an external guideline. This represents a shift in scope rather than a substantive change to the diabetes treatment guidelines themselves.",
+      "detail": "American Diabetes Association Care Guidence (Older): Comprehensive standalone diabetes treatment guidelines with detailed behaviors and requirements -> Chronic Kidney Disease (New Version): Defers to KDIGO 2022 Clinical Practice Guideline for diabetes management in chronic kidney disease without standalone recommendations",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 4,
+      "confidence": "high"
+    },
+    {
+      "section": "CKD monitoring in diabetes standards",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 ADA Standards of Care expands monitoring frequency recommendations beyond the older version's annual baseline for all type 2 diabetes patients. The new version introduces stage-specific monitoring intervals (e.g., every 6 weeks for CKD G5) and emphasizes dynamic adjustment based on progression risk, clinical status changes, and therapeutic interventions. This represents a shift from fixed annual monitoring to a more nuanced, risk-based approach with increased frequency for higher-risk patients.",
+      "detail": "American Diabetes Association Care Guidence (Older): Assess kidney function annually with UACR and eGFR in all people with type 2 diabetes regardless of treatment. -> Chronic Kidney Disease (New Version): Monitoring frequency should increase with higher CKD stages (e.g., every 6 weeks for CKD G5, every 3 months for CKD G4) and be adjusted based on progression risk and clinical status.\nAmerican Diabetes Association Care Guidence (Older): Monitor UACR and eGFR frequency based on CKD progression risk, cardiovascular disease risk, and complications (e.g., 1–4 times per year for high-risk patients). -> Chronic Kidney Disease (New Version): More frequent monitoring may be indicated in people with changing clinical status, intercurrent events, and after therapeutic interventions to assess response and adherence.\nAmerican Diabetes Association Care Guidence (Older): Use the 2021 CKD-EPI creatinine equation to calculate eGFR. -> Chronic Kidney Disease (New Version): Progression risk may vary by CKD etiology within the same GFR and albuminuria/proteinuria stage, requiring documentation of CKD etiology for refined risk stratification.\nAmerican Diabetes Association Care Guidence (Older): Monitor UACR trends over time rather than isolated measurements. -> Chronic Kidney Disease (New Version): Use of albuminuria trends (e.g., ≥30% increase in albuminuria) as a trigger to escalate monitoring frequency, independent of CKD stage.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "SGLT2i therapeutic recommendation",
+      "change_type": "New Recommendation Addition",
+      "summary": "The 2026 CKD guideline significantly expands SGLT2i recommendations beyond the older version's focus on dual therapy with finerenone. The new version introduces a generalized 1A recommendation for all adults with CKD (not limited to T2D), lowers the eGFR threshold to ≥20 mL/min/1.73 m², and emphasizes continuation even if eGFR falls below this threshold. This represents a major shift from targeted dual therapy to broad-based kidney protection.",
+      "detail": "American Diabetes Association Care Guidence (Older): Simultaneous initiation of SGLT2 inhibitor and finerenone can be considered in adults with type 2 diabetes and UACR ≥100 mg/g with eGFR 30–90 mL/min/1.73 m² on a renin-angiotensin system inhibitor. -> Chronic Kidney Disease (New Version): SGLT2 inhibitors are recommended for adults with CKD and eGFR ≥20 ml/min/1.73 m² (1A strength) regardless of diabetes status.\nAmerican Diabetes Association Care Guidence (Older): Combination therapy with SGLT2i and GLP-1 RA may reduce major adverse cardiovascular events and serious kidney events. -> Chronic Kidney Disease (New Version): No specific recommendation for GLP-1 RA combination therapy; focus is on standalone SGLT2i use.\nAmerican Diabetes Association Care Guidence (Older): CONFIDENCE trial supports initial combination therapy (finerenone + empagliflozin) for UACR reduction in CKD with type 2 diabetes. -> Chronic Kidney Disease (New Version): No mention of finerenone combination therapy; emphasizes SGLT2i continuation even if eGFR falls below 20 mL/min/1.73 m².\nAmerican Diabetes Association Care Guidence (Older): Requires UACR ≥100 mg/g and type 2 diabetes diagnosis. -> Chronic Kidney Disease (New Version): Recommends SGLT2i for CKD with urine ACR ≥200 mg/g or heart failure regardless of albuminuria or diabetes status.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetes comorbidity assessment",
+      "change_type": "Guideline Clarification",
+      "summary": "The ADA 2026 guideline emphasizes a broad, standardized assessment of common diabetes comorbidities (ASCVD, CKD, MASLD/MASH) with structured goal setting and staging, while the ICMR 2025 version narrows focus to gastrointestinal, hepatic, and renal conditions triggered by specific symptoms or lab abnormalities. The ICMR version deprecates routine screening without clinical suspicion, introducing more targeted diagnostic tools (e.g., fecal calprotectin, FibroScan) and risk stratification frameworks (KDIGO).",
+      "detail": "American Diabetes Association Care Guidence (Older): Broad, routine assessment of ASCVD, CKD, MASLD/MASH with standardized staging and goal setting -> Icmr Type 2 Diabetes (New Version): Symptom-triggered assessment for IBD, cirrhosis, malabsorption, and renal disease with advanced diagnostic tools (e.g., FibroScan, fecal calprotectin) and risk stratification\nAmerican Diabetes Association Care Guidence (Older): Includes hypoglycemia, retinopathy, and neuropathy in routine comorbidity screening -> Icmr Type 2 Diabetes (New Version): Excludes these conditions, focusing instead on gastrointestinal, hepatic, and renal comorbidities\nAmerican Diabetes Association Care Guidence (Older): Sets individualized goals for A1C, time-in-range, lipids, and blood pressure -> Icmr Type 2 Diabetes (New Version): No explicit goal-setting recommendations; emphasizes diagnostic evaluation and risk stratification\nAmerican Diabetes Association Care Guidence (Older): Requires assessment at all follow-up visits -> Icmr Type 2 Diabetes (New Version): Deprecates routine screening without clinical suspicion or symptoms",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 6,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic kidney disease epidemiology and risk",
+      "change_type": "New Recommendation Addition",
+      "summary": "The ICMR 2026 update introduces significant new epidemiological insights, particularly the recognition of non-albuminuric diabetic nephropathy as a distinct phenotype and the 25-40% nephropathy risk in T1DM patients. It also adds genetic screening for APOL1 risk variants and expands renoprotective therapy recommendations to include SGLT2 inhibitors for all DKD patients regardless of albuminuria status. The ADA/KDIGO 2022 guidance focuses more on race-free GFR estimation and specific drug class recommendations without addressing these new epidemiological nuances.",
+      "detail": "American Diabetes Association Care Guidence (Older): Prioritizes race-free GFR estimation and specific drug classes (SGLT2 inhibitors, GLP-1 agonists, finerenone) for renal protection -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Introduces non-albuminuric diabetic nephropathy as a distinct phenotype, adds genetic screening for APOL1 risk variants, and recommends SGLT2 inhibitors for all DKD patients regardless of albuminuria status\nAmerican Diabetes Association Care Guidence (Older): Focuses on management strategies without detailed epidemiology of DKD in T1DM -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Provides specific epidemiology data including 25-40% nephropathy risk in T1DM and emphasizes non-albuminuric phenotypes in T2DM",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "diabetic nephropathy monitoring",
+      "change_type": "Screening Protocol Expansion",
+      "summary": "The older version outlines a detailed diagnostic protocol for monitoring diabetic nephropathy, including urine microscopy, serum chemistry, and imaging. The new version shifts focus toward management strategies, such as glycemic control, RAAS blockade, and dietary interventions, with only a brief mention of annual albuminuria screening. While the older version includes specific diagnostic steps, the new version de-emphasizes these in favor of broader therapeutic and preventive measures.",
+      "detail": "Icmr Type 2 Diabetes (Older): Perform urine microscopy, serum creatinine with eGFR, microalbuminuria screening, and abdominal ultrasound alongside electrolyte monitoring -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Focus on glycemic control, RAAS blockade, lipid-lowering therapy, and dietary protein restriction for renoprotection\nIcmr Type 2 Diabetes (Older): Routine calculation of eGFR as part of standard monitoring -> Icmr Guidelines For Management Of Type 1 Diabetes (New Version): Emphasis on early initiation of therapy to prevent progression to ESRD, including albuminuria reduction",
+      "version_from": "Icmr Type 2 Diabetes",
+      "version_to": "Icmr Guidelines For Management Of Type 1 Diabetes",
+      "relevance_score": 6,
+      "confidence": "medium"
+    },
+    {
+      "section": "CKD progression risk reduction",
+      "change_type": "Guideline Clarification",
+      "summary": "The older version (2023-2024) provides comprehensive CKD progression strategies including glucose management, blood pressure targets, and multiple drug classes (ACEi/ARBs, SGLT2i, MRAs, GLP-1 agonists). The new version (2024) narrows focus to SGLT2i evidence, emphasizing meta-analyses of large trials while adding pediatric considerations and limited evidence extrapolation to non-diabetic patients. The older version's SGLT2i recommendation is one component of a multi-pronged approach, whereas the new version deepens the evidence base for SGLT2i specifically.",
+      "detail": "American Diabetes Association Care Guidence (Older): SGLT2 inhibitors recommended for type 2 diabetes and CKD (eGFR ≥20 mL/min/1.73 m²) as part of broader CKD progression strategies including glucose control, blood pressure management, and multiple drug classes. -> Chronic Kidney Disease (New Version): SGLT2 inhibitors are strongly recommended for reducing CKD progression risk in diabetes with albuminuria based on large trial meta-analyses, with limited evidence extrapolation to non-diabetic patients and specific pediatric considerations.\nAmerican Diabetes Association Care Guidence (Older): Includes ACE inhibitors/ARBs uptitration, nonsteroidal MRAs (finerenone), and GLP-1 receptor agonists as part of CKD progression strategies. -> Chronic Kidney Disease (New Version): Focuses exclusively on SGLT2i evidence with no mention of other therapeutic classes for CKD progression reduction.\nAmerican Diabetes Association Care Guidence (Older): Emphasizes individualized A1C goals and glucose management strategies with lag time considerations. -> Chronic Kidney Disease (New Version): Does not address glucose management or A1C targets, focusing solely on SGLT2i pharmacologic evidence.\nAmerican Diabetes Association Care Guidence (Older): Deprecates combined ACEi/ARB use and routine RAS blockade for primary prevention. -> Chronic Kidney Disease (New Version): No deprecations mentioned; focuses on positive evidence for SGLT2i use.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 7,
+      "confidence": "high"
+    },
+    {
+      "section": "CKD diagnosis criteria in diabetes",
+      "change_type": "Recommendation Strengthening",
+      "summary": "The 2026 update shifts from a diabetes-specific clinical diagnosis framework to a standardized, globally adopted CGA classification system (Cause, GFR, Albuminuria) for CKD diagnosis and risk stratification. While the older version emphasizes albuminuria and eGFR with diabetes-specific nuances (e.g., retinopathy, creatinine rises with RAS blockers/SGLT2 inhibitors), the new version mandates GFR estimation via equations (e.g., CKD-EPI), requires ≥3 months of abnormalities, and includes structural imaging abnormalities as diagnostic markers. This represents a fundamental strengthening of diagnostic rigor and harmonization with global CKD guidelines.",
+      "detail": "American Diabetes Association Care Guidence (Older): CKD diagnosis in diabetes is based on albuminuria and/or reduced eGFR in the absence of other primary causes, with diabetes-specific features like retinopathy and gradual eGFR loss guiding clinical judgment. -> Chronic Kidney Disease (New Version): CKD is defined as abnormalities of kidney structure or function persisting ≥3 months, classified using the CGA system (Cause, GFR G1–G5, Albuminuria A1–A3), with GFR estimated via equations (e.g., CKD-EPI) and structural imaging abnormalities included as diagnostic markers.\nAmerican Diabetes Association Care Guidence (Older): Creatinine rises up to 30% with RAS blockers or SGLT2 inhibitors are hemodynamic and not AKI, requiring no medication discontinuation. -> Chronic Kidney Disease (New Version): GFR estimation must use estimating equations (e.g., CKD-EPI) rather than serum creatinine alone, with no mention of medication-related creatinine changes in diagnostic criteria.\nAmerican Diabetes Association Care Guidence (Older): Urine biomarkers (e.g., β2-microglobulin, KIM-1) are introduced as new items for tubule function assessment. -> Chronic Kidney Disease (New Version): Urine biomarkers are not included in the core diagnostic criteria, which prioritize ACR ≥30 mg/g and GFR categories.\nAmerican Diabetes Association Care Guidence (Older): Referral to nephrology is recommended for atypical features (e.g., active urinary sediment, rapidly declining eGFR). -> Chronic Kidney Disease (New Version): Etiology of CKD should be sought to individualize management, but no specific referral triggers are outlined in the core diagnostic framework.",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Chronic Kidney Disease",
+      "relevance_score": 10,
+      "confidence": "high"
+    },
+    {
+      "section": "Recommendation Strength Criteria",
+      "change_type": "Guideline Clarification",
+      "summary": "The older guideline (Chunk 1822_1823) outlines the foundational factors (balance of benefits/harms, certainty of evidence, patient values) that influence recommendation strength, including nuanced considerations like resource implications and reliance on Work Group judgment. The 2024 Kidney International version (Chunk 1915_1916) refines this by explicitly categorizing recommendations into strong (1) or conditional (2) based on the clarity of benefit-harm balance and patient/professional interpretations, while introducing shared decision-making requirements for conditional recommendations.",
+      "detail": "Chronic Kidney Disease (Older): Factors like balance of benefits/harms, certainty of evidence, and patient values determine recommendation strength, with weak recommendations arising from variability in values or low-certainty evidence -> Kidney International (2024): Strong recommendations require clear outweighing of desirable over undesirable consequences, while conditional recommendations require probable outweighing and emphasize shared decision-making.\nChronic Kidney Disease (Older): Resource implications are considered but formal economic evaluations are not undertaken -> Kidney International (2024): No explicit mention of resource implications; instead, performance measures for conditional recommendations assess decision-making appropriateness rather than strict adherence.",
+      "version_from": "Chronic Kidney Disease",
+      "version_to": "Endocrine Society Guideline Methodology Links",
+      "relevance_score": 8,
+      "confidence": "high"
+    },
+    {
+      "section": "metformin dosing and safety",
+      "change_type": "Guideline Clarification",
+      "summary": "The 2026 ICMR update refines the older ADA guidance by introducing a more granular eGFR-based dose adjustment strategy (e.g., halving dose at eGFR <45 mL/min and stopping at <30 mL/min) and explicitly recommending lower starting doses for eGFR 45–60 mL/min. While the core safety principles remain consistent, the new version provides clearer, actionable thresholds and monitoring frequency, particularly for borderline renal function.",
+      "detail": "American Diabetes Association Care Guidence (Older): Use metformin safely in individuals with eGFR ≥ 30 mL/min/1.73 m², utilizing lower doses for eGFR 30–45 mL/min/1.73 m² -> Icmr Type 2 Diabetes (New Version): Full dose if eGFR > 60 ml/min, continue full dose with frequent monitoring if eGFR 45–60 ml/min, halve dose if eGFR < 45 ml/min, stop if eGFR < 30 ml/min\nAmerican Diabetes Association Care Guidence (Older): Initiate metformin at standard doses with slow uptitration -> Icmr Type 2 Diabetes (New Version): Initiate metformin at a lower starting dose (e.g., 500 mg once or twice daily) in patients with eGFR 45–60 ml/min\nAmerican Diabetes Association Care Guidence (Older): Monitor vitamin B12 levels annually for patients on metformin >4 years -> Icmr Type 2 Diabetes (New Version): No explicit mention of vitamin B12 monitoring\nAmerican Diabetes Association Care Guidence (Older): Avoid metformin in patients with heart failure requiring pharmacologic therapy (historical concern) -> Icmr Type 2 Diabetes (New Version): No such contraindication mentioned",
+      "version_from": "American Diabetes Association Care Guidence",
+      "version_to": "Icmr Type 2 Diabetes",
+      "relevance_score": 10,
+      "confidence": "high"
+    }
+  ]
+}

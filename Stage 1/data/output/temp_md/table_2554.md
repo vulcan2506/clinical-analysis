@@ -1,0 +1,5 @@
+|  cardiac insufficiency | reduced cardiac output and decreased circulating blood volume cause activation of the renin-angiotensin system and release of arginine-vasopressin (AVP) = water and Na retention, development of hypervolaemic hyponatraemia  |
+| --- | --- |
+|  osmotic diuresis | loss of Na and water with reduction of extracellular fluid volume (ECFV) = hyponatraemia, e.g.: diabetes mellitus with glucosuria  |
+|  renal tubular acidosis (RTA), metabolic alkalosis | excretion of bicarbonate↑, causes osmotic excretion of cations such as Na, K and Ca↑ = bicarbonaturia, urine Na concentration↑, cause of RTA is defect in bicarbonate reabsorption in the prox. tubule  |
+|  pancreatitis, peritonitis, vomitus, diarrhoea, blood loss | extrarenal loss of water and Na = ECFV↓ = fluid loss into the third space, e.g. into the abdominal cavity in case of peritonitis, into the intestinal lumen when suffering from pancreatitis, highly concentrated urine, serum Na↓  |

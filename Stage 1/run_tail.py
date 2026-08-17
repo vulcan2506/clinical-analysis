@@ -15,15 +15,25 @@ Runs everything that follows after recover_qna.py completes:
   5. topic_summarizer.py           — chunk-grounded, source-scoped topic summaries (leaf level).
                                       Reuses delta_jobs_cache.json from step 4 where available.
   6. hierarchy_summarizer.py       — rolls topic summaries up into sub-category/parent group
-                                      profiles (breadth queries like "list all the domains" need
-                                      this — no single topic summary can answer them). Reads
-                                      step 5's output, so must run after it.
-  7. convert_delta()               — transform delta_jobs_cache.json → delta_reports/*.json
+                                       profiles (breadth queries like "list all the domains" need
+                                       this — no single topic summary can answer them). Reads
+                                       step 5's output, so must run after it.
+  6b. hierarchy_topic_merge.py      — appends each topic's full topic-summary content (step 5's
+                                       output) directly under its one-line bullet inside the
+                                       hierarchy summaries (step 6's output), so the shallow
+                                       overview gains the dense per-topic detail. Pure file
+                                       merge — no LLM calls.
+  7. evolution_analyzer.py         — constructive "value-add" cards for constructive change types
+                                      only. Reads delta_jobs_cache.json (step 4's output) directly —
+                                      was previously never called anywhere in the pipeline, so
+                                      evolution_cards_cache.json never existed and chroma_store.py's
+                                      ingest_evolution_cards() silently skipped every run.
+  8. convert_delta()               — transform delta_jobs_cache.json → delta_reports/*.json
                                       (format chroma_store.py expects)
-  8. build_index.py                — build HNSW index from nested JSON
-  9. chroma_store.py               — populate corpus / intelligence / delta ChromaDB collections
- 10. eval.py --compare              — pipeline vs naive RAG comparison
- 11. build_cache_preset.py          — seed the Redis hackathon-demo cache preset (samples the
+  9. build_index.py                — build HNSW index from nested JSON
+ 10. chroma_store.py               — populate corpus / intelligence / delta ChromaDB collections
+ 11. eval.py --compare              — pipeline vs naive RAG comparison
+ 12. build_cache_preset.py          — seed the Redis hackathon-demo cache preset (samples the
                                       existing QnA bank, splits half cached/half uncached, writes
                                       the demo Word doc). Re-run standalone to regenerate the
                                       preset later (e.g. incremental weekly/monthly refresh).
@@ -52,6 +62,12 @@ logging.basicConfig(
 log = logging.getLogger("run_tail")
 
 import config
+import llm_client  # cache Stage 1's own llm_client (has generate_batch) in sys.modules
+                    # BEFORE retrieval_layer is added to sys.path below — retrieval_layer
+                    # has its own same-named, leaner llm_client.py (no generate_batch), and
+                    # a plain `import llm_client` anywhere downstream (e.g.
+                    # parent_relationship.py) would otherwise resolve against whichever
+                    # directory is first on sys.path at that point, not this one.
 
 # Retrieval layer lives one directory up
 RETRIEVAL_DIR = Path(__file__).parent.parent / "retrieval_layer"
@@ -61,7 +77,7 @@ sys.path.insert(0, str(RETRIEVAL_DIR))
 # ── Step 1: Cross-version filter ───────────────────────────────────────────────
 
 def step_filter():
-    log.info("\n[1/9] Filtering nested topics to cross-version only…")
+    log.info("\n[1/12] Filtering nested topics to cross-version only…")
     import filter as f_mod
     f_mod.filter_json()
     out = Path(f_mod.OUTPUT_JSON_PATH)
@@ -76,7 +92,7 @@ def step_filter():
 # ── Step 2: Parent relationship clustering (grandparent groups) ───────────────
 
 def step_parent_relationship():
-    log.info("\n[2/9] Running parent relationship clustering (grandparent groups)…")
+    log.info("\n[2/12] Running parent relationship clustering (grandparent groups)…")
     import parent_relationship
     parent_relationship.main()
     out = parent_relationship.OUT_PATH
@@ -91,7 +107,7 @@ def step_parent_relationship():
 # ── Step 3: Cross-corpus relationship linking ──────────────────────────────────
 
 def step_cross_corpus_relationship():
-    log.info("\n[3/9] Running cross-corpus relationship linking…")
+    log.info("\n[3/12] Running cross-corpus relationship linking…")
     import cross_corpus_relationship
     cross_corpus_relationship.main()
     out = cross_corpus_relationship.OUT_PATH
@@ -109,7 +125,7 @@ def step_cross_corpus_relationship():
 # ── Step 4: Delta analysis ─────────────────────────────────────────────────────
 
 def step_delta_analyzer():
-    log.info("\n[4/9] Running delta analysis…")
+    log.info("\n[4/12] Running delta analysis…")
     import delta_analyzer
     delta_analyzer.run_delta_analysis()
     cache = config.OUTPUT_DIR / "delta_jobs_cache.json"
@@ -125,7 +141,7 @@ def step_delta_analyzer():
 # ── Step 5: Topic-level chunk-grounded summaries ───────────────────────────────
 
 def step_topic_summarizer():
-    log.info("\n[5/9] Running topic summarizer (leaf-level, chunk-grounded)…")
+    log.info("\n[5/12] Running topic summarizer (leaf-level, chunk-grounded)…")
     import topic_summarizer
     topic_summarizer.run_topic_summarization()
 
@@ -133,12 +149,35 @@ def step_topic_summarizer():
 # ── Step 6: Sub-category / parent group profiles ───────────────────────────────
 
 def step_hierarchy_summarizer():
-    log.info("\n[6/9] Running hierarchy summarizer (sub-category/parent roll-up)…")
+    log.info("\n[6/12] Running hierarchy summarizer (sub-category/parent roll-up)…")
     import hierarchy_summarizer
     hierarchy_summarizer.run_hierarchy_summarization()
 
 
-# ── Step 7: Convert delta cache → chroma-ready JSON files ──────────────────────
+# ── Step 6b: Merge topic summaries into hierarchy summaries ────────────────────
+
+def step_hierarchy_topic_merge():
+    log.info("\n[6b/12] Merging topic summaries into hierarchy summaries…")
+    import hierarchy_topic_merge
+    hierarchy_topic_merge.run_hierarchy_topic_merge()
+
+
+# ── Step 7: Evolution / value-add cards ────────────────────────────────────────
+
+def step_evolution_analysis():
+    log.info("\n[7/12] Running evolution analysis (constructive value-add cards)…")
+    import evolution_analyzer
+    evolution_analyzer.run_evolution_analysis()
+    out = evolution_analyzer.EVOLUTION_CACHE_PATH
+    if out.exists():
+        with open(out) as f:
+            cards = json.load(f)
+        log.info(f"Evolution analysis done — {len(cards)} card(s) → {out.name}")
+    else:
+        log.info("Evolution analysis produced no cards (no constructive change types found)")
+
+
+# ── Step 8: Convert delta cache → chroma-ready JSON files ──────────────────────
 
 def step_convert_delta():
     """
@@ -148,7 +187,7 @@ def step_convert_delta():
     Each file = one parent-level group.
     Each finding = {section, change_type, summary, detail, version_from, version_to}
     """
-    log.info("\n[7/9] Converting delta cache → delta_reports/…")
+    log.info("\n[8/12] Converting delta cache → delta_reports/…")
 
     cache_path = config.OUTPUT_DIR / "delta_jobs_cache.json"
     delta_dir  = config.OUTPUT_DIR / "delta_reports"
@@ -199,10 +238,10 @@ def step_convert_delta():
              f"({len(by_parent)} files, {total_findings} total findings)")
 
 
-# ── Step 8: Build HNSW index ───────────────────────────────────────────────────
+# ── Step 9: Build HNSW index ───────────────────────────────────────────────────
 
 def step_build_index():
-    log.info("\n[8/9] Building HNSW index…")
+    log.info("\n[9/12] Building HNSW index…")
     result = subprocess.run(
         [sys.executable, str(RETRIEVAL_DIR / "build_index.py")],
         cwd=str(RETRIEVAL_DIR),
@@ -216,10 +255,10 @@ def step_build_index():
     log.info(f"HNSW index built → {idx_dir}  ({len(files)} files)")
 
 
-# ── Step 9: Populate ChromaDB ──────────────────────────────────────────────────
+# ── Step 10: Populate ChromaDB ──────────────────────────────────────────────────
 
 def step_chroma():
-    log.info("\n[9/9] Populating ChromaDB collections…")
+    log.info("\n[10/12] Populating ChromaDB collections…")
     result = subprocess.run(
         [sys.executable, str(RETRIEVAL_DIR / "chroma_store.py")],
         cwd=str(RETRIEVAL_DIR),
@@ -247,10 +286,10 @@ def step_chroma():
         log.info(f"ChromaDB populated (stats unavailable: {e})")
 
 
-# ── Step 10: Run eval comparison ───────────────────────────────────────────────
+# ── Step 11: Run eval comparison ───────────────────────────────────────────────
 
 def step_eval():
-    log.info("\n[10/11] Running evaluation — pipeline vs naive RAG…")
+    log.info("\n[11/12] Running evaluation — pipeline vs naive RAG…")
     import subprocess
     eval_path = RETRIEVAL_DIR / "eval.py"
     result = subprocess.run(
@@ -264,10 +303,10 @@ def step_eval():
         log.info("Eval complete.")
 
 
-# ── Step 11: Seed hackathon Redis cache demo preset ────────────────────────────
+# ── Step 12: Seed hackathon Redis cache demo preset ────────────────────────────
 
 def step_cache_preset():
-    log.info("\n[11/11] Seeding Redis hackathon-demo cache preset…")
+    log.info("\n[12/12] Seeding Redis hackathon-demo cache preset…")
     result = subprocess.run(
         [sys.executable, str(Path(__file__).parent / "build_cache_preset.py")],
         cwd=str(Path(__file__).parent),
@@ -307,12 +346,14 @@ def main(skip_eval: bool = False):
     step_delta_analyzer()
     step_topic_summarizer()
     step_hierarchy_summarizer()
+    step_hierarchy_topic_merge()
+    step_evolution_analysis()
     step_convert_delta()
     step_build_index()
     step_chroma()
 
     if skip_eval:
-        log.info("\n[10-11/11] Skipping eval.py --compare and build_cache_preset.py (--skip-eval)")
+        log.info("\n[11-12/12] Skipping eval.py --compare and build_cache_preset.py (--skip-eval)")
     else:
         step_eval()
         step_cache_preset()

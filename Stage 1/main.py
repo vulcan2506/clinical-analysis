@@ -30,7 +30,7 @@ import nested
 import quality_filter
 
 
-def run():
+def run(skip_profiling: bool = False):
     log.info("═" * 55)
     log.info("  STAGE 1  —  Ingest → Rectify → Label → Enrich → Filter → Registry")
     log.info("═" * 55)
@@ -94,9 +94,12 @@ def run():
     log.info("Unloaded enricher models + local LLM.")
 
     # ── 2.5 Context Profiling (domain-aware prompt adaptation) ──────────────────
-    log.info("\n[2.5/7] Building domain profiles for dynamic prompting")
-    profiles = context_profiler.build_profiles(chunks)
-    log.info(f"Active profiles: {list(profiles.keys())}")
+    if skip_profiling:
+        log.info("\n[2.5/7] Skipping context profiling — forced profile in effect (Stage 2 patient run)")
+    else:
+        log.info("\n[2.5/7] Building domain profiles for dynamic prompting")
+        profiles = context_profiler.build_profiles(chunks)
+        log.info(f"Active profiles: {list(profiles.keys())}")
 
     # No local LLM to unload — context profiler uses API
 

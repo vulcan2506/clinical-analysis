@@ -1,0 +1,108 @@
+[
+  {
+    "case": 1,
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "guideline_topic": "Lipid Measurement Guideline Update",
+    "expected": "DIRECT_MATCH",
+    "pre_validation": "DIRECT_MATCH",
+    "post_validation": "DIRECT_MATCH",
+    "validated_context": [],
+    "rejected_context": [],
+    "required_context": [],
+    "match_reason": "Guideline directly addresses lipid measurement protocols, including LDL-C estimation methods (Martin/Hopkins, Sampson/NIH) and additional testing (ApoB, Lp(a), CAC imaging), which aligns with the patient's lipid panel measurement protocol and recommendations for additional testing.",
+    "retrieved": true,
+    "passed": true,
+    "extra": null
+  },
+  {
+    "case": 2,
+    "patient_topic": "Kidney Function Assessment",
+    "guideline_topic": "point-of-care kidney function testing",
+    "expected": "PARTIAL_MATCH",
+    "pre_validation": "PARTIAL_MATCH",
+    "post_validation": "PARTIAL_MATCH",
+    "validated_context": [],
+    "rejected_context": [],
+    "required_context": [],
+    "match_reason": "Guideline discusses point-of-care kidney function testing, which is relevant to kidney function assessment but focuses on testing modalities rather than the assessment itself.",
+    "retrieved": true,
+    "passed": true,
+    "extra": {
+      "require_validated": []
+    }
+  },
+  {
+    "case": 3,
+    "patient_topic": "Kidney Function Assessment",
+    "guideline_topic": "CKD monitoring in diabetes standards",
+    "expected": "CONTEXTUAL_MATCH",
+    "pre_validation": "CONTEXTUAL_MATCH",
+    "post_validation": "CONTEXTUAL_MATCH",
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "required_context": [
+      "diabetes"
+    ],
+    "match_reason": "Guideline addresses CKD monitoring in diabetes, which is directly relevant because the patient has diabetes (required context).",
+    "retrieved": true,
+    "passed": true,
+    "extra": {
+      "require_validated": [
+        "diabetes"
+      ]
+    }
+  },
+  {
+    "case": 4,
+    "patient_topic": "Kidney Function Assessment",
+    "guideline_topic": "CKD monitoring in diabetes standards",
+    "expected": "NO_MATCH",
+    "pre_validation": "NO_MATCH",
+    "post_validation": "NO_MATCH",
+    "validated_context": [],
+    "rejected_context": [],
+    "required_context": [
+      "diabetes"
+    ],
+    "match_reason": "Guideline is specific to CKD monitoring in diabetes, which is not referenced in the patient's context.",
+    "retrieved": true,
+    "passed": true,
+    "extra": {
+      "require_absent": [
+        "diabetes"
+      ]
+    }
+  },
+  {
+    "case": 5,
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "guideline_topic": "lipid management in pregnancy",
+    "expected": "NO_MATCH",
+    "pre_validation": "NO_MATCH",
+    "post_validation": "NO_MATCH",
+    "validated_context": [],
+    "rejected_context": [],
+    "required_context": [],
+    "match_reason": "Guideline focuses on lipid management in pregnancy, which is unrelated to the patient's lipid panel measurement protocol.",
+    "retrieved": false,
+    "passed": true,
+    "extra": null
+  },
+  {
+    "case": 6,
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "guideline_topic": "Dyslipidemia Treatment Guideline",
+    "expected": "NO_MATCH",
+    "pre_validation": "NO_MATCH",
+    "post_validation": "NO_MATCH",
+    "validated_context": [],
+    "rejected_context": [],
+    "required_context": [],
+    "match_reason": "Guideline focuses on dyslipidemia treatment, not measurement protocols or interpretation.",
+    "retrieved": false,
+    "passed": true,
+    "extra": null
+  }
+]

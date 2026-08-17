@@ -1,0 +1,14 @@
+{
+  "relationship": "These document families collectively address metabolic, cardiovascular, and endocrine health, with overlapping themes in guideline development, risk stratification, and clinical interventions for chronic conditions like diabetes, dyslipidemia, and kidney disease.",
+  "shared_entities": [
+    "patient population",
+    "clinical recommendation",
+    "risk assessment",
+    "treatment strategy",
+    "comorbidity",
+    "evidence-based methodology",
+    "monitoring parameters",
+    "therapeutic intervention"
+  ],
+  "cross_reference_notes": "Analysts should prioritize entities like 'patient population' and 'clinical recommendation' for cross-family comparisons, as these recur across guidelines. Pay attention to domain-specific variations (e.g., 'lipid measurement' in dyslipidemia vs. 'glycemic targets' in diabetes). Methodological standards (e.g., 'evidence grading') and risk stratification tools (e.g., 'ASCVD risk assessment') are critical for harmonizing recommendations across specialties."
+}

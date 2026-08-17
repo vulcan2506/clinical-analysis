@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Knowledge Platform — HealthRules Payer",
+  title: "Clinical Knowledge Platform",
   description: "Adaptive enterprise knowledge assistant with confidence-gated retrieval and version-aware document intelligence.",
 };
 

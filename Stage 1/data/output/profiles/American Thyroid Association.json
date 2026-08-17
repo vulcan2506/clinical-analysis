@@ -1,0 +1,137 @@
+{
+  "domain": "thyroid cancer clinical guidelines",
+  "document_purpose": "clinical practice guidelines for the management of differentiated thyroid cancer in adult patients",
+  "specialist_role": "endocrinologist or thyroid cancer specialist",
+  "analyst_role": "clinical guideline analyst or medical content reviewer",
+  "entity_types": [
+    "thyroid cancer",
+    "patient",
+    "treatment recommendation",
+    "thyroidectomy",
+    "lymph node dissection",
+    "TSH suppression",
+    "genetic testing",
+    "pathology classification",
+    "risk stratification",
+    "RAI therapy"
+  ],
+  "key_terminology": {
+    "DTC": "Differentiated Thyroid Cancer",
+    "TSH": "Thyroid-Stimulating Hormone",
+    "RAI": "Radioactive Iodine",
+    "NIFTP": "Non-Invasive Follicular Thyroid Neoplasm with Papillary-like Nuclear Features",
+    "ATA": "American Thyroid Association",
+    "BRAF": "B-Raf proto-oncogene, serine/threonine kinase (V600E mutation)",
+    "Tg": "Thyroglobulin",
+    "WHO": "World Health Organization"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Individualization of decisions to initiate TSH suppression to below the reference range is recommended based on",
+      "master_label": "TSH Suppression Recommendation",
+      "description": "A guideline recommendation regarding the targeted suppression of TSH levels below the normal reference range for thyroid cancer patients."
+    },
+    {
+      "text_snippet": "Completion thyroidectomy for cancer following initial lobectomy may be considered to address persistent",
+      "master_label": "Completion Thyroidectomy",
+      "description": "A recommendation regarding the potential need for a second surgical procedure to remove remaining thyroid tissue after an initial partial thyroidectomy."
+    },
+    {
+      "text_snippet": "Several terms are utilized throughout the guidelines in different sections and recommendations. Important definitions used by the committee are included below:",
+      "master_label": "Clinical Definitions",
+      "description": "A section defining key clinical terms and concepts used throughout the guideline document."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Recommendation Clarification",
+      "description": "when a guideline recommendation is refined or made more specific without changing the core intent"
+    },
+    {
+      "name": "New Evidence Incorporation",
+      "description": "when new clinical evidence or research findings are added to support or modify existing recommendations"
+    },
+    {
+      "name": "Risk Stratification Update",
+      "description": "when the criteria for classifying patient risk categories are modified based on new data"
+    },
+    {
+      "name": "Treatment Modality Change",
+      "description": "when a recommended treatment approach is explicitly reversed or contradicted in a subsequent version"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions of a guideline are compared and no substantive difference in recommendations or definitions is found"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "a clinical prerequisite or mandatory condition that must be met for a treatment recommendation to apply, such as specific patient characteristics or test results",
+    "deprecated_items": "a previously recommended clinical practice, diagnostic test, or treatment approach that is no longer advised in the current guideline version",
+    "new_items": "a newly introduced clinical practice, diagnostic test, or treatment approach that is recommended for the first time in the current guideline version"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Key Clinical Findings",
+    "requirements": "Patient Eligibility Criteria",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "TSH suppression targets",
+      "version_a": "TSH suppression to below the reference range was recommended for all patients with intermediate-risk differentiated thyroid cancer.",
+      "version_b": "Individualization of TSH suppression to below the reference range is now recommended based on patient-specific factors including age, comorbidities, and disease risk.",
+      "change_type": "Recommendation Clarification",
+      "analysis": "The earlier version applied a blanket recommendation for TSH suppression across all intermediate-risk patients. The updated guideline introduces nuance by emphasizing patient-specific factors, reflecting growing evidence that blanket suppression may not be optimal for all patients and could increase adverse effects in some populations."
+    },
+    {
+      "topic": "Completion thyroidectomy criteria",
+      "version_a": "Completion thyroidectomy was routinely recommended for all patients with papillary thyroid microcarcinoma found after initial lobectomy.",
+      "version_b": "Completion thyroidectomy for cancer following initial lobectomy may now be considered only in select cases with high-risk features, not routinely.",
+      "change_type": "Treatment Modality Change",
+      "analysis": "The earlier version recommended routine completion thyroidectomy for all microcarcinomas, reflecting historical practice patterns. The updated guideline reverses this stance, recommending a more selective approach based on risk stratification and patient-specific factors, aligning with evidence showing limited benefit for many low-risk patients."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the guideline change from recommending routine completion thyroidectomy to selective consideration?",
+      "a": "The change reflects emerging evidence that routine completion thyroidectomy in patients with papillary thyroid microcarcinoma found after initial lobectomy provides limited benefit for many low-risk patients while increasing the risk of complications. The updated guideline emphasizes individualized decision-making based on specific high-risk features rather than a one-size-fits-all approach."
+    },
+    {
+      "q": "How should clinicians now approach TSH suppression in intermediate-risk thyroid cancer patients?",
+      "a": "The guideline now recommends individualizing TSH suppression targets based on patient-specific factors such as age, comorbidities, and disease risk rather than applying a blanket recommendation. This approach aims to balance the potential benefits of suppression against the risks of overtreatment, particularly in older patients or those with significant cardiovascular disease."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "TSH suppression targets",
+    "foundation": "The earlier guideline recommended TSH suppression to below the reference range for all intermediate-risk differentiated thyroid cancer patients.",
+    "value_added": [
+      "Introduction of patient-specific factors to guide TSH suppression targets",
+      "Emphasis on balancing therapeutic benefit against potential adverse effects",
+      "Consideration of age, comorbidities, and disease risk in treatment decisions"
+    ],
+    "narrative": "The earlier guideline established a uniform approach to TSH suppression for intermediate-risk patients. The updated version builds on this foundation by introducing nuanced, individualized recommendations that account for patient-specific factors. This evolution enables more tailored treatment approaches that optimize benefit-risk ratios, particularly for older patients or those with significant comorbidities where aggressive suppression may be harmful."
+  },
+  "type_key": "American Thyroid Association",
+  "source_files": [
+    "American Thyroid Association.pdf"
+  ]
+}

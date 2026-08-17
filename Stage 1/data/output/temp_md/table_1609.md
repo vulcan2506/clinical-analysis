@@ -1,0 +1,6 @@
+|  Equation | Variable | Population | Outcome (time horizon) | Discrimination and calibration | Usability  |
+| --- | --- | --- | --- | --- | --- |
+|  KFRE^{9,10,407,408} www.kidneyfailurerisk.com www.ckdpc.org/risk-models.html | Age, sex, eGFR, ACR (4 variable) + calcium, phosphate, bicarbonate, and albumin (8 variables) | >1 million patients, >100,000 events from more than 30 countries | Treated kidney failure (2–5 yr) | 0.88–0.91/+ | +  |
+|  KPNW^{410} | Age, sex, eGFR, albuminuria, systolic BP, antihypertensive use, diabetes, and diabetes complications | 39,013 patients, 1097 events from the Kaiser Permanente Health System (United States) | Kidney failure (5 yr) | 0.95/+ | +  |
+|  Landray et al.^{411} | Sex, SCr, albuminuria, and phosphate | 595 patients, >190 events from the CRIB and East Kent cohorts in the United Kingdom | Kidney failure | 0.91/+ | –  |
+|  Z6 score^{409} | SCr, albumin, cystatin C, urea, hemoglobin, and ACR | 7978 patients, 870 events—developed in the German CKD study, validated in 3 additional European cohorts | Kidney failure (5 yr) | 0.89–0.92/+ | –  |

@@ -1,0 +1,135 @@
+{
+  "domain": "veterinary clinical pathology and electrolyte physiology",
+  "document_purpose": "educational reference on sodium, potassium, and chloride physiology, pathology, and diagnostic interpretation for veterinary clinicians and laboratory diagnosticians",
+  "specialist_role": "veterinary clinical pathologist or internal medicine specialist",
+  "analyst_role": "veterinary laboratory data analyst or clinical diagnostics reviewer",
+  "entity_types": [
+    "electrolyte",
+    "disease_condition",
+    "diagnostic_table",
+    "physiologic_process",
+    "laboratory_finding",
+    "clinical_symptom",
+    "metabolic_pathway",
+    "organ_system"
+  ],
+  "key_terminology": {
+    "Na": "sodium ion, the primary extracellular cation regulating plasma osmolality and fluid balance",
+    "K": "potassium ion, the primary intracellular cation essential for membrane potentials and cellular function",
+    "Cl": "chloride ion, the primary extracellular anion maintaining electroneutrality and acid-base balance",
+    "ECS": "extracellular space, the fluid compartment outside cells containing sodium as the dominant cation",
+    "ICS": "intracellular space, the fluid compartment inside cells containing potassium as the dominant cation",
+    "AVP": "arginine vasopressin, antidiuretic hormone regulating water retention in response to osmolality changes",
+    "RTA": "renal tubular acidosis, a group of disorders impairing renal acid excretion leading to electrolyte imbalances",
+    "ECFV": "extracellular fluid volume, the total volume of fluid in the extracellular compartment"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Sodium is the most important cation in the extracellular fluid. Hence, it is essential for maintaining osmolality or the distribution of water between the extracellular space (ECS) and the intracellular space (ICS).",
+      "master_label": "extracellular cation",
+      "description": "Identifies sodium as the primary cation in extracellular fluid responsible for osmolality regulation and water distribution."
+    },
+    {
+      "text_snippet": "{\"cardiac insufficiency\": \"osmotic diuresis\", \"reduced cardiac output and decreased circulating blood volume cause activation of the renin-angiotensin system and release of arginine-vasopressin (AVP) = water and Na retention, development of hypervolaemic hyponatraemia\": \"loss of Na and water with reduction of extracellular fluid volume (ECFV) = hyponatraemia, e.g.: diabetes mellitus with glucosuria\"}",
+      "master_label": "hyponatraemia causes",
+      "description": "Categorizes clinical conditions and mechanisms leading to decreased serum sodium concentration, including cardiac insufficiency and diabetes mellitus."
+    },
+    {
+      "text_snippet": "In terms of quantity, potassium is the most important intracellular cation. More than 98% of the potassium in the body is found inside the cells. The serum potassium concentration is regulated within narrow limits.",
+      "master_label": "intracellular cation regulation",
+      "description": "Describes potassium as the dominant intracellular cation with strict serum concentration regulation critical for cellular and cardiac function."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when a newer version provides additional detail or refinement to existing criteria without altering the core recommendation"
+    },
+    {
+      "name": "New Diagnostic Criterion",
+      "description": "when a newer version introduces a previously unaddressed diagnostic finding or laboratory parameter"
+    },
+    {
+      "name": "Pathophysiology Update",
+      "description": "when a newer version corrects or expands the mechanistic understanding of a disease process"
+    },
+    {
+      "name": "Contradictory Finding",
+      "description": "when a newer version explicitly reverses or contradicts a prior statement or diagnostic criterion"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions describe the same concept with identical meaning and no new information"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or patient conditions necessary for accurate electrolyte interpretation, such as hydration status, renal function, or concurrent medications",
+    "deprecated_items": "laboratory parameters, diagnostic criteria, or clinical conditions that are no longer considered valid or have been superseded by newer evidence",
+    "new_items": "laboratory parameters, diagnostic criteria, or clinical conditions newly recognized or added to the diagnostic framework"
+  },
+  "field_labels": {
+    "feature_name": "Electrolyte Parameter",
+    "key_behaviors": "Pathophysiology and Clinical Associations",
+    "requirements": "Clinical Prerequisites",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "interpretation of hypernatraemia in cardiac patients",
+      "version_a": "Hypernatraemia in cardiac insufficiency was attributed solely to osmotic diuresis and reduced circulating blood volume triggering AVP release.",
+      "version_b": "Hypernatraemia in cardiac insufficiency now includes consideration of diuretic-induced sodium retention and iatrogenic fluid restriction protocols as additional primary causes.",
+      "change_type": "New Diagnostic Criterion",
+      "analysis": "The updated version expands the diagnostic framework for hypernatraemia in cardiac patients by incorporating treatment-related factors such as diuretic use and fluid management strategies, reflecting evolving clinical practice and evidence."
+    },
+    {
+      "topic": "potassium regulation in renal disease",
+      "version_a": "Renal potassium excretion was described as primarily dependent on glomerular filtration rate and aldosterone activity.",
+      "version_b": "Renal potassium excretion is now recognized to be significantly influenced by tubular secretion mechanisms in distal nephron segments, particularly in chronic kidney disease stages 3-5.",
+      "change_type": "Pathophysiology Update",
+      "analysis": "The newer version corrects a prior oversimplification by detailing the role of distal tubular secretion in potassium handling, especially in advanced renal disease, which has direct implications for therapeutic decisions and monitoring."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why does cardiac insufficiency lead to hyponatraemia in some patients but hypernatraemia in others?",
+      "a": "Cardiac insufficiency can cause hyponatraemia through activation of the renin-angiotensin-aldosterone system and AVP release leading to water retention, while hypernatraemia may result from aggressive diuretic therapy causing sodium retention or fluid restriction protocols that concentrate sodium despite total body sodium depletion."
+    },
+    {
+      "q": "How does the intracellular distribution of potassium affect serum potassium measurements in clinical practice?",
+      "a": "Serum potassium reflects only a small fraction of total body potassium, primarily the extracellular pool. Shifts between intracellular and extracellular compartments due to acid-base disturbances, insulin therapy, or catecholamine effects can cause significant changes in serum levels without altering total body potassium, necessitating careful clinical correlation."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "interpretation of hypernatraemia in cardiac patients",
+    "foundation": "Hypernatraemia in cardiac insufficiency was previously attributed to osmotic diuresis and reduced circulating blood volume triggering AVP release.",
+    "value_added": [
+      "incorporation of diuretic-induced sodium retention as a primary cause",
+      "recognition of iatrogenic fluid restriction protocols as a contributing factor",
+      "expanded clinical scenarios including post-diuretic rebound hypernatraemia"
+    ],
+    "narrative": "The older version established osmotic diuresis and neurohormonal activation as key mechanisms. The newer version builds on this foundation by adding treatment-related factors and specific clinical scenarios, enabling more precise identification of hypernatraemia causes in cardiac patients and guiding safer diuretic management."
+  },
+  "type_key": "Sodium and Cloride ",
+  "source_files": [
+    "Sodium and Cloride .pdf"
+  ]
+}

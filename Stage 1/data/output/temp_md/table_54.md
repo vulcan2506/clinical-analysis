@@ -1,0 +1,8 @@
+|  Patient population | LDL-C <100 mg/dL (2.6 mmol/L) Non-HDL-C <130 mg/dL (3.4 mmol/L) | LDL-C <70 mg/dL (1.8 mmol/L) Non-HDL-C <100 mg/dL (2.6 mmol/L) | LDL-C <55 mg/dL (1.4 mmol/L) Non-HDL-C <85 mg/dL (2.2 mmol/L)  |
+| --- | --- | --- | --- |
+|  Primary prevention | PREVENT-ASCVD <10% • If TG ≥150 mg/dL to 499 mg/dL, apoB goal: <90 mg/dL | PREVENT-ASCVD ≥10% • If TG ≥150 mg/dL to 499 mg/dL, apoB goal: <70 mg/dL | N/A  |
+|  Severe hypercholesterolemia | Without FH, ASCVD risk factors, and subclinical atherosclerosis | With FH, ASCVD risk factors, or subclinical atherosclerosis | Severe hypercholesterolemia or HeFH with clinical ASCVD  |
+|  Diabetes | Without ASCVD risk factors or diabetes-specific risk modifiers • apoB goal: <90 mg/dL | With ASCVD risk factors or diabetes-specific risk factors • apoB goal: <70 mg/dL | N/A  |
+|  Subclinical atherosclerosis | CAC = 1–99 AU and <75th percentile for age, sex, and race | • CAC ≥100 to 299 AU or ≥75th percentile for age, sex, race • CAC ≥300 to 999 AU • Optional goal: LDL-C <55 mg/dL, non-HDL-C <85 mg/dL and consider apoB goal <55 mg/dL | CAC ≥1000 AU  |
+|  Hypertriglyceridemia | <50 y old with no additional risk enhancers | • With clinical ASCVD not at very high risk • apoB goal: <70 mg/dL • Age 40–75 y with ≥1 ASCVD risk factor • apoB goal: <70 mg/dL | With clinical ASCVD at very high risk • apoB goal: <55 mg/dL  |
+|  Clinical ASCVD | N/A | Not at very high risk • Optional goal: LDL-C <55 mg/dL, non-HDL-C <85 mg/dL and consider apoB goal <55 mg/dL | • At very high risk • apoB goal: <55 mg/dL • With CKD  |

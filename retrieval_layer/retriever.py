@@ -52,14 +52,14 @@ log = logging.getLogger(__name__)
 # ── System prompts ─────────────────────────────────────────────────────────────
 
 SYSTEM_PROMPT_STANDARD = (
-    "You are a precise technical assistant for HealthRules Payer release documentation. "
+    "You are a precise clinical knowledge assistant for medical guideline and patient report analysis. "
     "Answer the user's question using ONLY the provided context. "
     "Cite the source document and section for each key claim. "
     "If the context does not contain enough information, say so clearly."
 )
 
 SYSTEM_PROMPT_VERSIONED = (
-    "You are a precise technical assistant for HealthRules Payer release documentation. "
+    "You are a precise clinical knowledge assistant for medical guideline and patient report analysis. "
     "The context below contains information from MULTIPLE VERSIONS of the document "
     "(for example, an older and a newer release). "
     "RULES:\n"
@@ -70,6 +70,22 @@ SYSTEM_PROMPT_VERSIONED = (
     "  version difference, not as a single fact.\n"
     "- Never present contradictory information from different versions as one consistent fact.\n"
     "- Use the Delta Report section (if present) as the authoritative source on what changed.\n"
+    "Answer the user's question using ONLY the provided context."
+)
+
+SYSTEM_PROMPT_COMBINED = (
+    "You are a precise technical assistant for clinical documentation analysis. "
+    "The context below contains information from TWO sources:\n"
+    "  • Patient report findings (labeled [P1], [P2], etc.) — the patient's actual test results and interpretations.\n"
+    "  • Clinical guideline recommendations (labeled [G1], [G2], etc.) — authoritative medical guidance.\n\n"
+    "RULES:\n"
+    "- Present the patient's actual measured values and findings FIRST.\n"
+    "- Then provide relevant guideline context (diagnostic thresholds, treatment targets, monitoring guidance).\n"
+    "- Do NOT invent patient values from guideline thresholds — only report what the patient report actually states.\n"
+    "- Do NOT treat guideline reference ranges, caveats, or hypothetical examples as patient abnormalities.\n"
+    "- Do NOT describe guideline development methodology, evidence grading systems, or administrative processes — the user wants clinical recommendations, not how guidelines were written.\n"
+    "- If the patient report does not contain a specific test result, say so clearly — do not guess.\n"
+    "- Cite the source label ([P1], [G1], etc.) for each claim.\n"
     "Answer the user's question using ONLY the provided context."
 )
 
@@ -159,12 +175,50 @@ def _is_evolution_query(query: str) -> bool:
 # and rung are wired so this activates the moment a real second corpus does.
 _CROSS_CORPUS_SIGNALS = {
     "affect", "affects", "impact on", "impacts", "influence", "influences",
+    # Clinical / guideline-specific signals
+    "guideline", "guidelines", "according to", "recommendation", "recommended",
+    "threshold", "reference range", "normal range", "clinical significance",
+    "compare to", "comparison", "how does", "what does the guideline",
+    "what do guidelines", "is this normal", "is this abnormal",
+    "what does this mean", "interpret", "interpretation",
+    "deficiency", "excess", "elevated", "reduced", "optimal",
+    "treatment", "therapy", "management", "monitoring",
+    "concordant", "deviates", "conformance", "comply",
 }
 
 
 def _is_cross_corpus_query(query: str) -> bool:
     q = query.lower()
     return any(p in q for p in _CROSS_CORPUS_SIGNALS)
+
+
+# Source documents to exclude from cross-corpus guideline retrieval —
+# purely methodological/administrative PDFs that contain no clinical content
+# but match queries about "guidelines" strongly in embedding space.
+_GUIDELINE_EXCLUDE_DOCS = [
+    "Endocrine_Society_Guideline_Methodology_links.pdf",
+]
+
+
+# ── Corpus target classification ───────────────────────────────────────────────
+
+def _classify_corpus_target(query: str, active_patient_corpus_id: Optional[str] = None) -> str:
+    """
+    Determines which corpus_id to use for this query.
+
+    Priority:
+      1. Explicit corpus_id passed by the caller (handled in callers, not here)
+      2. If a patient corpus is active for this session, use it (combined mode)
+      3. Default to "guidelines"
+    """
+    if active_patient_corpus_id:
+        return active_patient_corpus_id
+    return "guidelines"
+
+
+def _is_patient_corpus(corpus_id: str) -> bool:
+    """Returns True if corpus_id refers to a patient corpus (not guidelines/default)."""
+    return corpus_id not in ("default", "guidelines", "")
 
 
 # ── Conflict detection ─────────────────────────────────────────────────────────
@@ -276,7 +330,7 @@ def format_context_versioned(
 
 # ── Traditional RAG baseline ───────────────────────────────────────────────────
 
-def retrieve_naive(query: str, n_candidates: int = 20) -> Dict:
+def retrieve_naive(query: str, n_candidates: int = 20, corpus_id: str = "default") -> Dict:
     """
     Flat vector search baseline — no routing, no conflict detection, no delta.
 
@@ -287,7 +341,7 @@ def retrieve_naive(query: str, n_candidates: int = 20) -> Dict:
     Use this to compare against retrieve() to demonstrate the value of
     hierarchical routing and version-conflict handling to clients.
     """
-    store   = cs.get_store()
+    store   = cs.get_store(corpus_id)
     results = store.query_corpus(query, n=n_candidates)
     chunks  = reranker.rerank(query, _chroma_to_chunks(results))
     return {
@@ -302,7 +356,7 @@ def retrieve_naive(query: str, n_candidates: int = 20) -> Dict:
     }
 
 
-def retrieve_overlap(query: str, n_candidates: int = 20) -> Dict:
+def retrieve_overlap(query: str, n_candidates: int = 20, corpus_id: str = "default") -> Dict:
     """
     Traditional RAG baseline — sliding-window chunks from raw markdown files.
 
@@ -314,7 +368,7 @@ def retrieve_overlap(query: str, n_candidates: int = 20) -> Dict:
     Useful for demonstrating the value added by the full pipeline (taxonomy
     routing, QnA-enriched chunks, version conflict detection, delta injection).
     """
-    store   = cs.get_store()
+    store   = cs.get_store(corpus_id)
     results = store.query_overlap(query, n=n_candidates)
     chunks  = reranker.rerank(query, _chroma_to_chunks(results))
     return {
@@ -368,6 +422,42 @@ def _reformulate(query: str, n: int = 3, timeout: float = 12.0, enable_thinking:
     return [query] * n
 
 
+_GUIDELINE_REFORMULATE_PROMPT = """\
+Rewrite the following patient-focused question into a clinical guideline search query.
+Strip patient-specific language (my, me, I, specific lab values) and extract the
+core clinical topic. Return ONLY the rewritten query, no explanation.
+
+Example:
+Patient question: "What does the guideline say about my B12 being 200?"
+Guideline query: "Vitamin B12 deficiency threshold management clinical guideline"
+
+Patient question: """
+
+
+def _reformulate_for_guidelines(query: str, timeout: float = 12.0) -> str:
+    """
+    Reformulate a patient-focused query into a guideline-friendly search query.
+    Strips patient-specific language and extracts the clinical topic.
+    Falls back to the original query if the LLM call fails.
+    """
+    prompt = _GUIDELINE_REFORMULATE_PROMPT + query
+    try:
+        raw = llm_client.chat(
+            prompt,
+            max_tokens=128,
+            temperature=0.2,
+            timeout=timeout,
+        )
+        raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
+        raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("` \n")
+        if raw and len(raw) > 5:
+            log.info(f"Guideline reformulation: '{query}' → '{raw}'")
+            return raw
+    except Exception as e:
+        log.warning(f"Guideline reformulation failed ({e}) — using original query")
+    return query
+
+
 def _top_rerank_score(result: Dict) -> float:
     scores = [c.get("rerank_score", c.get("score", 0.0)) for c in result["chunks"]]
     return max(scores) if scores else 0.0
@@ -406,6 +496,7 @@ def retrieve_merged(
     query: str,
     version: Optional[str] = None,
     verbose: bool           = False,
+    corpus_id: str          = "default",
 ) -> Dict:
     """
     Merges pipeline's routed candidates with naive's flat full-corpus
@@ -426,8 +517,8 @@ def retrieve_merged(
     delta injection untouched (naive has none of that) — only the final
     candidate pool and rerank are affected.
     """
-    pipeline_result = retrieve(query, version=version, verbose=verbose)
-    naive_result    = retrieve_naive(query)
+    pipeline_result = retrieve(query, version=version, verbose=verbose, corpus_id=corpus_id)
+    naive_result    = retrieve_naive(query, corpus_id=corpus_id)
 
     merged_chunks = _merge_pools(query, pipeline_result["chunks"], naive_result["chunks"])
 
@@ -447,6 +538,9 @@ def retrieve_merged_all(
     query: str,
     version: Optional[str] = None,
     verbose: bool           = False,
+    corpus_id: str          = "default",
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     """
     Same idea as retrieve_merged(), extended to a THIRD candidate source:
@@ -459,9 +553,9 @@ def retrieve_merged_all(
     union would only ever keep the FIRST overlap chunk and silently drop
     the rest as false "duplicates" of the empty string.
     """
-    pipeline_result = retrieve(query, version=version, verbose=verbose)
-    naive_result    = retrieve_naive(query)
-    overlap_result  = retrieve_overlap(query)
+    pipeline_result = retrieve(query, version=version, verbose=verbose, corpus_id=corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
+    naive_result    = retrieve_naive(query, corpus_id=corpus_id)
+    overlap_result  = retrieve_overlap(query, corpus_id=corpus_id)
 
     merged_chunks = _merge_pools(
         query, pipeline_result["chunks"], naive_result["chunks"], overlap_result["chunks"]
@@ -487,6 +581,9 @@ def retrieve_best_of_n(
     version: Optional[str]      = None,
     verbose: bool                = False,
     enable_thinking: bool       = False,
+    corpus_id: str              = "default",
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     """
     Best-of-N retrieval: generate n query reformulations, retrieve for each in
@@ -513,7 +610,7 @@ def retrieve_best_of_n(
     cs.warm()
 
     def _attempt(q: str) -> Dict:
-        return retrieve(q, intent=intent, version=version, verbose=verbose)
+        return retrieve(q, intent=intent, version=version, verbose=verbose, corpus_id=corpus_id, active_patient_corpus_id=active_patient_corpus_id, original_query=original_query)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=n) as pool:
         futures = [pool.submit(_attempt, q) for q in reformulations]
@@ -544,8 +641,8 @@ def _chroma_to_chunks(results: List[Dict]) -> List[Dict]:
     return out
 
 
-def _retrieve_specific(query: str, verbose: bool) -> Dict:
-    result     = hnsw_router.route(query)
+def _retrieve_specific(query: str, verbose: bool, corpus_id: str = "default") -> Dict:
+    result     = hnsw_router.route(query, corpus_id=corpus_id)
     raw_chunks = result["chunks"]
     final      = reranker.rerank(query, raw_chunks)
 
@@ -656,22 +753,22 @@ def _retrieve_specific(query: str, verbose: bool) -> Dict:
     }
 
 
-def _retrieve_corpus(query: str, version: Optional[str], source_doc: Optional[str]) -> Dict:
-    store   = cs.get_store()
+def _retrieve_corpus(query: str, version: Optional[str], source_doc: Optional[str], corpus_id: str = "default") -> Dict:
+    store   = cs.get_store(corpus_id)
     results = store.query_corpus(query, version=version, source_doc=source_doc)
     chunks  = reranker.rerank(query, _chroma_to_chunks(results))
     return {"path": {"collection": config.CORPUS_COLLECTION}, "chunks": chunks, "_source": "corpus"}
 
 
-def _retrieve_intelligence(query: str, version: Optional[str]) -> Dict:
-    store   = cs.get_store()
+def _retrieve_intelligence(query: str, version: Optional[str], corpus_id: str = "default") -> Dict:
+    store   = cs.get_store(corpus_id)
     results = store.query_intelligence(query, version=version)
     chunks  = reranker.rerank(query, _chroma_to_chunks(results))
     return {"path": {"collection": config.INTELLIGENCE_COLLECTION}, "chunks": chunks, "_source": "intelligence"}
 
 
-def _retrieve_delta(query: str, version_from: Optional[str], version_to: Optional[str]) -> Dict:
-    store   = cs.get_store()
+def _retrieve_delta(query: str, version_from: Optional[str], version_to: Optional[str], corpus_id: str = "default") -> Dict:
+    store   = cs.get_store(corpus_id)
     results = store.query_delta(query, version_from=version_from, version_to=version_to)
     chunks  = []
     for r in results:
@@ -708,6 +805,132 @@ def _retrieve_delta(query: str, version_from: Optional[str], version_to: Optiona
     return {"path": {"collection": config.DELTA_COLLECTION}, "chunks": chunks, "_source": "delta"}
 
 
+# ── Combined patient + guidelines retrieval ────────────────────────────────────
+
+def _retrieve_combined(
+    query: str,
+    intent: str,
+    version: Optional[str],
+    source_doc: Optional[str],
+    version_from: Optional[str],
+    version_to: Optional[str],
+    verbose: bool,
+    corpus_id: str,
+) -> Dict:
+    """
+    Patient-first dual-corpus retrieval:
+      1. Retrieve evidence from the patient corpus
+      2. Independently retrieve guideline evidence using the original question
+      3. Merge and rerank both pools with patient-first ordering
+      4. Use the combined system prompt for synthesis
+
+    Patient chunks are labeled [P1], [P2], etc. and guideline chunks are
+    labeled [G1], [G2], etc. in the final context for auditable citations.
+    """
+    log.info(f"Combined retrieval: patient={corpus_id}, intent={intent}")
+
+    # ── Step 1: retrieve from patient corpus ───────────────────────────────────
+    if intent == "specific":
+        patient_raw = _retrieve_specific(query, verbose, corpus_id=corpus_id)
+    elif intent == "factual":
+        patient_raw = _retrieve_corpus(query, version, source_doc, corpus_id=corpus_id)
+    elif intent == "intelligence":
+        patient_raw = _retrieve_intelligence(query, version, corpus_id=corpus_id)
+    elif intent == "delta":
+        patient_raw = _retrieve_delta(query, version_from, version_to, corpus_id=corpus_id)
+    else:
+        patient_raw = _retrieve_specific(query, verbose, corpus_id=corpus_id)
+
+    patient_chunks = patient_raw["chunks"]
+    log.info(f"Patient corpus: {len(patient_chunks)} chunks retrieved")
+
+    # ── Step 2: independently retrieve from guidelines ─────────────────────────
+    guideline_chunks = []
+    try:
+        guideline_store = cs.get_store("guidelines")
+        guideline_results = guideline_store.query_corpus(
+            query, n=config.CHROMA_N_CORPUS,
+            exclude_source_docs=_GUIDELINE_EXCLUDE_DOCS,
+        )
+        guideline_chunks = _chroma_to_chunks(guideline_results)
+        guideline_chunks = reranker.rerank(query, guideline_chunks)
+        log.info(f"Guidelines: {len(guideline_chunks)} chunks retrieved")
+    except Exception as e:
+        log.warning(f"Guideline retrieval failed: {e}")
+
+    # ── Step 3: merge with patient-first ordering ─────────────────────────────
+    # Tag chunks with source labels for the combined system prompt
+    for i, c in enumerate(patient_chunks):
+        c["_source_label"] = f"P{i + 1}"
+        c["_source_type"] = "patient"
+    for i, c in enumerate(guideline_chunks):
+        c["_source_label"] = f"G{i + 1}"
+        c["_source_type"] = "guideline"
+
+    # Merge: patient chunks first, then guidelines, then dedup + rerank
+    all_chunks = patient_chunks + guideline_chunks
+    merged_chunks = reranker.rerank(query, all_chunks)
+
+    # ── Step 4: format context with source labels ─────────────────────────────
+    context = _format_context_combined(merged_chunks)
+
+    # ── Step 5: conflict detection on patient chunks only ──────────────────────
+    conflicting_sections = detect_version_conflict(patient_chunks)
+    versioned = bool(conflicting_sections)
+    delta_findings = []
+    delta_used = False
+
+    if versioned and intent != "delta":
+        delta_findings = _inject_delta(conflicting_sections, query)
+        delta_used = bool(delta_findings)
+
+    return {
+        "query":         query,
+        "intent":        intent,
+        "path":          patient_raw["path"],
+        "chunks":        merged_chunks,
+        "context":       context,
+        "system_prompt": SYSTEM_PROMPT_COMBINED,
+        "versioned":     versioned,
+        "delta_used":    delta_used,
+        "corpus_id":     corpus_id,
+        "_source":       "combined",
+        "_patient_count": len(patient_chunks),
+        "_guideline_count": len(guideline_chunks),
+    }
+
+
+def _format_context_combined(chunks: List[Dict]) -> str:
+    """
+    Format context with explicit source labels [P1], [G1], etc.
+    Patient findings come first, then guideline recommendations.
+    """
+    patient_chunks = [c for c in chunks if c.get("_source_type") == "patient"]
+    guideline_chunks = [c for c in chunks if c.get("_source_type") == "guideline"]
+
+    parts = []
+
+    if patient_chunks:
+        parts.append("── Patient Report Findings ──")
+        for c in patient_chunks:
+            label = c.get("_source_label", "?")
+            source = c.get("source_doc", "")
+            section = c.get("section_header", "")
+            header = f"[{label}] {source} — {section}" if section else f"[{label}] {source}"
+            parts.append(f"{header}\n{c['text'].strip()}")
+
+    if guideline_chunks:
+        parts.append("\n── Clinical Guideline Recommendations ──")
+        for c in guideline_chunks:
+            label = c.get("_source_label", "?")
+            source = c.get("source_doc", "")
+            section = c.get("section_header", "")
+            header = f"[{label}] {source} — {section}" if section else f"[{label}] {source}"
+            parts.append(f"{header}\n{c['text'].strip()}")
+
+    return "\n\n".join(parts)
+
+
 # ── Main entry point ───────────────────────────────────────────────────────────
 
 def retrieve(
@@ -718,9 +941,18 @@ def retrieve(
     version_from: Optional[str] = None,
     version_to: Optional[str]   = None,
     verbose: bool                = False,
+    corpus_id: str               = "default",
+    active_patient_corpus_id: Optional[str] = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     """
     Full retrieval pipeline with smart conflict handling.
+
+    When corpus_id is a patient corpus, performs combined retrieval:
+      1. Retrieve evidence from the patient corpus
+      2. Independently retrieve guideline evidence using the original question
+      3. Merge and rerank both pools, preserving patient-first ordering
+      4. Use the combined system prompt for synthesis
 
     Returns:
         {
@@ -729,34 +961,52 @@ def retrieve(
           "path":          dict,
           "chunks":        list of chunk dicts,
           "context":       str  — formatted context block ready for LLM,
-          "system_prompt": str  — standard or versioned instruction set,
+          "system_prompt": str  — standard, versioned, or combined instruction set,
           "versioned":     bool — True if multi-version conflict was found,
           "delta_used":    bool — True if delta report was injected,
+          "corpus_id":     str  — resolved corpus_id used for this retrieval,
           "debug":         dict — only if verbose=True
         }
     """
+    # Resolve corpus_id if not explicitly provided
+    if corpus_id == "default" and active_patient_corpus_id:
+        corpus_id = active_patient_corpus_id
+
     resolved_intent = intent or classify(query)
-    log.info(f"Intent: {resolved_intent!r} — '{query[:70]}'")
+    log.info(f"Intent: {resolved_intent!r} — '{query[:70]}' — corpus: {corpus_id}")
+
+    # ── Cross-corpus shortcut ─────────────────────────────────────────────────
+    # When a patient corpus is active AND the query sounds cross-corpus-shaped,
+    # skip the single-corpus path entirely and retrieve from both corpora.
+    # Use original_query (pre-rewrite) for the check — session rewriting can
+    # strip intent signals like "guidelines" when resolving follow-ups.
+    _cross_corpus_check = original_query or query
+    if active_patient_corpus_id and _is_cross_corpus_query(_cross_corpus_check):
+        log.info("Cross-corpus query detected — using combined retrieval")
+        return _retrieve_combined(
+            query, resolved_intent, version, source_doc,
+            version_from, version_to, verbose, corpus_id,
+        )
 
     # ── Step 1: primary retrieval ──────────────────────────────────────────────
     if resolved_intent == "specific":
-        raw = _retrieve_specific(query, verbose)
+        raw = _retrieve_specific(query, verbose, corpus_id=corpus_id)
         # Widen to corpus if HNSW came up empty
         if not raw["chunks"]:
             log.info("HNSW empty — widening to corpus")
-            raw = _retrieve_corpus(query, version, source_doc)
+            raw = _retrieve_corpus(query, version, source_doc, corpus_id=corpus_id)
 
     elif resolved_intent == "factual":
-        raw = _retrieve_corpus(query, version, source_doc)
+        raw = _retrieve_corpus(query, version, source_doc, corpus_id=corpus_id)
 
     elif resolved_intent == "intelligence":
-        raw = _retrieve_intelligence(query, version)
+        raw = _retrieve_intelligence(query, version, corpus_id=corpus_id)
 
     elif resolved_intent == "delta":
-        raw = _retrieve_delta(query, version_from, version_to)
+        raw = _retrieve_delta(query, version_from, version_to, corpus_id=corpus_id)
 
     else:
-        raw = _retrieve_specific(query, verbose)
+        raw = _retrieve_specific(query, verbose, corpus_id=corpus_id)
 
     chunks  = raw["chunks"]
     source  = raw["_source"]
@@ -799,6 +1049,7 @@ def retrieve(
         "system_prompt": system_prompt,
         "versioned":     versioned,
         "delta_used":    delta_used,
+        "corpus_id":     corpus_id,
     }
 
     if verbose:

@@ -27,6 +27,7 @@ Bridge profiles (cross-document connections):
 """
 
 import json
+import os as _os
 import re
 import logging
 from pathlib import Path
@@ -173,13 +174,106 @@ Output ONLY a JSON object — no markdown, no preamble.  Close all braces.
       "master_label": "<specific 2-5 word noun phrase>",
       "description": "<1-2 sentence description>"
     }}
-  ]
+  ],
+  "delta_change_types": [
+    {{"name": "<domain-native category for a MEANINGFUL change, e.g. 'Coding Rule Clarification' for medical coding or 'Deprecation' for software>", "description": "<when to use this category, 1 sentence>"}},
+    {{"name": "<category>", "description": "<...>"}},
+    {{"name": "<category>", "description": "<...>"}},
+    {{"name": "<category — include one for a REVERSAL/contradiction between versions>", "description": "<...>"}},
+    {{"name": "<category — include one for 'no meaningful change / unrelated pair'>", "description": "<...>"}}
+  ],
+  "fusion_change_types": [
+    {{"name": "Concordant with Guideline", "description": "<the patient/case finding agrees with what the guideline recommends or expects>"}},
+    {{"name": "Deviates — Clinically Significant", "description": "<the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically>"}},
+    {{"name": "Deviates — Borderline", "description": "<the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant>"}},
+    {{"name": "Guideline Silent on This Case", "description": "<the guideline reference doesn't actually address this specific finding/scenario>"}}
+  ],
+  "delta_field_meaning": {{
+    "requirements": "<what a prerequisite/condition/mandate means for THIS domain — e.g. 'coding sequence prerequisite' vs 'runtime config flag'>",
+    "deprecated_items": "<what 'removed or superseded' means for THIS domain>",
+    "new_items": "<what 'newly introduced' means for THIS domain>"
+  }},
+  "field_labels": {{
+    "feature_name": "<short markdown header for what a single extracted profile IS in this domain, e.g. 'Test/Panel' for a lab report, 'Feature' for software release notes>",
+    "key_behaviors": "<short header for the main factual findings/behaviors, e.g. 'Findings' for lab reports, 'Key Behaviors' for software>",
+    "requirements": "<short header matching delta_field_meaning.requirements above, e.g. 'Patient Preparation / Method'>",
+    "deprecated_items": "<short header, OR JSON null if THIS DOMAIN HAS NO VERSIONING/CHANGE-OVER-TIME CONCEPT AT ALL — see RULES>",
+    "new_items": "<short header, OR JSON null if THIS DOMAIN HAS NO VERSIONING/CHANGE-OVER-TIME CONCEPT AT ALL — see RULES>",
+    "patient_value": "<short header for the patient's actual measured value, e.g. 'Patient Result' for lab reports, OR JSON null if this domain has no patient-specific values>",
+    "reference_range": "<short header for the normal/reference range, e.g. 'Reference Range' for lab reports, OR JSON null if not applicable>",
+    "interpretation": "<short header for clinical interpretation of the value, e.g. 'Clinical Interpretation' for lab reports, OR JSON null if not applicable>"
+  }},
+  "delta_few_shots": [
+    {{
+      "topic": "<short illustrative topic name plausible for this domain — invented, not from the samples>",
+      "version_a": "<1-2 sentence plausible OLDER-version behavior in this domain's own style>",
+      "version_b": "<1-2 sentence plausible NEWER-version behavior showing a COMMON/ENHANCEMENT-style change from version_a — old behavior still holds, new capability added>",
+      "change_type": "<must exactly match one \"name\" from delta_change_types above — pick the enhancement/common one>",
+      "analysis": "<2-3 sentences explaining the delta, modeling the reasoning style an analyst in this domain would use>"
+    }},
+    {{
+      "topic": "<a DIFFERENT illustrative topic — not the same as the first example>",
+      "version_a": "<1-2 sentence plausible OLDER-version behavior>",
+      "version_b": "<1-2 sentence plausible NEWER-version behavior that EXPLICITLY REVERSES or CONTRADICTS version_a — not just an addition>",
+      "change_type": "<must exactly match the REVERSAL/contradiction category name from delta_change_types above>",
+      "analysis": "<2-3 sentences explaining the delta>"
+    }}
+  ],
+  "qna_few_shots": [
+    {{"q": "<a WHY/HOW/WHAT-IF question a curious practitioner in this domain would ask about a change like delta_few_shots[0]>", "a": "<2-3 sentence reasoned answer>"}},
+    {{"q": "<a different WHY/HOW/WHAT-IF question, different angle>", "a": "<2-3 sentence reasoned answer>"}}
+  ],
+  "evolution_few_shot": {{
+    "topic": "<same topic/change as delta_few_shots[0] — the enhancement-style one>",
+    "foundation": "<one sentence: what the OLDER version established, matching delta_few_shots[0].version_a>",
+    "value_added": ["<concrete capability the NEWER version adds on top>", "<another, max 3>"],
+    "narrative": "<2-3 sentences: older version introduced X; newer version builds on it by Y, enabling Z>"
+  }}
 }}
 
 RULES:
 - Base the profile on the ACTUAL content provided — do not invent terms.
 - specialist_role and analyst_role must be specific to the detected domain.
 - labeling_few_shots MUST use real text from the samples, not invented text.
+- fusion_change_types: reproduce the four category names EXACTLY as shown in
+  the schema above (do not invent or rename them) — only the "description"
+  text may be lightly adapted to this domain's vocabulary. This is a fixed,
+  cross-domain taxonomy used for patient-vs-guideline conformance comparison,
+  unrelated to delta_change_types (which is for the same document compared
+  across its own versions).
+- delta_change_types, delta_few_shots, and qna_few_shots MAY be invented
+  illustrative examples (this domain's two document versions aren't both
+  available yet at profiling time) — but their STYLE, vocabulary, and change
+  categories must fit THIS domain specifically. Do not reuse software-release
+  concepts (runtime properties, UI tabs, API deprecation) unless the actual
+  domain IS software release notes.
+- delta_few_shots MUST contain 2 DIFFERENT examples with 2 DIFFERENT
+  change_type values (one common/enhancement-style, one reversal-style) —
+  showing only one category leaves every other category (including
+  mismatched/no-change pairs) with zero worked example to calibrate against.
+- evolution_few_shot re-tells delta_few_shots[0] (not a new invented topic)
+  as a constructive "what value did the newer version add" narrative — it
+  feeds evolution_analyzer.py, which only ever processes constructive
+  change types, so one worked example (not a contrasting pair) is enough.
+- field_labels.deprecated_items / field_labels.new_items: set to JSON null
+  (not a string, not "N/A") if this document type is a point-in-time
+  snapshot with NO inherent "changed since last time" framing — e.g. a lab
+  report, invoice, certificate, or exam result describes what IS true right
+  now, not what changed from a prior version of that SAME instance. Software
+  release notes, clinical coding guideline updates, and policy revisions DO
+  have this framing (each edition explicitly describes what's new/removed)
+  — set real short labels for those. When in doubt, ask: "does a single
+  instance of this document, read in isolation with no prior version in
+  hand, naturally talk about things being added or removed?" If no, null
+  it out — a summary of ONE document must never claim something is "new in
+  this version" when there is no other version to compare it to.
+- field_labels.patient_value / reference_range / interpretation: set to
+  JSON null if this document type does NOT contain patient-specific
+  measured values (e.g. software release notes, policy documents, clinical
+  guidelines). Set to short header strings (e.g. "Patient Result",
+  "Reference Range", "Clinical Interpretation") when the document IS a
+  patient lab report, diagnostic result, or similar point-in-time clinical
+  finding that contains patient-specific values alongside reference ranges.
 - key_terminology: 5-10 most important acronyms/abbreviations found.
 - entity_types: the recurring nouns/concepts that chunk labels should reference.
 - Output ONLY JSON.  No text before or after.  Close all braces."""
@@ -338,6 +432,13 @@ _DEFAULT_PROFILE = {
     "entity_types": ["documents", "features", "components", "configurations"],
     "key_terminology": {},
     "labeling_few_shots": [],
+    "delta_change_types": [],
+    "fusion_change_types": [],
+    "delta_field_meaning": {},
+    "field_labels": {},
+    "delta_few_shots": [],
+    "qna_few_shots": [],
+    "evolution_few_shot": {},
 }
 
 
@@ -407,7 +508,16 @@ def build_profiles(chunks: List[Dict]) -> Dict[str, dict]:
         )
 
         try:
-            raw = llm_client.generate(prompt, max_tokens=750, enable_thinking=False)
+            # Bumped from 750 -> 1600 for delta_change_types/delta_field_meaning/
+            # delta_few_shots/qna_few_shots, then -> 2200 for evolution_few_shot,
+            # then -> 2600 for field_labels — each addition pushed truncation
+            # further into the (most important, most domain-specific) later
+            # fields; a real ICD profile hit exactly this truncation at 1600
+            # once evolution_few_shot was added. field_labels sits BEFORE
+            # delta_few_shots/qna_few_shots/evolution_few_shot in the schema,
+            # so it directly eats into their headroom — bump this again if a
+            # profile's evolution_few_shot starts truncating.
+            raw = llm_client.generate(prompt, max_tokens=2600, enable_thinking=False)
             profile = _extract_json(raw)
 
             if not profile or "domain" not in profile:
@@ -466,10 +576,66 @@ def build_profiles(chunks: List[Dict]) -> Dict[str, dict]:
 # PUBLIC ACCESSORS  (used by downstream modules)
 # ══════════════════════════════════════════════════════════════════════════════
 
+_forced_profile_cache: Optional[dict] = None
+
+
+def _load_forced_profile() -> Optional[dict]:
+    """
+    Stage 2 (patient) runs must NEVER build their own context profile — they
+    strictly reuse the guideline KB's profile, forced via the
+    STAGE2_FORCED_PROFILE_PATH env var. This is env-var-driven (not an
+    in-process setter) because Stage 2's main.py and run_tail.py run as
+    separate subprocess invocations — an in-memory flag set in one would be
+    gone before the other starts. Stage 1's own runs never set this var, so
+    this always returns None for them and get_profile() behaves unchanged.
+    """
+    global _forced_profile_cache
+    if _forced_profile_cache is not None:
+        return _forced_profile_cache
+    path = _os.environ.get("STAGE2_FORCED_PROFILE_PATH")
+    if not path:
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        _forced_profile_cache = json.load(f)
+    return _forced_profile_cache
+
+
 def get_profile(source_doc: str) -> Optional[dict]:
-    """Look up the cached profile for a given source document filename."""
+    """
+    Look up the cached profile for a given source document filename.
+
+    If STAGE2_FORCED_PROFILE_PATH is set (Stage 2 patient runs), returns that
+    forced profile unconditionally, regardless of source_doc — bypassing
+    _derive_type_key() and the per-type_key on-disk cache entirely, so every
+    patient document reuses the guideline KB's single profile rather than
+    each patient PDF's own filename deriving (and potentially building) a
+    throwaway profile of its own.
+
+    Otherwise falls back to the on-disk cache (PROFILE_CACHE_DIR/{type_key}.json)
+    when _profiles is empty for this key — _profiles is only populated in-process
+    by build_profiles() (called from main.py's own process). run_tail.py is a
+    SEPARATE process/invocation that never calls build_profiles(), so without
+    this fallback every get_profile() call here (delta_analyzer.py,
+    topic_summarizer.py, hierarchy_summarizer.py, grouper.py) silently
+    returned None and fell back to generic defaults, regardless of how good
+    the actual saved profile was.
+    """
+    forced = _load_forced_profile()
+    if forced is not None:
+        return forced
+
     key = _derive_type_key(source_doc)
-    return _profiles.get(key)
+    if key in _profiles:
+        return _profiles[key]
+
+    cache_path = PROFILE_CACHE_DIR / f"{key}.json"
+    if cache_path.exists():
+        with open(cache_path, "r", encoding="utf-8") as f:
+            profile = json.load(f)
+        _profiles[key] = profile
+        return profile
+
+    return None
 
 
 def get_all_profiles() -> Dict[str, dict]:
@@ -563,3 +729,78 @@ def get_few_shot_block(source_doc: str) -> str:
             f'"description": "{desc}"}}'
         )
     return "\n\n".join(parts)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# CLINICAL URGENCY CLASSIFIER  (hybrid: keyword pre-filter + LLM override)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Keyword patterns for deterministic urgency classification.
+# Each tuple: (level, [regex patterns]) — checked top-down, first match wins.
+_URGENCY_KEYWORDS: list = [
+    ("critical", [
+        re.compile(r"\b(?:emergency|life[\s-]threatening|cardiac\s+arrest|anaphylaxis|"
+                   r"status\s+epilepticus|sepsis|septic\s+shock|acute\s+myocardial|"
+                   r"myocardial\s+infarction|stroke|overdose|poisoning|resuscitation|"
+                   r"ventilat(?:or|ion)|intubation|hemorrhag|exsanguinat|"
+                   r"tension\s+pneumothorax|cardiac\s+tamponad|dissect|"
+                   r"acute\s+respiratory\s+failure|code\s+blue|"
+                   r"immediate(?:ly)?\s+(?:life[\s-]saving|intervention))\b", re.I),
+    ]),
+    ("high", [
+        re.compile(r"\b(?:contraindicated?|contraindication|severe|urgent|"
+                   r"hospitaliz|ICU|intensive\s+care|surgery|surgical|"
+                   r"biopsy|amputat|transplant|dialysis|"
+                   r"high[\s-]risk|critical[\s-]value|stat(?:us)?\s+labs?|"
+                   r"troponin|lactate|arterial\s+blood\s+gas|"
+                   r"immediate(?:ly)?\s+(?:required|necessary))\b", re.I),
+    ]),
+    ("moderate", [
+        re.compile(r"\b(?:monitor(?:ing)?|follow[\s-]up|dos(?:e|ing)|"
+                   r"drug\s+interaction|side\s+effect|titrat|"
+                   r"therapeutic|therapeutics|medication|pharmacol|"
+                   r"renal\s+impairment|hepatic\s+impairment|"
+                   r"periodic(?:ally)?|interval|reassess|"
+                   r"moderate[\s-]risk)\b", re.I),
+    ]),
+    ("low", [
+        re.compile(r"\b(?:screening|prevention|preventive|prophyla|"
+                   r"lifestyle|diet(?:ary)?|exercise|vaccinat|"
+                   r"immuniz|wellness|routine|annual|"
+                   r"low[\s-]risk|counsel|education|"
+                   r"patient\s+education)\b", re.I),
+    ]),
+    ("informational", [
+        re.compile(r"\b(?:conflict\s+of\s+interest|disclosure|definition|"
+                   r"glossary|abbreviation|acronym|"
+                   r"coding\s+guideline|documentation|"
+                   r"reference\s+range|normal\s+values|"
+                   r"table\s+of\s+contents|appendix|"
+                   r"version\s+history|changelog|"
+                   r"purpose|scope|introduction|overview|"
+                   r"methodology|terminology)\b", re.I),
+    ]),
+]
+
+SIGNIFICANCE_LEVELS = ("critical", "high", "moderate", "low", "informational")
+
+
+def classify_clinical_urgency(text: str) -> Optional[str]:
+    """
+    Deterministic keyword-based urgency classifier.
+
+    Scans the text against clinical urgency keyword patterns.
+    Returns the first matching level (critical > high > moderate > low > informational),
+    or None if no keywords match (LLM should classify instead).
+
+    This is the hybrid pre-filter: obvious cases get deterministic labels,
+    ambiguous cases fall through to the LLM for classification.
+    """
+    if not text:
+        return None
+
+    for level, patterns in _URGENCY_KEYWORDS:
+        for pat in patterns:
+            if pat.search(text):
+                return level
+    return None

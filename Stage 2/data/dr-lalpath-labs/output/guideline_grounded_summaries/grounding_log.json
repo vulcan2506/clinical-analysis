@@ -1,0 +1,1423 @@
+[
+  {
+    "patient_topic": "Clinical Laboratory Information",
+    "candidate_guideline_topic": "post-analytical result validation",
+    "retrieval_score": 0.4228,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to post-analytical validation of lipid results as described in the patient topic.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Clinical Laboratory Information",
+    "candidate_guideline_topic": "A1C test standardization guidelines",
+    "retrieval_score": 0.4096,
+    "reranker_score": null,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "A1C testing is relevant due to the presence of diabetes in the patient context.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "CBC diagnostic review framework",
+    "retrieval_score": 0.4766,
+    "reranker_score": 0.9999772310256958,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses CBC interpretation framework, integrating automated analyzers with morphological findings and clinical presentation, which aligns with the patient's CBC report and its clinical interpretation context.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1831_1832_1833_1834_1835_1836_1837"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "CBC interpretation and analysis framework",
+    "retrieval_score": 0.4825,
+    "reranker_score": 0.9988956451416016,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on systematic interpretation and quality assurance in CBC analysis, which is directly relevant to the patient's CBC report and its clinical interpretation context.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1886"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "red blood cell parameter assessment",
+    "retrieval_score": 0.6735,
+    "reranker_score": 0.9982795715332031,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline covers RBC parameters (hemoglobin, hematocrit) and their clinical significance, which are directly relevant to the patient's CBC report.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1838"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "CBC analysis enhancement system",
+    "retrieval_score": 0.443,
+    "reranker_score": 0.9975646734237671,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses advanced CBC analysis techniques (e.g., flow cytometry, AI algorithms), which are not directly relevant to the patient's current CBC report but may be useful in specialized contexts.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1848"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "anemia diagnostic scoring system",
+    "retrieval_score": 0.598,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline provides anemia classification based on RBC morphology (MCV thresholds), which is directly relevant to interpreting hemoglobin and hematocrit results in the patient's CBC report.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "hematological parameter trends",
+    "retrieval_score": 0.5895,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on tracking hematological parameter trends (e.g., hemoglobin, MCV), which aligns with the patient's CBC report and its emphasis on monitoring changes over time.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "hematologic response monitoring",
+    "retrieval_score": 0.5759,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline addresses monitoring hemoglobin, MCV, and RDW changes over time to assess treatment response, which is directly relevant to the patient's CBC report and its clinical interpretation context.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "anemia treatment response criteria",
+    "retrieval_score": 0.5206,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline defines criteria for anemia treatment response (e.g., complete/partial response), which aligns with the patient's CBC report and its emphasis on treatment response assessment.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "platelet parameter analysis",
+    "retrieval_score": 0.5188,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline focuses on platelet parameters, which are not the primary focus of the patient's CBC report (hemoglobin/hematocrit). Only relevant if platelet abnormalities are suspected.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "hematology analyzer quality assurance",
+    "retrieval_score": 0.4859,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline addresses quality assurance in hematology analyzers, which is relevant to ensuring the reliability of the patient's CBC report results.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "data management workflow",
+    "retrieval_score": 0.4764,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline focuses on data management workflow, which is tangentially relevant to CBC reporting but not directly enriching the patient's CBC report interpretation.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "electrolytes.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Complete Blood Count Report",
+    "candidate_guideline_topic": "diagnostic test performance metrics",
+    "retrieval_score": 0.4754,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses diagnostic test performance metrics for CBC interpretation, which is relevant to the quality and reliability of the patient's CBC report but not directly enriching the clinical interpretation.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Fasting Glucose Measurement",
+    "candidate_guideline_topic": "diagnostic criteria for diabetes",
+    "retrieval_score": 0.5293,
+    "reranker_score": 0.9966052770614624,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses diagnostic criteria for diabetes, which is the same clinical subject as the patient's fasting glucose measurement.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf",
+      "ICMR Type 2 Diabetes.pdf"
+    ],
+    "selected_chunks": [
+      "500_501"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Fasting Glucose Measurement",
+    "candidate_guideline_topic": "glycemic management guidelines",
+    "retrieval_score": 0.5455,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline includes relevant portions about glycemic status assessment and individualized glycemic goals, which are related to the patient's fasting glucose measurement.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf",
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "glycemic control targets",
+    "retrieval_score": 0.5586,
+    "reranker_score": 0.9999771118164062,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses glycemic control targets, which is the core subject of the patient's HbA1c interpretation. Includes Time in Range and hypoglycemia risk management, both relevant to the patient's context.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf",
+      "ICMR Type 2 Diabetes.pdf"
+    ],
+    "selected_chunks": [
+      "728"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "individualized glycemic management",
+    "retrieval_score": null,
+    "reranker_score": 0.999975323677063,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on individualized glycemic management, which is central to the patient's HbA1c interpretation. Emphasizes shared decision-making and avoidance of therapeutic inertia, both relevant to the patient's context.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf | ICMR Type 2 Diabetes.pdf"
+    ],
+    "selected_chunks": [
+      "1008"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "hospitalized hyperglycemia management",
+    "retrieval_score": null,
+    "reranker_score": 0.9988719820976257,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline addresses hospitalized hyperglycemia management, which is partially relevant to the patient's HbA1c interpretation (e.g., severe hyperglycemia management). However, the patient is not explicitly described as hospitalized.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf | ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+    ],
+    "selected_chunks": [
+      "459"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "glycemic status assessment methods",
+    "retrieval_score": 0.6149,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on glycemic status assessment methods, including HbA1c and CGM metrics like Time in Range (TIR), which are directly relevant to the patient's HbA1c interpretation.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "glycemic management guidelines",
+    "retrieval_score": 0.5902,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline covers comprehensive glycemic management, including individualized goals and use of GLP-1 RA in T2D with CKD, which is directly relevant to the patient's context (diabetes, CKD, etc.).",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf",
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "HbA1c Interpretation Guidance",
+    "candidate_guideline_topic": "hypoglycemia risk assessment protocol",
+    "retrieval_score": 0.5424,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline addresses hypoglycemia risk assessment, which is partially relevant to the patient's HbA1c interpretation (e.g., severe hypoglycemia prevention is mentioned in the patient's context). However, the guideline is more focused on inpatient insulin therapy management.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "creatinine and cystatin C assay standardization",
+    "retrieval_score": 0.5837,
+    "reranker_score": 0.9999781847000122,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses assay standardization for creatinine and cystatin C, which are key markers for kidney function assessment (eGFR). Patient has CKD and diabetes, making this highly relevant.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [
+      "1570_1572_1573"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "GFR evaluation methodology",
+    "retrieval_score": 0.6548,
+    "reranker_score": 0.9999767541885376,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on GFR evaluation methodology using serum creatinine and cystatin C, which is the core of kidney function assessment. Patient has CKD and diabetes, making this directly applicable.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [
+      "1546_1547_1548"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "CKD diagnostic method comparison tables",
+    "retrieval_score": 0.5708,
+    "reranker_score": 0.9999428987503052,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses CKD diagnostic methods, including urine albumin measurement and GFR assessment, which are relevant to kidney function assessment. However, it is broader than the patient's immediate need.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [
+      "1438_1439_1440"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "renal dosing and GFR assessment",
+    "retrieval_score": 0.5787,
+    "reranker_score": 0.9989848732948303,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on renal dosing and GFR assessment, which is critical for medication management in patients with kidney dysfunction. Patient has CKD and is on statin therapy.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [
+      "1750_1751"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "GFR assessment standardization",
+    "retrieval_score": 0.6947,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline addresses GFR assessment standardization using creatinine and cystatin C, which is directly relevant to the patient's kidney function assessment.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "point-of-care kidney function testing",
+    "retrieval_score": 0.663,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses point-of-care testing for creatinine and albumin, which may be relevant if lab access is limited. However, the patient's context does not indicate a need for POCT.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "eGFR variation analysis framework",
+    "retrieval_score": 0.6126,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses eGFR variation analysis, which is relevant to interpreting changes in kidney function over time. Patient has CKD, making this partially applicable.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "GFR estimation methodology",
+    "retrieval_score": 0.5961,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline focuses on GFR estimation methodology, which is the core of kidney function assessment. Patient has CKD and diabetes, making this highly relevant.",
+    "required_context": [
+      "ckd"
+    ],
+    "validated_context": [
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Kidney Function Assessment",
+    "candidate_guideline_topic": "diabetic nephropathy monitoring",
+    "retrieval_score": 0.5953,
+    "reranker_score": null,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Guideline focuses on diabetic nephropathy monitoring, which is relevant because the patient has diabetes and CKD. However, it is specific to diabetic kidney disease management.",
+    "required_context": [
+      "diabetes",
+      "ckd"
+    ],
+    "validated_context": [
+      "diabetes",
+      "ckd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf",
+      "ICMR Type 2 Diabetes.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Laboratory Result Validation Protocol",
+    "candidate_guideline_topic": "post-analytical result validation",
+    "retrieval_score": 0.6399,
+    "reranker_score": 0.9998431205749512,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "The guideline topic directly addresses post-analytical result validation, which is explicitly mentioned in the patient topic's clinical interpretation and key clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1843"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Laboratory Result Validation Protocol",
+    "candidate_guideline_topic": "CBC interpretation and analysis framework",
+    "retrieval_score": 0.5933,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "The guideline topic includes systematic interpretation and quality assurance in clinical laboratory practice, which partially overlaps with the patient topic's focus on validation protocols.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Laboratory Result Validation Protocol",
+    "candidate_guideline_topic": "hematology analyzer quality assurance",
+    "retrieval_score": 0.5312,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "The guideline topic includes regular calibration and quality control monitoring for accurate results, which partially overlaps with the patient topic's focus on validation protocols.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "ApoB Measurement Recommendation",
+    "retrieval_score": 0.7401,
+    "reranker_score": 0.9999802112579346,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses ApoB measurement, which is explicitly recommended in the patient's clinical actions for risk refinement.",
+    "required_context": [
+      "ascvd",
+      "diabetes"
+    ],
+    "validated_context": [
+      "ascvd",
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "41_42_43_44"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipid Screening Recommendation",
+    "retrieval_score": 0.778,
+    "reranker_score": 0.9999785423278809,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses lipid screening frequency, which is tangentially relevant to the patient's lipid panel protocol but not directly actionable.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "31_33_34"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipid Measurement Guideline Update",
+    "retrieval_score": 0.7308,
+    "reranker_score": 0.9999778270721436,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses lipid measurement updates, including LDL-C estimation methods and ApoB/Lp(a) assessment, which are explicitly mentioned in the patient's clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "5_6_8"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Diabetes-Specific Lipid Management Guideline",
+    "retrieval_score": 0.613,
+    "reranker_score": 0.9999699592590332,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Guideline is diabetes-specific but becomes relevant due to the patient's diabetes context.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf",
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [
+      "858_859_860"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipid Monitoring and Treatment Response Guideline",
+    "retrieval_score": 0.74,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses lipid monitoring and treatment response, which is explicitly mentioned in the patient's clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipoprotein(a) and Statin Therapy Analysis",
+    "retrieval_score": 0.708,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline focuses on Lp(a) and statin therapy, which is partially relevant to the patient's lipid panel protocol but not directly actionable.",
+    "required_context": [
+      "ascvd"
+    ],
+    "validated_context": [
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Nonfasting Lipid Risk Prediction",
+    "retrieval_score": 0.7033,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses nonfasting lipid measurements, which is explicitly mentioned in the patient's clinical interpretation.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipid Goal Attainment Strategy",
+    "retrieval_score": 0.6945,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses lipid goal attainment strategies, which is tangentially relevant to the patient's lipid panel protocol but not directly actionable.",
+    "required_context": [
+      "ascvd"
+    ],
+    "validated_context": [
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "Lipoprotein Target Guideline",
+    "retrieval_score": 0.6671,
+    "reranker_score": null,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Guideline discusses lipoprotein targets and CAC scoring, which becomes relevant due to the patient's diabetes and ASCVD context.",
+    "required_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "validated_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Panel Measurement Protocol",
+    "candidate_guideline_topic": "inflammatory and genetic cardiovascular risk markers",
+    "retrieval_score": 0.6392,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline discusses inflammatory and genetic cardiovascular risk markers, which is tangentially relevant to the patient's lipid panel protocol.",
+    "required_context": [
+      "ascvd"
+    ],
+    "validated_context": [
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Lipid Disorders.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Lipid Monitoring and Treatment Response Guideline",
+    "retrieval_score": 0.6377,
+    "reranker_score": 0.9992559552192688,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly addresses lipid monitoring timing and frequency, which is explicitly mentioned in the patient topic's clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "50_51_52_53"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Diabetes-Specific Lipid Management Guideline",
+    "retrieval_score": null,
+    "reranker_score": 0.9988273978233337,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to diabetes-specific lipid management, which is present in the patient's knowledge universe (diabetes = PRESENT).",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia.pdf | American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [
+      "858_859_860"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Lipid Screening Recommendation",
+    "retrieval_score": 0.6325,
+    "reranker_score": 0.9955381155014038,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Lipid screening is relevant due to the presence of diabetes and ASCVD in the patient's context, but the guideline itself is about screening rather than thresholds.",
+    "required_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "validated_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "31_33_34"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "2026 LDL-C Target Guideline",
+    "retrieval_score": 0.5221,
+    "reranker_score": 0.9950243830680847,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly addresses LDL-C targets, which are explicitly mentioned in the patient topic's clinical actions and interpretations.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "227"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Lipid Measurement Guideline Update",
+    "retrieval_score": 0.6253,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to lipid measurement methods and additional assessments (e.g., apoB, Lp(a)), which are mentioned in the patient topic's clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Lipid Goal Attainment Strategy",
+    "retrieval_score": 0.621,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly addresses lipid goal attainment and intensification of therapy, which is explicitly mentioned in the patient topic's clinical actions.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "Nonfasting Lipid Risk Prediction",
+    "retrieval_score": 0.5912,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant to risk prediction using non-HDL cholesterol and apoB, but the patient topic focuses on thresholds rather than measurement timing or fasting status.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Test Result Thresholds",
+    "candidate_guideline_topic": "ApoB Measurement Recommendation",
+    "retrieval_score": 0.5395,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to apoB measurement recommendations, which are mentioned in the patient topic's clinical actions and are applicable due to the presence of diabetes and ASCVD.",
+    "required_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "validated_context": [
+      "diabetes",
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "LDL-C treatment goals and risk reduction strategies",
+    "retrieval_score": 0.7327,
+    "reranker_score": 0.999980092048645,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Essentially the same clinical subject (LDL-C treatment goals) with directly useful information for the patient's lipid treatment thresholds.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Lipid Disorders.pdf"
+    ],
+    "selected_chunks": [
+      "2512"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "Severe Hypercholesterolemia Management",
+    "retrieval_score": 0.6506,
+    "reranker_score": 0.9999591112136841,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Partially relevant due to severe hypercholesterolemia management, but the patient's LDL-C levels are not specified to be ≥190 mg/dL.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf",
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [
+      "168_169_171_172_173_175_176"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "Patient Group Criteria",
+    "retrieval_score": 0.6808,
+    "reranker_score": 0.9999037981033325,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant due to familial hypercholesterolemia criteria, but the patient's LDL-C levels are not specified to meet the criteria for Groups A, B, or C.",
+    "required_context": [
+      "familial_hypercholesterolemia"
+    ],
+    "validated_context": [
+      "familial_hypercholesterolemia"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "177_178"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "2026 LDL-C Target Guideline",
+    "retrieval_score": 0.703,
+    "reranker_score": 0.9998916387557983,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant for LDL-C target goals and genetic testing for FH, but the patient's LDL-C levels are not specified to meet the criteria for target goals.",
+    "required_context": [
+      "familial_hypercholesterolemia"
+    ],
+    "validated_context": [
+      "familial_hypercholesterolemia"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "227"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "Lipid Goal Attainment Strategy",
+    "retrieval_score": 0.762,
+    "reranker_score": null,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to lipid goal attainment strategy for the patient's lipid treatment thresholds.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "Lipid-Lowering Therapy Framework",
+    "retrieval_score": 0.6831,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant for lipid-lowering therapy framework and nonstatin medications, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf",
+      "Lipid Disorders.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "LDL Reduction Therapy",
+    "retrieval_score": 0.6767,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant for LDL reduction therapy and risk stratification, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "2026 Dyslipidemia Guideline Update",
+    "retrieval_score": 0.6682,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant for severe hypercholesterolemia and subclinical coronary atherosclerosis management, but the patient's LDL-C levels are not specified to be ≥190 mg/dL.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "Cholesterol Lowering Evidence Base",
+    "retrieval_score": 0.6652,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Relevant for cholesterol lowering evidence base, but not all portions are directly applicable to the patient's lipid treatment thresholds.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Lipid Treatment Thresholds",
+    "candidate_guideline_topic": "LDL-C Lowering Evidence Synthesis",
+    "retrieval_score": 0.6648,
+    "reranker_score": null,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Relevant due to the presence of diabetes in the patient's context, but the guideline is focused on LDL-C lowering evidence synthesis rather than treatment thresholds.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "Statin Therapy Guidance",
+    "retrieval_score": null,
+    "reranker_score": 0.9985224604606628,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly addresses statin therapy intensity and LDL-C goals, aligning with the patient's therapeutic decision framework for dyslipidemia management.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "305"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "Risk Enhancer Consideration",
+    "retrieval_score": null,
+    "reranker_score": 0.9983097314834595,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Directly relevant to the patient's therapeutic decision framework, particularly for borderline/intermediate ASCVD risk where risk enhancers are used to personalize lipid-lowering therapy decisions.",
+    "required_context": [
+      "ascvd"
+    ],
+    "validated_context": [
+      "ascvd"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "136"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "clinical practice guideline framework",
+    "retrieval_score": 0.5186,
+    "reranker_score": 0.9940901398658752,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Provides a framework for guideline development, including cost/value methodology, which aligns with the patient's therapeutic decision framework's emphasis on clinical and economic evidence.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf",
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [
+      "1398"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "Dyslipidemia Treatment Guideline",
+    "retrieval_score": null,
+    "reranker_score": 0.9911521077156067,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Comprehensive dyslipidemia management guideline that directly addresses therapeutic decisions, statin initiation, and shared decision-making, matching the patient's therapeutic decision framework.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [
+      "301_302_303_310"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "graded clinical recommendation framework",
+    "retrieval_score": 0.4859,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Provides a grading methodology for clinical recommendations, which could support the patient's therapeutic decision framework but does not directly address dyslipidemia management.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Chronic Kidney Disease.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Therapeutic Decision Framework",
+    "candidate_guideline_topic": "Evidence-Based Recommendation Framework",
+    "retrieval_score": 0.4682,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Provides an evidence-based recommendation framework that could support the patient's therapeutic decision framework but does not directly address dyslipidemia management.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA AGS-APhA-ASPC-NLA-PCNA Guideline on the Management of Dyslipidemia.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Thyroid Function Testing Guidelines",
+    "candidate_guideline_topic": "preconception thyroid screening",
+    "retrieval_score": 0.6779,
+    "reranker_score": 0.9988036155700684,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Guideline focuses on preconception thyroid screening in T1DM, which is relevant due to patient's pregnancy context.",
+    "required_context": [
+      "pregnancy",
+      "diabetes"
+    ],
+    "validated_context": [
+      "pregnancy",
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "ICMR_Guidelines_for_Management_of_Type_1_Diabetes.pdf"
+    ],
+    "selected_chunks": [
+      "2459"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "vitamin B12 essential functions and deficiency",
+    "retrieval_score": 0.4293,
+    "reranker_score": 0.9999774694442749,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses vitamin B12 deficiency and its clinical implications, which is the core subject of the patient topic.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Dietary advice for Vitamin B12 and folate deficiency.pdf"
+    ],
+    "selected_chunks": [
+      "1888_1889_1890"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "B12 dietary sources and vegan management",
+    "retrieval_score": 0.4767,
+    "reranker_score": 0.9997743964195251,
+    "match_type": "DIRECT_MATCH",
+    "match_reason": "Guideline directly addresses dietary sources and management of vitamin B12, which is directly relevant to the patient's low B12 level and potential dietary deficiencies.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Dietary advice for Vitamin B12 and folate deficiency.pdf"
+    ],
+    "selected_chunks": [
+      "1891_1892"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "microcytic hypochromic anemia profile",
+    "retrieval_score": 0.4838,
+    "reranker_score": 0.999675989151001,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline focuses on microcytic hypochromic anemia, which is a potential consequence of B12 deficiency but not the primary subject of the patient topic.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [
+      "1864"
+    ],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "anemia treatment response criteria",
+    "retrieval_score": 0.5025,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline addresses anemia treatment response criteria, which is indirectly relevant to B12 deficiency management but not the primary focus.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "red blood cell parameter assessment",
+    "retrieval_score": 0.4668,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline addresses red blood cell parameter assessment, which is relevant to B12 deficiency's hematologic effects but not the primary subject.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin B12 Reference Range",
+    "candidate_guideline_topic": "premenopausal microcytic anemia diagnosis",
+    "retrieval_score": 0.4449,
+    "reranker_score": null,
+    "match_type": "PARTIAL_MATCH",
+    "match_reason": "Guideline addresses microcytic anemia diagnosis, which is a potential consequence of B12 deficiency but not the primary subject.",
+    "required_context": [],
+    "validated_context": [],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "Complete_Blood_Count_CBC_Interpretation_and_Analys.pdf"
+    ],
+    "selected_chunks": [],
+    "summary_attached": true
+  },
+  {
+    "patient_topic": "Vitamin D Measurement Reference",
+    "candidate_guideline_topic": "glycemic management for bone health",
+    "retrieval_score": null,
+    "reranker_score": 0.9999388456344604,
+    "match_type": "CONTEXTUAL_MATCH",
+    "match_reason": "Guideline focuses on bone health in diabetes, which is relevant given patient's diabetes context.",
+    "required_context": [
+      "diabetes"
+    ],
+    "validated_context": [
+      "diabetes"
+    ],
+    "rejected_context": [],
+    "selected_source_documents": [
+      "American Diabetes Association Care Guidence.pdf"
+    ],
+    "selected_chunks": [
+      "590"
+    ],
+    "summary_attached": true
+  }
+]

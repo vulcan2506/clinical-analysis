@@ -9,6 +9,9 @@ export interface ChatChunk {
   version: string;
   score?: number;
   rerank_score?: number;
+  // Cross-corpus fields — present when retrieval merged patient + guideline corpora
+  _source_type?: string;  // "patient" | "guideline"
+  _source_label?: string; // "[P1]", "[G1]", etc.
 }
 
 export interface ChatResponse {
@@ -32,6 +35,8 @@ export interface ChatRequestParams {
   version?: string;
   raw?: boolean;
   session_id?: string;
+  corpus_id?: string;
+  active_patient_corpus_id?: string;
 }
 
 export type ChatMode = "concise" | "detailed";
@@ -98,4 +103,116 @@ export interface VisualizeRequest {
 export interface VisualizeResponse {
   mermaid: string;
   viz_type: VizType;
+}
+
+// ── Taxonomy types (enterprise_nested_topics.json) ──────────────────────────
+
+export type SignificanceLevel = "critical" | "high" | "moderate" | "low" | "informational";
+
+export interface TaxonomyTopic {
+  master_label: string;
+  summarized_description: string;
+  description: string;
+  keywords: string;
+  source_docs: string[];
+  chunk_ids: string[];
+  qna: Record<string, Array<{ q: string; a: string }>>;
+  grounded_summary: string;
+  relevance_confidence_score: number;
+  significance_level?: SignificanceLevel;
+  is_standalone_outlier?: boolean;
+}
+
+export interface TaxonomySubCategory {
+  sub_category_name: string;
+  sub_category_description: string;
+  topics: TaxonomyTopic[];
+}
+
+export interface TaxonomyParent {
+  parent_category_name: string;
+  parent_category_description: string;
+  sub_categories: TaxonomySubCategory[];
+}
+
+export interface TaxonomyRoot {
+  taxonomy: TaxonomyParent[];
+}
+
+// ── /api/corpora ─────────────────────────────────────────────────────────────
+
+export interface CorpusInfo {
+  id: string;
+  label: string;
+  pdf_count: number;
+  built: boolean;
+}
+
+export interface CorporaStatus {
+  guidelines: CorpusInfo;
+  patients: CorpusInfo[];
+}
+
+// ── Fusion change types (context_profiler.py fixed vocabulary) ──────────────
+
+export type FusionChangeType =
+  | "Concordant with Guideline"
+  | "Deviates — Clinically Significant"
+  | "Deviates — Borderline"
+  | "Guideline Silent on This Case";
+
+// ── Enhanced summary endpoint ───────────────────────────────────────────────
+// Matching is routing, never rewriting — matched guideline topics carry their
+// ORIGINAL curated summaries verbatim plus match provenance.
+
+export type GuidelineMatchType =
+  | "DIRECT_MATCH"
+  | "PARTIAL_MATCH"
+  | "CONTEXTUAL_MATCH"
+  | "NO_MATCH";
+
+export interface MatchedGuidelineTopic {
+  label: string;
+  match_type: GuidelineMatchType | string;
+  score: number | null;
+  match_reason: string;
+  source_docs: string[];
+  summary: string;
+}
+
+export interface EnhancedSummaryResponse {
+  topic: string;
+  patient_summary: string;
+  matched_guideline_topics: MatchedGuidelineTopic[];
+  grounding_status: string;
+  from_offline: boolean;
+  from_cache: boolean;
+}
+
+// ── Guideline conformance endpoint ──────────────────────────────────────────
+
+export interface GuidelineConformanceResponse {
+  topic: string;
+  matches: number;
+  guideline_kb_version: string;
+  delta: Array<{
+    guideline_label: string;
+    guideline_score: number;
+    change_type: string | null;
+    analysis: string;
+    key_differences: string[];
+    confidence: string;
+  }>;
+  evolution: Array<{
+    guideline_label: string;
+    feature_name: string;
+    foundation: string;
+    value_added: string[];
+    narrative: string;
+    change_type: string;
+    clinical_finding?: string;
+    guideline_context?: string;
+    clinical_significance?: string;
+  }>;
+  from_cache: boolean;
 }

@@ -1,0 +1,4 @@
+|  Contraindications | Medical | Obstetric  |
+| --- | --- | --- |
+|  Absolute | - Hemodynamically significant heart disease - Restrictive lung disease | - Incompetent cervix - Multiple gestation at risk for premature labour - Persistent second or third trimester bleeding - Placenta previa after 26 weeks gestation - Premature labour during the current pregnancy - Ruptured membranes - Pre-eclampsia, pregnancy induced hypertension  |
+|  Relative | - Severe anemia - Unevaluated maternal cardiac arrhythmias - Chronic bronchitis - Uncontrolled diabetes - Extreme morbid obesity - Extreme underweight (BMI <12 kg/m^{2}) - History of extremely sedentary lifestyle - Poorly controlled hypertension - Poorly controlled hyperthyroidism - Poorly controlled seizures - Orthopaedic limitations - Heavy smoker | - Intrauterine growth restriction in the current pregnancy  |

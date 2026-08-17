@@ -1,0 +1,133 @@
+{
+  "domain": "clinical nutrition and deficiency management",
+  "document_purpose": "patient education and dietary guidance for vitamin B12 and folate deficiency",
+  "specialist_role": "clinical dietitian specializing in micronutrient deficiencies",
+  "analyst_role": "medical content analyst for nutritional guidelines",
+  "entity_types": [
+    "vitamin B12 deficiency",
+    "folate deficiency",
+    "medication interactions",
+    "digestive disorders",
+    "dietary sources",
+    "patient risk factors",
+    "cooking methods",
+    "fortified foods",
+    "supplementation",
+    "anaemia"
+  ],
+  "key_terminology": {
+    "GORD": "gastro-oesophageal reflux disease",
+    "B12": "vitamin B12",
+    "Coeliac disease": "autoimmune disorder affecting small intestine",
+    "Crohn's disease": "inflammatory bowel disease affecting digestive tract"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "People that take medication that suppresses stomach acid for conditions like peptic ulcer disease or gastroesophageal reflux disease (GORD) can have difficulty absorbing vitamin B12 from food.",
+      "master_label": "medication-induced malabsorption",
+      "description": "Describes how proton pump inhibitors or H2 blockers reduce B12 absorption from dietary sources."
+    },
+    {
+      "text_snippet": "Folic acid, or folate, is a B class vitamin which is responsible for formation of healthy red blood cells, together with vitamin B12.",
+      "master_label": "folate function",
+      "description": "Identifies folate's role in erythropoiesis and neural tube development."
+    },
+    {
+      "text_snippet": "Avoid over cooking vegetables as the folate nutrient is easily lost this way. Steam or microwave vegetables instead.",
+      "master_label": "folate preservation",
+      "description": "Provides cooking guidance to minimize folate degradation during food preparation."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Guideline Clarification",
+      "description": "when a previous recommendation is restated with additional specificity or examples"
+    },
+    {
+      "name": "New Recommendation Added",
+      "description": "when a previously silent topic is addressed with new guidance"
+    },
+    {
+      "name": "Risk Factor Expansion",
+      "description": "when additional patient populations or conditions are identified as at-risk"
+    },
+    {
+      "name": "Recommendation Reversal",
+      "description": "when prior guidance is explicitly contradicted or superseded"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions describe the same concept with no substantive difference"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient's findings align with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient's findings meaningfully conflict with the guideline in a way that requires clinical attention"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient's findings are outside the guideline's expectation but only marginally or not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific patient finding or scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "clinical prerequisites or patient preparation instructions necessary for accurate assessment or treatment",
+    "deprecated_items": "nutritional recommendations or interventions that are no longer advised or have been superseded",
+    "new_items": "newly introduced dietary sources, risk factors, or management strategies"
+  },
+  "field_labels": {
+    "feature_name": "Nutrient Deficiency",
+    "key_behaviors": "Risk Factors and Clinical Manifestations",
+    "requirements": "Patient Preparation / Method",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "fortified food recommendations",
+      "version_a": "Vegans were advised to consume fortified plant milks or breakfast cereals as primary B12 sources.",
+      "version_b": "Vegans are now recommended to use B12-fortified nutritional yeast daily in addition to fortified foods or supplements.",
+      "change_type": "New Recommendation Added",
+      "analysis": "The newer guideline expands the toolkit for B12 replacement in vegans by endorsing nutritional yeast as a practical daily source, addressing compliance challenges with traditional fortified products."
+    },
+    {
+      "topic": "cooking method guidance",
+      "version_a": "Vegetables should be lightly cooked to preserve folate content.",
+      "version_b": "Vegetables must be steamed or microwaved for minimal duration to prevent folate degradation.",
+      "change_type": "Recommendation Reversal",
+      "analysis": "The updated guidance explicitly contradicts prior advice by prohibiting overcooking and specifying preferred methods, reflecting new evidence on folate sensitivity to heat and water exposure."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why do proton pump inhibitors increase the risk of vitamin B12 deficiency?",
+      "a": "Proton pump inhibitors suppress stomach acid production, which is necessary for releasing B12 from food proteins. Without adequate acid, the vitamin remains bound and unavailable for absorption in the small intestine."
+    },
+    {
+      "q": "What cooking methods best preserve folate in vegetables?",
+      "a": "Steaming or microwaving vegetables for short durations minimizes folate loss. Avoid boiling or prolonged hot holding, as folate is water-soluble and heat-sensitive."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "fortified food recommendations",
+    "foundation": "Vegans were advised to consume fortified plant milks or breakfast cereals as primary B12 sources.",
+    "value_added": [
+      "Endorsement of B12-fortified nutritional yeast as a daily source",
+      "Inclusion of fortified meat substitutes in the recommended rotation",
+      "Guidance on combining multiple fortified sources for consistent intake"
+    ],
+    "narrative": "The original guideline established fortified foods as the cornerstone of B12 replacement for vegans. The updated version builds on this foundation by introducing nutritional yeast as a practical daily option and expanding the repertoire of fortified products, thereby improving adherence and ensuring more reliable B12 status."
+  },
+  "type_key": "Dietary advice for Vitamin B12 and folate deficiency",
+  "source_files": [
+    "Dietary advice for Vitamin B12 and folate deficiency.pdf"
+  ]
+}

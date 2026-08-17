@@ -1,0 +1,156 @@
+{
+  "domain": "clinical lipid management and cardiovascular risk guidelines",
+  "document_purpose": "evidence-based clinical practice guideline for the management of dyslipidemia and cardiovascular risk stratification",
+  "specialist_role": "lipidology and preventive cardiology specialist",
+  "analyst_role": "clinical guideline analyst and evidence synthesis reviewer",
+  "entity_types": [
+    "patient population",
+    "lipid measurement",
+    "ASCVD risk assessment",
+    "statin therapy",
+    "dietary intervention",
+    "lifestyle modification",
+    "clinical recommendation",
+    "evidence table",
+    "writing committee",
+    "industry relationships"
+  ],
+  "key_terminology": {
+    "ACC": "American College of Cardiology",
+    "AHA": "American Heart Association",
+    "AACVPR": "American Association of Cardiovascular and Pulmonary Rehabilitation",
+    "ABC": "Association of Black Cardiologists",
+    "ACPM": "American College of Preventive Medicine",
+    "ADA": "American Diabetes Association",
+    "AGS": "American Geriatrics Society",
+    "APhA": "American Pharmacists Association",
+    "ASPC": "American Society for Preventive Cardiology",
+    "NLA": "National Lipid Association",
+    "PCNA": "Preventive Cardiovascular Nurses Association",
+    "LDL-C": "Low-Density Lipoprotein Cholesterol",
+    "HDL-C": "High-Density Lipoprotein Cholesterol",
+    "TG": "Triglycerides",
+    "Non-HDL-C": "Non-High-Density Lipoprotein Cholesterol",
+    "ApoB": "Apolipoprotein B",
+    "Lp(a)": "Lipoprotein(a)",
+    "ASCVD": "Atherosclerotic Cardiovascular Disease",
+    "RWI": "Relationships With Industry"
+  },
+  "labeling_few_shots": [
+    {
+      "text_snippet": "Recommendations for Lifestyle Management of Hypertriglyceridemia Referenced studies that support recommendations are summarized in the Evidence Table.",
+      "master_label": "Lifestyle Recommendation",
+      "description": "A clinical recommendation regarding lifestyle interventions for managing elevated triglyceride levels, supported by referenced studies compiled in an evidence table."
+    },
+    {
+      "text_snippet": "Table 1 highlights new and/or substantially revised practice-changing recommendations since the last iteration of the guideline and is not a comprehensive list of all updates.",
+      "master_label": "Practice-Changing Update",
+      "description": "A summary table identifying key changes in clinical recommendations from the previous guideline version, indicating areas of significant clinical impact."
+    },
+    {
+      "text_snippet": "The ACC and AHA have rigorous policies and methods to ensure that documents are developed without bias or improper influence. The complete policy on RWI can be found online.",
+      "master_label": "Conflict of Interest Policy",
+      "description": "A statement describing the governance framework used by the ACC and AHA to manage relationships with industry and ensure unbiased guideline development."
+    }
+  ],
+  "delta_change_types": [
+    {
+      "name": "Recommendation Strengthening",
+      "description": "when a prior recommendation is reinforced with stronger evidence or expanded scope"
+    },
+    {
+      "name": "New Recommendation Addition",
+      "description": "when a previously unsupported or unaddressed clinical scenario is now explicitly recommended"
+    },
+    {
+      "name": "Measurement Method Update",
+      "description": "when laboratory measurement techniques, thresholds, or preferred assays are revised"
+    },
+    {
+      "name": "Risk Stratification Refinement",
+      "description": "when ASCVD risk calculation methods, thresholds, or risk categories are updated"
+    },
+    {
+      "name": "Therapeutic Option Expansion",
+      "description": "when additional pharmacologic or non-pharmacologic interventions are endorsed for a condition"
+    },
+    {
+      "name": "Recommendation Reversal",
+      "description": "when a prior recommendation is explicitly contradicted or rescinded due to new evidence"
+    },
+    {
+      "name": "No Meaningful Change",
+      "description": "when two versions are compared and no substantive difference in clinical guidance is identified"
+    }
+  ],
+  "fusion_change_types": [
+    {
+      "name": "Concordant with Guideline",
+      "description": "the patient/case finding agrees with what the guideline recommends or expects"
+    },
+    {
+      "name": "Deviates — Clinically Significant",
+      "description": "the patient/case finding meaningfully conflicts with the guideline in a way that matters clinically"
+    },
+    {
+      "name": "Deviates — Borderline",
+      "description": "the patient/case finding is outside the guideline's expectation but only marginally/not clearly significant"
+    },
+    {
+      "name": "Guideline Silent on This Case",
+      "description": "the guideline reference doesn't actually address this specific finding/scenario"
+    }
+  ],
+  "delta_field_meaning": {
+    "requirements": "a clinical prerequisite or mandatory condition specified in the guideline, such as patient preparation for lipid testing or specific diagnostic criteria",
+    "deprecated_items": "a previously recommended clinical practice, measurement, or intervention that is no longer endorsed or has been superseded by newer evidence",
+    "new_items": "a newly introduced clinical recommendation, measurement technique, risk factor, or therapeutic option endorsed in the updated guideline"
+  },
+  "field_labels": {
+    "feature_name": "Clinical Recommendation",
+    "key_behaviors": "Key Clinical Actions",
+    "requirements": "Patient Preparation / Diagnostic Criteria",
+    "deprecated_items": null,
+    "new_items": null
+  },
+  "delta_few_shots": [
+    {
+      "topic": "Statin Therapy Initiation Thresholds",
+      "version_a": "Statin therapy was recommended for patients with LDL-C ≥190 mg/dL or clinical ASCVD, with consideration for diabetes or 10-year ASCVD risk ≥7.5%.",
+      "version_b": "Statin therapy is now recommended for patients with LDL-C ≥160 mg/dL or 10-year ASCVD risk ≥5%, expanding initiation to lower-risk and lower-LDL-C populations.",
+      "change_type": "Recommendation Strengthening",
+      "analysis": "The updated guideline lowers the treatment threshold for statin initiation, reflecting new evidence supporting earlier intervention to reduce ASCVD events. This change increases the eligible population for preventive therapy while maintaining emphasis on risk-based decision-making."
+    },
+    {
+      "topic": "Lp(a) Risk Stratification",
+      "version_a": "Lipoprotein(a) levels were considered a risk-enhancing factor but were not used to guide treatment intensity.",
+      "version_b": "Elevated Lp(a) ≥50 mg/dL is now a threshold for intensifying statin therapy or considering PCSK9 inhibitor therapy in high-risk patients.",
+      "change_type": "Recommendation Reversal",
+      "analysis": "The guideline reverses prior ambivalence by endorsing Lp(a) as a direct treatment modifier. This represents a paradigm shift from risk marker to actionable risk factor, significantly altering management for patients with elevated Lp(a)."
+    }
+  ],
+  "qna_few_shots": [
+    {
+      "q": "Why did the guideline lower the LDL-C threshold for statin initiation from 190 mg/dL to 160 mg/dL?",
+      "a": "New randomized trial data and meta-analyses demonstrated that initiating statin therapy at lower LDL-C levels in intermediate-risk patients significantly reduces major adverse cardiovascular events, supporting a more aggressive preventive approach."
+    },
+    {
+      "q": "How should clinicians incorporate Lp(a) testing into routine practice given the updated recommendations?",
+      "a": "Clinicians should consider Lp(a) testing in patients with a family history of premature ASCVD, personal history of ASCVD despite low LDL-C, or intermediate risk scores. Elevated Lp(a) ≥50 mg/dL should prompt intensification of lipid-lowering therapy or referral to a lipid specialist."
+    }
+  ],
+  "evolution_few_shot": {
+    "topic": "Statin Therapy Initiation Thresholds",
+    "foundation": "Prior guidelines recommended statin therapy for patients with LDL-C ≥190 mg/dL or clinical ASCVD, with consideration for diabetes or 10-year ASCVD risk ≥7.5%.",
+    "value_added": [
+      "Lowered LDL-C initiation threshold to ≥160 mg/dL",
+      "Reduced ASCVD risk threshold for consideration to ≥5%",
+      "Expanded eligibility for primary prevention in lower-risk populations"
+    ],
+    "narrative": "The 2026 guideline builds upon prior recommendations by incorporating newer trial data showing benefit from earlier statin initiation. By lowering the LDL-C threshold and ASCVD risk threshold, the guideline enables earlier intervention in patients who may benefit from preventive therapy, potentially reducing long-term cardiovascular events."
+  },
+  "type_key": "ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia",
+  "source_files": [
+    "2026 ACC-AHA-AACVPR-ABC-ACPM-ADA \n AGS-APhA-ASPC-NLA-PCNA Guideline on\nthe Management of Dyslipidemia.pdf"
+  ]
+}

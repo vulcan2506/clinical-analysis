@@ -1,12 +1,12 @@
 """
 llm_client.py
 ─────────────
-Single-tier LLM client backed by a local llama.cpp server.
+Text-generation client with a 4-tier fallback chain: Mistral → OpenRouter →
+Groq → local llama.cpp server. LLM_BACKEND="api" (default) uses the full
+chain; LLM_BACKEND="local" skips straight to the local server.
 
-All calls route to the same OpenAI-compatible endpoint at LLAMA_SERVER_URL.
-The server runs Qwen3-14B-Q4_K_M locally — no external API, no rate limits.
-
-Start the server before running the pipeline:
+The local llama.cpp server runs Qwen3-14B-Q4_K_M — no external API, no rate
+limits. Start it before running the pipeline if using LLM_BACKEND="local":
   bash start_server.sh
 
 ── Dynamic token budgeting ──────────────────────────────────────────────────
@@ -39,7 +39,7 @@ import config
 
 log = logging.getLogger(__name__)
 
-_anthropic_client = None  # lazy — only imported/constructed if LLM_BACKEND == "anthropic"
+_mistral_client = None    # lazy — only imported/constructed for ingest.py's primary OCR path
 _local_server_starting = False  # guards against launching start_server.sh twice from parallel threads
 
 
@@ -70,7 +70,7 @@ def _ensure_local_server() -> bool:
             log.error(f"Cannot start local fallback server — {script} not found")
             return False
         _local_server_starting = True
-        log.warning("Claude unavailable — starting local llama.cpp server (start_server.sh) as fallback...")
+        log.warning("API tiers unavailable — starting local llama.cpp server (start_server.sh) as fallback...")
         log_path = config.OUTPUT_DIR / "llama_server_fallback.log"
         log_path.parent.mkdir(parents=True, exist_ok=True)
         with open(log_path, "a") as logf:
@@ -94,20 +94,21 @@ def _ensure_local_server() -> bool:
     return False
 
 
-def _get_anthropic_client():
-    global _anthropic_client
-    if _anthropic_client is None:
-        if not config.ANTHROPIC_API_KEY:
+def _get_mistral_client():
+    global _mistral_client
+    if _mistral_client is None:
+        if not config.MISTRAL_API_KEY:
             raise RuntimeError(
-                "LLM_BACKEND is 'anthropic' but ANTHROPIC_API_KEY is not set. "
-                "BYOK: add your own key to Stage 1/.env — ANTHROPIC_API_KEY=sk-ant-... "
-                "(never paste it into chat/logs). Set LLM_BACKEND=local in .env to use "
-                "the local llama.cpp server instead."
+                "MISTRAL_API_KEY is not set — add it to Stage 1/.env — MISTRAL_API_KEY=... "
+                "(never paste it into chat/logs)."
             )
-        import anthropic
-        _anthropic_client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-        log.info(f"Anthropic client → model={config.ANTHROPIC_MODEL}")
-    return _anthropic_client
+        from mistralai.client import Mistral
+        _mistral_client = Mistral(api_key=config.MISTRAL_API_KEY)
+        # Shared client — used for both OCR (ingest.py, model=MISTRAL_OCR_MODEL)
+        # and chat (_chat_mistral, model=MISTRAL_CHAT_MODEL), so no single
+        # model name belongs in this construction-time log line.
+        log.info(f"Mistral client constructed — OCR model={config.MISTRAL_OCR_MODEL}, chat model={config.MISTRAL_CHAT_MODEL}")
+    return _mistral_client
 
 
 def _progress(done: int, total: int, desc: str, t0: float) -> None:
@@ -191,76 +192,78 @@ def _chat(
     stop: Optional[List[str]] = None,
     enable_thinking: bool = False,
 ) -> str:
-    if config.LLM_BACKEND == "anthropic":
+    if config.LLM_BACKEND == "api":
         try:
-            return _chat_anthropic(prompt, max_tokens, system_prompt, stop, enable_thinking)
-        except Exception as e_claude:
-            log.warning(f"Claude call failed after retries ({type(e_claude).__name__}: {e_claude}) — trying OpenRouter fallback")
+            return _chat_mistral(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
+        except Exception as e_mistral:
+            log.warning(f"Mistral call failed after retries ({type(e_mistral).__name__}: {e_mistral}) — trying OpenRouter fallback")
 
-            or_client = _get_openrouter_client()
-            if or_client is not None:
-                try:
-                    return _chat_openai_compatible(
-                        or_client, config.OPENROUTER_MODEL, prompt, max_tokens, temperature,
-                        system_prompt, stop, enable_thinking, label="OpenRouter",
-                    )
-                except Exception as e_or:
-                    log.warning(f"OpenRouter call failed after retries ({type(e_or).__name__}: {e_or}) — trying Groq fallback")
-            else:
-                log.warning("OPENROUTER_API_KEY not set — skipping OpenRouter fallback, trying Groq")
+        or_client = _get_openrouter_client()
+        if or_client is not None:
+            try:
+                return _chat_openai_compatible(
+                    or_client, config.OPENROUTER_MODEL, prompt, max_tokens, temperature,
+                    system_prompt, stop, enable_thinking, label="OpenRouter",
+                )
+            except Exception as e_or:
+                log.warning(f"OpenRouter call failed after retries ({type(e_or).__name__}: {e_or}) — trying Groq fallback")
+        else:
+            log.warning("OPENROUTER_API_KEY not set — skipping OpenRouter, trying Groq")
 
-            groq_client = _get_groq_client()
-            if groq_client is not None:
-                try:
-                    return _chat_openai_compatible(
-                        groq_client, config.GROQ_MODEL, prompt, max_tokens, temperature,
-                        system_prompt, stop, enable_thinking, label="Groq",
-                    )
-                except Exception as e_groq:
-                    log.warning(f"Groq call failed after retries ({type(e_groq).__name__}: {e_groq}) — falling back to local llama.cpp server")
-            else:
-                log.warning("GROQ_API_KEY not set — skipping Groq fallback, trying local llama.cpp server")
+        groq_client = _get_groq_client()
+        if groq_client is not None:
+            try:
+                return _chat_openai_compatible(
+                    groq_client, config.GROQ_MODEL, prompt, max_tokens, temperature,
+                    system_prompt, stop, enable_thinking, label="Groq",
+                )
+            except Exception as e_groq:
+                log.warning(f"Groq call failed after retries ({type(e_groq).__name__}: {e_groq}) — falling back to local llama.cpp server")
+        else:
+            log.warning("GROQ_API_KEY not set — skipping Groq, trying local llama.cpp server")
 
-            if not _ensure_local_server():
-                raise RuntimeError(
-                    "Claude, OpenRouter, and Groq all failed, and the local llama.cpp "
-                    "fallback server did not come up"
-                ) from e_claude
-            return _chat_local(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
+        if not _ensure_local_server():
+            raise RuntimeError(
+                "Mistral, OpenRouter, and Groq all failed, and the local llama.cpp "
+                "fallback server did not come up"
+            )
+        return _chat_local(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
     return _chat_local(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
 
 
-def _chat_anthropic(
+def _chat_mistral(
     prompt: str,
     max_tokens: int,
+    temperature: float,
     system_prompt: Optional[str],
     stop: Optional[List[str]],
     enable_thinking: bool,
 ) -> str:
-    client = _get_anthropic_client()
-    kwargs = dict(
-        model=config.ANTHROPIC_MODEL,
-        max_tokens=max_tokens,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    """enable_thinking is accepted for signature parity with the other _chat_*
+    helpers but unused — Mistral's chat.complete() has no equivalent."""
+    client = _get_mistral_client()
+    messages = [{"role": "user", "content": prompt}]
     if system_prompt:
-        kwargs["system"] = system_prompt
+        messages.insert(0, {"role": "system", "content": system_prompt})
+
+    kwargs = dict(
+        model=config.MISTRAL_CHAT_MODEL,
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temperature,
+    )
     if stop:
-        kwargs["stop_sequences"] = stop
-    if enable_thinking:
-        kwargs["thinking"] = {"type": "adaptive"}
-    # temperature is intentionally omitted — Opus 4.8 rejects sampling params
-    # outright, and every call site here already runs at temperature=0.0.
+        kwargs["stop"] = stop
 
     for attempt in range(3):
         try:
-            resp = client.messages.create(**kwargs)
-            return next((b.text for b in resp.content if b.type == "text"), "").strip()
+            resp = client.chat.complete(**kwargs)
+            return (resp.choices[0].message.content or "").strip()
         except Exception as e:
             if attempt < 2:
-                log.warning(f"Anthropic API error (attempt {attempt+1}/3), retrying...")
+                log.warning(f"Mistral API error (attempt {attempt+1}/3), retrying...")
             else:
-                log.error(f"Anthropic API error after 3 attempts: {e}")
+                log.error(f"Mistral API error after 3 attempts: {e}")
                 raise
 
 
@@ -374,7 +377,7 @@ def generate_batch(
         idx, prompt = idx_prompt
         return idx, _chat(prompt, max_tokens, temperature, system_prompt, stop, enable_thinking)
 
-    slots = config.ANTHROPIC_PARALLEL_SLOTS if config.LLM_BACKEND == "anthropic" else config.LLAMA_PARALLEL_SLOTS
+    slots = config.API_PARALLEL_SLOTS if config.LLM_BACKEND == "api" else config.LLAMA_PARALLEL_SLOTS
     t0 = time.time()
     log.info(f"{desc}: starting {total} items ({slots} parallel slots, backend={config.LLM_BACKEND})")
     done = 0
@@ -426,16 +429,32 @@ def generate_local_batch(
     )
 
 
-def get_anthropic_client():
-    """Public accessor — used by ingest.py's Claude vision OCR path, which needs
-    raw client.messages.create() for multimodal (image) content blocks that the
-    text-only generate()/generate_batch() helpers above don't expose."""
-    return _get_anthropic_client()
+def get_mistral_client():
+    """Public accessor — used by ingest.py's Mistral OCR path (primary), which
+    needs raw client.ocr.process() for the dedicated document-OCR endpoint
+    that the text-only generate()/generate_batch() helpers don't expose."""
+    return _get_mistral_client()
+
+
+def get_groq_client() -> OpenAI:
+    """Public accessor — used by ingest.py's Groq vision OCR path, which needs
+    raw client.chat.completions.create() for multimodal (image_url) content
+    blocks that the text-only generate()/generate_batch() helpers don't expose.
+    Unlike the private _get_groq_client() used in the text-generation fallback
+    chain (which returns None so callers can skip to the next tier), this
+    raises when the key is missing — ingest.py's OCR call site wants a hard
+    failure so it falls back to Docling."""
+    client = _get_groq_client()
+    if client is None:
+        raise RuntimeError(
+            "GROQ_API_KEY is not set — add it to Stage 1/.env — GROQ_API_KEY=gsk_... "
+            "(never paste it into chat/logs)."
+        )
+    return client
 
 
 def unload():
-    global _client, _anthropic_client
+    global _client
     _client = None
-    _anthropic_client = None
     gc.collect()
     log.info("llm_client reset (llama-server keeps model loaded)")

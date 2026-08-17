@@ -1,0 +1,7 @@
+|  Committee Member | Employment | Consultant | Speakers Bureau | Ownership/ Partnership/ Principal | Personal Research | Institutional, Organizational, or Other Financial Benefit | Expert Witness  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  Daniel E. Soffer | Penn Medicine–Associate Professor of Medicine | NOT RELEVANT • HeartFlow • ReLEVANT • Amryt Pharma • Endless Health† • GENinCode† • Ionis Pharmaceuticals • NewAmsterdam • Regeneron | RELEVANT • Ionis | NOT RELEVANT • Partnership for Health Analytic Research | NOT RELEVANT • Amgen (DSMB) | NOT RELEVANT • Akcea Therapeutics • Amgen • Amryt Pharma • HeartFlow* • Ionis Pharmaceuticals • NIH • Lilly USA • Novartis • PCORI† • Regeneron • Verve Therapeutics | Reviewer for plaintiff, 2024/2025  |
+|  Sheila A. Tynes | Tynes Consulting Services, LLC–President/Owner | None | None | None | None | None | None  |
+|  Chloé D. Vilavas | Tulane University–Instructor of Medicine | None | None | None | None | NOT RELEVANT • Novartis • PCNA† | None  |
+|  Salim S. Virani | Aga Khan University–Professor and Vice Provost, Research | None | None | None | NOT RELEVANT • NIH* • NIHR* • Tahir and Jooma Family* • Asharia Family Endowment* • US Department of Veterans Affairs* | NOT RELEVANT • Current Atherosclerosis Reports • Current Cardiology Reports • Journal of Clinical Lipidology | None  |
+|  John T. Wilkins | Northwestern Medicine Feinberg School of Medicine–Associate Professor | NOT RELEVANT • 3M* | None | None | NOT RELEVANT • NIH* | None | NOT RELEVANT • Defense, malpractice, 2024  |

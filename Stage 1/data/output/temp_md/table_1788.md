@@ -1,0 +1,5 @@
+|  Validated malnutrition assessment tool | Attributes  |
+| --- | --- |
+|  7-Point Subjective Global Assessment (SGA)\( ^{876} \) | Provides assessment points on weight change, dietary intake, digestive function, functional capacity, and metabolic stress. A nutrition focused physical examination is also performed. This updated version of the SGA is more sensitive to short-term nutrition changes. A score of 1–2 indicates severe malnutrition, 3–5 is mild malnutrition, and 6–7 indicates normal nutrition status.  |
+|  Malnutrition-Inflammation Score\( ^{877} \) | Assesses malnutrition and inflammation using 10 parameters including dietary intake, anthropometric measurements, laboratory indices, and functional capacity. The score ranges from 0 (normal) to 30 (severe malnutrition and inflammation).  |
+|  Mini Nutrition Assessment\( ^{878} \) | Includes assessment of dietary intake, mobility, neuropsychology, and some anthropometric measurements, including weight and calf circumference. A score of 12–14 points indicates normal nutrition status, 8–11 indicates at risk for malnutrition, and 0–7 points indicates malnutrition.  |

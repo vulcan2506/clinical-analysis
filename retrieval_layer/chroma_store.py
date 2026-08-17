@@ -103,9 +103,10 @@ def _sliding_chunks(text: str, size: int = 1000, overlap: int = 200) -> List[str
 
 class ChromaStore:
 
-    def __init__(self):
-        config.CHROMA_DIR.mkdir(parents=True, exist_ok=True)
-        self._client      = chromadb.PersistentClient(path=str(config.CHROMA_DIR))
+    def __init__(self, chroma_dir: Optional[Path] = None):
+        self._chroma_dir = chroma_dir or config.CHROMA_DIR
+        self._chroma_dir.mkdir(parents=True, exist_ok=True)
+        self._client      = chromadb.PersistentClient(path=str(self._chroma_dir))
         self._embedder    = _MiniLMEmbedder()
         self._corpus      = None
         self._intelligence = None
@@ -215,6 +216,7 @@ class ChromaStore:
                 "n_chunks":     int(row.get("n_chunks", 0)),
                 "qna":          qna_raw,   # JSON dict keyed by source_doc
                 "type":         "topic_summary",
+                "significance_level": _safe_str(row.get("significance_level", "")),
             })
 
         self._upsert_batched(self.intelligence, ids, docs, metas, batch, "intelligence")
@@ -474,6 +476,9 @@ class ChromaStore:
             narrative    = _safe_str(card.get("narrative", ""))
             foundation   = _safe_str(card.get("foundation", ""))
             value_added  = [_safe_str(v) for v in card.get("value_added", [])]
+            clinical_finding = _safe_str(card.get("clinical_finding", ""))
+            guideline_context = _safe_str(card.get("guideline_context", ""))
+            clinical_sig = _safe_str(card.get("clinical_significance", ""))
             if not (feature_name and narrative):
                 continue
 
@@ -482,10 +487,24 @@ class ChromaStore:
                 f"{feature_name} ({vA} → {vB}). Foundation: {foundation} "
                 f"Value added: {'; '.join(value_added)} {narrative}"
             )
+            if clinical_finding:
+                stored = (
+                    f"{feature_name} ({vA} → {vB}). "
+                    f"Patient finding: {clinical_finding}. "
+                    f"Guideline standard: {foundation}. "
+                    f"Value added: {'; '.join(value_added)} "
+                    f"Clinical significance: {clinical_sig} {narrative}"
+                )
 
             uid = f"evolution_{i}"
             ids.append(uid)
-            embed_texts.append(f"{feature_name}. {narrative}")
+            embed_text = f"{feature_name}. {narrative}"
+            if clinical_finding:
+                embed_text = (
+                    f"{feature_name}. {clinical_finding}. "
+                    f"{guideline_context} {clinical_sig}"
+                )
+            embed_texts.append(embed_text)
             docs.append(stored)
             metas.append({
                 "feature_name": feature_name,
@@ -495,6 +514,9 @@ class ChromaStore:
                 "parent": _safe_str(entry.get("parent", "")),
                 "sub": _safe_str(entry.get("sub", "")),
                 "type": "evolution_card",
+                "clinical_finding": clinical_finding,
+                "guideline_context": guideline_context,
+                "clinical_significance": clinical_sig,
             })
 
         if not ids:
@@ -649,9 +671,11 @@ class ChromaStore:
         n: int = config.CHROMA_N_CORPUS,
         version: Optional[str] = None,
         source_doc: Optional[str] = None,
+        exclude_source_docs: Optional[List[str]] = None,
     ) -> List[Dict]:
         """Factual retrieval from raw chunks."""
-        where = self._build_where(version=version, source_doc=source_doc)
+        where = self._build_where(version=version, source_doc=source_doc,
+                                  exclude_source_docs=exclude_source_docs)
         return self._query(self.corpus, query, n, where)
 
     def query_intelligence(
@@ -750,12 +774,15 @@ class ChromaStore:
         return self._query(self.overlap, query, n, where=None)
 
     def _build_where(self, version: Optional[str] = None,
-                     source_doc: Optional[str] = None) -> Optional[Dict]:
+                     source_doc: Optional[str] = None,
+                     exclude_source_docs: Optional[List[str]] = None) -> Optional[Dict]:
         conditions = []
         if version:
             conditions.append({"version": {"$eq": version}})
         if source_doc:
             conditions.append({"source_doc": {"$eq": source_doc}})
+        if exclude_source_docs:
+            conditions.append({"source_doc": {"$nin": exclude_source_docs}})
         if len(conditions) == 0:
             return None
         if len(conditions) == 1:
@@ -830,20 +857,32 @@ def build_all():
 
 # ── Singleton ──────────────────────────────────────────────────────────────────
 
-_store: Optional[ChromaStore] = None
+_stores: Dict[str, ChromaStore] = {}
 _store_lock = threading.Lock()
 
-def get_store() -> ChromaStore:
+def get_store(corpus_id: str = "default") -> ChromaStore:
+    """
+    corpus_id keys a small in-process registry of ChromaStore instances, one
+    per corpus (e.g. "guidelines" for Stage 1's permanent guideline KB, a
+    per-patient run id for Stage 2 outputs). Existing zero-arg callers keep
+    working unchanged against corpus_id="default" (Stage 1's original single
+    corpus). Chroma dir for a non-default corpus_id is resolved via
+    corpus_registry.resolve().
+    """
     # Double-checked locking — same reason as router.get_router() and
     # reranker._get_model(): retrieve_best_of_n's parallel reformulations are
     # now the default cheap-first-pass, so multiple threads can race here on
     # the first query of a fresh process.
-    global _store
-    if _store is None:
+    if corpus_id not in _stores:
         with _store_lock:
-            if _store is None:
-                _store = ChromaStore()
-    return _store
+            if corpus_id not in _stores:
+                if corpus_id == "default":
+                    chroma_dir = config.CHROMA_DIR
+                else:
+                    import corpus_registry
+                    chroma_dir = corpus_registry.resolve(corpus_id).chroma_dir
+                _stores[corpus_id] = ChromaStore(chroma_dir=chroma_dir)
+    return _stores[corpus_id]
 
 
 def warm() -> None:
@@ -851,16 +890,15 @@ def warm() -> None:
     get_store().warm()
 
 
-def reset_store() -> None:
+def reset_store(corpus_id: str = "default") -> None:
     """
-    Drops the cached ChromaStore so the next get_store() call re-opens
-    chroma_db/ from disk. Needed after a corpus reset + reprocess — without
-    this, a long-lived api_server process keeps serving the OLD in-memory
-    store even after the underlying files are replaced.
+    Drops the cached ChromaStore for corpus_id so the next get_store() call
+    re-opens its chroma dir from disk. Needed after a corpus reset +
+    reprocess — without this, a long-lived api_server process keeps serving
+    the OLD in-memory store even after the underlying files are replaced.
     """
-    global _store
     with _store_lock:
-        _store = None
+        _stores.pop(corpus_id, None)
 
 
 if __name__ == "__main__":
