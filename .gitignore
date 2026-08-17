@@ -36,3 +36,14 @@ retrieval_layer/deep_eval*.log
 # ── Personal/working files not needed in the repo ───────────────────────────
 Stage 1/*.log
 Stage 1/WhatsApp Image*.jpeg
+
+# ── Scratch / log / deploy helper files ─────────────────────────────────────
+*.log
+DEPLOY.md
+render.yaml
+deploy_hf_space.py
+Stage 1/I want you to work on.txt
+Stage 1/Now what I was saying.txt
+Stage 1/sterling_ocr_review.md
+Stage 1/reanker.txt
+Stage 2/run_tail.log
